@@ -1,27 +1,15 @@
 Global:
-  version: "2.0"
-  group_email: chongkuitai@baidu.com
-
+    tool : build_submitter
 Default:
-  profile: [publish]
-
+    profile : [publish]
 Profiles:
-  - profile:
-    name: dev
-    mode: AGENT
-    environment:
-      image: DECK_STD_CENTOS7
-      tools:
-        - python: 3.12.0
-    build:
-      command: pip3 install -r requirements.txt && python3 -m build
-
-  - profile:
-    name: publish
-    mode: AGENT
-    environment:
-      image: DECK_STD_CENTOS7
-      tools:
-        - python: 3.12.0
-    build:
-      command: pip3 install -r requirements.txt && python3 -m build
+    - profile:
+      name : dev
+      env: DECK_CENTOS7U5_K3
+      command : bash build.sh
+      release : false
+    - profile:
+      name :  publish
+      env: DECK_CENTOS7U5_K3
+      command : bash build.sh
+      release : true
