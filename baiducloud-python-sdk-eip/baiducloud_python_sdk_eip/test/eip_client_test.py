@@ -1,0 +1,131 @@
+import unittest
+
+from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
+from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
+from baiducloud_python_sdk_eip.api.eip_client import EipClient
+
+
+class EipClientTest(unittest.TestCase):
+    """EipClient unit test stubs"""
+
+    def setUp(self):
+        """
+        set up
+        """
+        HOST = b''
+        AK = b''
+        SK = b''
+        config = BceClientConfiguration(credentials=BceCredentials(AK, SK),
+        endpoint=HOST)
+        self.client = EipClient(config)
+
+    def tearDown(self):
+        """
+        tear down
+        """
+        self.the_client = None
+
+    def test_add_tbsp_area_blocking(self):
+        self.client.add_tbsp_area_blocking(None)
+
+    def test_add_tbsp_ip_whitelist(self):
+        self.client.add_tbsp_ip_whitelist(None)
+
+    def test_add_tbsp_protocol_blocking(self):
+        self.client.add_tbsp_protocol_blocking(None)
+
+    def test_bandwidth_package_inquiry(self):
+        self.client.bandwidth_package_inquiry(None)
+
+    def test_bind_tbsp_protection_object(self):
+        self.client.bind_tbsp_protection_object(None)
+
+    def test_create_tbsp(self):
+        self.client.create_tbsp(None)
+
+    def test_detail_tbsp(self):
+        self.client.detail_tbsp(None)
+
+    def test_disable_tbsp_ip_clean(self):
+        self.client.disable_tbsp_ip_clean(None)
+
+    def test_eip_inquiry(self):
+        self.client.eip_inquiry(None)
+
+    def test_enable_tbsp_ip_clean(self):
+        self.client.enable_tbsp_ip_clean(None)
+
+    def test_list_tbsp(self):
+        self.client.list_tbsp(None)
+
+    def test_list_tbsp_area_blocking(self):
+        self.client.list_tbsp_area_blocking(None)
+
+    def test_list_tbsp_ip_clean(self):
+        self.client.list_tbsp_ip_clean(None)
+
+    def test_list_tbsp_ip_whitelist(self):
+        self.client.list_tbsp_ip_whitelist(None)
+
+    def test_list_tbsp_protocol_blocking(self):
+        self.client.list_tbsp_protocol_blocking(None)
+
+    def test_modify_tbsp_ip_clean_threshold(self):
+        self.client.modify_tbsp_ip_clean_threshold(None)
+
+    def test_modify_tbsp_ip_protect_level(self):
+        self.client.modify_tbsp_ip_protect_level(None)
+
+    def test_remove_tbsp_area_blocking(self):
+        self.client.remove_tbsp_area_blocking(None)
+
+    def test_remove_tbsp_ip_whitelist(self):
+        self.client.remove_tbsp_ip_whitelist(None)
+
+    def test_remove_tbsp_protocol_blocking(self):
+        self.client.remove_tbsp_protocol_blocking(None)
+
+    def test_renew_tbsp(self):
+        self.client.renew_tbsp(None)
+
+    def test_resize_tbsp(self):
+        self.client.resize_tbsp(None)
+
+    def test_shared_bandwidth_inquiry(self):
+        self.client.shared_bandwidth_inquiry(None)
+
+    def test_shared_data_package_inquiry(self):
+        self.client.shared_data_package_inquiry(None)
+
+    def test_unbind_tbsp_protection_object(self):
+        self.client.unbind_tbsp_protection_object(None)
+
+if __name__ == '__main__':
+    suite = unittest.TestSuite()
+    suite.addTest(EipClientTest("test_add_tbsp_area_blocking"))
+    suite.addTest(EipClientTest("test_add_tbsp_ip_whitelist"))
+    suite.addTest(EipClientTest("test_add_tbsp_protocol_blocking"))
+    suite.addTest(EipClientTest("test_bandwidth_package_inquiry"))
+    suite.addTest(EipClientTest("test_bind_tbsp_protection_object"))
+    suite.addTest(EipClientTest("test_create_tbsp"))
+    suite.addTest(EipClientTest("test_detail_tbsp"))
+    suite.addTest(EipClientTest("test_disable_tbsp_ip_clean"))
+    suite.addTest(EipClientTest("test_eip_inquiry"))
+    suite.addTest(EipClientTest("test_enable_tbsp_ip_clean"))
+    suite.addTest(EipClientTest("test_list_tbsp"))
+    suite.addTest(EipClientTest("test_list_tbsp_area_blocking"))
+    suite.addTest(EipClientTest("test_list_tbsp_ip_clean"))
+    suite.addTest(EipClientTest("test_list_tbsp_ip_whitelist"))
+    suite.addTest(EipClientTest("test_list_tbsp_protocol_blocking"))
+    suite.addTest(EipClientTest("test_modify_tbsp_ip_clean_threshold"))
+    suite.addTest(EipClientTest("test_modify_tbsp_ip_protect_level"))
+    suite.addTest(EipClientTest("test_remove_tbsp_area_blocking"))
+    suite.addTest(EipClientTest("test_remove_tbsp_ip_whitelist"))
+    suite.addTest(EipClientTest("test_remove_tbsp_protocol_blocking"))
+    suite.addTest(EipClientTest("test_renew_tbsp"))
+    suite.addTest(EipClientTest("test_resize_tbsp"))
+    suite.addTest(EipClientTest("test_shared_bandwidth_inquiry"))
+    suite.addTest(EipClientTest("test_shared_data_package_inquiry"))
+    suite.addTest(EipClientTest("test_unbind_tbsp_protection_object"))
+    runner = unittest.TextTestRunner()
+    runner.run(suite)
