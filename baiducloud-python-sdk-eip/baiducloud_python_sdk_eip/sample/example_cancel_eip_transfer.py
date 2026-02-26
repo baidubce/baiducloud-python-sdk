@@ -13,7 +13,6 @@ if __name__ == '__main__':
         config = BceClientConfiguration(credentials=BceCredentials(access_key_id, secret_access_key), endpoint = endpoint)
         EipClient = EipClient(config)
         request = CancelEipTransferRequest(
-            action = "", 
             transfer_id_list = [], 
             client_token = ""
         )

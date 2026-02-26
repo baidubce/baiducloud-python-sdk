@@ -39,7 +39,7 @@ class TransferEipVo(AbstractModel):
         if self.instance_name is not None:
             result['instanceName'] = self.instance_name
         if self.instance_ip is not None:
-            result['instanceIP'] = self.instance_ip
+            result['instanceIp'] = self.instance_ip
         if self.instance_type is not None:
             result['instanceType'] = self.instance_type
         if self.instance_bandwidth is not None:
@@ -67,8 +67,8 @@ class TransferEipVo(AbstractModel):
             self.instance_id = m.get('instanceId')
         if m.get('instanceName') is not None:
             self.instance_name = m.get('instanceName')
-        if m.get('instanceIP') is not None:
-            self.instance_ip = m.get('instanceIP')
+        if m.get('instanceIp') is not None:
+            self.instance_ip = m.get('instanceIp')
         if m.get('instanceType') is not None:
             self.instance_type = m.get('instanceType')
         if m.get('instanceBandwidth') is not None:
