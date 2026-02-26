@@ -131,7 +131,7 @@ class EipClient(BceBaseClient):
     def cancel_eip_transfer(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TRANSFER)
         params = {
-            request.action : None,
+            'cancel' : None,
             'clientToken' : request.client_token,
         }
         return self._send_request(http_methods.PUT, path=path
@@ -347,7 +347,7 @@ class EipClient(BceBaseClient):
     def receive_eip_transfer(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TRANSFER)
         params = {
-            request.action : None,
+            'accept' : None,
             'clientToken' : request.client_token,
         }
         return self._send_request(http_methods.PUT, path=path
@@ -356,7 +356,7 @@ class EipClient(BceBaseClient):
     def reject_eip_transfer(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TRANSFER)
         params = {
-            request.action : None,
+            'reject' : None,
             'clientToken' : request.client_token,
         }
         return self._send_request(http_methods.PUT, path=path

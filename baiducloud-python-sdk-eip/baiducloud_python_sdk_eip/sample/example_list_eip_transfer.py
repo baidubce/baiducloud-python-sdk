@@ -13,7 +13,7 @@ if __name__ == '__main__':
         config = BceClientConfiguration(credentials=BceCredentials(access_key_id, secret_access_key), endpoint = endpoint)
         EipClient = EipClient(config)
         request = ListEipTransferRequest(
-            max_keys = "", 
+            max_keys = 0, 
             marker = "", 
             direction = "", 
             transfer_id = "", 
