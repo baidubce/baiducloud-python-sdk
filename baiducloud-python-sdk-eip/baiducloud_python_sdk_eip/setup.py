@@ -65,6 +65,6 @@ setup(
     project_urls={
         'Source': 'https://github.com/baidubce/baiducloud-python-sdk',
         'Documentation': 'https://github.com/baidubce/baiducloud-python-sdk/tree/master/docs',
-        'Changelog': 'https://github.com/baidubce/baiducloud-python-sdk/blob/master/baiducloud-python-sdk-core/ChangeLog.md',
+        'Changelog': 'https://github.com/baidubce/baiducloud-python-sdk/blob/master/baiducloud-python-sdk-eip/ChangeLog.md',
     }
 )
