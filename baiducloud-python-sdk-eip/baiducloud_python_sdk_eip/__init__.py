@@ -1,1 +1,1 @@
-SDK_VERSION = b'0.0.5'
+SDK_VERSION = b'0.0.6'

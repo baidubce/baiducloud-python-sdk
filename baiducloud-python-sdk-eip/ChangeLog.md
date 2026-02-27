@@ -1,3 +1,5 @@
+2026-02-27 Version: 0.0.6
+- params判断None
 2026-02-26 Version: 0.0.5
 - 支持EIP资源转移
 2026-02-11 Version: 0.0.4
