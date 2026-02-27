@@ -8,14 +8,14 @@ from baiducloud_python_sdk_core.bce_base_client import BceBaseClient
 from baiducloud_python_sdk_core.http import bce_http_client
 from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import http_methods
-from baiducloud_python_sdk_vpc.models.create_a_reserved_network_segment_response import CreateAReservedNetworkSegmentResponse
+from baiducloud_python_sdk_vpc.models.create_ip_reserved_response import CreateIpReservedResponse
 from baiducloud_python_sdk_vpc.models.create_subnet_response import CreateSubnetResponse
 from baiducloud_python_sdk_vpc.models.create_vpc_response import CreateVpcResponse
+from baiducloud_python_sdk_vpc.models.get_vpc_resource_ip_info_response import GetVpcResourceIpInfoResponse
+from baiducloud_python_sdk_vpc.models.list_ip_reserve_response import ListIpReserveResponse
 from baiducloud_python_sdk_vpc.models.query_specified_subnet_response import QuerySpecifiedSubnetResponse
 from baiducloud_python_sdk_vpc.models.query_specified_vpc_response import QuerySpecifiedVpcResponse
 from baiducloud_python_sdk_vpc.models.query_subnet_list_response import QuerySubnetListResponse
-from baiducloud_python_sdk_vpc.models.query_the_ip_addresses_occupied_by_products_within_vpc_response import QueryTheIpAddressesOccupiedByProductsWithinVpcResponse
-from baiducloud_python_sdk_vpc.models.query_the_reserved_network_segment_list_response import QueryTheReservedNetworkSegmentListResponse
 from baiducloud_python_sdk_vpc.models.query_vpc_intranet_ip_response import QueryVpcIntranetIpResponse
 from baiducloud_python_sdk_vpc.models.query_vpc_list_response import QueryVpcListResponse
 
@@ -34,11 +34,11 @@ class VpcClient(BceBaseClient):
 
     CONSTANT_SUBNET = b'subnet'
 
-    CONSTANT_IPRESERVE = b'ipreserve'
-
     CONSTANT_OPEN_RELAY = b'openRelay'
 
     CONSTANT_PRIVATE_IP_ADDRESS_INFO = b'privateIpAddressInfo'
+
+    CONSTANT_IPRESERVE = b'ipreserve'
 
     def __init__(self, config=None):
         bce_base_client.BceBaseClient.__init__(self, config)
@@ -51,13 +51,13 @@ class VpcClient(BceBaseClient):
         return self._send_request(http_methods.PUT, path=path
                                 , params=params, config=config)
 
-    def create_a_reserved_network_segment(self, request, config=None):
+    def create_ip_reserved(self, request, config=None):
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET, VpcClient.CONSTANT_IPRESERVE)
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
         return self._send_request(http_methods.POST, path=path
-                                , body=request.to_json_string(), params=params, config=config, model=CreateAReservedNetworkSegmentResponse)
+                                , body=request.to_json_string(), params=params, config=config, model=CreateIpReservedResponse)
 
     def create_subnet(self, request, config=None):
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET)
@@ -75,7 +75,7 @@ class VpcClient(BceBaseClient):
         return self._send_request(http_methods.POST, path=path
                                 , body=request.to_json_string(), params=params, config=config, model=CreateVpcResponse)
 
-    def delete_reserved_network_segment(self, request, config=None):
+    def delete_ip_reserve(self, request, config=None):
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET, VpcClient.CONSTANT_IPRESERVE, request.ip_reserve_id)
         params = {}
         if request.client_token is not None:
@@ -99,7 +99,35 @@ class VpcClient(BceBaseClient):
         return self._send_request(http_methods.DELETE, path=path
                                 , params=params, config=config)
 
-    def enable_vpc_relay(self, request, config=None):
+    def get_vpc_resource_ip_info(self, request, config=None):
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC, VpcClient.CONSTANT_RESOURCE_IP)
+        params = {}
+        if request.vpc_id is not None:
+            params['vpcId'] = request.vpc_id
+        if request.subnet_id is not None:
+            params['subnetId'] = request.subnet_id
+        if request.resource_type is not None:
+            params['resourceType'] = request.resource_type
+        if request.page_no is not None:
+            params['pageNo'] = request.page_no
+        if request.page_size is not None:
+            params['pageSize'] = request.page_size
+        return self._send_request(http_methods.GET, path=path
+                                , params=params, config=config, model=GetVpcResourceIpInfoResponse)
+
+    def list_ip_reserve(self, request, config=None):
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET, VpcClient.CONSTANT_IPRESERVE)
+        params = {}
+        if request.subnet_id is not None:
+            params['subnetId'] = request.subnet_id
+        if request.marker is not None:
+            params['marker'] = request.marker
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
+        return self._send_request(http_methods.GET, path=path
+                                , params=params, config=config, model=ListIpReserveResponse)
+
+    def open_vpc_relay(self, request, config=None):
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC, VpcClient.CONSTANT_OPEN_RELAY, request.vpc_id)
         params = {}
         if request.client_token is not None:
@@ -134,34 +162,6 @@ class VpcClient(BceBaseClient):
             params['subnetIds'] = request.subnet_ids
         return self._send_request(http_methods.GET, path=path
                                 , params=params, config=config, model=QuerySubnetListResponse)
-
-    def query_the_ip_addresses_occupied_by_products_within_vpc(self, request, config=None):
-        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC, VpcClient.CONSTANT_RESOURCE_IP)
-        params = {}
-        if request.vpc_id is not None:
-            params['vpcId'] = request.vpc_id
-        if request.subnet_id is not None:
-            params['subnetId'] = request.subnet_id
-        if request.resource_type is not None:
-            params['resourceType'] = request.resource_type
-        if request.page_no is not None:
-            params['pageNo'] = request.page_no
-        if request.page_size is not None:
-            params['pageSize'] = request.page_size
-        return self._send_request(http_methods.GET, path=path
-                                , params=params, config=config, model=QueryTheIpAddressesOccupiedByProductsWithinVpcResponse)
-
-    def query_the_reserved_network_segment_list(self, request, config=None):
-        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET, VpcClient.CONSTANT_IPRESERVE)
-        params = {}
-        if request.subnet_id is not None:
-            params['subnetId'] = request.subnet_id
-        if request.marker is not None:
-            params['marker'] = request.marker
-        if request.max_keys is not None:
-            params['maxKeys'] = request.max_keys
-        return self._send_request(http_methods.GET, path=path
-                                , params=params, config=config, model=QueryTheReservedNetworkSegmentListResponse)
 
     def query_vpc_intranet_ip(self, request, config=None):
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC, request.vpc_id, VpcClient.CONSTANT_PRIVATE_IP_ADDRESS_INFO)

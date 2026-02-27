@@ -25,9 +25,6 @@ class EipClientTest(unittest.TestCase):
         """
         self.the_client = None
 
-    def test_activate_eip_automatic_renewal(self):
-        self.client.activate_eip_automatic_renewal(None)
-
     def test_add_tbsp_area_blocking(self):
         self.client.add_tbsp_area_blocking(None)
 
@@ -52,9 +49,6 @@ class EipClientTest(unittest.TestCase):
     def test_cancel_eip_transfer(self):
         self.client.cancel_eip_transfer(None)
 
-    def test_close_eip_direct_access(self):
-        self.client.close_eip_direct_access(None)
-
     def test_create_eip_transfer(self):
         self.client.create_eip_transfer(None)
 
@@ -63,6 +57,9 @@ class EipClientTest(unittest.TestCase):
 
     def test_detail_tbsp(self):
         self.client.detail_tbsp(None)
+
+    def test_direct_eip(self):
+        self.client.direct_eip(None)
 
     def test_disable_tbsp_ip_clean(self):
         self.client.disable_tbsp_ip_clean(None)
@@ -79,14 +76,14 @@ class EipClientTest(unittest.TestCase):
     def test_eip_renewal(self):
         self.client.eip_renewal(None)
 
-    def test_enable_eip_direct_access(self):
-        self.client.enable_eip_direct_access(None)
-
     def test_enable_tbsp_ip_clean(self):
         self.client.enable_tbsp_ip_clean(None)
 
     def test_list_eip_transfer(self):
         self.client.list_eip_transfer(None)
+
+    def test_list_recycle_eips(self):
+        self.client.list_recycle_eips(None)
 
     def test_list_tbsp(self):
         self.client.list_tbsp(None)
@@ -109,17 +106,17 @@ class EipClientTest(unittest.TestCase):
     def test_modify_tbsp_ip_protect_level(self):
         self.client.modify_tbsp_ip_protect_level(None)
 
-    def test_prepaid_eip_unsubscribe(self):
-        self.client.prepaid_eip_unsubscribe(None)
+    def test_optional_release_eip(self):
+        self.client.optional_release_eip(None)
 
     def test_query_eip_list(self):
         self.client.query_eip_list(None)
 
-    def test_query_the_list_of_eips_in_the_recycling_bin(self):
-        self.client.query_the_list_of_eips_in_the_recycling_bin(None)
-
     def test_receive_eip_transfer(self):
         self.client.receive_eip_transfer(None)
+
+    def test_refund_eip(self):
+        self.client.refund_eip(None)
 
     def test_reject_eip_transfer(self):
         self.client.reject_eip_transfer(None)
@@ -127,8 +124,8 @@ class EipClientTest(unittest.TestCase):
     def test_release_eip(self):
         self.client.release_eip(None)
 
-    def test_release_the_eip_from_the_recycling_bin(self):
-        self.client.release_the_eip_from_the_recycling_bin(None)
+    def test_release_eip_from_recycle(self):
+        self.client.release_eip_from_recycle(None)
 
     def test_remove_tbsp_area_blocking(self):
         self.client.remove_tbsp_area_blocking(None)
@@ -145,11 +142,8 @@ class EipClientTest(unittest.TestCase):
     def test_resize_tbsp(self):
         self.client.resize_tbsp(None)
 
-    def test_restore_eip_in_recycle_bin(self):
-        self.client.restore_eip_in_recycle_bin(None)
-
-    def test_selective_release_of_eip(self):
-        self.client.selective_release_of_eip(None)
+    def test_restore_eip_from_recycle(self):
+        self.client.restore_eip_from_recycle(None)
 
     def test_shared_bandwidth_inquiry(self):
         self.client.shared_bandwidth_inquiry(None)
@@ -157,8 +151,14 @@ class EipClientTest(unittest.TestCase):
     def test_shared_data_package_inquiry(self):
         self.client.shared_data_package_inquiry(None)
 
-    def test_turn_off_eip_automatic_renewal(self):
-        self.client.turn_off_eip_automatic_renewal(None)
+    def test_start_eip_auto_renew(self):
+        self.client.start_eip_auto_renew(None)
+
+    def test_stop_eip_auto_renew(self):
+        self.client.stop_eip_auto_renew(None)
+
+    def test_un_direct_eip(self):
+        self.client.un_direct_eip(None)
 
     def test_unbind_eip(self):
         self.client.unbind_eip(None)
@@ -166,12 +166,11 @@ class EipClientTest(unittest.TestCase):
     def test_unbind_tbsp_protection_object(self):
         self.client.unbind_tbsp_protection_object(None)
 
-    def test_update_eip_release_protection_switch(self):
-        self.client.update_eip_release_protection_switch(None)
+    def test_update_eip_delete_protect(self):
+        self.client.update_eip_delete_protect(None)
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()
-    suite.addTest(EipClientTest("test_activate_eip_automatic_renewal"))
     suite.addTest(EipClientTest("test_add_tbsp_area_blocking"))
     suite.addTest(EipClientTest("test_add_tbsp_ip_whitelist"))
     suite.addTest(EipClientTest("test_add_tbsp_protocol_blocking"))
@@ -180,18 +179,18 @@ if __name__ == '__main__':
     suite.addTest(EipClientTest("test_bind_eip"))
     suite.addTest(EipClientTest("test_bind_tbsp_protection_object"))
     suite.addTest(EipClientTest("test_cancel_eip_transfer"))
-    suite.addTest(EipClientTest("test_close_eip_direct_access"))
     suite.addTest(EipClientTest("test_create_eip_transfer"))
     suite.addTest(EipClientTest("test_create_tbsp"))
     suite.addTest(EipClientTest("test_detail_tbsp"))
+    suite.addTest(EipClientTest("test_direct_eip"))
     suite.addTest(EipClientTest("test_disable_tbsp_ip_clean"))
     suite.addTest(EipClientTest("test_eip_bandwidth_scaling_capacity"))
     suite.addTest(EipClientTest("test_eip_inquiry"))
     suite.addTest(EipClientTest("test_eip_postpaid_to_prepaid"))
     suite.addTest(EipClientTest("test_eip_renewal"))
-    suite.addTest(EipClientTest("test_enable_eip_direct_access"))
     suite.addTest(EipClientTest("test_enable_tbsp_ip_clean"))
     suite.addTest(EipClientTest("test_list_eip_transfer"))
+    suite.addTest(EipClientTest("test_list_recycle_eips"))
     suite.addTest(EipClientTest("test_list_tbsp"))
     suite.addTest(EipClientTest("test_list_tbsp_area_blocking"))
     suite.addTest(EipClientTest("test_list_tbsp_ip_clean"))
@@ -199,25 +198,26 @@ if __name__ == '__main__':
     suite.addTest(EipClientTest("test_list_tbsp_protocol_blocking"))
     suite.addTest(EipClientTest("test_modify_tbsp_ip_clean_threshold"))
     suite.addTest(EipClientTest("test_modify_tbsp_ip_protect_level"))
-    suite.addTest(EipClientTest("test_prepaid_eip_unsubscribe"))
+    suite.addTest(EipClientTest("test_optional_release_eip"))
     suite.addTest(EipClientTest("test_query_eip_list"))
-    suite.addTest(EipClientTest("test_query_the_list_of_eips_in_the_recycling_bin"))
     suite.addTest(EipClientTest("test_receive_eip_transfer"))
+    suite.addTest(EipClientTest("test_refund_eip"))
     suite.addTest(EipClientTest("test_reject_eip_transfer"))
     suite.addTest(EipClientTest("test_release_eip"))
-    suite.addTest(EipClientTest("test_release_the_eip_from_the_recycling_bin"))
+    suite.addTest(EipClientTest("test_release_eip_from_recycle"))
     suite.addTest(EipClientTest("test_remove_tbsp_area_blocking"))
     suite.addTest(EipClientTest("test_remove_tbsp_ip_whitelist"))
     suite.addTest(EipClientTest("test_remove_tbsp_protocol_blocking"))
     suite.addTest(EipClientTest("test_renew_tbsp"))
     suite.addTest(EipClientTest("test_resize_tbsp"))
-    suite.addTest(EipClientTest("test_restore_eip_in_recycle_bin"))
-    suite.addTest(EipClientTest("test_selective_release_of_eip"))
+    suite.addTest(EipClientTest("test_restore_eip_from_recycle"))
     suite.addTest(EipClientTest("test_shared_bandwidth_inquiry"))
     suite.addTest(EipClientTest("test_shared_data_package_inquiry"))
-    suite.addTest(EipClientTest("test_turn_off_eip_automatic_renewal"))
+    suite.addTest(EipClientTest("test_start_eip_auto_renew"))
+    suite.addTest(EipClientTest("test_stop_eip_auto_renew"))
+    suite.addTest(EipClientTest("test_un_direct_eip"))
     suite.addTest(EipClientTest("test_unbind_eip"))
     suite.addTest(EipClientTest("test_unbind_tbsp_protection_object"))
-    suite.addTest(EipClientTest("test_update_eip_release_protection_switch"))
+    suite.addTest(EipClientTest("test_update_eip_delete_protect"))
     runner = unittest.TextTestRunner()
     runner.run(suite)
