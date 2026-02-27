@@ -45,65 +45,65 @@ class VpcClient(BceBaseClient):
 
     def close_vpc_relay(self, request, config=None):
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC, VpcClient.CONSTANT_SHUTDOWN_RELAY, request.vpc_id)
-        params = {
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
                                 , params=params, config=config)
 
     def create_a_reserved_network_segment(self, request, config=None):
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET, VpcClient.CONSTANT_IPRESERVE)
-        params = {
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.POST, path=path
                                 , body=request.to_json_string(), params=params, config=config, model=CreateAReservedNetworkSegmentResponse)
 
     def create_subnet(self, request, config=None):
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET)
-        params = {
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.POST, path=path
                                 , body=request.to_json_string(), params=params, config=config, model=CreateSubnetResponse)
 
     def create_vpc(self, request, config=None):
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC)
-        params = {
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.POST, path=path
                                 , body=request.to_json_string(), params=params, config=config, model=CreateVpcResponse)
 
     def delete_reserved_network_segment(self, request, config=None):
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET, VpcClient.CONSTANT_IPRESERVE, request.ip_reserve_id)
-        params = {
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.DELETE, path=path
                                 , params=params, config=config)
 
     def delete_subnet(self, request, config=None):
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET, request.subnet_id)
-        params = {
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.DELETE, path=path
                                 , params=params, config=config)
 
     def delete_vpc(self, request, config=None):
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC, request.vpc_id)
-        params = {
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.DELETE, path=path
                                 , params=params, config=config)
 
     def enable_vpc_relay(self, request, config=None):
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC, VpcClient.CONSTANT_OPEN_RELAY, request.vpc_id)
-        params = {
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
                                 , params=params, config=config)
 
@@ -119,74 +119,89 @@ class VpcClient(BceBaseClient):
 
     def query_subnet_list(self, request, config=None):
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET)
-        params = {
-            'marker' : request.marker,
-            'maxKeys' : request.max_keys,
-            'vpcId' : request.vpc_id,
-            'zoneName' : request.zone_name,
-            'subnetType' : request.subnet_type,
-            'subnetIds' : request.subnet_ids,
-        }
+        params = {}
+        if request.marker is not None:
+            params['marker'] = request.marker
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
+        if request.vpc_id is not None:
+            params['vpcId'] = request.vpc_id
+        if request.zone_name is not None:
+            params['zoneName'] = request.zone_name
+        if request.subnet_type is not None:
+            params['subnetType'] = request.subnet_type
+        if request.subnet_ids is not None:
+            params['subnetIds'] = request.subnet_ids
         return self._send_request(http_methods.GET, path=path
                                 , params=params, config=config, model=QuerySubnetListResponse)
 
     def query_the_ip_addresses_occupied_by_products_within_vpc(self, request, config=None):
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC, VpcClient.CONSTANT_RESOURCE_IP)
-        params = {
-            'vpcId' : request.vpc_id,
-            'subnetId' : request.subnet_id,
-            'resourceType' : request.resource_type,
-            'pageNo' : request.page_no,
-            'pageSize' : request.page_size,
-        }
+        params = {}
+        if request.vpc_id is not None:
+            params['vpcId'] = request.vpc_id
+        if request.subnet_id is not None:
+            params['subnetId'] = request.subnet_id
+        if request.resource_type is not None:
+            params['resourceType'] = request.resource_type
+        if request.page_no is not None:
+            params['pageNo'] = request.page_no
+        if request.page_size is not None:
+            params['pageSize'] = request.page_size
         return self._send_request(http_methods.GET, path=path
                                 , params=params, config=config, model=QueryTheIpAddressesOccupiedByProductsWithinVpcResponse)
 
     def query_the_reserved_network_segment_list(self, request, config=None):
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET, VpcClient.CONSTANT_IPRESERVE)
-        params = {
-            'subnetId' : request.subnet_id,
-            'marker' : request.marker,
-            'maxKeys' : request.max_keys,
-        }
+        params = {}
+        if request.subnet_id is not None:
+            params['subnetId'] = request.subnet_id
+        if request.marker is not None:
+            params['marker'] = request.marker
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
         return self._send_request(http_methods.GET, path=path
                                 , params=params, config=config, model=QueryTheReservedNetworkSegmentListResponse)
 
     def query_vpc_intranet_ip(self, request, config=None):
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC, request.vpc_id, VpcClient.CONSTANT_PRIVATE_IP_ADDRESS_INFO)
-        params = {
-            'privateIpAddresses' : ','.join(request.private_ip_addresses) if request.private_ip_addresses else None,
-            'privateIpRange' : request.private_ip_range,
-        }
+        params = {}
+        if request.private_ip_addresses is not None:
+            params['privateIpAddresses'] = ','.join(request.private_ip_addresses)
+        if request.private_ip_range is not None:
+            params['privateIpRange'] = request.private_ip_range
         return self._send_request(http_methods.GET, path=path
                                 , params=params, config=config, model=QueryVpcIntranetIpResponse)
 
     def query_vpc_list(self, request, config=None):
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC)
-        params = {
-            'marker' : request.marker,
-            'maxKeys' : request.max_keys,
-            'isDefault' : request.is_default,
-            'vpcIds' : request.vpc_ids,
-        }
+        params = {}
+        if request.marker is not None:
+            params['marker'] = request.marker
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
+        if request.is_default is not None:
+            params['isDefault'] = request.is_default
+        if request.vpc_ids is not None:
+            params['vpcIds'] = request.vpc_ids
         return self._send_request(http_methods.GET, path=path
                                 , params=params, config=config, model=QueryVpcListResponse)
 
     def update_subnet(self, request, config=None):
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET, request.subnet_id)
-        params = {
-            'modifyAttribute' : None,
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        params['modifyAttribute'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
                                 , body=request.to_json_string(), params=params, config=config)
 
     def update_vpc(self, request, config=None):
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC, request.vpc_id)
-        params = {
-            'modifyAttribute' : None,
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        params['modifyAttribute'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
                                 , body=request.to_json_string(), params=params, config=config)
 

@@ -66,42 +66,42 @@ class EipClient(BceBaseClient):
 
     def activate_eip_automatic_renewal(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, request.eip)
-        params = {
-            'startAutoRenew' : None,
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        params['startAutoRenew'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
                                 , body=request.to_json_string(), params=params, config=config)
 
     def add_tbsp_area_blocking(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TBSP, request.id, EipClient.CONSTANT_AREA_BLOCKING)
-        params = {
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.POST, path=path
                                 , body=request.to_json_string(), params=params, config=config)
 
     def add_tbsp_ip_whitelist(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TBSP, request.id, EipClient.CONSTANT_IP_WHITELIST)
-        params = {
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.POST, path=path
                                 , body=request.to_json_string(), params=params, config=config)
 
     def add_tbsp_protocol_blocking(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TBSP, request.id, EipClient.CONSTANT_PROTOCOL_BLOCKING)
-        params = {
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.POST, path=path
                                 , body=request.to_json_string(), params=params, config=config)
 
     def apply_for_eip(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP)
-        params = {
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.POST, path=path
                                 , body=request.to_json_string(), params=params, config=config, model=ApplyForEipResponse)
 
@@ -112,53 +112,53 @@ class EipClient(BceBaseClient):
 
     def bind_eip(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, request.eip)
-        params = {
-            'bind' : None,
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        params['bind'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
                                 , body=request.to_json_string(), params=params, config=config)
 
     def bind_tbsp_protection_object(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TBSP, request.id)
-        params = {
-            'bind' : None,
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        params['bind'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
                                 , body=request.to_json_string(), params=params, config=config)
 
     def cancel_eip_transfer(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TRANSFER)
-        params = {
-            'cancel' : None,
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        params['cancel'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
                                 , body=request.to_json_string(), params=params, config=config)
 
     def close_eip_direct_access(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, request.eip)
-        params = {
-            'unDirect' : None,
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        params['unDirect'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
                                 , params=params, config=config)
 
     def create_eip_transfer(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TRANSFER)
-        params = {
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.POST, path=path
                                 , body=request.to_json_string(), params=params, config=config)
 
     def create_tbsp(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TBSP)
-        params = {
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.POST, path=path
                                 , body=request.to_json_string(), params=params, config=config, model=CreateTbspResponse)
 
@@ -169,19 +169,19 @@ class EipClient(BceBaseClient):
 
     def disable_tbsp_ip_clean(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TBSP, request.id, EipClient.CONSTANT_IP_CLEAN)
-        params = {
-            'turnOffClean' : None,
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        params['turnOffClean'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
                                 , body=request.to_json_string(), params=params, config=config)
 
     def eip_bandwidth_scaling_capacity(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, request.eip)
-        params = {
-            'resize' : None,
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        params['resize'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
                                 , body=request.to_json_string(), params=params, config=config)
 
@@ -192,255 +192,291 @@ class EipClient(BceBaseClient):
 
     def eip_postpaid_to_prepaid(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, request.eip)
-        params = {
-            'action' : 'TO_PREPAY',
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        params['action'] = 'TO_PREPAY'
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
                                 , body=request.to_json_string(), params=params, config=config)
 
     def eip_renewal(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, request.eip)
-        params = {
-            'purchaseReserved' : None,
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        params['purchaseReserved'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
                                 , body=request.to_json_string(), params=params, config=config)
 
     def enable_eip_direct_access(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, request.eip)
-        params = {
-            'direct' : None,
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        params['direct'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
                                 , params=params, config=config)
 
     def enable_tbsp_ip_clean(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TBSP, request.id, EipClient.CONSTANT_IP_CLEAN)
-        params = {
-            'turnOnClean' : None,
-            'clientToken' : request.client_token,
-            'ip' : request.ip,
-        }
+        params = {}
+        params['turnOnClean'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        if request.ip is not None:
+            params['ip'] = request.ip
         return self._send_request(http_methods.PUT, path=path
                                 , params=params, config=config)
 
     def list_eip_transfer(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TRANSFER)
-        params = {
-            'maxKeys' : request.max_keys,
-            'marker' : request.marker,
-            'direction' : request.direction,
-            'transferId' : request.transfer_id,
-            'status' : request.status,
-            'fuzzyTransferId' : request.fuzzy_transfer_id,
-            'fuzzyInstanceId' : request.fuzzy_instance_id,
-            'fuzzyInstanceName' : request.fuzzy_instance_name,
-            'fuzzyInstanceIp' : request.fuzzy_instance_ip,
-        }
+        params = {}
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
+        if request.marker is not None:
+            params['marker'] = request.marker
+        if request.direction is not None:
+            params['direction'] = request.direction
+        if request.transfer_id is not None:
+            params['transferId'] = request.transfer_id
+        if request.status is not None:
+            params['status'] = request.status
+        if request.fuzzy_transfer_id is not None:
+            params['fuzzyTransferId'] = request.fuzzy_transfer_id
+        if request.fuzzy_instance_id is not None:
+            params['fuzzyInstanceId'] = request.fuzzy_instance_id
+        if request.fuzzy_instance_name is not None:
+            params['fuzzyInstanceName'] = request.fuzzy_instance_name
+        if request.fuzzy_instance_ip is not None:
+            params['fuzzyInstanceIp'] = request.fuzzy_instance_ip
         return self._send_request(http_methods.GET, path=path
                                 , params=params, config=config, model=ListEipTransferResponse)
 
     def list_tbsp(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TBSP)
-        params = {
-            'id' : request.id,
-            'name' : request.name,
-            'status' : request.status,
-            'marker' : request.marker,
-            'maxKeys' : request.max_keys,
-        }
+        params = {}
+        if request.id is not None:
+            params['id'] = request.id
+        if request.name is not None:
+            params['name'] = request.name
+        if request.status is not None:
+            params['status'] = request.status
+        if request.marker is not None:
+            params['marker'] = request.marker
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
         return self._send_request(http_methods.GET, path=path
                                 , params=params, config=config, model=ListTbspResponse)
 
     def list_tbsp_area_blocking(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TBSP, request.id, EipClient.CONSTANT_AREA_BLOCKING)
-        params = {
-            'ip' : request.ip,
-        }
+        params = {}
+        if request.ip is not None:
+            params['ip'] = request.ip
         return self._send_request(http_methods.GET, path=path
                                 , params=params, config=config, model=ListTbspAreaBlockingResponse)
 
     def list_tbsp_ip_clean(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TBSP, request.id, EipClient.CONSTANT_IP_CLEAN)
-        params = {
-            'ip' : request.ip,
-            'marker' : request.marker,
-            'maxKeys' : request.max_keys,
-        }
+        params = {}
+        if request.ip is not None:
+            params['ip'] = request.ip
+        if request.marker is not None:
+            params['marker'] = request.marker
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
         return self._send_request(http_methods.GET, path=path
                                 , params=params, config=config, model=ListTbspIpCleanResponse)
 
     def list_tbsp_ip_whitelist(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TBSP, request.id, EipClient.CONSTANT_IP_WHITELIST)
-        params = {
-            'ip' : request.ip,
-            'ipCidr' : request.ip_cidr,
-            'marker' : request.marker,
-            'maxKeys' : request.max_keys,
-        }
+        params = {}
+        if request.ip is not None:
+            params['ip'] = request.ip
+        if request.ip_cidr is not None:
+            params['ipCidr'] = request.ip_cidr
+        if request.marker is not None:
+            params['marker'] = request.marker
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
         return self._send_request(http_methods.GET, path=path
                                 , params=params, config=config, model=ListTbspIpWhitelistResponse)
 
     def list_tbsp_protocol_blocking(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TBSP, request.id, EipClient.CONSTANT_PROTOCOL_BLOCKING)
-        params = {
-            'ip' : request.ip,
-        }
+        params = {}
+        if request.ip is not None:
+            params['ip'] = request.ip
         return self._send_request(http_methods.GET, path=path
                                 , params=params, config=config, model=ListTbspProtocolBlockingResponse)
 
     def modify_tbsp_ip_clean_threshold(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TBSP, request.id, EipClient.CONSTANT_IP_CLEAN)
-        params = {
-            'modifyThreshold' : None,
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        params['modifyThreshold'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
                                 , body=request.to_json_string(), params=params, config=config)
 
     def modify_tbsp_ip_protect_level(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TBSP, request.id, EipClient.CONSTANT_IP_PROTECT_LEVEL)
-        params = {
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
                                 , body=request.to_json_string(), params=params, config=config)
 
     def prepaid_eip_unsubscribe(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, EipClient.CONSTANT_REFUND, request.eip)
-        params = {
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
                                 , params=params, config=config)
 
     def query_eip_list(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP)
-        params = {
-            'ipVersion' : request.ip_version,
-            'eip' : request.eip,
-            'instanceType' : request.instance_type,
-            'instanceId' : request.instance_id,
-            'name' : request.name,
-            'status' : request.status,
-            'eipIds' : ','.join(request.eip_ids) if request.eip_ids else None,
-            'marker' : request.marker,
-            'maxKeys' : request.max_keys,
-        }
+        params = {}
+        if request.ip_version is not None:
+            params['ipVersion'] = request.ip_version
+        if request.eip is not None:
+            params['eip'] = request.eip
+        if request.instance_type is not None:
+            params['instanceType'] = request.instance_type
+        if request.instance_id is not None:
+            params['instanceId'] = request.instance_id
+        if request.name is not None:
+            params['name'] = request.name
+        if request.status is not None:
+            params['status'] = request.status
+        if request.eip_ids is not None:
+            params['eipIds'] = ','.join(request.eip_ids)
+        if request.marker is not None:
+            params['marker'] = request.marker
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
         return self._send_request(http_methods.GET, path=path
                                 , params=params, config=config, model=QueryEipListResponse)
 
     def query_the_list_of_eips_in_the_recycling_bin(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, EipClient.CONSTANT_RECYCLE)
-        params = {
-            'eip' : request.eip,
-            'name' : request.name,
-            'marker' : request.marker,
-            'maxKeys' : request.max_keys,
-        }
+        params = {}
+        if request.eip is not None:
+            params['eip'] = request.eip
+        if request.name is not None:
+            params['name'] = request.name
+        if request.marker is not None:
+            params['marker'] = request.marker
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
         return self._send_request(http_methods.GET, path=path
                                 , params=params, config=config, model=QueryTheListOfEipsInTheRecyclingBinResponse)
 
     def receive_eip_transfer(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TRANSFER)
-        params = {
-            'accept' : None,
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        params['accept'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
                                 , body=request.to_json_string(), params=params, config=config)
 
     def reject_eip_transfer(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TRANSFER)
-        params = {
-            'reject' : None,
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        params['reject'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
                                 , body=request.to_json_string(), params=params, config=config)
 
     def release_eip(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, request.eip)
-        params = {
-            'clientToken' : request.client_token,
-            'releaseToRecycle' : request.release_to_recycle,
-        }
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        if request.release_to_recycle is not None:
+            params['releaseToRecycle'] = request.release_to_recycle
         return self._send_request(http_methods.DELETE, path=path
                                 , params=params, config=config)
 
     def release_the_eip_from_the_recycling_bin(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, EipClient.CONSTANT_RECYCLE, request.eip)
-        params = {
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.DELETE, path=path
                                 , params=params, config=config)
 
     def remove_tbsp_area_blocking(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TBSP, request.id, EipClient.CONSTANT_AREA_BLOCKING)
-        params = {
-            'ip' : request.ip,
-            'blockType' : request.block_type,
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        if request.ip is not None:
+            params['ip'] = request.ip
+        if request.block_type is not None:
+            params['blockType'] = request.block_type
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.DELETE, path=path
                                 , params=params, config=config)
 
     def remove_tbsp_ip_whitelist(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TBSP, request.id, EipClient.CONSTANT_IP_WHITELIST)
-        params = {
-            'clientToken' : request.client_token,
-            'ip' : request.ip,
-            'whitelistId' : request.whitelist_id,
-        }
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        if request.ip is not None:
+            params['ip'] = request.ip
+        if request.whitelist_id is not None:
+            params['whitelistId'] = request.whitelist_id
         return self._send_request(http_methods.DELETE, path=path
                                 , params=params, config=config)
 
     def remove_tbsp_protocol_blocking(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TBSP, request.id, EipClient.CONSTANT_PROTOCOL_BLOCKING)
-        params = {
-            'ip' : request.ip,
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        if request.ip is not None:
+            params['ip'] = request.ip
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.DELETE, path=path
                                 , params=params, config=config)
 
     def renew_tbsp(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TBSP, request.id)
-        params = {
-            'purchaseReserved' : None,
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        params['purchaseReserved'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
                                 , body=request.to_json_string(), params=params, config=config)
 
     def resize_tbsp(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TBSP, request.id)
-        params = {
-            'resize' : None,
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        params['resize'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
                                 , body=request.to_json_string(), params=params, config=config)
 
     def restore_eip_in_recycle_bin(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, EipClient.CONSTANT_RECYCLE, request.eip)
-        params = {
-            'restore' : None,
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        params['restore'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
                                 , params=params, config=config)
 
     def selective_release_of_eip(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, request.eip)
-        params = {
-            'releaseToRecycle' : request.release_to_recycle,
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        if request.release_to_recycle is not None:
+            params['releaseToRecycle'] = request.release_to_recycle
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.DELETE, path=path
                                 , params=params, config=config)
 
@@ -451,44 +487,44 @@ class EipClient(BceBaseClient):
 
     def shared_data_package_inquiry(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIPTP, EipClient.CONSTANT_PRICE)
-        params = {
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.POST, path=path
                                 , body=request.to_json_string(), params=params, config=config, model=SharedDataPackageInquiryResponse)
 
     def turn_off_eip_automatic_renewal(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, request.eip)
-        params = {
-            'stopAutoRenew' : None,
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        params['stopAutoRenew'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
                                 , params=params, config=config)
 
     def unbind_eip(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, request.eip)
-        params = {
-            'unbind' : None,
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        params['unbind'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
                                 , params=params, config=config)
 
     def unbind_tbsp_protection_object(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TBSP, request.id)
-        params = {
-            'unbind' : None,
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        params['unbind'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
                                 , body=request.to_json_string(), params=params, config=config)
 
     def update_eip_release_protection_switch(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, request.eip, EipClient.CONSTANT_DELETE_PROTECT)
-        params = {
-            'clientToken' : request.client_token,
-        }
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
                                 , body=request.to_json_string(), params=params, config=config)
 
