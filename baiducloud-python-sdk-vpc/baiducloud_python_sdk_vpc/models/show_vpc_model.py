@@ -10,7 +10,7 @@ class ShowVpcModel(AbstractModel):
     """
     ShowVpcModel
     """
-    def __init__(self, vpc_id=None, name=None, cidr=None, ipv6_cidr=None, description=None, is_default=None, relay=None, subnets=None, secondary_cidr=None, tags=None):
+    def __init__(self, vpc_id=None, name=None, cidr=None, ipv6_cidr=None, description=None, is_default=None, relay=None, subnets=None, secondary_cidr=None, tags=None, created_time=None):
         super().__init__()
         self.vpc_id = vpc_id
         self.name = name
@@ -22,6 +22,7 @@ class ShowVpcModel(AbstractModel):
         self.subnets = subnets
         self.secondary_cidr = secondary_cidr
         self.tags = tags
+        self.created_time = created_time
 
     def to_dict(self):
         _map = super().to_dict()
@@ -48,6 +49,8 @@ class ShowVpcModel(AbstractModel):
             result['secondaryCidr'] = self.secondary_cidr
         if self.tags is not None:
             result['tags'] = [i.to_dict() for i in self.tags]
+        if self.created_time is not None:
+            result['createdTime'] = self.created_time
         return result
 
 
@@ -79,4 +82,6 @@ class ShowVpcModel(AbstractModel):
             TagModel().from_dict(i)
             for i in m.get('tags')
             ]
+        if m.get('createdTime') is not None:
+            self.created_time = m.get('createdTime')
         return self
