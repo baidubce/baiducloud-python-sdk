@@ -142,7 +142,7 @@ def send_request(
                   http_method, path, headers, params, body)
     headers = headers or {}
 
-    user_agent = 'bce-sdk-python/%s/%s/%s' % (
+    user_agent = 'baiducloud-python-sdk/%s/%s/%s' % (
         compat.convert_to_string(baiducloud_python_sdk_core.SDK_VERSION), sys.version, sys.platform)
     user_agent = user_agent.replace('\n', '')
     user_agent = compat.convert_to_bytes(user_agent)

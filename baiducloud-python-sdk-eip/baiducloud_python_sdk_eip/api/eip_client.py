@@ -10,6 +10,7 @@ from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import http_methods
 from baiducloud_python_sdk_eip.models.apply_for_eip_response import ApplyForEipResponse
 from baiducloud_python_sdk_eip.models.bandwidth_package_inquiry_response import BandwidthPackageInquiryResponse
+from baiducloud_python_sdk_eip.models.create_eip_transfer_response import CreateEipTransferResponse
 from baiducloud_python_sdk_eip.models.create_tbsp_response import CreateTbspResponse
 from baiducloud_python_sdk_eip.models.detail_tbsp_response import DetailTbspResponse
 from baiducloud_python_sdk_eip.models.eip_inquiry_response import EipInquiryResponse
@@ -134,7 +135,7 @@ class EipClient(BceBaseClient):
         if request.client_token is not None:
             params['clientToken'] = request.client_token
         return self._send_request(http_methods.POST, path=path
-                                , body=request.to_json_string(), params=params, config=config)
+                                , body=request.to_json_string(), params=params, config=config, model=CreateEipTransferResponse)
 
     def create_tbsp(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TBSP)
