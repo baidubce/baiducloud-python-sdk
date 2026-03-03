@@ -28,8 +28,8 @@ class VpcClientTest(unittest.TestCase):
     def test_close_vpc_relay(self):
         self.client.close_vpc_relay(None)
 
-    def test_create_a_reserved_network_segment(self):
-        self.client.create_a_reserved_network_segment(None)
+    def test_create_ip_reserved(self):
+        self.client.create_ip_reserved(None)
 
     def test_create_subnet(self):
         self.client.create_subnet(None)
@@ -37,8 +37,8 @@ class VpcClientTest(unittest.TestCase):
     def test_create_vpc(self):
         self.client.create_vpc(None)
 
-    def test_delete_reserved_network_segment(self):
-        self.client.delete_reserved_network_segment(None)
+    def test_delete_ip_reserve(self):
+        self.client.delete_ip_reserve(None)
 
     def test_delete_subnet(self):
         self.client.delete_subnet(None)
@@ -46,8 +46,14 @@ class VpcClientTest(unittest.TestCase):
     def test_delete_vpc(self):
         self.client.delete_vpc(None)
 
-    def test_enable_vpc_relay(self):
-        self.client.enable_vpc_relay(None)
+    def test_get_vpc_resource_ip_info(self):
+        self.client.get_vpc_resource_ip_info(None)
+
+    def test_list_ip_reserve(self):
+        self.client.list_ip_reserve(None)
+
+    def test_open_vpc_relay(self):
+        self.client.open_vpc_relay(None)
 
     def test_query_specified_subnet(self):
         self.client.query_specified_subnet(None)
@@ -57,12 +63,6 @@ class VpcClientTest(unittest.TestCase):
 
     def test_query_subnet_list(self):
         self.client.query_subnet_list(None)
-
-    def test_query_the_ip_addresses_occupied_by_products_within_vpc(self):
-        self.client.query_the_ip_addresses_occupied_by_products_within_vpc(None)
-
-    def test_query_the_reserved_network_segment_list(self):
-        self.client.query_the_reserved_network_segment_list(None)
 
     def test_query_vpc_intranet_ip(self):
         self.client.query_vpc_intranet_ip(None)
@@ -79,18 +79,18 @@ class VpcClientTest(unittest.TestCase):
 if __name__ == '__main__':
     suite = unittest.TestSuite()
     suite.addTest(VpcClientTest("test_close_vpc_relay"))
-    suite.addTest(VpcClientTest("test_create_a_reserved_network_segment"))
+    suite.addTest(VpcClientTest("test_create_ip_reserved"))
     suite.addTest(VpcClientTest("test_create_subnet"))
     suite.addTest(VpcClientTest("test_create_vpc"))
-    suite.addTest(VpcClientTest("test_delete_reserved_network_segment"))
+    suite.addTest(VpcClientTest("test_delete_ip_reserve"))
     suite.addTest(VpcClientTest("test_delete_subnet"))
     suite.addTest(VpcClientTest("test_delete_vpc"))
-    suite.addTest(VpcClientTest("test_enable_vpc_relay"))
+    suite.addTest(VpcClientTest("test_get_vpc_resource_ip_info"))
+    suite.addTest(VpcClientTest("test_list_ip_reserve"))
+    suite.addTest(VpcClientTest("test_open_vpc_relay"))
     suite.addTest(VpcClientTest("test_query_specified_subnet"))
     suite.addTest(VpcClientTest("test_query_specified_vpc"))
     suite.addTest(VpcClientTest("test_query_subnet_list"))
-    suite.addTest(VpcClientTest("test_query_the_ip_addresses_occupied_by_products_within_vpc"))
-    suite.addTest(VpcClientTest("test_query_the_reserved_network_segment_list"))
     suite.addTest(VpcClientTest("test_query_vpc_intranet_ip"))
     suite.addTest(VpcClientTest("test_query_vpc_list"))
     suite.addTest(VpcClientTest("test_update_subnet"))

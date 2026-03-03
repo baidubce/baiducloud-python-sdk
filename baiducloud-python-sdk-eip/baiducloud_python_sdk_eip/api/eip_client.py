@@ -10,17 +10,18 @@ from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import http_methods
 from baiducloud_python_sdk_eip.models.apply_for_eip_response import ApplyForEipResponse
 from baiducloud_python_sdk_eip.models.bandwidth_package_inquiry_response import BandwidthPackageInquiryResponse
+from baiducloud_python_sdk_eip.models.create_eip_transfer_response import CreateEipTransferResponse
 from baiducloud_python_sdk_eip.models.create_tbsp_response import CreateTbspResponse
 from baiducloud_python_sdk_eip.models.detail_tbsp_response import DetailTbspResponse
 from baiducloud_python_sdk_eip.models.eip_inquiry_response import EipInquiryResponse
 from baiducloud_python_sdk_eip.models.list_eip_transfer_response import ListEipTransferResponse
+from baiducloud_python_sdk_eip.models.list_recycle_eips_response import ListRecycleEipsResponse
 from baiducloud_python_sdk_eip.models.list_tbsp_response import ListTbspResponse
 from baiducloud_python_sdk_eip.models.list_tbsp_area_blocking_response import ListTbspAreaBlockingResponse
 from baiducloud_python_sdk_eip.models.list_tbsp_ip_clean_response import ListTbspIpCleanResponse
 from baiducloud_python_sdk_eip.models.list_tbsp_ip_whitelist_response import ListTbspIpWhitelistResponse
 from baiducloud_python_sdk_eip.models.list_tbsp_protocol_blocking_response import ListTbspProtocolBlockingResponse
 from baiducloud_python_sdk_eip.models.query_eip_list_response import QueryEipListResponse
-from baiducloud_python_sdk_eip.models.query_the_list_of_eips_in_the_recycling_bin_response import QueryTheListOfEipsInTheRecyclingBinResponse
 from baiducloud_python_sdk_eip.models.shared_bandwidth_inquiry_response import SharedBandwidthInquiryResponse
 from baiducloud_python_sdk_eip.models.shared_data_package_inquiry_response import SharedDataPackageInquiryResponse
 
@@ -45,33 +46,24 @@ class EipClient(BceBaseClient):
 
     CONSTANT_IP_PROTECT_LEVEL = b'ipProtectLevel'
 
-    CONSTANT_RECYCLE = b'recycle'
-
     CONSTANT_TRANSFER = b'transfer'
 
     CONSTANT_IP_CLEAN = b'ipClean'
+
+    CONSTANT_RECYCLE = b'recycle'
 
     CONSTANT_IP_WHITELIST = b'ipWhitelist'
 
     CONSTANT_REFUND = b'refund'
 
-    CONSTANT_EIPTP = b'eiptp'
-
     CONSTANT_DELETE_PROTECT = b'deleteProtect'
+
+    CONSTANT_EIPTP = b'eiptp'
 
     CONSTANT_EIPGROUP = b'eipgroup'
 
     def __init__(self, config=None):
         bce_base_client.BceBaseClient.__init__(self, config)
-
-    def activate_eip_automatic_renewal(self, request, config=None):
-        path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, request.eip)
-        params = {}
-        params['startAutoRenew'] = None
-        if request.client_token is not None:
-            params['clientToken'] = request.client_token
-        return self._send_request(http_methods.PUT, path=path
-                                , body=request.to_json_string(), params=params, config=config)
 
     def add_tbsp_area_blocking(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TBSP, request.id, EipClient.CONSTANT_AREA_BLOCKING)
@@ -137,22 +129,13 @@ class EipClient(BceBaseClient):
         return self._send_request(http_methods.PUT, path=path
                                 , body=request.to_json_string(), params=params, config=config)
 
-    def close_eip_direct_access(self, request, config=None):
-        path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, request.eip)
-        params = {}
-        params['unDirect'] = None
-        if request.client_token is not None:
-            params['clientToken'] = request.client_token
-        return self._send_request(http_methods.PUT, path=path
-                                , params=params, config=config)
-
     def create_eip_transfer(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TRANSFER)
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
         return self._send_request(http_methods.POST, path=path
-                                , body=request.to_json_string(), params=params, config=config)
+                                , body=request.to_json_string(), params=params, config=config, model=CreateEipTransferResponse)
 
     def create_tbsp(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TBSP)
@@ -166,6 +149,15 @@ class EipClient(BceBaseClient):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TBSP, request.id)
         return self._send_request(http_methods.GET, path=path
                                 , config=config, model=DetailTbspResponse)
+
+    def direct_eip(self, request, config=None):
+        path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, request.eip)
+        params = {}
+        params['direct'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        return self._send_request(http_methods.PUT, path=path
+                                , params=params, config=config)
 
     def disable_tbsp_ip_clean(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TBSP, request.id, EipClient.CONSTANT_IP_CLEAN)
@@ -208,15 +200,6 @@ class EipClient(BceBaseClient):
         return self._send_request(http_methods.PUT, path=path
                                 , body=request.to_json_string(), params=params, config=config)
 
-    def enable_eip_direct_access(self, request, config=None):
-        path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, request.eip)
-        params = {}
-        params['direct'] = None
-        if request.client_token is not None:
-            params['clientToken'] = request.client_token
-        return self._send_request(http_methods.PUT, path=path
-                                , params=params, config=config)
-
     def enable_tbsp_ip_clean(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TBSP, request.id, EipClient.CONSTANT_IP_CLEAN)
         params = {}
@@ -251,6 +234,20 @@ class EipClient(BceBaseClient):
             params['fuzzyInstanceIp'] = request.fuzzy_instance_ip
         return self._send_request(http_methods.GET, path=path
                                 , params=params, config=config, model=ListEipTransferResponse)
+
+    def list_recycle_eips(self, request, config=None):
+        path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, EipClient.CONSTANT_RECYCLE)
+        params = {}
+        if request.eip is not None:
+            params['eip'] = request.eip
+        if request.name is not None:
+            params['name'] = request.name
+        if request.marker is not None:
+            params['marker'] = request.marker
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
+        return self._send_request(http_methods.GET, path=path
+                                , params=params, config=config, model=ListRecycleEipsResponse)
 
     def list_tbsp(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TBSP)
@@ -327,12 +324,14 @@ class EipClient(BceBaseClient):
         return self._send_request(http_methods.PUT, path=path
                                 , body=request.to_json_string(), params=params, config=config)
 
-    def prepaid_eip_unsubscribe(self, request, config=None):
-        path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, EipClient.CONSTANT_REFUND, request.eip)
+    def optional_release_eip(self, request, config=None):
+        path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, request.eip)
         params = {}
+        if request.release_to_recycle is not None:
+            params['releaseToRecycle'] = request.release_to_recycle
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.PUT, path=path
+        return self._send_request(http_methods.DELETE, path=path
                                 , params=params, config=config)
 
     def query_eip_list(self, request, config=None):
@@ -359,20 +358,6 @@ class EipClient(BceBaseClient):
         return self._send_request(http_methods.GET, path=path
                                 , params=params, config=config, model=QueryEipListResponse)
 
-    def query_the_list_of_eips_in_the_recycling_bin(self, request, config=None):
-        path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, EipClient.CONSTANT_RECYCLE)
-        params = {}
-        if request.eip is not None:
-            params['eip'] = request.eip
-        if request.name is not None:
-            params['name'] = request.name
-        if request.marker is not None:
-            params['marker'] = request.marker
-        if request.max_keys is not None:
-            params['maxKeys'] = request.max_keys
-        return self._send_request(http_methods.GET, path=path
-                                , params=params, config=config, model=QueryTheListOfEipsInTheRecyclingBinResponse)
-
     def receive_eip_transfer(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TRANSFER)
         params = {}
@@ -381,6 +366,14 @@ class EipClient(BceBaseClient):
             params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
                                 , body=request.to_json_string(), params=params, config=config)
+
+    def refund_eip(self, request, config=None):
+        path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, EipClient.CONSTANT_REFUND, request.eip)
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        return self._send_request(http_methods.PUT, path=path
+                                , params=params, config=config)
 
     def reject_eip_transfer(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_TRANSFER)
@@ -401,7 +394,7 @@ class EipClient(BceBaseClient):
         return self._send_request(http_methods.DELETE, path=path
                                 , params=params, config=config)
 
-    def release_the_eip_from_the_recycling_bin(self, request, config=None):
+    def release_eip_from_recycle(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, EipClient.CONSTANT_RECYCLE, request.eip)
         params = {}
         if request.client_token is not None:
@@ -461,23 +454,13 @@ class EipClient(BceBaseClient):
         return self._send_request(http_methods.PUT, path=path
                                 , body=request.to_json_string(), params=params, config=config)
 
-    def restore_eip_in_recycle_bin(self, request, config=None):
+    def restore_eip_from_recycle(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, EipClient.CONSTANT_RECYCLE, request.eip)
         params = {}
         params['restore'] = None
         if request.client_token is not None:
             params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
-                                , params=params, config=config)
-
-    def selective_release_of_eip(self, request, config=None):
-        path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, request.eip)
-        params = {}
-        if request.release_to_recycle is not None:
-            params['releaseToRecycle'] = request.release_to_recycle
-        if request.client_token is not None:
-            params['clientToken'] = request.client_token
-        return self._send_request(http_methods.DELETE, path=path
                                 , params=params, config=config)
 
     def shared_bandwidth_inquiry(self, request, config=None):
@@ -493,10 +476,28 @@ class EipClient(BceBaseClient):
         return self._send_request(http_methods.POST, path=path
                                 , body=request.to_json_string(), params=params, config=config, model=SharedDataPackageInquiryResponse)
 
-    def turn_off_eip_automatic_renewal(self, request, config=None):
+    def start_eip_auto_renew(self, request, config=None):
+        path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, request.eip)
+        params = {}
+        params['startAutoRenew'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        return self._send_request(http_methods.PUT, path=path
+                                , body=request.to_json_string(), params=params, config=config)
+
+    def stop_eip_auto_renew(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, request.eip)
         params = {}
         params['stopAutoRenew'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        return self._send_request(http_methods.PUT, path=path
+                                , params=params, config=config)
+
+    def un_direct_eip(self, request, config=None):
+        path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, request.eip)
+        params = {}
+        params['unDirect'] = None
         if request.client_token is not None:
             params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
@@ -520,7 +521,7 @@ class EipClient(BceBaseClient):
         return self._send_request(http_methods.PUT, path=path
                                 , body=request.to_json_string(), params=params, config=config)
 
-    def update_eip_release_protection_switch(self, request, config=None):
+    def update_eip_delete_protect(self, request, config=None):
         path = utils.append_uri(EipClient.VERSION_V1, EipClient.CONSTANT_EIP, request.eip, EipClient.CONSTANT_DELETE_PROTECT)
         params = {}
         if request.client_token is not None:
