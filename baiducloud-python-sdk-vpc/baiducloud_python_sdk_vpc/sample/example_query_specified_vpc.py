@@ -11,11 +11,11 @@ if __name__ == '__main__':
         secret_access_key = ""
         endpoint = ""
         config = BceClientConfiguration(credentials=BceCredentials(access_key_id, secret_access_key), endpoint = endpoint)
-        VpcClient = VpcClient(config)
+        client = VpcClient(config)
         request = QuerySpecifiedVpcRequest(
             vpc_id = ""
         )
-        res = VpcClient.query_specified_vpc(request)
+        res = client.query_specified_vpc(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。

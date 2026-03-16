@@ -1,6 +1,5 @@
 import copy
 import logging
-import uuid
 
 from baiducloud_python_sdk_core import utils, bce_base_client
 from baiducloud_python_sdk_core.auth import bce_v1_signer
@@ -8,16 +7,28 @@ from baiducloud_python_sdk_core.bce_base_client import BceBaseClient
 from baiducloud_python_sdk_core.http import bce_http_client
 from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import http_methods
+from baiducloud_python_sdk_vpc.models.batch_create_ssl_vpn_users_response import BatchCreateSslVpnUsersResponse
 from baiducloud_python_sdk_vpc.models.create_ip_reserved_response import CreateIpReservedResponse
+from baiducloud_python_sdk_vpc.models.create_ssl_vpn_server_response import CreateSslVpnServerResponse
 from baiducloud_python_sdk_vpc.models.create_subnet_response import CreateSubnetResponse
+from baiducloud_python_sdk_vpc.models.create_user_gateway_response import CreateUserGatewayResponse
 from baiducloud_python_sdk_vpc.models.create_vpc_response import CreateVpcResponse
+from baiducloud_python_sdk_vpc.models.create_vpn_response import CreateVpnResponse
+from baiducloud_python_sdk_vpc.models.create_vpn_tunnel_response import CreateVpnTunnelResponse
 from baiducloud_python_sdk_vpc.models.get_vpc_resource_ip_info_response import GetVpcResourceIpInfoResponse
 from baiducloud_python_sdk_vpc.models.list_ip_reserve_response import ListIpReserveResponse
 from baiducloud_python_sdk_vpc.models.query_specified_subnet_response import QuerySpecifiedSubnetResponse
 from baiducloud_python_sdk_vpc.models.query_specified_vpc_response import QuerySpecifiedVpcResponse
+from baiducloud_python_sdk_vpc.models.query_ssl_vpn_server_response import QuerySslVpnServerResponse
+from baiducloud_python_sdk_vpc.models.query_ssl_vpn_users_response import QuerySslVpnUsersResponse
 from baiducloud_python_sdk_vpc.models.query_subnet_list_response import QuerySubnetListResponse
 from baiducloud_python_sdk_vpc.models.query_vpc_intranet_ip_response import QueryVpcIntranetIpResponse
 from baiducloud_python_sdk_vpc.models.query_vpc_list_response import QueryVpcListResponse
+from baiducloud_python_sdk_vpc.models.query_vpn_list_response import QueryVpnListResponse
+from baiducloud_python_sdk_vpc.models.search_for_vpn_details_response import SearchForVpnDetailsResponse
+from baiducloud_python_sdk_vpc.models.search_vpn_tunnel_response import SearchVpnTunnelResponse
+from baiducloud_python_sdk_vpc.models.user_gateway_details_response import UserGatewayDetailsResponse
+from baiducloud_python_sdk_vpc.models.user_gateway_list_response import UserGatewayListResponse
 
 _logger = logging.getLogger(__name__)
 
@@ -28,20 +39,49 @@ class VpcClient(BceBaseClient):
 
     CONSTANT_VPC = b'vpc'
 
+    CONSTANT_VPN = b'vpn'
+
+    CONSTANT_VPNCONN = b'vpnconn'
+
+    CONSTANT_SSL_VPN_SERVER = b'sslVpnServer'
+
     CONSTANT_SHUTDOWN_RELAY = b'shutdownRelay'
 
     CONSTANT_RESOURCE_IP = b'resourceIp'
 
-    CONSTANT_SUBNET = b'subnet'
+    CONSTANT_CGW = b'cgw'
 
-    CONSTANT_OPEN_RELAY = b'openRelay'
+    CONSTANT_SSL_VPN_USER = b'sslVpnUser'
+
+    CONSTANT_SUBNET = b'subnet'
 
     CONSTANT_PRIVATE_IP_ADDRESS_INFO = b'privateIpAddressInfo'
 
     CONSTANT_IPRESERVE = b'ipreserve'
 
+    CONSTANT_OPEN_RELAY = b'openRelay'
+
+    CONSTANT_DELETE_PROTECT = b'deleteProtect'
+
     def __init__(self, config=None):
         bce_base_client.BceBaseClient.__init__(self, config)
+
+    def batch_create_ssl_vpn_users(self, request, config=None):
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_SSL_VPN_USER)
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        return self._send_request(http_methods.POST, path=path
+                                , body=request.to_json_string(), params=params, config=config, model=BatchCreateSslVpnUsersResponse)
+
+    def bind_eip(self, request, config=None):
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id)
+        params = {}
+        params['bind'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        return self._send_request(http_methods.PUT, path=path
+                                , body=request.to_json_string(), params=params, config=config)
 
     def close_vpc_relay(self, request, config=None):
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC, VpcClient.CONSTANT_SHUTDOWN_RELAY, request.vpc_id)
@@ -59,6 +99,14 @@ class VpcClient(BceBaseClient):
         return self._send_request(http_methods.POST, path=path
                                 , body=request.to_json_string(), params=params, config=config, model=CreateIpReservedResponse)
 
+    def create_ssl_vpn_server(self, request, config=None):
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_SSL_VPN_SERVER)
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        return self._send_request(http_methods.POST, path=path
+                                , body=request.to_json_string(), params=params, config=config, model=CreateSslVpnServerResponse)
+
     def create_subnet(self, request, config=None):
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET)
         params = {}
@@ -66,6 +114,14 @@ class VpcClient(BceBaseClient):
             params['clientToken'] = request.client_token
         return self._send_request(http_methods.POST, path=path
                                 , body=request.to_json_string(), params=params, config=config, model=CreateSubnetResponse)
+
+    def create_user_gateway(self, request, config=None):
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, VpcClient.CONSTANT_CGW)
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        return self._send_request(http_methods.POST, path=path
+                                , body=request.to_json_string(), params=params, config=config, model=CreateUserGatewayResponse)
 
     def create_vpc(self, request, config=None):
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC)
@@ -75,8 +131,40 @@ class VpcClient(BceBaseClient):
         return self._send_request(http_methods.POST, path=path
                                 , body=request.to_json_string(), params=params, config=config, model=CreateVpcResponse)
 
+    def create_vpn(self, request, config=None):
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN)
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        return self._send_request(http_methods.POST, path=path
+                                , body=request.to_json_string(), params=params, config=config, model=CreateVpnResponse)
+
+    def create_vpn_tunnel(self, request, config=None):
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_VPNCONN)
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        return self._send_request(http_methods.POST, path=path
+                                , body=request.to_json_string(), params=params, config=config, model=CreateVpnTunnelResponse)
+
     def delete_ip_reserve(self, request, config=None):
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET, VpcClient.CONSTANT_IPRESERVE, request.ip_reserve_id)
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        return self._send_request(http_methods.DELETE, path=path
+                                , params=params, config=config)
+
+    def delete_ssl_vpn_server(self, request, config=None):
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_SSL_VPN_SERVER, request.ssl_vpn_server_id)
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        return self._send_request(http_methods.DELETE, path=path
+                                , params=params, config=config)
+
+    def delete_ssl_vpn_user(self, request, config=None):
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_SSL_VPN_USER, request.user_id)
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
@@ -91,8 +179,21 @@ class VpcClient(BceBaseClient):
         return self._send_request(http_methods.DELETE, path=path
                                 , params=params, config=config)
 
+    def delete_user_gateway(self, request, config=None):
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, VpcClient.CONSTANT_CGW, request.cgw_id)
+        return self._send_request(http_methods.DELETE, path=path
+                                , config=config)
+
     def delete_vpc(self, request, config=None):
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC, request.vpc_id)
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        return self._send_request(http_methods.DELETE, path=path
+                                , params=params, config=config)
+
+    def delete_vpn_tunnel(self, request, config=None):
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, VpcClient.CONSTANT_VPNCONN, request.vpn_conn_id)
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
@@ -145,6 +246,26 @@ class VpcClient(BceBaseClient):
         return self._send_request(http_methods.GET, path=path
                                 , config=config, model=QuerySpecifiedVpcResponse)
 
+    def query_ssl_vpn_server(self, request, config=None):
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_SSL_VPN_SERVER)
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        return self._send_request(http_methods.GET, path=path
+                                , params=params, config=config, model=QuerySslVpnServerResponse)
+
+    def query_ssl_vpn_users(self, request, config=None):
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_SSL_VPN_USER)
+        params = {}
+        if request.marker is not None:
+            params['marker'] = request.marker
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
+        if request.user_name is not None:
+            params['userName'] = request.user_name
+        return self._send_request(http_methods.GET, path=path
+                                , params=params, config=config, model=QuerySslVpnUsersResponse)
+
     def query_subnet_list(self, request, config=None):
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET)
         params = {}
@@ -187,10 +308,89 @@ class VpcClient(BceBaseClient):
         return self._send_request(http_methods.GET, path=path
                                 , params=params, config=config, model=QueryVpcListResponse)
 
+    def query_vpn_list(self, request, config=None):
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN)
+        params = {}
+        if request.vpc_id is not None:
+            params['vpcId'] = request.vpc_id
+        if request.marker is not None:
+            params['marker'] = request.marker
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
+        if request.eip is not None:
+            params['eip'] = request.eip
+        if request.type is not None:
+            params['type'] = request.type
+        return self._send_request(http_methods.GET, path=path
+                                , params=params, config=config, model=QueryVpnListResponse)
+
+    def release_vpn(self, request, config=None):
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id)
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        return self._send_request(http_methods.DELETE, path=path
+                                , params=params, config=config)
+
+    def renew_vpn(self, request, config=None):
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id)
+        params = {}
+        params['purchaseReserved'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        return self._send_request(http_methods.PUT, path=path
+                                , body=request.to_json_string(), params=params, config=config)
+
+    def search_for_vpn_details(self, request, config=None):
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id)
+        return self._send_request(http_methods.GET, path=path
+                                , config=config, model=SearchForVpnDetailsResponse)
+
+    def search_vpn_tunnel(self, request, config=None):
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, VpcClient.CONSTANT_VPNCONN, request.vpn_id)
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        return self._send_request(http_methods.GET, path=path
+                                , params=params, config=config, model=SearchVpnTunnelResponse)
+
+    def unbind_eip(self, request, config=None):
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id)
+        params = {}
+        params['unbind'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        return self._send_request(http_methods.PUT, path=path
+                                , params=params, config=config)
+
+    def update_ssl_vpn_server(self, request, config=None):
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_SSL_VPN_SERVER, request.ssl_vpn_server_id)
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        return self._send_request(http_methods.PUT, path=path
+                                , body=request.to_json_string(), params=params, config=config)
+
+    def update_ssl_vpn_users(self, request, config=None):
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_SSL_VPN_USER, request.user_id)
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        return self._send_request(http_methods.PUT, path=path
+                                , body=request.to_json_string(), params=params, config=config)
+
     def update_subnet(self, request, config=None):
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET, request.subnet_id)
         params = {}
         params['modifyAttribute'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        return self._send_request(http_methods.PUT, path=path
+                                , body=request.to_json_string(), params=params, config=config)
+
+    def update_user_gateway(self, request, config=None):
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, VpcClient.CONSTANT_CGW, request.cgw_id)
+        params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path
@@ -205,14 +405,46 @@ class VpcClient(BceBaseClient):
         return self._send_request(http_methods.PUT, path=path
                                 , body=request.to_json_string(), params=params, config=config)
 
+    def update_vpn(self, request, config=None):
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id)
+        params = {}
+        params['modifyAttribute'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        return self._send_request(http_methods.PUT, path=path
+                                , body=request.to_json_string(), params=params, config=config)
 
+    def update_vpn_release_protection(self, request, config=None):
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_DELETE_PROTECT)
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        return self._send_request(http_methods.PUT, path=path
+                                , body=request.to_json_string(), params=params, config=config)
 
-    @staticmethod
-    def _generate_default_client_token():
-        """
-        default client token by uuid1
-        """
-        return uuid.uuid1()
+    def update_vpn_tunnel(self, request, config=None):
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, VpcClient.CONSTANT_VPNCONN, request.vpn_conn_id)
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        return self._send_request(http_methods.PUT, path=path
+                                , body=request.to_json_string(), params=params, config=config)
+
+    def user_gateway_details(self, request, config=None):
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, VpcClient.CONSTANT_CGW, request.cgw_id)
+        return self._send_request(http_methods.GET, path=path
+                                , config=config, model=UserGatewayDetailsResponse)
+
+    def user_gateway_list(self, request, config=None):
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, VpcClient.CONSTANT_CGW)
+        params = {}
+        if request.marker is not None:
+            params['marker'] = request.marker
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
+        return self._send_request(http_methods.GET, path=path
+                                , params=params, config=config, model=UserGatewayListResponse)
+
 
     def _merge_config(self, config=None):
         """

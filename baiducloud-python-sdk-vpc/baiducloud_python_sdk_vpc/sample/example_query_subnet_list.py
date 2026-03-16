@@ -11,7 +11,7 @@ if __name__ == '__main__':
         secret_access_key = ""
         endpoint = ""
         config = BceClientConfiguration(credentials=BceCredentials(access_key_id, secret_access_key), endpoint = endpoint)
-        VpcClient = VpcClient(config)
+        client = VpcClient(config)
         request = QuerySubnetListRequest(
             marker = "", 
             max_keys = 0, 
@@ -20,7 +20,7 @@ if __name__ == '__main__':
             subnet_type = "", 
             subnet_ids = ""
         )
-        res = VpcClient.query_subnet_list(request)
+        res = client.query_subnet_list(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。
