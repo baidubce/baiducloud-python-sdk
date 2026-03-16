@@ -11,7 +11,7 @@ if __name__ == '__main__':
         secret_access_key = ""
         endpoint = ""
         config = BceClientConfiguration(credentials=BceCredentials(access_key_id, secret_access_key), endpoint = endpoint)
-        VpcClient = VpcClient(config)
+        client = VpcClient(config)
         request = CreateIpReservedRequest(
             subnet_id = "", 
             ip_cidr = "", 
@@ -19,7 +19,7 @@ if __name__ == '__main__':
             client_token = "", 
             description = ""
         )
-        res = VpcClient.create_ip_reserved(request)
+        res = client.create_ip_reserved(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。
