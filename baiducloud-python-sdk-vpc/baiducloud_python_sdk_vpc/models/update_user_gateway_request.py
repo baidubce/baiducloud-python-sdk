@@ -1,5 +1,5 @@
 """
-This module provides the UpdateUserGatewayRequest class for handling user gateway update requests.
+Request entity for UpdateUserGatewayRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
@@ -7,24 +7,26 @@ from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 class UpdateUserGatewayRequest(AbstractModel):
     """
-    Request class for updating user gateway information.
-    
-    Attributes:
-        cgw_id (str): The ID of the customer gateway.
-        client_token (str, optional): A unique token for request idempotency.
-        name (str, optional): The name of the gateway.
-        description (str, optional): The description of the gateway.
+    Request entity for UpdateUserGatewayRequest operation.
+
+    This class encapsulates all parameters for the API request.
     """
-    
+
     def __init__(self, cgw_id, client_token=None, name=None, description=None):
         """
-        Initialize the UpdateUserGatewayRequest with gateway details.
-        
-        Args:
-            cgw_id (str): The ID of the customer gateway.
-            client_token (str, optional): A unique token for request idempotency.
-            name (str, optional): The name of the gateway.
-            description (str, optional): The description of the gateway.
+        Initialize UpdateUserGatewayRequest request entity.
+
+        :param cgw_id: cgw_id parameter
+        :type cgw_id: str (required)
+
+        :param client_token: client_token parameter
+        :type client_token: str (optional)
+
+        :param name: 用户网关名称
+        :type name: str (optional)
+
+        :param description: 用户网关描述，名称与描述不能同时为空
+        :type description: str (optional)
         """
         super().__init__()
         self.cgw_id = cgw_id
@@ -34,10 +36,12 @@ class UpdateUserGatewayRequest(AbstractModel):
 
     def to_dict(self):
         """
-        Convert the request object to a dictionary.
-        
-        Returns:
-            dict: A dictionary containing the request attributes.
+        Convert the request entity to a dictionary representation.
+
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the request
+        :rtype: dict
         """
         _map = super().to_dict()
         if _map is not None:
@@ -49,16 +53,20 @@ class UpdateUserGatewayRequest(AbstractModel):
             result['description'] = self.description
         return result
 
-
     def from_dict(self, m):
         """
-        Populate the request object from a dictionary.
-        
-        Args:
-            m (dict): A dictionary containing the request attributes.
-            
-        Returns:
-            UpdateUserGatewayRequest: The populated request object.
+        Populate the request entity from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing request data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: UpdateUserGatewayRequest
+
+        :raises TypeError: If input is not a dictionary or field type mismatch
+        :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
         if m.get('cgwId') is not None:

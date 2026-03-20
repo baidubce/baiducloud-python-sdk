@@ -13,6 +13,7 @@
 """
 The setup script to install BCE SDK for python
 """
+
 from __future__ import absolute_import
 import io
 import os
@@ -25,7 +26,7 @@ with io.open(os.path.join("baiducloud_python_sdk_vpc", "__init__.py"), "rt") as 
 
 LONG_DESCRIPTION = ''
 if os.path.exists('./README.md'):
-    with open("README.md", encoding='utf-8') as fp:
+    with io.open("README.md", encoding='utf-8') as fp:
         LONG_DESCRIPTION = fp.read()
 
 setup(
@@ -34,13 +35,11 @@ setup(
     description='Baidu Cloud vpcApi SDK Library for Python',
     long_description=LONG_DESCRIPTION,
     long_description_content_type='text/markdown',
-    install_requires=['pycryptodome>=3.8.0',
-                      'future>=0.6.0',
-                      'six>=1.4.0'],
+    install_requires=['pycryptodome>=3.8.0', 'future>=0.6.0', 'six>=1.4.0'],
     python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, <4',
     packages=find_packages(exclude=["tests*"]),
     url='https://github.com/baidubce/baiducloud-python-sdk',
-    keywords=["baiducloud","vpc"],
+    keywords=["baiducloud", "vpc"],
     license='Apache License 2.0',
     author='Baidu Cloud SDK',
     author_email='',
@@ -65,6 +64,8 @@ setup(
     project_urls={
         'Source': 'https://github.com/baidubce/baiducloud-python-sdk',
         'Documentation': 'https://github.com/baidubce/baiducloud-python-sdk/tree/master/docs',
-        'Changelog': 'https://github.com/baidubce/baiducloud-python-sdk/blob/master/baiducloud-python-sdk-vpc/ChangeLog.md',
-    }
+        'Changelog': (
+            'https://github.com/baidubce/baiducloud-python-sdk/blob/master/baiducloud-python-sdk-vpc/ChangeLog.md'
+        ),
+    },
 )

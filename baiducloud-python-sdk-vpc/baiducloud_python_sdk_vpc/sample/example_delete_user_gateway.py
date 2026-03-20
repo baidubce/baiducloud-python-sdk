@@ -1,5 +1,5 @@
 """
-This module demonstrates the usage of Baidu Cloud VPC SDK to delete a user gateway.
+Example for vpc delete_user_gateway method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -15,13 +15,10 @@ if __name__ == '__main__':
         secret_access_key = ""
         endpoint = ""
         config = BceClientConfiguration(
-            credentials=BceCredentials(access_key_id, secret_access_key), 
-            endpoint=endpoint
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = VpcClient(config)
-        request = DeleteUserGatewayRequest(
-            cgw_id=""
-        )
+        request = DeleteUserGatewayRequest(cgw_id="")
         res = client.delete_user_gateway(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

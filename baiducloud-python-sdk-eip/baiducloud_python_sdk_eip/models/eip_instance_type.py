@@ -1,9 +1,14 @@
+"""
+EipInstanceType information
+"""
+
 
 class EipInstanceType:
     """
     Enum class for EipInstanceType
     Allowed values: NORMAL, SHARED
     """
+
     NORMAL = 'normal'
     SHARED = 'shared'
 

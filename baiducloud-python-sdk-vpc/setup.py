@@ -40,7 +40,7 @@ setup(
     python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, <4',
     packages=find_packages(exclude=["tests*"]),
     url='https://github.com/baidubce/baiducloud-python-sdk',
-    keywords=["baiducloud","vpc"],
+    keywords=["baiducloud", "vpc"],
     license='Apache License 2.0',
     author='Baidu Cloud SDK',
     author_email='',
@@ -65,6 +65,9 @@ setup(
     project_urls={
         'Source': 'https://github.com/baidubce/baiducloud-python-sdk',
         'Documentation': 'https://github.com/baidubce/baiducloud-python-sdk/tree/master/docs',
-        'Changelog': 'https://github.com/baidubce/baiducloud-python-sdk/blob/master/baiducloud-python-sdk-vpc/ChangeLog.md',
-    }
+        'Changelog': (
+            'https://github.com/baidubce/baiducloud-python-sdk/blob/master/'
+            'baiducloud-python-sdk-vpc/ChangeLog.md'
+        ),
+    },
 )

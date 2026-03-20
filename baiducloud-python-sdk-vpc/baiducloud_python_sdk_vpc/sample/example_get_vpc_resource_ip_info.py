@@ -1,3 +1,7 @@
+"""
+Example for vpc get_vpc_resource_ip_info method.
+"""
+
 from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
@@ -10,15 +14,11 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(credentials=BceCredentials(access_key_id, secret_access_key), endpoint = endpoint)
-        client = VpcClient(config)
-        request = GetVpcResourceIpInfoRequest(
-            vpc_id = "", 
-            subnet_id = "", 
-            resource_type = "", 
-            page_no = 0, 
-            page_size = 0
+        config = BceClientConfiguration(
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
+        client = VpcClient(config)
+        request = GetVpcResourceIpInfoRequest(vpc_id="", subnet_id="", resource_type="", page_no=0, page_size=0)
         res = client.get_vpc_resource_ip_info(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

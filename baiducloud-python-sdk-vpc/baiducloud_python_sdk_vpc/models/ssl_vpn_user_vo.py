@@ -1,26 +1,30 @@
+"""
+SslVpnUserVo information
+"""
+
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
 class SslVpnUserVo(AbstractModel):
     """
-    SslVpnUserVo 类表示SSL VPN用户信息
-    
-    Attributes:
-        client_name (str): 客户端名称
-        user_name (str): 用户名
-        user_id (str): 用户ID
-        description (str): 描述信息
+    SslVpnUserVo
     """
-    
+
     def __init__(self, client_name=None, user_name=None, user_id=None, description=None):
         """
-        初始化SslVpnUserVo实例
-        
-        Args:
-            client_name (str, optional): 客户端名称. Defaults to None.
-            user_name (str, optional): 用户名. Defaults to None.
-            user_id (str, optional): 用户ID. Defaults to None.
-            description (str, optional): 描述信息. Defaults to None.
+        Initialize SslVpnUserVo instance.
+
+        :param client_name: 客户端名称
+        :type client_name: str (optional)
+
+        :param user_name: 用户名
+        :type user_name: str (optional)
+
+        :param user_id: 用户ID
+        :type user_id: str (optional)
+
+        :param description: 描述
+        :type description: str (optional)
         """
         super().__init__()
         self.client_name = client_name
@@ -30,10 +34,12 @@ class SslVpnUserVo(AbstractModel):
 
     def to_dict(self):
         """
-        将对象转换为字典格式
-        
-        Returns:
-            dict: 包含对象属性的字典
+        Convert the model instance to a dictionary representation.
+
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the model
+        :rtype: dict
         """
         _map = super().to_dict()
         if _map is not None:
@@ -49,16 +55,20 @@ class SslVpnUserVo(AbstractModel):
             result['description'] = self.description
         return result
 
-
     def from_dict(self, m):
         """
-        从字典初始化对象
-        
-        Args:
-            m (dict): 包含对象属性的字典
-            
-        Returns:
-            SslVpnUserVo: 当前对象
+        Populate the model instance from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing model data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: SslVpnUserVo
+
+        :raises TypeError: If input is not a dictionary type
+        :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
         if m.get('clientName') is not None:

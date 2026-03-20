@@ -1,3 +1,7 @@
+"""
+Example for eip eip_renewal method.
+"""
+
 from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
@@ -12,17 +16,15 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(credentials=BceCredentials(access_key_id, secret_access_key), endpoint = endpoint)
-        EipClient = EipClient(config)
-        
-        reservation = Reservation(reservation_length=0, reservation_time_unit="")
-        billing = Billing(payment_timing="", billing_method="", reservation = reservation)
-        request = EipRenewalRequest(
-            eip = "", 
-            client_token = "", 
-            billing = billing
+        config = BceClientConfiguration(
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        res = EipClient.eip_renewal(request)
+        client = EipClient(config)
+
+        reservation = Reservation(reservation_length=0, reservation_time_unit="")
+        billing = Billing(payment_timing="", billing_method="", reservation=reservation)
+        request = EipRenewalRequest(eip="", billing=billing, client_token="")
+        res = client.eip_renewal(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。

@@ -1,4 +1,6 @@
-"""This module demonstrates the usage of VPC client to search VPN tunnels."""
+"""
+Example for vpc search_vpn_tunnel method.
+"""
 
 from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
@@ -13,14 +15,10 @@ if __name__ == '__main__':
         secret_access_key = ""
         endpoint = ""
         config = BceClientConfiguration(
-            credentials=BceCredentials(access_key_id, secret_access_key), 
-            endpoint=endpoint
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = VpcClient(config)
-        request = SearchVpnTunnelRequest(
-            vpn_id="", 
-            client_token=""
-        )
+        request = SearchVpnTunnelRequest(vpn_id="", client_token="")
         res = client.search_vpn_tunnel(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

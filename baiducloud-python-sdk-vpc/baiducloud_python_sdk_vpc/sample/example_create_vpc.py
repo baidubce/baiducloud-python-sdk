@@ -1,9 +1,12 @@
+"""
+Example for vpc create_vpc method.
+"""
+
 from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
 from baiducloud_python_sdk_vpc.api.vpc_client import VpcClient
 from baiducloud_python_sdk_vpc.models.create_vpc_request import CreateVpcRequest
-from baiducloud_python_sdk_vpc.models.tag_model import TagModel
 
 if __name__ == '__main__':
     try:
@@ -11,16 +14,11 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(credentials=BceCredentials(access_key_id, secret_access_key), endpoint = endpoint)
-        client = VpcClient(config)
-        request = CreateVpcRequest(
-            name = "", 
-            cidr = "", 
-            client_token = "", 
-            description = "", 
-            enable_ipv6 = False, 
-            tags = []
+        config = BceClientConfiguration(
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
+        client = VpcClient(config)
+        request = CreateVpcRequest(name="", cidr="", client_token="", description="", enable_ipv6=False, tags=[])
         res = client.create_vpc(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

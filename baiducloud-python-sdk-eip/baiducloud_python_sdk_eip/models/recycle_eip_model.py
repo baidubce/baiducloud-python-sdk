@@ -1,3 +1,6 @@
+"""
+RecycleEipModel information
+"""
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
@@ -6,7 +9,53 @@ class RecycleEipModel(AbstractModel):
     """
     RecycleEipModel
     """
-    def __init__(self, name=None, eip=None, eip_id=None, status=None, route_type=None, bandwidth_in_mbps=None, payment_timing=None, billing_method=None, recycle_time=None, scheduled_delete_time=None):
+
+    def __init__(
+        self,
+        name=None,
+        eip=None,
+        eip_id=None,
+        status=None,
+        route_type=None,
+        bandwidth_in_mbps=None,
+        payment_timing=None,
+        billing_method=None,
+        recycle_time=None,
+        scheduled_delete_time=None,
+    ):
+        """
+        Initialize RecycleEipModel instance.
+
+        :param name: EIP名称
+        :type name: str (optional)
+
+        :param eip: EIP地址，点分十进制表示
+        :type eip: str (optional)
+
+        :param eip_id: EIP ID
+        :type eip_id: str (optional)
+
+        :param status: EIP状态
+        :type status: str (optional)
+
+        :param route_type: EIP线路类型
+        :type route_type: str (optional)
+
+        :param bandwidth_in_mbps: 公网带宽，单位为Mbps
+        :type bandwidth_in_mbps: int (optional)
+
+        :param payment_timing: 付款时间，预支付（Prepaid）和后支付（Postpaid）
+        :type payment_timing: str (optional)
+
+        :param billing_method: 计费方式，按流量（ByTraffic）或按带宽（ByBandwidth）等
+        :type billing_method: str (optional)
+
+        :param recycle_time: EIP进入回收站时间
+        :type recycle_time: str (optional)
+
+        :param scheduled_delete_time: EIP计划删除时间
+        :type scheduled_delete_time: str (optional)
+        """
         super().__init__()
         self.name = name
         self.eip = eip
@@ -20,6 +69,14 @@ class RecycleEipModel(AbstractModel):
         self.scheduled_delete_time = scheduled_delete_time
 
     def to_dict(self):
+        """
+        Convert the model instance to a dictionary representation.
+
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the model
+        :rtype: dict
+        """
         _map = super().to_dict()
         if _map is not None:
             return _map
@@ -46,8 +103,21 @@ class RecycleEipModel(AbstractModel):
             result['scheduledDeleteTime'] = self.scheduled_delete_time
         return result
 
-
     def from_dict(self, m):
+        """
+        Populate the model instance from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing model data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: RecycleEipModel
+
+        :raises TypeError: If input is not a dictionary type
+        :raises ValueError: If nested model conversion fails
+        """
         m = m or dict()
         if m.get('name') is not None:
             self.name = m.get('name')

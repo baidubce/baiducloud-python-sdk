@@ -1,5 +1,5 @@
 """
-This module demonstrates how to use Baidu Cloud Python SDK to bind EIP to VPN.
+Example for vpc bind_eip method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -15,15 +15,10 @@ if __name__ == '__main__':
         secret_access_key = ""
         endpoint = ""
         config = BceClientConfiguration(
-            credentials=BceCredentials(access_key_id, secret_access_key), 
-            endpoint=endpoint
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = VpcClient(config)
-        request = BindEipRequest(
-            vpn_id="", 
-            eip="", 
-            client_token=""
-        )
+        request = BindEipRequest(vpn_id="", eip="", client_token="")
         res = client.bind_eip(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

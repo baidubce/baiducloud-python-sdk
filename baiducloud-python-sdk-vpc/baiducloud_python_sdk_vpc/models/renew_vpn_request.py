@@ -1,25 +1,30 @@
+"""
+Request entity for RenewVpnRequest information.
+"""
+
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 from baiducloud_python_sdk_vpc.models.billing import Billing
 
 
 class RenewVpnRequest(AbstractModel):
     """
-    RenewVpnRequest 类用于表示续订VPN连接的请求
+    Request entity for RenewVpnRequest operation.
 
-    Attributes:
-        vpn_id (str): VPN连接的ID
-        client_token (str): 客户端令牌，用于保证请求的幂等性
-        billing (Billing): 计费信息对象
+    This class encapsulates all parameters for the API request.
     """
-    
+
     def __init__(self, vpn_id, billing, client_token=None):
         """
-        初始化RenewVpnRequest实例
+        Initialize RenewVpnRequest request entity.
 
-        Args:
-            vpn_id (str): VPN连接的ID
-            billing (Billing): 计费信息对象
-            client_token (str, optional): 客户端令牌. 默认为None.
+        :param vpn_id: vpn_id parameter
+        :type vpn_id: str (required)
+
+        :param client_token: client_token parameter
+        :type client_token: str (optional)
+
+        :param billing: billing parameter
+        :type billing: Billing (required)
         """
         super().__init__()
         self.vpn_id = vpn_id
@@ -28,10 +33,12 @@ class RenewVpnRequest(AbstractModel):
 
     def to_dict(self):
         """
-        将对象转换为字典格式
+        Convert the request entity to a dictionary representation.
 
-        Returns:
-            dict: 包含对象属性的字典
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the request
+        :rtype: dict
         """
         _map = super().to_dict()
         if _map is not None:
@@ -41,16 +48,20 @@ class RenewVpnRequest(AbstractModel):
             result['billing'] = self.billing.to_dict()
         return result
 
-
     def from_dict(self, m):
         """
-        从字典初始化对象
+        Populate the request entity from a dictionary.
 
-        Args:
-            m (dict): 包含对象属性的字典
+        Nested dictionaries are recursively converted to model objects.
 
-        Returns:
-            RenewVpnRequest: 初始化后的对象
+        :param m: Dictionary containing request data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: RenewVpnRequest
+
+        :raises TypeError: If input is not a dictionary or field type mismatch
+        :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
         if m.get('vpnId') is not None:

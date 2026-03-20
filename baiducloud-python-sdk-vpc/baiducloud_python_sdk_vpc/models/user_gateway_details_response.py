@@ -1,30 +1,36 @@
+"""
+Request entity for UserGatewayDetailsResponse information.
+"""
+
 from baiducloud_python_sdk_core.bce_response import BceResponse
 
 
 class UserGatewayDetailsResponse(BceResponse):
     """
-    UserGatewayDetailsResponse类，用于表示用户网关详情响应
-
-    Attributes:
-        cgw_id (str): 网关ID
-        name (str): 网关名称
-        ip (str): 网关IP地址
-        description (str): 网关描述信息
-        created_time (str): 创建时间
-        updated_time (str): 更新时间
+    UserGatewayDetailsResponse
     """
-    
+
     def __init__(self, cgw_id=None, name=None, ip=None, description=None, created_time=None, updated_time=None):
         """
-        初始化UserGatewayDetailsResponse实例
+        Initialize UserGatewayDetailsResponse response.
 
-        Args:
-            cgw_id (str, optional): 网关ID. Defaults to None.
-            name (str, optional): 网关名称. Defaults to None.
-            ip (str, optional): 网关IP地址. Defaults to None.
-            description (str, optional): 网关描述信息. Defaults to None.
-            created_time (str, optional): 创建时间. Defaults to None.
-            updated_time (str, optional): 更新时间. Defaults to None.
+        :param cgw_id: 用户网关ID
+        :type cgw_id: str (optional)
+
+        :param name: 用户网关名称
+        :type name: str (optional)
+
+        :param ip: 用户网关IP
+        :type ip: str (optional)
+
+        :param description: 用户网关描述
+        :type description: str (optional)
+
+        :param created_time: 用户网关创建时间
+        :type created_time: str (optional)
+
+        :param updated_time: 用户网关更新时间
+        :type updated_time: str (optional)
         """
         super().__init__()
         self.cgw_id = cgw_id
@@ -36,10 +42,13 @@ class UserGatewayDetailsResponse(BceResponse):
 
     def to_dict(self):
         """
-        将UserGatewayDetailsResponse对象转换为字典
+        Convert the response instance to a dictionary representation.
 
-        Returns:
-            dict: 包含对象属性的字典
+        Includes metadata from the parent BceResponse class.
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the response
+        :rtype: dict
         """
         _map = super().to_dict()
         if _map is not None:
@@ -63,13 +72,18 @@ class UserGatewayDetailsResponse(BceResponse):
 
     def from_dict(self, m):
         """
-        从字典初始化UserGatewayDetailsResponse对象
+        Populate the response instance from a dictionary.
 
-        Args:
-            m (dict): 包含对象属性的字典
+        Nested dictionaries are recursively converted to model objects.
 
-        Returns:
-            UserGatewayDetailsResponse: 初始化后的对象
+        :param m: Dictionary containing response data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: UserGatewayDetailsResponse
+
+        :raises TypeError: If input is not a dictionary or field type mismatch
+        :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
         if m.get('cgwId') is not None:

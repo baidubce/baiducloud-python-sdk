@@ -1,20 +1,32 @@
+"""
+Request entity for CreateUserGatewayRequest information.
+"""
+
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
 class CreateUserGatewayRequest(AbstractModel):
     """
-    创建用户网关请求类
+    Request entity for CreateUserGatewayRequest operation.
+
+    This class encapsulates all parameters for the API request.
     """
-    
+
     def __init__(self, name, ip, client_token=None, description=None):
         """
-        初始化创建用户网关请求
-        
-        Args:
-            name (str): 网关名称
-            ip (str): 网关IP地址
-            client_token (str, optional): 客户端令牌，用于幂等性控制
-            description (str, optional): 网关描述信息
+        Initialize CreateUserGatewayRequest request entity.
+
+        :param client_token: client_token parameter
+        :type client_token: str (optional)
+
+        :param name: 用户网关名称，以字母开头，支持大小写字母、数字以及 -_/. 特殊字符，不能超过65个字符
+        :type name: str (required)
+
+        :param ip: 用户网关IP
+        :type ip: str (required)
+
+        :param description: 用户网关描述，不能超过200个字符
+        :type description: str (optional)
         """
         super().__init__()
         self.client_token = client_token
@@ -24,10 +36,12 @@ class CreateUserGatewayRequest(AbstractModel):
 
     def to_dict(self):
         """
-        将对象转换为字典格式
-        
-        Returns:
-            dict: 包含对象属性的字典
+        Convert the request entity to a dictionary representation.
+
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the request
+        :rtype: dict
         """
         _map = super().to_dict()
         if _map is not None:
@@ -41,16 +55,20 @@ class CreateUserGatewayRequest(AbstractModel):
             result['description'] = self.description
         return result
 
-
     def from_dict(self, m):
         """
-        从字典初始化对象
-        
-        Args:
-            m (dict): 包含对象属性的字典
-            
-        Returns:
-            CreateUserGatewayRequest: 初始化后的对象
+        Populate the request entity from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing request data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: CreateUserGatewayRequest
+
+        :raises TypeError: If input is not a dictionary or field type mismatch
+        :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
         if m.get('clientToken') is not None:

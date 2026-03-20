@@ -1,22 +1,26 @@
+"""
+Request entity for UnbindEipRequest information.
+"""
+
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
 class UnbindEipRequest(AbstractModel):
     """
-    UnbindEipRequest class for handling EIP unbinding requests.
-    
-    Attributes:
-        vpn_id (str): The ID of the VPN connection.
-        client_token (str, optional): A unique token for preventing duplicate requests.
+    Request entity for UnbindEipRequest operation.
+
+    This class encapsulates all parameters for the API request.
     """
-    
+
     def __init__(self, vpn_id, client_token=None):
         """
-        Initialize UnbindEipRequest with VPN ID and optional client token.
-        
-        Args:
-            vpn_id (str): The ID of the VPN connection.
-            client_token (str, optional): A unique token for preventing duplicate requests.
+        Initialize UnbindEipRequest request entity.
+
+        :param vpn_id: vpn_id parameter
+        :type vpn_id: str (required)
+
+        :param client_token: client_token parameter
+        :type client_token: str (optional)
         """
         super().__init__()
         self.vpn_id = vpn_id
@@ -24,10 +28,12 @@ class UnbindEipRequest(AbstractModel):
 
     def to_dict(self):
         """
-        Convert the request object to a dictionary.
-        
-        Returns:
-            dict: A dictionary containing the request data.
+        Convert the request entity to a dictionary representation.
+
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the request
+        :rtype: dict
         """
         _map = super().to_dict()
         if _map is not None:
@@ -35,16 +41,20 @@ class UnbindEipRequest(AbstractModel):
         result = dict()
         return result
 
-
     def from_dict(self, m):
         """
-        Populate the request object from a dictionary.
-        
-        Args:
-            m (dict): A dictionary containing the request data.
-            
-        Returns:
-            UnbindEipRequest: The populated request object.
+        Populate the request entity from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing request data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: UnbindEipRequest
+
+        :raises TypeError: If input is not a dictionary or field type mismatch
+        :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
         if m.get('vpnId') is not None:

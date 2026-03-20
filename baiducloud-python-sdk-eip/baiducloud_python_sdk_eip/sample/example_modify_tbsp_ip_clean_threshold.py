@@ -1,3 +1,7 @@
+"""
+Example for eip modify_tbsp_ip_clean_threshold method.
+"""
+
 from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
@@ -10,17 +14,14 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(credentials=BceCredentials(access_key_id, secret_access_key), endpoint = endpoint)
-        EipClient = EipClient(config)
-        request = ModifyTbspIpCleanThresholdRequest(
-            id = "", 
-            client_token = "", 
-            ip = "", 
-            threshold_type = "", 
-            clean_mbps = 0, 
-            clean_pps = 0
+        config = BceClientConfiguration(
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        res = EipClient.modify_tbsp_ip_clean_threshold(request)
+        client = EipClient(config)
+        request = ModifyTbspIpCleanThresholdRequest(
+            id="", client_token="", ip="", threshold_type="", clean_mbps=0, clean_pps=0
+        )
+        res = client.modify_tbsp_ip_clean_threshold(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。

@@ -1,23 +1,57 @@
+"""
+Request entity for QuerySslVpnServerResponse information.
+"""
+
 from baiducloud_python_sdk_core.bce_response import BceResponse
 
 
 class QuerySslVpnServerResponse(BceResponse):
     """
-    QuerySslVpnServerResponse class is used to encapsulate the response data of SSL VPN server query.
-    
-    Attributes:
-        vpn_id (str): The ID of the VPN.
-        ssl_vpn_server_id (str): The ID of the SSL VPN server.
-        ssl_vpn_server_name (str): The name of the SSL VPN server.
-        interface_type (str): The type of the interface.
-        status (str): The status of the SSL VPN server.
-        local_subnets (list): The list of local subnets.
-        remote_subnet (str): The remote subnet.
-        client_dns (list): The list of client DNS servers.
-        max_connection (int): The maximum number of connections.
+    QuerySslVpnServerResponse
     """
-    
-    def __init__(self, vpn_id=None, ssl_vpn_server_id=None, ssl_vpn_server_name=None, interface_type=None, status=None, local_subnets=None, remote_subnet=None, client_dns=None, max_connection=None):
+
+    def __init__(
+        self,
+        vpn_id=None,
+        ssl_vpn_server_id=None,
+        ssl_vpn_server_name=None,
+        interface_type=None,
+        status=None,
+        local_subnets=None,
+        remote_subnet=None,
+        client_dns=None,
+        max_connection=None,
+    ):
+        """
+        Initialize QuerySslVpnServerResponse response.
+
+        :param vpn_id: VPN的ID
+        :type vpn_id: str (optional)
+
+        :param ssl_vpn_server_id: SSL-VPN服务端ID
+        :type ssl_vpn_server_id: str (optional)
+
+        :param ssl_vpn_server_name: SSL-VPN服务端的名称
+        :type ssl_vpn_server_name: str (optional)
+
+        :param interface_type: SSL-VPN服务端接口类型
+        :type interface_type: str (optional)
+
+        :param status: SSL-VPN服务端状态
+        :type status: str (optional)
+
+        :param local_subnets: 本端网络CIDR列表
+        :type local_subnets: List[str] (optional)
+
+        :param remote_subnet: 客户端网络CIDR
+        :type remote_subnet: str (optional)
+
+        :param client_dns: 客户端的DNS地址
+        :type client_dns: str (optional)
+
+        :param max_connection: SSL-VPN最大客户端连接数
+        :type max_connection: int (optional)
+        """
         super().__init__()
         self.vpn_id = vpn_id
         self.ssl_vpn_server_id = ssl_vpn_server_id
@@ -30,10 +64,14 @@ class QuerySslVpnServerResponse(BceResponse):
         self.max_connection = max_connection
 
     def to_dict(self):
-        """Convert the response object to a dictionary.
-        
-        Returns:
-            dict: A dictionary containing all the attributes of the response object.
+        """
+        Convert the response instance to a dictionary representation.
+
+        Includes metadata from the parent BceResponse class.
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the response
+        :rtype: dict
         """
         _map = super().to_dict()
         if _map is not None:
@@ -61,15 +99,20 @@ class QuerySslVpnServerResponse(BceResponse):
             result['maxConnection'] = self.max_connection
         return result
 
-
     def from_dict(self, m):
-        """Populate the response object from a dictionary.
-        
-        Args:
-            m (dict): A dictionary containing the response data.
-            
-        Returns:
-            QuerySslVpnServerResponse: The populated response object.
+        """
+        Populate the response instance from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing response data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: QuerySslVpnServerResponse
+
+        :raises TypeError: If input is not a dictionary or field type mismatch
+        :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
         if m.get('vpnId') is not None:

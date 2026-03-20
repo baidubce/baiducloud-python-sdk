@@ -1,9 +1,14 @@
+"""
+InstanceType information
+"""
+
 
 class InstanceType:
     """
     Enum class for InstanceType
     Allowed values: BCC, BBC, DCC, ENI, BLB, VPN, NAT
     """
+
     BCC = 'BCC'
     BBC = 'BBC'
     DCC = 'DCC'

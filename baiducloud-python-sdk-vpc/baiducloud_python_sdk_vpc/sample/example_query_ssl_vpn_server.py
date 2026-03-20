@@ -1,6 +1,5 @@
 """
-This module demonstrates how to use Baidu Cloud Python SDK to query SSL VPN server information.
-It includes setting up credentials, configuring the client, and making the API request.
+Example for vpc query_ssl_vpn_server method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -15,12 +14,11 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(credentials=BceCredentials(access_key_id, secret_access_key), endpoint = endpoint)
-        client = VpcClient(config)
-        request = QuerySslVpnServerRequest(
-            vpn_id="", 
-            client_token=""
+        config = BceClientConfiguration(
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
+        client = VpcClient(config)
+        request = QuerySslVpnServerRequest(vpn_id="", client_token="")
         res = client.query_ssl_vpn_server(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

@@ -1,3 +1,7 @@
+"""
+Example for vpc client.
+"""
+
 import copy
 import logging
 
@@ -34,6 +38,9 @@ _logger = logging.getLogger(__name__)
 
 
 class VpcClient(BceBaseClient):
+    """
+    vpc base sdk client
+    """
 
     VERSION_V1 = b'/v1'
 
@@ -64,143 +71,466 @@ class VpcClient(BceBaseClient):
     CONSTANT_DELETE_PROTECT = b'deleteProtect'
 
     def __init__(self, config=None):
+        """
+        Initialize the vpc client.
+
+        :param config: Client configuration
+        :type config: baidubce.BceClientConfiguration
+        """
         bce_base_client.BceBaseClient.__init__(self, config)
 
     def batch_create_ssl_vpn_users(self, request, config=None):
-        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_SSL_VPN_USER)
+        """
+        batch_create_ssl_vpn_users
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing BatchCreateSslVpnUsersResponse data
+        :rtype: BatchCreateSslVpnUsersResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_SSL_VPN_USER
+        )
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.POST, path=path
-                                , body=request.to_json_string(), params=params, config=config, model=BatchCreateSslVpnUsersResponse)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=config,
+            model=BatchCreateSslVpnUsersResponse,
+        )
 
     def bind_eip(self, request, config=None):
+        """
+        bind_eip
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id)
         params = {}
         params['bind'] = None
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.PUT, path=path
-                                , body=request.to_json_string(), params=params, config=config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=config
+        )
 
     def close_vpc_relay(self, request, config=None):
-        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC, VpcClient.CONSTANT_SHUTDOWN_RELAY, request.vpc_id)
+        """
+        close_vpc_relay
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC, VpcClient.CONSTANT_SHUTDOWN_RELAY, request.vpc_id
+        )
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.PUT, path=path
-                                , params=params, config=config)
+        return self._send_request(http_methods.PUT, path=path, params=params, config=config)
 
     def create_ip_reserved(self, request, config=None):
+        """
+        create_ip_reserved
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing CreateIpReservedResponse data
+        :rtype: CreateIpReservedResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET, VpcClient.CONSTANT_IPRESERVE)
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.POST, path=path
-                                , body=request.to_json_string(), params=params, config=config, model=CreateIpReservedResponse)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=config,
+            model=CreateIpReservedResponse,
+        )
 
     def create_ssl_vpn_server(self, request, config=None):
-        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_SSL_VPN_SERVER)
+        """
+        create_ssl_vpn_server
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing CreateSslVpnServerResponse data
+        :rtype: CreateSslVpnServerResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_SSL_VPN_SERVER
+        )
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.POST, path=path
-                                , body=request.to_json_string(), params=params, config=config, model=CreateSslVpnServerResponse)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=config,
+            model=CreateSslVpnServerResponse,
+        )
 
     def create_subnet(self, request, config=None):
+        """
+        create_subnet
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing CreateSubnetResponse data
+        :rtype: CreateSubnetResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET)
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.POST, path=path
-                                , body=request.to_json_string(), params=params, config=config, model=CreateSubnetResponse)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=config,
+            model=CreateSubnetResponse,
+        )
 
     def create_user_gateway(self, request, config=None):
+        """
+        create_user_gateway
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing CreateUserGatewayResponse data
+        :rtype: CreateUserGatewayResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, VpcClient.CONSTANT_CGW)
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.POST, path=path
-                                , body=request.to_json_string(), params=params, config=config, model=CreateUserGatewayResponse)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=config,
+            model=CreateUserGatewayResponse,
+        )
 
     def create_vpc(self, request, config=None):
+        """
+        create_vpc
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing CreateVpcResponse data
+        :rtype: CreateVpcResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC)
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.POST, path=path
-                                , body=request.to_json_string(), params=params, config=config, model=CreateVpcResponse)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=config,
+            model=CreateVpcResponse,
+        )
 
     def create_vpn(self, request, config=None):
+        """
+        create_vpn
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing CreateVpnResponse data
+        :rtype: CreateVpnResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN)
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.POST, path=path
-                                , body=request.to_json_string(), params=params, config=config, model=CreateVpnResponse)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=config,
+            model=CreateVpnResponse,
+        )
 
     def create_vpn_tunnel(self, request, config=None):
-        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_VPNCONN)
+        """
+        create_vpn_tunnel
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing CreateVpnTunnelResponse data
+        :rtype: CreateVpnTunnelResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_VPNCONN
+        )
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.POST, path=path
-                                , body=request.to_json_string(), params=params, config=config, model=CreateVpnTunnelResponse)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=config,
+            model=CreateVpnTunnelResponse,
+        )
 
     def delete_ip_reserve(self, request, config=None):
-        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET, VpcClient.CONSTANT_IPRESERVE, request.ip_reserve_id)
+        """
+        delete_ip_reserve
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET, VpcClient.CONSTANT_IPRESERVE, request.ip_reserve_id
+        )
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.DELETE, path=path
-                                , params=params, config=config)
+        return self._send_request(http_methods.DELETE, path=path, params=params, config=config)
 
     def delete_ssl_vpn_server(self, request, config=None):
-        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_SSL_VPN_SERVER, request.ssl_vpn_server_id)
+        """
+        delete_ssl_vpn_server
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1,
+            VpcClient.CONSTANT_VPN,
+            request.vpn_id,
+            VpcClient.CONSTANT_SSL_VPN_SERVER,
+            request.ssl_vpn_server_id,
+        )
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.DELETE, path=path
-                                , params=params, config=config)
+        return self._send_request(http_methods.DELETE, path=path, params=params, config=config)
 
     def delete_ssl_vpn_user(self, request, config=None):
-        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_SSL_VPN_USER, request.user_id)
+        """
+        delete_ssl_vpn_user
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1,
+            VpcClient.CONSTANT_VPN,
+            request.vpn_id,
+            VpcClient.CONSTANT_SSL_VPN_USER,
+            request.user_id,
+        )
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.DELETE, path=path
-                                , params=params, config=config)
+        return self._send_request(http_methods.DELETE, path=path, params=params, config=config)
 
     def delete_subnet(self, request, config=None):
+        """
+        delete_subnet
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET, request.subnet_id)
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.DELETE, path=path
-                                , params=params, config=config)
+        return self._send_request(http_methods.DELETE, path=path, params=params, config=config)
 
     def delete_user_gateway(self, request, config=None):
+        """
+        delete_user_gateway
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, VpcClient.CONSTANT_CGW, request.cgw_id)
-        return self._send_request(http_methods.DELETE, path=path
-                                , config=config)
+        return self._send_request(http_methods.DELETE, path=path, config=config)
 
     def delete_vpc(self, request, config=None):
+        """
+        delete_vpc
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC, request.vpc_id)
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.DELETE, path=path
-                                , params=params, config=config)
+        return self._send_request(http_methods.DELETE, path=path, params=params, config=config)
 
     def delete_vpn_tunnel(self, request, config=None):
-        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, VpcClient.CONSTANT_VPNCONN, request.vpn_conn_id)
+        """
+        delete_vpn_tunnel
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, VpcClient.CONSTANT_VPNCONN, request.vpn_conn_id
+        )
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.DELETE, path=path
-                                , params=params, config=config)
+        return self._send_request(http_methods.DELETE, path=path, params=params, config=config)
 
     def get_vpc_resource_ip_info(self, request, config=None):
+        """
+        get_vpc_resource_ip_info
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing GetVpcResourceIpInfoResponse data
+        :rtype: GetVpcResourceIpInfoResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC, VpcClient.CONSTANT_RESOURCE_IP)
         params = {}
         if request.vpc_id is not None:
@@ -213,10 +543,25 @@ class VpcClient(BceBaseClient):
             params['pageNo'] = request.page_no
         if request.page_size is not None:
             params['pageSize'] = request.page_size
-        return self._send_request(http_methods.GET, path=path
-                                , params=params, config=config, model=GetVpcResourceIpInfoResponse)
+        return self._send_request(
+            http_methods.GET, path=path, params=params, config=config, model=GetVpcResourceIpInfoResponse
+        )
 
     def list_ip_reserve(self, request, config=None):
+        """
+        list_ip_reserve
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing ListIpReserveResponse data
+        :rtype: ListIpReserveResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET, VpcClient.CONSTANT_IPRESERVE)
         params = {}
         if request.subnet_id is not None:
@@ -225,37 +570,112 @@ class VpcClient(BceBaseClient):
             params['marker'] = request.marker
         if request.max_keys is not None:
             params['maxKeys'] = request.max_keys
-        return self._send_request(http_methods.GET, path=path
-                                , params=params, config=config, model=ListIpReserveResponse)
+        return self._send_request(
+            http_methods.GET, path=path, params=params, config=config, model=ListIpReserveResponse
+        )
 
     def open_vpc_relay(self, request, config=None):
-        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC, VpcClient.CONSTANT_OPEN_RELAY, request.vpc_id)
+        """
+        open_vpc_relay
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC, VpcClient.CONSTANT_OPEN_RELAY, request.vpc_id
+        )
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.PUT, path=path
-                                , params=params, config=config)
+        return self._send_request(http_methods.PUT, path=path, params=params, config=config)
 
     def query_specified_subnet(self, request, config=None):
+        """
+        query_specified_subnet
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing QuerySpecifiedSubnetResponse data
+        :rtype: QuerySpecifiedSubnetResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET, request.subnet_id)
-        return self._send_request(http_methods.GET, path=path
-                                , config=config, model=QuerySpecifiedSubnetResponse)
+        return self._send_request(http_methods.GET, path=path, config=config, model=QuerySpecifiedSubnetResponse)
 
     def query_specified_vpc(self, request, config=None):
+        """
+        query_specified_vpc
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing QuerySpecifiedVpcResponse data
+        :rtype: QuerySpecifiedVpcResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC, request.vpc_id)
-        return self._send_request(http_methods.GET, path=path
-                                , config=config, model=QuerySpecifiedVpcResponse)
+        return self._send_request(http_methods.GET, path=path, config=config, model=QuerySpecifiedVpcResponse)
 
     def query_ssl_vpn_server(self, request, config=None):
-        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_SSL_VPN_SERVER)
+        """
+        query_ssl_vpn_server
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing QuerySslVpnServerResponse data
+        :rtype: QuerySslVpnServerResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_SSL_VPN_SERVER
+        )
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.GET, path=path
-                                , params=params, config=config, model=QuerySslVpnServerResponse)
+        return self._send_request(
+            http_methods.GET, path=path, params=params, config=config, model=QuerySslVpnServerResponse
+        )
 
     def query_ssl_vpn_users(self, request, config=None):
-        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_SSL_VPN_USER)
+        """
+        query_ssl_vpn_users
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing QuerySslVpnUsersResponse data
+        :rtype: QuerySslVpnUsersResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_SSL_VPN_USER
+        )
         params = {}
         if request.marker is not None:
             params['marker'] = request.marker
@@ -263,10 +683,25 @@ class VpcClient(BceBaseClient):
             params['maxKeys'] = request.max_keys
         if request.user_name is not None:
             params['userName'] = request.user_name
-        return self._send_request(http_methods.GET, path=path
-                                , params=params, config=config, model=QuerySslVpnUsersResponse)
+        return self._send_request(
+            http_methods.GET, path=path, params=params, config=config, model=QuerySslVpnUsersResponse
+        )
 
     def query_subnet_list(self, request, config=None):
+        """
+        query_subnet_list
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing QuerySubnetListResponse data
+        :rtype: QuerySubnetListResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET)
         params = {}
         if request.marker is not None:
@@ -281,20 +716,52 @@ class VpcClient(BceBaseClient):
             params['subnetType'] = request.subnet_type
         if request.subnet_ids is not None:
             params['subnetIds'] = request.subnet_ids
-        return self._send_request(http_methods.GET, path=path
-                                , params=params, config=config, model=QuerySubnetListResponse)
+        return self._send_request(
+            http_methods.GET, path=path, params=params, config=config, model=QuerySubnetListResponse
+        )
 
     def query_vpc_intranet_ip(self, request, config=None):
-        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC, request.vpc_id, VpcClient.CONSTANT_PRIVATE_IP_ADDRESS_INFO)
+        """
+        query_vpc_intranet_ip
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing QueryVpcIntranetIpResponse data
+        :rtype: QueryVpcIntranetIpResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC, request.vpc_id, VpcClient.CONSTANT_PRIVATE_IP_ADDRESS_INFO
+        )
         params = {}
         if request.private_ip_addresses is not None:
             params['privateIpAddresses'] = ','.join(request.private_ip_addresses)
         if request.private_ip_range is not None:
             params['privateIpRange'] = request.private_ip_range
-        return self._send_request(http_methods.GET, path=path
-                                , params=params, config=config, model=QueryVpcIntranetIpResponse)
+        return self._send_request(
+            http_methods.GET, path=path, params=params, config=config, model=QueryVpcIntranetIpResponse
+        )
 
     def query_vpc_list(self, request, config=None):
+        """
+        query_vpc_list
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing QueryVpcListResponse data
+        :rtype: QueryVpcListResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC)
         params = {}
         if request.marker is not None:
@@ -305,10 +772,25 @@ class VpcClient(BceBaseClient):
             params['isDefault'] = request.is_default
         if request.vpc_ids is not None:
             params['vpcIds'] = request.vpc_ids
-        return self._send_request(http_methods.GET, path=path
-                                , params=params, config=config, model=QueryVpcListResponse)
+        return self._send_request(
+            http_methods.GET, path=path, params=params, config=config, model=QueryVpcListResponse
+        )
 
     def query_vpn_list(self, request, config=None):
+        """
+        query_vpn_list
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing QueryVpnListResponse data
+        :rtype: QueryVpnListResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN)
         params = {}
         if request.vpc_id is not None:
@@ -321,130 +803,365 @@ class VpcClient(BceBaseClient):
             params['eip'] = request.eip
         if request.type is not None:
             params['type'] = request.type
-        return self._send_request(http_methods.GET, path=path
-                                , params=params, config=config, model=QueryVpnListResponse)
+        return self._send_request(
+            http_methods.GET, path=path, params=params, config=config, model=QueryVpnListResponse
+        )
 
     def release_vpn(self, request, config=None):
+        """
+        release_vpn
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id)
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.DELETE, path=path
-                                , params=params, config=config)
+        return self._send_request(http_methods.DELETE, path=path, params=params, config=config)
 
     def renew_vpn(self, request, config=None):
+        """
+        renew_vpn
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id)
         params = {}
         params['purchaseReserved'] = None
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.PUT, path=path
-                                , body=request.to_json_string(), params=params, config=config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=config
+        )
 
     def search_for_vpn_details(self, request, config=None):
+        """
+        search_for_vpn_details
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing SearchForVpnDetailsResponse data
+        :rtype: SearchForVpnDetailsResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id)
-        return self._send_request(http_methods.GET, path=path
-                                , config=config, model=SearchForVpnDetailsResponse)
+        return self._send_request(http_methods.GET, path=path, config=config, model=SearchForVpnDetailsResponse)
 
     def search_vpn_tunnel(self, request, config=None):
-        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, VpcClient.CONSTANT_VPNCONN, request.vpn_id)
+        """
+        search_vpn_tunnel
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing SearchVpnTunnelResponse data
+        :rtype: SearchVpnTunnelResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, VpcClient.CONSTANT_VPNCONN, request.vpn_id
+        )
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.GET, path=path
-                                , params=params, config=config, model=SearchVpnTunnelResponse)
+        return self._send_request(
+            http_methods.GET, path=path, params=params, config=config, model=SearchVpnTunnelResponse
+        )
 
     def unbind_eip(self, request, config=None):
+        """
+        unbind_eip
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id)
         params = {}
         params['unbind'] = None
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.PUT, path=path
-                                , params=params, config=config)
+        return self._send_request(http_methods.PUT, path=path, params=params, config=config)
 
     def update_ssl_vpn_server(self, request, config=None):
-        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_SSL_VPN_SERVER, request.ssl_vpn_server_id)
+        """
+        update_ssl_vpn_server
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1,
+            VpcClient.CONSTANT_VPN,
+            request.vpn_id,
+            VpcClient.CONSTANT_SSL_VPN_SERVER,
+            request.ssl_vpn_server_id,
+        )
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.PUT, path=path
-                                , body=request.to_json_string(), params=params, config=config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=config
+        )
 
     def update_ssl_vpn_users(self, request, config=None):
-        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_SSL_VPN_USER, request.user_id)
+        """
+        update_ssl_vpn_users
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1,
+            VpcClient.CONSTANT_VPN,
+            request.vpn_id,
+            VpcClient.CONSTANT_SSL_VPN_USER,
+            request.user_id,
+        )
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.PUT, path=path
-                                , body=request.to_json_string(), params=params, config=config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=config
+        )
 
     def update_subnet(self, request, config=None):
+        """
+        update_subnet
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET, request.subnet_id)
         params = {}
         params['modifyAttribute'] = None
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.PUT, path=path
-                                , body=request.to_json_string(), params=params, config=config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=config
+        )
 
     def update_user_gateway(self, request, config=None):
+        """
+        update_user_gateway
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, VpcClient.CONSTANT_CGW, request.cgw_id)
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.PUT, path=path
-                                , body=request.to_json_string(), params=params, config=config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=config
+        )
 
     def update_vpc(self, request, config=None):
+        """
+        update_vpc
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC, request.vpc_id)
         params = {}
         params['modifyAttribute'] = None
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.PUT, path=path
-                                , body=request.to_json_string(), params=params, config=config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=config
+        )
 
     def update_vpn(self, request, config=None):
+        """
+        update_vpn
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id)
         params = {}
         params['modifyAttribute'] = None
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.PUT, path=path
-                                , body=request.to_json_string(), params=params, config=config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=config
+        )
 
     def update_vpn_release_protection(self, request, config=None):
-        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_DELETE_PROTECT)
+        """
+        update_vpn_release_protection
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_DELETE_PROTECT
+        )
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.PUT, path=path
-                                , body=request.to_json_string(), params=params, config=config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=config
+        )
 
     def update_vpn_tunnel(self, request, config=None):
-        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, VpcClient.CONSTANT_VPNCONN, request.vpn_conn_id)
+        """
+        update_vpn_tunnel
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, VpcClient.CONSTANT_VPNCONN, request.vpn_conn_id
+        )
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.PUT, path=path
-                                , body=request.to_json_string(), params=params, config=config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=config
+        )
 
     def user_gateway_details(self, request, config=None):
+        """
+        user_gateway_details
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing UserGatewayDetailsResponse data
+        :rtype: UserGatewayDetailsResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, VpcClient.CONSTANT_CGW, request.cgw_id)
-        return self._send_request(http_methods.GET, path=path
-                                , config=config, model=UserGatewayDetailsResponse)
+        return self._send_request(http_methods.GET, path=path, config=config, model=UserGatewayDetailsResponse)
 
     def user_gateway_list(self, request, config=None):
+        """
+        user_gateway_list
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing UserGatewayListResponse data
+        :rtype: UserGatewayListResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, VpcClient.CONSTANT_CGW)
         params = {}
         if request.marker is not None:
             params['marker'] = request.marker
         if request.max_keys is not None:
             params['maxKeys'] = request.max_keys
-        return self._send_request(http_methods.GET, path=path
-                                , params=params, config=config, model=UserGatewayListResponse)
-
+        return self._send_request(
+            http_methods.GET, path=path, params=params, config=config, model=UserGatewayListResponse
+        )
 
     def _merge_config(self, config=None):
         """
@@ -458,15 +1175,48 @@ class VpcClient(BceBaseClient):
             new_config.merge_non_none_values(config)
             return new_config
 
-    def _send_request(self, http_method, path,
-                      body=None, headers=None, params=None,
-                      config=None, body_parser=None, model=None):
+    def _send_request(
+        self, http_method, path, body=None, headers=None, params=None, config=None, body_parser=None, model=None
+    ):
+        """
+        Send an HTTP request to the service endpoint.
+
+        :param http_method: HTTP method (GET, POST, PUT, DELETE, etc.)
+        :type http_method: bytes
+        :param path: Request path
+        :type path: bytes
+        :param body: Optional request body
+        :type body: str or bytes
+        :param headers: Optional HTTP headers
+        :type headers: dict
+        :param params: Optional query parameters
+        :type params: dict
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+        :param body_parser: Optional custom body parser function
+        :type body_parser: callable
+        :param model: Optional response model class for deserialization
+        :type model: class
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network connection failure, SSL errors, etc.)
+        :raises BceServerError: Server returned error response
+        """
         config = self._merge_config(config)
         if body_parser is None:
             body_parser = handler.parse_json
         if headers is None:
-            headers = {b'Accept': b'*/*', b'Content-Type':
-                b'application/json;charset=utf-8'}
+            headers = {b'Accept': b'*/*', b'Content-Type': b'application/json;charset=utf-8'}
         return bce_http_client.send_request(
-            config, bce_v1_signer.sign, [handler.parse_error, body_parser],
-            http_method, path, body, headers, params, model=model)
+            config,
+            bce_v1_signer.sign,
+            [handler.parse_error, body_parser],
+            http_method,
+            path,
+            body,
+            headers,
+            params,
+            model=model,
+        )

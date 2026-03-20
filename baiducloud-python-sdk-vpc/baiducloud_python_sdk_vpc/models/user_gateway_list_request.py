@@ -1,17 +1,26 @@
+"""
+Request entity for UserGatewayListRequest information.
+"""
+
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
 class UserGatewayListRequest(AbstractModel):
     """
-    用户网关列表请求类
+    Request entity for UserGatewayListRequest operation.
+
+    This class encapsulates all parameters for the API request.
     """
-    
+
     def __init__(self, marker=None, max_keys=None):
         """
-        初始化UserGatewayListRequest实例
-        
-        :param marker: 标记位置，用于分页查询
-        :param max_keys: 每次返回的最大数量，用于分页查询
+        Initialize UserGatewayListRequest request entity.
+
+        :param marker: marker parameter
+        :type marker: str (optional)
+
+        :param max_keys: max_keys parameter
+        :type max_keys: int (optional)
         """
         super().__init__()
         self.marker = marker
@@ -19,9 +28,11 @@ class UserGatewayListRequest(AbstractModel):
 
     def to_dict(self):
         """
-        将对象转换为字典格式
-        
-        :return: 包含对象属性的字典
+        Convert the request entity to a dictionary representation.
+
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the request
         :rtype: dict
         """
         _map = super().to_dict()
@@ -30,15 +41,20 @@ class UserGatewayListRequest(AbstractModel):
         result = dict()
         return result
 
-
     def from_dict(self, m):
         """
-        从字典初始化对象属性
-        
-        :param m: 包含对象属性的字典
+        Populate the request entity from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing request data
         :type m: dict
-        :return: 初始化后的对象本身
+
+        :return: Self reference for method chaining
         :rtype: UserGatewayListRequest
+
+        :raises TypeError: If input is not a dictionary or field type mismatch
+        :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
         if m.get('marker') is not None:

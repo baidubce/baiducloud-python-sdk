@@ -1,5 +1,5 @@
 """
-This module demonstrates how to update SSL VPN users using Baidu Cloud Python SDK.
+Example for vpc update_ssl_vpn_users method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -14,15 +14,12 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(credentials=BceCredentials(access_key_id, secret_access_key), endpoint = endpoint)
+        config = BceClientConfiguration(
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
+        )
         client = VpcClient(config)
         request = UpdateSslVpnUsersRequest(
-            vpn_id="", 
-            user_id="", 
-            client_token="", 
-            client_name="", 
-            password="", 
-            description=""
+            vpn_id="", user_id="", client_token="", client_name="", password="", description=""
         )
         res = client.update_ssl_vpn_users(request)
         print(res.to_json_string())

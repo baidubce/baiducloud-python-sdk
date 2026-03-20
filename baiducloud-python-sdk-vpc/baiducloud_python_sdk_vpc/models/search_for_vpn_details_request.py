@@ -1,26 +1,34 @@
+"""
+Request entity for SearchForVpnDetailsRequest information.
+"""
+
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
 class SearchForVpnDetailsRequest(AbstractModel):
     """
-    SearchForVpnDetailsRequest 类用于封装搜索VPN详情的请求参数
+    Request entity for SearchForVpnDetailsRequest operation.
+
+    This class encapsulates all parameters for the API request.
     """
-    
+
     def __init__(self, vpn_id):
         """
-        初始化SearchForVpnDetailsRequest实例
-        
-        :param vpn_id: VPN实例ID
-        :type vpn_id: str
+        Initialize SearchForVpnDetailsRequest request entity.
+
+        :param vpn_id: vpn_id parameter
+        :type vpn_id: str (required)
         """
         super().__init__()
         self.vpn_id = vpn_id
 
     def to_dict(self):
         """
-        将对象转换为字典格式
-        
-        :return: 包含对象属性的字典
+        Convert the request entity to a dictionary representation.
+
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the request
         :rtype: dict
         """
         _map = super().to_dict()
@@ -29,15 +37,20 @@ class SearchForVpnDetailsRequest(AbstractModel):
         result = dict()
         return result
 
-
     def from_dict(self, m):
         """
-        从字典数据初始化对象属性
-        
-        :param m: 包含对象属性的字典
+        Populate the request entity from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing request data
         :type m: dict
-        :return: 初始化后的对象
+
+        :return: Self reference for method chaining
         :rtype: SearchForVpnDetailsRequest
+
+        :raises TypeError: If input is not a dictionary or field type mismatch
+        :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
         if m.get('vpnId') is not None:

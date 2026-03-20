@@ -1,3 +1,6 @@
+"""
+SslVpnServer information
+"""
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
@@ -6,7 +9,49 @@ class SslVpnServer(AbstractModel):
     """
     SslVpnServer
     """
-    def __init__(self, vpn_id=None, ssl_vpn_server_id=None, ssl_vpn_server_name=None, interface_type=None, status=None, local_subnets=None, remote_subnet=None, client_dns=None, max_connection=None):
+
+    def __init__(
+        self,
+        vpn_id=None,
+        ssl_vpn_server_id=None,
+        ssl_vpn_server_name=None,
+        interface_type=None,
+        status=None,
+        local_subnets=None,
+        remote_subnet=None,
+        client_dns=None,
+        max_connection=None,
+    ):
+        """
+        Initialize SslVpnServer instance.
+
+        :param vpn_id: VPN的ID
+        :type vpn_id: str (optional)
+
+        :param ssl_vpn_server_id: SSL-VPN服务端ID
+        :type ssl_vpn_server_id: str (optional)
+
+        :param ssl_vpn_server_name: SSL-VPN服务端的名称
+        :type ssl_vpn_server_name: str (optional)
+
+        :param interface_type: SSL-VPN服务端接口类型
+        :type interface_type: str (optional)
+
+        :param status: SSL-VPN服务端状态
+        :type status: str (optional)
+
+        :param local_subnets: 本端网络CIDR列表
+        :type local_subnets: List[str] (optional)
+
+        :param remote_subnet: 客户端网络CIDR
+        :type remote_subnet: str (optional)
+
+        :param client_dns: 客户端的DNS地址
+        :type client_dns: str (optional)
+
+        :param max_connection: SSL-VPN最大客户端连接数
+        :type max_connection: int (optional)
+        """
         super().__init__()
         self.vpn_id = vpn_id
         self.ssl_vpn_server_id = ssl_vpn_server_id
@@ -19,6 +64,14 @@ class SslVpnServer(AbstractModel):
         self.max_connection = max_connection
 
     def to_dict(self):
+        """
+        Convert the model instance to a dictionary representation.
+
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the model
+        :rtype: dict
+        """
         _map = super().to_dict()
         if _map is not None:
             return _map
@@ -43,8 +96,21 @@ class SslVpnServer(AbstractModel):
             result['maxConnection'] = self.max_connection
         return result
 
-
     def from_dict(self, m):
+        """
+        Populate the model instance from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing model data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: SslVpnServer
+
+        :raises TypeError: If input is not a dictionary type
+        :raises ValueError: If nested model conversion fails
+        """
         m = m or dict()
         if m.get('vpnId') is not None:
             self.vpn_id = m.get('vpnId')

@@ -15,8 +15,7 @@ class EipClientTest(unittest.TestCase):
         HOST = b''
         AK = b''
         SK = b''
-        config = BceClientConfiguration(credentials=BceCredentials(AK, SK),
-        endpoint=HOST)
+        config = BceClientConfiguration(credentials=BceCredentials(AK, SK), endpoint=HOST)
         self.client = EipClient(config)
 
     def tearDown(self):
@@ -168,6 +167,7 @@ class EipClientTest(unittest.TestCase):
 
     def test_update_eip_delete_protect(self):
         self.client.update_eip_delete_protect(None)
+
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()

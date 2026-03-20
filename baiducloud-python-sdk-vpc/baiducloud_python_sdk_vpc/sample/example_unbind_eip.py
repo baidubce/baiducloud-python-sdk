@@ -1,5 +1,5 @@
 """
-This module demonstrates how to use Baidu Cloud Python SDK to unbind EIP from VPC.
+Example for vpc unbind_eip method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -15,14 +15,10 @@ if __name__ == '__main__':
         secret_access_key = ""
         endpoint = ""
         config = BceClientConfiguration(
-            credentials=BceCredentials(access_key_id, secret_access_key), 
-            endpoint=endpoint
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = VpcClient(config)
-        request = UnbindEipRequest(
-            vpn_id="", 
-            client_token=""
-        )
+        request = UnbindEipRequest(vpn_id="", client_token="")
         res = client.unbind_eip(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

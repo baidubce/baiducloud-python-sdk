@@ -1,4 +1,6 @@
-"""This module demonstrates how to release a VPN connection using Baidu Cloud Python SDK."""
+"""
+Example for vpc release_vpn method.
+"""
 
 from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
@@ -12,12 +14,11 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(credentials=BceCredentials(access_key_id, secret_access_key), endpoint = endpoint)
-        client = VpcClient(config)
-        request = ReleaseVpnRequest(
-            vpn_id="", 
-            client_token=""
+        config = BceClientConfiguration(
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
+        client = VpcClient(config)
+        request = ReleaseVpnRequest(vpn_id="", client_token="")
         res = client.release_vpn(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

@@ -1,3 +1,7 @@
+"""
+Request entity for CreateVpnRequest information.
+"""
+
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 from baiducloud_python_sdk_vpc.models.tag_model import TagModel
 from baiducloud_python_sdk_vpc.models.billing import Billing
@@ -5,24 +9,65 @@ from baiducloud_python_sdk_vpc.models.billing import Billing
 
 class CreateVpnRequest(AbstractModel):
     """
-    创建VPN请求类
+    Request entity for CreateVpnRequest operation.
 
-    Attributes:
-        vpc_id (str): VPC ID
-        vpn_name (str): VPN名称
-        billing (Billing): 计费信息
-        client_token (str, optional): 客户端token
-        subnet_id (str, optional): 子网ID
-        type (str, optional): VPN类型
-        description (str, optional): 描述信息
-        eip (str, optional): 弹性IP
-        tags (list[TagModel], optional): 标签列表
-        resource_group_id (str, optional): 资源组ID
-        max_connection (int, optional): 最大连接数
-        delete_protect (bool, optional): 删除保护
+    This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, vpc_id, vpn_name, billing, client_token=None, subnet_id=None, type=None, description=None, eip=None, tags=None, resource_group_id=None, max_connection=None, delete_protect=None):
+    def __init__(
+        self,
+        vpc_id,
+        vpn_name,
+        billing,
+        client_token=None,
+        subnet_id=None,
+        type=None,
+        description=None,
+        eip=None,
+        tags=None,
+        resource_group_id=None,
+        max_connection=None,
+        delete_protect=None,
+    ):
+        """
+        Initialize CreateVpnRequest request entity.
+
+        :param client_token: client_token parameter
+        :type client_token: str (optional)
+
+        :param vpc_id: 所属VPC的ID
+        :type vpc_id: str (required)
+
+        :param subnet_id: 所属SUBNET的ID
+        :type subnet_id: str (optional)
+
+        :param vpn_name: VPN的名称，大小写字母、数字以及-_/.特殊字符，必须以字母开头，长度1-65
+        :type vpn_name: str (required)
+
+        :param type: VPN网关类型，值“IPSec”表示IPSec-VPN网关，值“SSL”表示SSL-VPN网关，默认为“IPSec”
+        :type type: str (optional)
+
+        :param description: VPN的描述
+        :type description: str (optional)
+
+        :param eip: VPN绑定的eip
+        :type eip: str (optional)
+
+        :param tags: VPN绑定的标签
+        :type tags: List[TagModel] (optional)
+
+        :param resource_group_id: VPN绑定的资源组
+        :type resource_group_id: str (optional)
+
+        :param billing: billing parameter
+        :type billing: Billing (required)
+
+        :param max_connection: SSL-VPN最大客户端连接数。可选 [5, 10, 20, 50, 100, 200, 500, 1000]。仅SSL-VPN需要选这个参数。
+        :type max_connection: int (optional)
+
+        :param delete_protect: 是否开启释放保护。缺省值为false，代表允许删除
+        :type delete_protect: bool (optional)
+        """
         super().__init__()
         self.client_token = client_token
         self.vpc_id = vpc_id
@@ -39,10 +84,12 @@ class CreateVpnRequest(AbstractModel):
 
     def to_dict(self):
         """
-        将对象转换为字典
+        Convert the request entity to a dictionary representation.
 
-        Returns:
-            dict: 包含对象属性的字典
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the request
+        :rtype: dict
         """
         _map = super().to_dict()
         if _map is not None:
@@ -72,16 +119,20 @@ class CreateVpnRequest(AbstractModel):
             result['deleteProtect'] = self.delete_protect
         return result
 
-
     def from_dict(self, m):
         """
-        从字典初始化对象
+        Populate the request entity from a dictionary.
 
-        Args:
-            m (dict): 包含对象属性的字典
+        Nested dictionaries are recursively converted to model objects.
 
-        Returns:
-            CreateVpnRequest: 初始化后的对象
+        :param m: Dictionary containing request data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: CreateVpnRequest
+
+        :raises TypeError: If input is not a dictionary or field type mismatch
+        :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
         if m.get('clientToken') is not None:
@@ -99,10 +150,7 @@ class CreateVpnRequest(AbstractModel):
         if m.get('eip') is not None:
             self.eip = m.get('eip')
         if m.get('tags') is not None:
-            self.tags = [
-            TagModel().from_dict(i)
-            for i in m.get('tags')
-            ]
+            self.tags = [TagModel().from_dict(i) for i in m.get('tags')]
         if m.get('resourceGroupId') is not None:
             self.resource_group_id = m.get('resourceGroupId')
         if m.get('billing') is not None:

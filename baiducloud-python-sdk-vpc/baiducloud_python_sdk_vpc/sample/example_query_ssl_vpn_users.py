@@ -1,3 +1,7 @@
+"""
+Example for vpc query_ssl_vpn_users method.
+"""
+
 from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
@@ -10,14 +14,11 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(credentials=BceCredentials(access_key_id, secret_access_key), endpoint = endpoint)
-        client = VpcClient(config)
-        request = QuerySslVpnUsersRequest(
-            vpn_id = "", 
-            marker = "", 
-            max_keys = 0, 
-            user_name = ""
+        config = BceClientConfiguration(
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
+        client = VpcClient(config)
+        request = QuerySslVpnUsersRequest(vpn_id="", marker="", max_keys=0, user_name="")
         res = client.query_ssl_vpn_users(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

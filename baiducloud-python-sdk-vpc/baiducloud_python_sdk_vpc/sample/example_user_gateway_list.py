@@ -1,6 +1,5 @@
 """
-This module demonstrates how to use Baidu Cloud VPC SDK to list user gateways.
-It includes setting up credentials, configuring the client, and making the API call.
+Example for vpc user_gateway_list method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -16,14 +15,10 @@ if __name__ == '__main__':
         secret_access_key = ""
         endpoint = ""
         config = BceClientConfiguration(
-            credentials=BceCredentials(access_key_id, secret_access_key), 
-            endpoint=endpoint
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = VpcClient(config)
-        request = UserGatewayListRequest(
-            marker="", 
-            max_keys=0
-        )
+        request = UserGatewayListRequest(marker="", max_keys=0)
         res = client.user_gateway_list(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

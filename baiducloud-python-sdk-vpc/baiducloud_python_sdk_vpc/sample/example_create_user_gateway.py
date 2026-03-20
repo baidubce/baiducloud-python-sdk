@@ -1,11 +1,5 @@
 """
-This module demonstrates how to use Baidu Cloud Python SDK to create a user gateway.
-It includes setting up credentials, configuring the client, and making the API call.
-"""
-
-"""
-This module demonstrates how to use Baidu Cloud Python SDK to create a user gateway.
-It includes setting up credentials, configuring the client, and making the API call.
+Example for vpc create_user_gateway method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -20,14 +14,11 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(credentials=BceCredentials(access_key_id, secret_access_key), endpoint = endpoint)
-        client = VpcClient(config)
-        request = CreateUserGatewayRequest(
-            name = "", 
-            ip = "", 
-            client_token = "", 
-            description = ""
+        config = BceClientConfiguration(
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
+        client = VpcClient(config)
+        request = CreateUserGatewayRequest(name="", ip="", client_token="", description="")
         res = client.create_user_gateway(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

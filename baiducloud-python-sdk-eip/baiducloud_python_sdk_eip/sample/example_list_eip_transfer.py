@@ -1,3 +1,7 @@
+"""
+Example for eip list_eip_transfer method.
+"""
+
 from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
@@ -10,20 +14,22 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(credentials=BceCredentials(access_key_id, secret_access_key), endpoint = endpoint)
-        EipClient = EipClient(config)
-        request = ListEipTransferRequest(
-            max_keys = 0, 
-            marker = "", 
-            direction = "", 
-            transfer_id = "", 
-            status = "", 
-            fuzzy_transfer_id = "", 
-            fuzzy_instance_id = "", 
-            fuzzy_instance_name = "", 
-            fuzzy_instance_ip = ""
+        config = BceClientConfiguration(
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        res = EipClient.list_eip_transfer(request)
+        client = EipClient(config)
+        request = ListEipTransferRequest(
+            max_keys=0,
+            marker="",
+            direction="",
+            transfer_id="",
+            status="",
+            fuzzy_transfer_id="",
+            fuzzy_instance_id="",
+            fuzzy_instance_name="",
+            fuzzy_instance_ip="",
+        )
+        res = client.list_eip_transfer(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。

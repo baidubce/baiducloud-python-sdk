@@ -1,6 +1,7 @@
 """
-This module demonstrates how to use Baidu Cloud VPC SDK to update user gateway.
+Example for vpc update_user_gateway method.
 """
+
 from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
@@ -13,14 +14,11 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(credentials=BceCredentials(access_key_id, secret_access_key), endpoint = endpoint)
-        client = VpcClient(config)
-        request = UpdateUserGatewayRequest(
-            cgw_id="", 
-            client_token="", 
-            name="", 
-            description=""
+        config = BceClientConfiguration(
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
+        client = VpcClient(config)
+        request = UpdateUserGatewayRequest(cgw_id="", client_token="", name="", description="")
         res = client.update_user_gateway(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

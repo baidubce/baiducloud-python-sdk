@@ -1,6 +1,5 @@
 """
-This module demonstrates how to create a VPN using Baidu Cloud Python SDK.
-It includes setting up credentials, configuring the client, and making the API call.
+Example for vpc create_vpn method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -10,7 +9,6 @@ from baiducloud_python_sdk_vpc.api.vpc_client import VpcClient
 from baiducloud_python_sdk_vpc.models.create_vpn_request import CreateVpnRequest
 from baiducloud_python_sdk_vpc.models.reservation import Reservation
 from baiducloud_python_sdk_vpc.models.billing import Billing
-from baiducloud_python_sdk_vpc.models.tag_model import TagModel
 
 if __name__ == '__main__':
     try:
@@ -18,24 +16,26 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(credentials=BceCredentials(access_key_id, secret_access_key), endpoint = endpoint)
+        config = BceClientConfiguration(
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
+        )
         client = VpcClient(config)
-        
+
         reservation = Reservation(reservation_length=0, reservation_time_unit="")
-        billing = Billing(payment_timing="", reservation = reservation)
+        billing = Billing(payment_timing="", reservation=reservation)
         request = CreateVpnRequest(
-            vpc_id="", 
-            vpn_name="", 
-            billing=billing, 
-            client_token="", 
-            subnet_id="", 
-            type="", 
-            description="", 
-            eip="", 
-            tags=[], 
-            resource_group_id="", 
-            max_connection=0, 
-            delete_protect=False
+            vpc_id="",
+            vpn_name="",
+            billing=billing,
+            client_token="",
+            subnet_id="",
+            type="",
+            description="",
+            eip="",
+            tags=[],
+            resource_group_id="",
+            max_connection=0,
+            delete_protect=False,
         )
         res = client.create_vpn(request)
         print(res.to_json_string())

@@ -1,5 +1,5 @@
 """
-This module demonstrates how to use Baidu Cloud Python SDK to query VPN list.
+Example for vpc query_vpn_list method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -14,15 +14,11 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(credentials=BceCredentials(access_key_id, secret_access_key), endpoint = endpoint)
-        client = VpcClient(config)
-        request = QueryVpnListRequest(
-            vpc_id="", 
-            marker="", 
-            max_keys=0, 
-            eip="", 
-            type=""
+        config = BceClientConfiguration(
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
+        client = VpcClient(config)
+        request = QueryVpnListRequest(vpc_id="", marker="", max_keys=0, eip="", type="")
         res = client.query_vpn_list(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

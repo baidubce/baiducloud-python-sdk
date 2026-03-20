@@ -1,5 +1,5 @@
 """
-This module demonstrates how to use Baidu Cloud VPC SDK to search for VPN details.
+Example for vpc search_for_vpn_details method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -15,13 +15,10 @@ if __name__ == '__main__':
         secret_access_key = ""
         endpoint = ""
         config = BceClientConfiguration(
-            credentials=BceCredentials(access_key_id, secret_access_key), 
-            endpoint=endpoint
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = VpcClient(config)
-        request = SearchForVpnDetailsRequest(
-            vpn_id=""
-        )
+        request = SearchForVpnDetailsRequest(vpn_id="")
         res = client.search_for_vpn_details(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

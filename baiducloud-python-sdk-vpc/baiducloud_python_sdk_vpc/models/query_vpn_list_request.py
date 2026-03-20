@@ -1,21 +1,35 @@
+"""
+Request entity for QueryVpnListRequest information.
+"""
+
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
 class QueryVpnListRequest(AbstractModel):
     """
-    查询VPN列表请求参数
+    Request entity for QueryVpnListRequest operation.
+
+    This class encapsulates all parameters for the API request.
     """
-    
+
     def __init__(self, vpc_id, marker=None, max_keys=None, eip=None, type=None):
         """
-        初始化查询VPN列表请求参数
-        
-        Args:
-            vpc_id (str): VPC ID
-            marker (str, optional): 查询起始位置. Defaults to None.
-            max_keys (int, optional): 每次查询的最大数量. Defaults to None.
-            eip (str, optional): 弹性IP. Defaults to None.
-            type (str, optional): VPN类型. Defaults to None.
+        Initialize QueryVpnListRequest request entity.
+
+        :param marker: marker parameter
+        :type marker: str (optional)
+
+        :param max_keys: max_keys parameter
+        :type max_keys: int (optional)
+
+        :param vpc_id: vpc_id parameter
+        :type vpc_id: str (required)
+
+        :param eip: eip parameter
+        :type eip: str (optional)
+
+        :param type: type parameter
+        :type type: str (optional)
         """
         super().__init__()
         self.marker = marker
@@ -26,10 +40,12 @@ class QueryVpnListRequest(AbstractModel):
 
     def to_dict(self):
         """
-        将对象转换为字典
-        
-        Returns:
-            dict: 包含对象属性的字典
+        Convert the request entity to a dictionary representation.
+
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the request
+        :rtype: dict
         """
         _map = super().to_dict()
         if _map is not None:
@@ -37,16 +53,20 @@ class QueryVpnListRequest(AbstractModel):
         result = dict()
         return result
 
-
     def from_dict(self, m):
         """
-        从字典初始化对象
-        
-        Args:
-            m (dict): 包含对象属性的字典
-            
-        Returns:
-            QueryVpnListRequest: 初始化后的对象
+        Populate the request entity from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing request data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: QueryVpnListRequest
+
+        :raises TypeError: If input is not a dictionary or field type mismatch
+        :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
         if m.get('marker') is not None:

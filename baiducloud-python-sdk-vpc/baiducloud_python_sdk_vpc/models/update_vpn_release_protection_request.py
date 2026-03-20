@@ -1,24 +1,29 @@
+"""
+Request entity for UpdateVpnReleaseProtectionRequest information.
+"""
+
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
 class UpdateVpnReleaseProtectionRequest(AbstractModel):
     """
-    更新VPN释放保护请求类
+    Request entity for UpdateVpnReleaseProtectionRequest operation.
 
-    Attributes:
-        vpn_id (str): VPN实例ID
-        client_token (str): 幂等性令牌
-        delete_protect (bool): 是否开启删除保护
+    This class encapsulates all parameters for the API request.
     """
-    
+
     def __init__(self, vpn_id, client_token=None, delete_protect=None):
         """
-        初始化更新VPN释放保护请求
+        Initialize UpdateVpnReleaseProtectionRequest request entity.
 
-        Args:
-            vpn_id (str): VPN实例ID
-            client_token (str, optional): 幂等性令牌. Defaults to None.
-            delete_protect (bool, optional): 是否开启删除保护. Defaults to None.
+        :param vpn_id: vpn_id parameter
+        :type vpn_id: str (required)
+
+        :param client_token: client_token parameter
+        :type client_token: str (optional)
+
+        :param delete_protect: 是否开启释放保护
+        :type delete_protect: bool (optional)
         """
         super().__init__()
         self.vpn_id = vpn_id
@@ -27,10 +32,12 @@ class UpdateVpnReleaseProtectionRequest(AbstractModel):
 
     def to_dict(self):
         """
-        将对象转换为字典格式
+        Convert the request entity to a dictionary representation.
 
-        Returns:
-            dict: 包含对象属性的字典
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the request
+        :rtype: dict
         """
         _map = super().to_dict()
         if _map is not None:
@@ -40,16 +47,20 @@ class UpdateVpnReleaseProtectionRequest(AbstractModel):
             result['deleteProtect'] = self.delete_protect
         return result
 
-
     def from_dict(self, m):
         """
-        从字典初始化对象
+        Populate the request entity from a dictionary.
 
-        Args:
-            m (dict): 包含对象属性的字典
+        Nested dictionaries are recursively converted to model objects.
 
-        Returns:
-            UpdateVpnReleaseProtectionRequest: 初始化后的对象
+        :param m: Dictionary containing request data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: UpdateVpnReleaseProtectionRequest
+
+        :raises TypeError: If input is not a dictionary or field type mismatch
+        :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
         if m.get('vpnId') is not None:

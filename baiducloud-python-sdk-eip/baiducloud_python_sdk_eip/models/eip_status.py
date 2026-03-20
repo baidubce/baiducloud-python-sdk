@@ -1,9 +1,14 @@
+"""
+EipStatus information
+"""
+
 
 class EipStatus:
     """
     Enum class for EipStatus
     Allowed values: CREATING, AVAILABLE, BINDED, BINDING, UNBINDING, UPDATING, PAUSED, UNAVAILABLE
     """
+
     CREATING = 'creating'
     AVAILABLE = 'available'
     BINDED = 'binded'

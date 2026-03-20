@@ -1,3 +1,7 @@
+"""
+Example for eip start_eip_auto_renew method.
+"""
+
 from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
@@ -10,15 +14,12 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(credentials=BceCredentials(access_key_id, secret_access_key), endpoint = endpoint)
-        EipClient = EipClient(config)
-        request = StartEipAutoRenewRequest(
-            client_token = "", 
-            eip = "", 
-            auto_renew_time_unit = "", 
-            auto_renew_time = 0
+        config = BceClientConfiguration(
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        res = EipClient.start_eip_auto_renew(request)
+        client = EipClient(config)
+        request = StartEipAutoRenewRequest(eip="", client_token="", auto_renew_time_unit="", auto_renew_time=0)
+        res = client.start_eip_auto_renew(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。

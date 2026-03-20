@@ -1,23 +1,50 @@
+"""
+Request entity for UpdateSslVpnServerRequest information.
+"""
+
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
 class UpdateSslVpnServerRequest(AbstractModel):
     """
-    更新SSL VPN服务器请求类
+    Request entity for UpdateSslVpnServerRequest operation.
+
+    This class encapsulates all parameters for the API request.
     """
-    
-    def __init__(self, vpn_id, ssl_vpn_server_id, ssl_vpn_server_name, local_subnets, remote_subnet, client_token=None, client_dns=None):
+
+    def __init__(
+        self,
+        vpn_id,
+        ssl_vpn_server_id,
+        ssl_vpn_server_name,
+        local_subnets,
+        remote_subnet,
+        client_token=None,
+        client_dns=None,
+    ):
         """
-        初始化更新SSL VPN服务器请求
-        
-        Args:
-            vpn_id (str): VPN实例ID
-            ssl_vpn_server_id (str): SSL VPN服务器ID
-            ssl_vpn_server_name (str): SSL VPN服务器名称
-            local_subnets (list): 本地子网列表
-            remote_subnet (str): 客户端远程访问子网
-            client_token (str, optional): 客户端token，用于保证幂等性
-            client_dns (list, optional): 客户端DNS服务器地址列表
+        Initialize UpdateSslVpnServerRequest request entity.
+
+        :param vpn_id: vpn_id parameter
+        :type vpn_id: str (required)
+
+        :param ssl_vpn_server_id: ssl_vpn_server_id parameter
+        :type ssl_vpn_server_id: str (required)
+
+        :param client_token: client_token parameter
+        :type client_token: str (optional)
+
+        :param ssl_vpn_server_name: SSL-VPN服务端实例名称，大小写字母、数字以及-_/.特殊字符，必须以字母开头，长度1-65
+        :type ssl_vpn_server_name: str (required)
+
+        :param local_subnets: 本端网络CIDR列表
+        :type local_subnets: List[str] (required)
+
+        :param remote_subnet: 客户端网络CIDR
+        :type remote_subnet: str (required)
+
+        :param client_dns: 客户端的DNS地址
+        :type client_dns: str (optional)
         """
         super().__init__()
         self.vpn_id = vpn_id
@@ -30,10 +57,12 @@ class UpdateSslVpnServerRequest(AbstractModel):
 
     def to_dict(self):
         """
-        将对象转换为字典格式
-        
-        Returns:
-            dict: 包含对象属性的字典
+        Convert the request entity to a dictionary representation.
+
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the request
+        :rtype: dict
         """
         _map = super().to_dict()
         if _map is not None:
@@ -49,16 +78,20 @@ class UpdateSslVpnServerRequest(AbstractModel):
             result['clientDns'] = self.client_dns
         return result
 
-
     def from_dict(self, m):
         """
-        从字典初始化对象
-        
-        Args:
-            m (dict): 包含对象属性的字典
-            
-        Returns:
-            UpdateSslVpnServerRequest: 初始化后的对象
+        Populate the request entity from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing request data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: UpdateSslVpnServerRequest
+
+        :raises TypeError: If input is not a dictionary or field type mismatch
+        :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
         if m.get('vpnId') is not None:

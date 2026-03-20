@@ -1,3 +1,7 @@
+"""
+Request entity for UpdateVpnTunnelRequest information.
+"""
+
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 from baiducloud_python_sdk_vpc.models.ike_config import IkeConfig
 from baiducloud_python_sdk_vpc.models.ipsec_config import IpsecConfig
@@ -5,25 +9,60 @@ from baiducloud_python_sdk_vpc.models.ipsec_config import IpsecConfig
 
 class UpdateVpnTunnelRequest(AbstractModel):
     """
-    UpdateVpnTunnelRequest类用于封装更新VPN隧道的请求参数
+    Request entity for UpdateVpnTunnelRequest operation.
+
+    This class encapsulates all parameters for the API request.
     """
-    
-    def __init__(self, vpn_conn_id, vpn_id, secret_key, local_subnets, cgw_id, remote_subnets, vpn_conn_name, ike_config, ipsec_config, client_token=None, description=None):
+
+    def __init__(
+        self,
+        vpn_conn_id,
+        vpn_id,
+        secret_key,
+        local_subnets,
+        cgw_id,
+        remote_subnets,
+        vpn_conn_name,
+        ike_config,
+        ipsec_config,
+        client_token=None,
+        description=None,
+    ):
         """
-        初始化UpdateVpnTunnelRequest实例
-        
-        Args:
-            vpn_conn_id: VPN连接ID
-            vpn_id: VPN实例ID
-            secret_key: 预共享密钥
-            local_subnets: 本地子网列表
-            cgw_id: 客户网关ID
-            remote_subnets: 远程子网列表
-            vpn_conn_name: VPN连接名称
-            ike_config: IKE配置
-            ipsec_config: IPSEC配置
-            client_token: 客户端令牌
-            description: 描述信息
+        Initialize UpdateVpnTunnelRequest request entity.
+
+        :param vpn_conn_id: vpn_conn_id parameter
+        :type vpn_conn_id: str (required)
+
+        :param client_token: client_token parameter
+        :type client_token: str (optional)
+
+        :param vpn_id: VPN隧道所属VPN的ID
+        :type vpn_id: str (required)
+
+        :param secret_key: 共享秘钥，8～17位字符，英文、数字和符号必须同时存在，符号仅限!@#$%^*()_
+        :type secret_key: str (required)
+
+        :param local_subnets: 本端网络cidr列表
+        :type local_subnets: List[str] (required)
+
+        :param cgw_id: 用户网关ID
+        :type cgw_id: str (required)
+
+        :param remote_subnets: 对端网络cidr列表
+        :type remote_subnets: List[str] (required)
+
+        :param description: 描述
+        :type description: str (optional)
+
+        :param vpn_conn_name: VPN隧道名称，大小写字母、数字以及-_/.特殊字符，必须以字母开头，长度1-65
+        :type vpn_conn_name: str (required)
+
+        :param ike_config: ike_config parameter
+        :type ike_config: IkeConfig (required)
+
+        :param ipsec_config: ipsec_config parameter
+        :type ipsec_config: IpsecConfig (required)
         """
         super().__init__()
         self.vpn_conn_id = vpn_conn_id
@@ -40,10 +79,12 @@ class UpdateVpnTunnelRequest(AbstractModel):
 
     def to_dict(self):
         """
-        将对象转换为字典格式
-        
-        Returns:
-            dict: 包含对象属性的字典
+        Convert the request entity to a dictionary representation.
+
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the request
+        :rtype: dict
         """
         _map = super().to_dict()
         if _map is not None:
@@ -69,16 +110,20 @@ class UpdateVpnTunnelRequest(AbstractModel):
             result['ipsecConfig'] = self.ipsec_config.to_dict()
         return result
 
-
     def from_dict(self, m):
         """
-        从字典初始化对象
-        
-        Args:
-            m (dict): 包含对象属性的字典
-            
-        Returns:
-            UpdateVpnTunnelRequest: 初始化后的对象
+        Populate the request entity from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing request data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: UpdateVpnTunnelRequest
+
+        :raises TypeError: If input is not a dictionary or field type mismatch
+        :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
         if m.get('vpnConnId') is not None:

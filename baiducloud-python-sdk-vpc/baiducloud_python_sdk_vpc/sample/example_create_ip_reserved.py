@@ -1,3 +1,7 @@
+"""
+Example for vpc create_ip_reserved method.
+"""
+
 from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
@@ -10,15 +14,11 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(credentials=BceCredentials(access_key_id, secret_access_key), endpoint = endpoint)
-        client = VpcClient(config)
-        request = CreateIpReservedRequest(
-            subnet_id = "", 
-            ip_cidr = "", 
-            ip_version = 0, 
-            client_token = "", 
-            description = ""
+        config = BceClientConfiguration(
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
+        client = VpcClient(config)
+        request = CreateIpReservedRequest(subnet_id="", ip_cidr="", ip_version=0, client_token="", description="")
         res = client.create_ip_reserved(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

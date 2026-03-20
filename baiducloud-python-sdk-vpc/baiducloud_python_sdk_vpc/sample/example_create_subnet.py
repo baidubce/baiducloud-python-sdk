@@ -1,8 +1,11 @@
+"""
+Example for vpc create_subnet method.
+"""
+
 from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
 from baiducloud_python_sdk_vpc.api.vpc_client import VpcClient
-from baiducloud_python_sdk_vpc.models.tag_model import TagModel
 from baiducloud_python_sdk_vpc.models.create_subnet_request import CreateSubnetRequest
 
 if __name__ == '__main__':
@@ -11,19 +14,21 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(credentials=BceCredentials(access_key_id, secret_access_key), endpoint = endpoint)
+        config = BceClientConfiguration(
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
+        )
         client = VpcClient(config)
         request = CreateSubnetRequest(
-            name = "", 
-            zone_name = "", 
-            cidr = "", 
-            vpc_id = "", 
-            client_token = "", 
-            enable_ipv6 = False, 
-            vpc_secondary_cidr = "", 
-            subnet_type = "", 
-            description = "", 
-            tags = []
+            name="",
+            zone_name="",
+            cidr="",
+            vpc_id="",
+            client_token="",
+            enable_ipv6=False,
+            vpc_secondary_cidr="",
+            subnet_type="",
+            description="",
+            tags=[],
         )
         res = client.create_subnet(request)
         print(res.to_json_string())

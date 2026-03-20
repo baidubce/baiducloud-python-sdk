@@ -1,18 +1,29 @@
+"""
+Request entity for BindEipRequest information.
+"""
+
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
 class BindEipRequest(AbstractModel):
     """
-    绑定EIP请求类
+    Request entity for BindEipRequest operation.
+
+    This class encapsulates all parameters for the API request.
     """
-    
+
     def __init__(self, vpn_id, eip, client_token=None):
         """
-        初始化BindEipRequest实例
-        
-        :param vpn_id: VPN ID
-        :param eip: 弹性IP地址
-        :param client_token: 客户端令牌，可选
+        Initialize BindEipRequest request entity.
+
+        :param vpn_id: vpn_id parameter
+        :type vpn_id: str (required)
+
+        :param client_token: client_token parameter
+        :type client_token: str (optional)
+
+        :param eip: 需要绑定的EIP
+        :type eip: str (required)
         """
         super().__init__()
         self.vpn_id = vpn_id
@@ -21,9 +32,12 @@ class BindEipRequest(AbstractModel):
 
     def to_dict(self):
         """
-        将对象转换为字典
-        
-        :return: 包含对象属性的字典
+        Convert the request entity to a dictionary representation.
+
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the request
+        :rtype: dict
         """
         _map = super().to_dict()
         if _map is not None:
@@ -33,13 +47,20 @@ class BindEipRequest(AbstractModel):
             result['eip'] = self.eip
         return result
 
-
     def from_dict(self, m):
         """
-        从字典初始化对象
-        
-        :param m: 包含对象属性的字典
-        :return: 初始化后的对象
+        Populate the request entity from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing request data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: BindEipRequest
+
+        :raises TypeError: If input is not a dictionary or field type mismatch
+        :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
         if m.get('vpnId') is not None:

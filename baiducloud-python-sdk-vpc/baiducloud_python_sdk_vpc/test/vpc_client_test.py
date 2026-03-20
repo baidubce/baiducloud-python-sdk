@@ -15,8 +15,7 @@ class VpcClientTest(unittest.TestCase):
         HOST = b''
         AK = b''
         SK = b''
-        config = BceClientConfiguration(credentials=BceCredentials(AK, SK),
-        endpoint=HOST)
+        config = BceClientConfiguration(credentials=BceCredentials(AK, SK), endpoint=HOST)
         self.client = VpcClient(config)
 
     def tearDown(self):
@@ -153,6 +152,7 @@ class VpcClientTest(unittest.TestCase):
 
     def test_user_gateway_list(self):
         self.client.user_gateway_list(None)
+
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()

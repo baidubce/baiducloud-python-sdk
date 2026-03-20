@@ -1,7 +1,7 @@
 """
-This module demonstrates how to create a VPN tunnel using Baidu Cloud Python SDK.
-It includes setting up credentials, configuring the client, and making the API call.
+Example for vpc create_vpn_tunnel method.
 """
+
 from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
@@ -17,35 +17,24 @@ if __name__ == '__main__':
         secret_access_key = ""
         endpoint = ""
         config = BceClientConfiguration(
-            credentials=BceCredentials(access_key_id, secret_access_key), 
-            endpoint=endpoint
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = VpcClient(config)
         ike_config = IkeConfig(
-            ike_version="", 
-            ike_mode="", 
-            ike_enc_alg="", 
-            ike_auth_alg="", 
-            ike_pfs="", 
-            ike_life_time=""
+            ike_version="", ike_mode="", ike_enc_alg="", ike_auth_alg="", ike_pfs="", ike_life_time=""
         )
-        ipsec_config = IpsecConfig(
-            ipsec_enc_alg="", 
-            ipsec_auth_alg="", 
-            ipsec_pfs="", 
-            ipsec_lifetime=""
-        )
+        ipsec_config = IpsecConfig(ipsec_enc_alg="", ipsec_auth_alg="", ipsec_pfs="", ipsec_lifetime="")
         request = CreateVpnTunnelRequest(
-            vpn_id="", 
-            secret_key="", 
-            local_subnets=[], 
-            cgw_id="", 
-            remote_subnets=[], 
-            vpn_conn_name="", 
-            ike_config=ike_config, 
-            ipsec_config=ipsec_config, 
-            client_token="", 
-            description=""
+            vpn_id="",
+            secret_key="",
+            local_subnets=[],
+            cgw_id="",
+            remote_subnets=[],
+            vpn_conn_name="",
+            ike_config=ike_config,
+            ipsec_config=ipsec_config,
+            client_token="",
+            description="",
         )
         res = client.create_vpn_tunnel(request)
         print(res.to_json_string())

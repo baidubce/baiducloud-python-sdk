@@ -1,30 +1,34 @@
+"""
+Request entity for CreateUserGatewayResponse information.
+"""
+
 from baiducloud_python_sdk_core.bce_response import BceResponse
 
 
 class CreateUserGatewayResponse(BceResponse):
     """
-    CreateUserGatewayResponse 类用于表示创建用户网关的响应
-
-    Attributes:
-        cgw_id (str): 用户网关ID
+    CreateUserGatewayResponse
     """
-    
+
     def __init__(self, cgw_id=None):
         """
-        初始化CreateUserGatewayResponse实例
+        Initialize CreateUserGatewayResponse response.
 
-        Args:
-            cgw_id (str, optional): 用户网关ID. Defaults to None.
+        :param cgw_id: 用户网关id
+        :type cgw_id: str (optional)
         """
         super().__init__()
         self.cgw_id = cgw_id
 
     def to_dict(self):
         """
-        将响应对象转换为字典格式
+        Convert the response instance to a dictionary representation.
 
-        Returns:
-            dict: 包含响应数据的字典
+        Includes metadata from the parent BceResponse class.
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the response
+        :rtype: dict
         """
         _map = super().to_dict()
         if _map is not None:
@@ -38,13 +42,18 @@ class CreateUserGatewayResponse(BceResponse):
 
     def from_dict(self, m):
         """
-        从字典数据初始化响应对象
+        Populate the response instance from a dictionary.
 
-        Args:
-            m (dict): 包含响应数据的字典
+        Nested dictionaries are recursively converted to model objects.
 
-        Returns:
-            CreateUserGatewayResponse: 初始化后的响应对象
+        :param m: Dictionary containing response data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: CreateUserGatewayResponse
+
+        :raises TypeError: If input is not a dictionary or field type mismatch
+        :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
         if m.get('cgwId') is not None:

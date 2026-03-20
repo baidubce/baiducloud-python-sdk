@@ -1,18 +1,26 @@
+"""
+Request entity for DeleteVpnTunnelRequest information.
+"""
+
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
 class DeleteVpnTunnelRequest(AbstractModel):
     """
-    删除VPN隧道请求类
-    用于封装删除VPN隧道所需的参数
+    Request entity for DeleteVpnTunnelRequest operation.
+
+    This class encapsulates all parameters for the API request.
     """
-    
+
     def __init__(self, vpn_conn_id, client_token=None):
         """
-        初始化删除VPN隧道请求
-        
-        :param vpn_conn_id: VPN连接ID
-        :param client_token: 客户端令牌，用于保证请求的幂等性
+        Initialize DeleteVpnTunnelRequest request entity.
+
+        :param vpn_conn_id: vpn_conn_id parameter
+        :type vpn_conn_id: str (required)
+
+        :param client_token: client_token parameter
+        :type client_token: str (optional)
         """
         super().__init__()
         self.vpn_conn_id = vpn_conn_id
@@ -20,9 +28,12 @@ class DeleteVpnTunnelRequest(AbstractModel):
 
     def to_dict(self):
         """
-        将对象转换为字典格式
-        
-        :return: 包含对象属性的字典
+        Convert the request entity to a dictionary representation.
+
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the request
+        :rtype: dict
         """
         _map = super().to_dict()
         if _map is not None:
@@ -30,13 +41,20 @@ class DeleteVpnTunnelRequest(AbstractModel):
         result = dict()
         return result
 
-
     def from_dict(self, m):
         """
-        从字典格式初始化对象
-        
-        :param m: 包含对象属性的字典
-        :return: 初始化后的对象本身
+        Populate the request entity from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing request data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: DeleteVpnTunnelRequest
+
+        :raises TypeError: If input is not a dictionary or field type mismatch
+        :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
         if m.get('vpnConnId') is not None:

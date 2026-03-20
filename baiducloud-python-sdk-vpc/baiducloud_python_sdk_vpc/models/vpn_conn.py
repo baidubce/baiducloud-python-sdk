@@ -1,3 +1,7 @@
+"""
+VpnConn information
+"""
+
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 from baiducloud_python_sdk_vpc.models.ike_config import IkeConfig
@@ -7,31 +11,74 @@ from baiducloud_python_sdk_vpc.models.ipsec_config import IpsecConfig
 
 class VpnConn(AbstractModel):
     """
-    VpnConn model class
+    VpnConn
     """
-    
-    def __init__(self, vpn_id=None, vpn_conn_id=None, vpn_conn_name=None, local_ip=None, secret_key=None, 
-                 local_subnets=None, remote_ip=None, remote_subnets=None, cgw_id=None, description=None, 
-                 status=None, created_time=None, health_status=None, ike_config=None, ipsec_config=None):
+
+    def __init__(
+        self,
+        vpn_id=None,
+        vpn_conn_id=None,
+        vpn_conn_name=None,
+        local_ip=None,
+        secret_key=None,
+        local_subnets=None,
+        remote_ip=None,
+        remote_subnets=None,
+        cgw_id=None,
+        description=None,
+        status=None,
+        created_time=None,
+        health_status=None,
+        ike_config=None,
+        ipsec_config=None,
+    ):
         """
-        Initialize VpnConn instance
-        
-        Args:
-            vpn_id (str): VPN ID
-            vpn_conn_id (str): VPN connection ID
-            vpn_conn_name (str): VPN connection name
-            local_ip (str): Local IP address
-            secret_key (str): Secret key
-            local_subnets (list): Local subnets
-            remote_ip (str): Remote IP address
-            remote_subnets (list): Remote subnets
-            cgw_id (str): Customer gateway ID
-            description (str): Description
-            status (str): Status
-            created_time (str): Created time
-            health_status (str): Health status
-            ike_config (IkeConfig): IKE configuration
-            ipsec_config (IpsecConfig): IPsec configuration
+        Initialize VpnConn instance.
+
+        :param vpn_id: VPN的ID
+        :type vpn_id: str (optional)
+
+        :param vpn_conn_id: 隧道的ID
+        :type vpn_conn_id: str (optional)
+
+        :param vpn_conn_name: 隧道的名称
+        :type vpn_conn_name: str (optional)
+
+        :param local_ip: 本地IP
+        :type local_ip: str (optional)
+
+        :param secret_key: 共享秘钥
+        :type secret_key: str (optional)
+
+        :param local_subnets: 本端网络CIDR列表
+        :type local_subnets: List[str] (optional)
+
+        :param remote_ip: 对端VPN网关公网IP
+        :type remote_ip: str (optional)
+
+        :param remote_subnets: 对端网络CIDR列表
+        :type remote_subnets: List[str] (optional)
+
+        :param cgw_id: 用户网关ID
+        :type cgw_id: str (optional)
+
+        :param description: 描述
+        :type description: str (optional)
+
+        :param status: VPN隧道的状态
+        :type status: str (optional)
+
+        :param created_time: 创建时间
+        :type created_time: str (optional)
+
+        :param health_status: 联通状态
+        :type health_status: str (optional)
+
+        :param ike_config: ike_config attribute
+        :type ike_config: IkeConfig (optional)
+
+        :param ipsec_config: ipsec_config attribute
+        :type ipsec_config: IpsecConfig (optional)
         """
         super().__init__()
         self.vpn_id = vpn_id
@@ -52,10 +99,12 @@ class VpnConn(AbstractModel):
 
     def to_dict(self):
         """
-        Convert VpnConn instance to dictionary
-        
-        Returns:
-            dict: Dictionary containing VpnConn attributes
+        Convert the model instance to a dictionary representation.
+
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the model
+        :rtype: dict
         """
         _map = super().to_dict()
         if _map is not None:
@@ -93,16 +142,20 @@ class VpnConn(AbstractModel):
             result['ipsecConfig'] = self.ipsec_config.to_dict()
         return result
 
-
     def from_dict(self, m):
         """
-        Initialize VpnConn instance from dictionary
-        
-        Args:
-            m (dict): Dictionary containing VpnConn attributes
-            
-        Returns:
-            VpnConn: Initialized VpnConn instance
+        Populate the model instance from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing model data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: VpnConn
+
+        :raises TypeError: If input is not a dictionary type
+        :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
         if m.get('vpnId') is not None:

@@ -1,6 +1,5 @@
 """
-This module demonstrates how to use Baidu Cloud Python SDK to batch create SSL VPN users.
-It includes the main execution flow with proper error handling.
+Example for vpc batch_create_ssl_vpn_users method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -8,7 +7,6 @@ from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
 from baiducloud_python_sdk_vpc.api.vpc_client import VpcClient
 from baiducloud_python_sdk_vpc.models.batch_create_ssl_vpn_users_request import BatchCreateSslVpnUsersRequest
-from baiducloud_python_sdk_vpc.models.ssl_vpn_user import SslVpnUser
 
 if __name__ == '__main__':
     try:
@@ -17,15 +15,10 @@ if __name__ == '__main__':
         secret_access_key = ""
         endpoint = ""
         config = BceClientConfiguration(
-            credentials=BceCredentials(access_key_id, secret_access_key), 
-            endpoint=endpoint
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = VpcClient(config)
-        request = BatchCreateSslVpnUsersRequest(
-            vpn_id="", 
-            ssl_vpn_users=[], 
-            client_token=""
-        )
+        request = BatchCreateSslVpnUsersRequest(vpn_id="", ssl_vpn_users=[], client_token="")
         res = client.batch_create_ssl_vpn_users(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

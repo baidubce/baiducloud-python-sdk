@@ -1,22 +1,38 @@
+"""
+Request entity for UpdateSslVpnUsersRequest information.
+"""
+
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
 class UpdateSslVpnUsersRequest(AbstractModel):
     """
-    更新SSL VPN用户请求类
+    Request entity for UpdateSslVpnUsersRequest operation.
+
+    This class encapsulates all parameters for the API request.
     """
-    
+
     def __init__(self, vpn_id, user_id, client_token=None, client_name=None, password=None, description=None):
         """
-        初始化UpdateSslVpnUsersRequest实例
-        
-        Args:
-            vpn_id (str): VPN实例ID
-            user_id (str): 用户ID
-            client_token (str, optional): 客户端token
-            client_name (str, optional): 客户端名称
-            password (str, optional): 密码
-            description (str, optional): 描述信息
+        Initialize UpdateSslVpnUsersRequest request entity.
+
+        :param vpn_id: vpn_id parameter
+        :type vpn_id: str (required)
+
+        :param user_id: user_id parameter
+        :type user_id: str (required)
+
+        :param client_token: client_token parameter
+        :type client_token: str (optional)
+
+        :param client_name: 客户端名称
+        :type client_name: str (optional)
+
+        :param password: 密码，8～17位字符，英文、数字和符号必须同时存在，符号仅限!@#$%^*(_
+        :type password: str (optional)
+
+        :param description: 描述
+        :type description: str (optional)
         """
         super().__init__()
         self.vpn_id = vpn_id
@@ -28,10 +44,12 @@ class UpdateSslVpnUsersRequest(AbstractModel):
 
     def to_dict(self):
         """
-        将对象转换为字典
-        
-        Returns:
-            dict: 包含对象属性的字典
+        Convert the request entity to a dictionary representation.
+
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the request
+        :rtype: dict
         """
         _map = super().to_dict()
         if _map is not None:
@@ -45,16 +63,20 @@ class UpdateSslVpnUsersRequest(AbstractModel):
             result['description'] = self.description
         return result
 
-
     def from_dict(self, m):
         """
-        从字典初始化对象
-        
-        Args:
-            m (dict): 包含对象属性的字典
-            
-        Returns:
-            UpdateSslVpnUsersRequest: 初始化后的对象
+        Populate the request entity from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing request data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: UpdateSslVpnUsersRequest
+
+        :raises TypeError: If input is not a dictionary or field type mismatch
+        :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
         if m.get('vpnId') is not None:

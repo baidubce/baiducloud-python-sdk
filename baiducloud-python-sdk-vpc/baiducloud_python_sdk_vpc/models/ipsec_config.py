@@ -1,29 +1,30 @@
 """
-This module defines the IpsecConfig class which represents the configuration for IPsec connection.
+IpsecConfig information
 """
+
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
 class IpsecConfig(AbstractModel):
     """
-    IpsecConfig class represents the configuration for IPsec connection.
-    
-    Attributes:
-        ipsec_enc_alg (str): The encryption algorithm for IPsec.
-        ipsec_auth_alg (str): The authentication algorithm for IPsec.
-        ipsec_pfs (str): The Perfect Forward Secrecy configuration for IPsec.
-        ipsec_lifetime (int): The lifetime of IPsec SA in seconds.
+    IpsecConfig
     """
 
     def __init__(self, ipsec_enc_alg=None, ipsec_auth_alg=None, ipsec_pfs=None, ipsec_lifetime=None):
         """
-        Initialize IpsecConfig with given parameters.
-        
-        Args:
-            ipsec_enc_alg (str, optional): The encryption algorithm for IPsec. Defaults to None.
-            ipsec_auth_alg (str, optional): The authentication algorithm for IPsec. Defaults to None.
-            ipsec_pfs (str, optional): The Perfect Forward Secrecy configuration for IPsec. Defaults to None.
-            ipsec_lifetime (int, optional): The lifetime of IPsec SA in seconds. Defaults to None.
+        Initialize IpsecConfig instance.
+
+        :param ipsec_enc_alg: 加密算法，取值范围：aes/aes192/aes256/3des
+        :type ipsec_enc_alg: str (optional)
+
+        :param ipsec_auth_alg: 认证算法，取值范围：sha1/md5
+        :type ipsec_auth_alg: str (optional)
+
+        :param ipsec_pfs: DH分组，取值范围：group2/group5/group14/group24
+        :type ipsec_pfs: str (optional)
+
+        :param ipsec_lifetime: SA生命周期,取值范围：180-86400
+        :type ipsec_lifetime: str (optional)
         """
         super().__init__()
         self.ipsec_enc_alg = ipsec_enc_alg
@@ -33,10 +34,12 @@ class IpsecConfig(AbstractModel):
 
     def to_dict(self):
         """
-        Convert the IpsecConfig object to a dictionary.
-        
-        Returns:
-            dict: A dictionary containing all attributes of the IpsecConfig object.
+        Convert the model instance to a dictionary representation.
+
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the model
+        :rtype: dict
         """
         _map = super().to_dict()
         if _map is not None:
@@ -54,13 +57,18 @@ class IpsecConfig(AbstractModel):
 
     def from_dict(self, m):
         """
-        Initialize IpsecConfig object from a dictionary.
-        
-        Args:
-            m (dict): A dictionary containing attributes to initialize the IpsecConfig object.
-            
-        Returns:
-            IpsecConfig: The initialized IpsecConfig object.
+        Populate the model instance from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing model data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: IpsecConfig
+
+        :raises TypeError: If input is not a dictionary type
+        :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
         if m.get('ipsecEncAlg') is not None:

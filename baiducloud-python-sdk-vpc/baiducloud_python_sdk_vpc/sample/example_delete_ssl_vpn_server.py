@@ -1,6 +1,5 @@
 """
-This module demonstrates how to use Baidu Cloud Python SDK to delete an SSL VPN server.
-It includes setting up credentials, configuring the client, and making the API call.
+Example for vpc delete_ssl_vpn_server method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -16,15 +15,10 @@ if __name__ == '__main__':
         secret_access_key = ""
         endpoint = ""
         config = BceClientConfiguration(
-            credentials=BceCredentials(access_key_id, secret_access_key), 
-            endpoint=endpoint
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = VpcClient(config)
-        request = DeleteSslVpnServerRequest(
-            vpn_id="", 
-            ssl_vpn_server_id="", 
-            client_token=""
-        )
+        request = DeleteSslVpnServerRequest(vpn_id="", ssl_vpn_server_id="", client_token="")
         res = client.delete_ssl_vpn_server(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

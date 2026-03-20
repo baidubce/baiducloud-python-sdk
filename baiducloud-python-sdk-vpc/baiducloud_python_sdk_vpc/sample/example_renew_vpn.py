@@ -1,4 +1,6 @@
-"""This module demonstrates how to renew VPN using BaiduCloud Python SDK."""
+"""
+Example for vpc renew_vpn method.
+"""
 
 from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
@@ -14,16 +16,14 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(credentials=BceCredentials(access_key_id, secret_access_key), endpoint = endpoint)
-        client = VpcClient(config)
-        
-        reservation = Reservation(reservation_length=0, reservation_time_unit="")
-        billing = Billing(payment_timing="", reservation = reservation)
-        request = RenewVpnRequest(
-            vpn_id="", 
-            billing=billing, 
-            client_token=""
+        config = BceClientConfiguration(
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
+        client = VpcClient(config)
+
+        reservation = Reservation(reservation_length=0, reservation_time_unit="")
+        billing = Billing(payment_timing="", reservation=reservation)
+        request = RenewVpnRequest(vpn_id="", billing=billing, client_token="")
         res = client.renew_vpn(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

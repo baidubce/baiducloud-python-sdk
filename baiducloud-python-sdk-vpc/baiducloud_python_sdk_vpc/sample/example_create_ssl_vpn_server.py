@@ -1,15 +1,12 @@
 """
-This module demonstrates how to create an SSL VPN server using Baidu Cloud Python SDK.
-It includes the main execution flow for setting up credentials, configuring the client,
-and making the API call to create the VPN server.
+Example for vpc create_ssl_vpn_server method.
 """
 
 from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
 from baiducloud_python_sdk_vpc.api.vpc_client import VpcClient
-from baiducloud_python_sdk_vpc.models.create_ssl_vpn_server_request import \
-    CreateSslVpnServerRequest
+from baiducloud_python_sdk_vpc.models.create_ssl_vpn_server_request import CreateSslVpnServerRequest
 
 if __name__ == '__main__':
     try:
@@ -17,16 +14,18 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(credentials=BceCredentials(access_key_id, secret_access_key), endpoint = endpoint)
+        config = BceClientConfiguration(
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
+        )
         client = VpcClient(config)
         request = CreateSslVpnServerRequest(
-            vpn_id = "", 
-            ssl_vpn_server_name = "", 
-            local_subnets = [], 
-            remote_subnet = "", 
-            client_token = "", 
-            interface_type = "", 
-            client_dns = ""
+            vpn_id="",
+            ssl_vpn_server_name="",
+            local_subnets=[],
+            remote_subnet="",
+            client_token="",
+            interface_type="",
+            client_dns="",
         )
         res = client.create_ssl_vpn_server(request)
         print(res.to_json_string())

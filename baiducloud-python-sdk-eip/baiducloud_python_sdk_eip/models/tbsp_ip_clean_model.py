@@ -1,3 +1,6 @@
+"""
+TbspIpCleanModel information
+"""
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
@@ -6,7 +9,49 @@ class TbspIpCleanModel(AbstractModel):
     """
     TbspIpCleanModel
     """
-    def __init__(self, ip=None, eip_name=None, eip_id=None, threshold_type=None, ip_clean_mbps=None, ip_clean_pps=None, protect_level=None, turn_off_begin_time=None, turn_off_end_time=None):
+
+    def __init__(
+        self,
+        ip=None,
+        eip_name=None,
+        eip_id=None,
+        threshold_type=None,
+        ip_clean_mbps=None,
+        ip_clean_pps=None,
+        protect_level=None,
+        turn_off_begin_time=None,
+        turn_off_end_time=None,
+    ):
+        """
+        Initialize TbspIpCleanModel instance.
+
+        :param ip: DDoS增强防护包防护对象IP地址
+        :type ip: str (optional)
+
+        :param eip_name: DDoS增强防护包防护对象IP名称
+        :type eip_name: str (optional)
+
+        :param eip_id: DDoS增强防护包防护对象EIP ID
+        :type eip_id: str (optional)
+
+        :param threshold_type: DDoS增强防护包IP清洗阈值类型，包含按带宽上限 (bandwidth)、智能阈值 (auto) 和手动设置 (manual)
+        :type threshold_type: str (optional)
+
+        :param ip_clean_mbps: 清洗阈值每秒流量带宽Mbps
+        :type ip_clean_mbps: int (optional)
+
+        :param ip_clean_pps: 清洗阈值每秒报文数pps
+        :type ip_clean_pps: int (optional)
+
+        :param protect_level: 防护等级，1（宽松）、2（适中）、3（严格）
+        :type protect_level: str (optional)
+
+        :param turn_off_begin_time: 关闭防护IP清洗起始时间
+        :type turn_off_begin_time: str (optional)
+
+        :param turn_off_end_time: 关闭防护IP清洗终止时间
+        :type turn_off_end_time: str (optional)
+        """
         super().__init__()
         self.ip = ip
         self.eip_name = eip_name
@@ -19,6 +64,14 @@ class TbspIpCleanModel(AbstractModel):
         self.turn_off_end_time = turn_off_end_time
 
     def to_dict(self):
+        """
+        Convert the model instance to a dictionary representation.
+
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the model
+        :rtype: dict
+        """
         _map = super().to_dict()
         if _map is not None:
             return _map
@@ -43,8 +96,21 @@ class TbspIpCleanModel(AbstractModel):
             result['turnOffEndTime'] = self.turn_off_end_time
         return result
 
-
     def from_dict(self, m):
+        """
+        Populate the model instance from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing model data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: TbspIpCleanModel
+
+        :raises TypeError: If input is not a dictionary type
+        :raises ValueError: If nested model conversion fails
+        """
         m = m or dict()
         if m.get('ip') is not None:
             self.ip = m.get('ip')

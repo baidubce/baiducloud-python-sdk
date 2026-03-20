@@ -1,27 +1,34 @@
+"""
+Request entity for UserGatewayListResponse information.
+"""
+
 from baiducloud_python_sdk_core.bce_response import BceResponse
 from baiducloud_python_sdk_vpc.models.cgw import Cgw
 
 
 class UserGatewayListResponse(BceResponse):
-    """This class represents the response for listing user gateways.
-    
-    Attributes:
-        marker (str): The marker for pagination.
-        is_truncated (bool): Indicates if the result is truncated.
-        next_marker (str): The marker for next page.
-        max_keys (int): The maximum number of keys returned.
-        result (list): List of Cgw objects.
     """
-    
+    UserGatewayListResponse
+    """
+
     def __init__(self, marker=None, is_truncated=None, next_marker=None, max_keys=None, result=None):
-        """Initialize the UserGatewayListResponse instance.
-        
-        Args:
-            marker (str, optional): The marker for pagination. Defaults to None.
-            is_truncated (bool, optional): Indicates if the result is truncated. Defaults to None.
-            next_marker (str, optional): The marker for next page. Defaults to None.
-            max_keys (int, optional): The maximum number of keys returned. Defaults to None.
-            result (list, optional): List of Cgw objects. Defaults to None.
+        """
+        Initialize UserGatewayListResponse response.
+
+        :param marker: 标记查询的起始位置
+        :type marker: str (optional)
+
+        :param is_truncated: true表示后面还有数据，false表示已经是最后一页
+        :type is_truncated: bool (optional)
+
+        :param next_marker: 获取下一页所需要传递的marker值；当isTruncated为false时，该域不出现
+        :type next_marker: str (optional)
+
+        :param max_keys: 每页包含的最大数量
+        :type max_keys: int (optional)
+
+        :param result: 用户网关列表
+        :type result: List[Cgw] (optional)
         """
         super().__init__()
         self.marker = marker
@@ -31,10 +38,14 @@ class UserGatewayListResponse(BceResponse):
         self.result = result
 
     def to_dict(self):
-        """Convert the response object to a dictionary.
-        
-        Returns:
-            dict: A dictionary containing the response data.
+        """
+        Convert the response instance to a dictionary representation.
+
+        Includes metadata from the parent BceResponse class.
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the response
+        :rtype: dict
         """
         _map = super().to_dict()
         if _map is not None:
@@ -54,15 +65,20 @@ class UserGatewayListResponse(BceResponse):
             result['result'] = [i.to_dict() for i in self.result]
         return result
 
-
     def from_dict(self, m):
-        """Initialize the response object from a dictionary.
-        
-        Args:
-            m (dict): A dictionary containing the response data.
-            
-        Returns:
-            UserGatewayListResponse: The current instance.
+        """
+        Populate the response instance from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing response data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: UserGatewayListResponse
+
+        :raises TypeError: If input is not a dictionary or field type mismatch
+        :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
         if m.get('marker') is not None:
@@ -74,8 +90,5 @@ class UserGatewayListResponse(BceResponse):
         if m.get('maxKeys') is not None:
             self.max_keys = m.get('maxKeys')
         if m.get('result') is not None:
-            self.result = [
-            Cgw().from_dict(i)
-            for i in m.get('result')
-            ]
+            self.result = [Cgw().from_dict(i) for i in m.get('result')]
         return self

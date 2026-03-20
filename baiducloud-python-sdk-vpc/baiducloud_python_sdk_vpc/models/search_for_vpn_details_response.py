@@ -1,13 +1,92 @@
+"""
+Request entity for SearchForVpnDetailsResponse information.
+"""
+
 from baiducloud_python_sdk_core.bce_response import BceResponse
 from baiducloud_python_sdk_vpc.models.vpn_conn import VpnConn
 from baiducloud_python_sdk_vpc.models.ssl_vpn_server import SslVpnServer
 from baiducloud_python_sdk_vpc.models.tag_model import TagModel
 
+
 class SearchForVpnDetailsResponse(BceResponse):
     """
     SearchForVpnDetailsResponse
     """
-    def __init__(self, vpn_id=None, vpn_name=None, create_time=None, description=None, type=None, status=None, expired_time=None, payment_timing=None, eip=None, bandwidth_in_mbps=None, vpc_id=None, vpn_conn_num=None, max_connection=None, vpn_conns=None, ssl_vpn_server=None, tags=None, delete_protect=None):
+
+    def __init__(
+        self,
+        vpn_id=None,
+        vpn_name=None,
+        create_time=None,
+        description=None,
+        type=None,
+        status=None,
+        expired_time=None,
+        payment_timing=None,
+        eip=None,
+        bandwidth_in_mbps=None,
+        vpc_id=None,
+        vpn_conn_num=None,
+        max_connection=None,
+        vpn_conns=None,
+        ssl_vpn_server=None,
+        tags=None,
+        delete_protect=None,
+    ):
+        """
+        Initialize SearchForVpnDetailsResponse response.
+
+        :param vpn_id: VPN的ID
+        :type vpn_id: str (optional)
+
+        :param vpn_name: 名称
+        :type vpn_name: str (optional)
+
+        :param create_time: 创建时间
+        :type create_time: str (optional)
+
+        :param description: 描述
+        :type description: str (optional)
+
+        :param type: VPN网关类型，值“IPSec”表示IPSec-VPN网关，值“SSL”表示SSL-VPN网关
+        :type type: str (optional)
+
+        :param status: vpn状态，active：可用，building：创建中，unconfigured：未配置
+        :type status: str (optional)
+
+        :param expired_time: 到期时间
+        :type expired_time: str (optional)
+
+        :param payment_timing: 计费类型
+        :type payment_timing: str (optional)
+
+        :param eip: 公网IP
+        :type eip: str (optional)
+
+        :param bandwidth_in_mbps: eip带宽
+        :type bandwidth_in_mbps: int (optional)
+
+        :param vpc_id: VPC的ID
+        :type vpc_id: str (optional)
+
+        :param vpn_conn_num: 隧道数量
+        :type vpn_conn_num: int (optional)
+
+        :param max_connection: SSL-VPN最大客户端连接数
+        :type max_connection: int (optional)
+
+        :param vpn_conns: VPN隧道列表
+        :type vpn_conns: List[VpnConn] (optional)
+
+        :param ssl_vpn_server: ssl_vpn_server field
+        :type ssl_vpn_server: SslVpnServer (optional)
+
+        :param tags: VPN实例绑定的标签
+        :type tags: List[TagModel] (optional)
+
+        :param delete_protect: 是否开启释放保护
+        :type delete_protect: bool (optional)
+        """
         super().__init__()
         self.vpn_id = vpn_id
         self.vpn_name = vpn_name
@@ -28,6 +107,15 @@ class SearchForVpnDetailsResponse(BceResponse):
         self.delete_protect = delete_protect
 
     def to_dict(self):
+        """
+        Convert the response instance to a dictionary representation.
+
+        Includes metadata from the parent BceResponse class.
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the response
+        :rtype: dict
+        """
         _map = super().to_dict()
         if _map is not None:
             return _map
@@ -70,8 +158,21 @@ class SearchForVpnDetailsResponse(BceResponse):
             result['deleteProtect'] = self.delete_protect
         return result
 
-
     def from_dict(self, m):
+        """
+        Populate the response instance from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing response data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: SearchForVpnDetailsResponse
+
+        :raises TypeError: If input is not a dictionary or field type mismatch
+        :raises ValueError: If nested model conversion fails
+        """
         m = m or dict()
         if m.get('vpnId') is not None:
             self.vpn_id = m.get('vpnId')
@@ -100,17 +201,11 @@ class SearchForVpnDetailsResponse(BceResponse):
         if m.get('maxConnection') is not None:
             self.max_connection = m.get('maxConnection')
         if m.get('vpnConns') is not None:
-            self.vpn_conns = [
-            VpnConn().from_dict(i)
-            for i in m.get('vpnConns')
-            ]
+            self.vpn_conns = [VpnConn().from_dict(i) for i in m.get('vpnConns')]
         if m.get('sslVpnServer') is not None:
             self.ssl_vpn_server = SslVpnServer().from_dict(m.get('sslVpnServer'))
         if m.get('tags') is not None:
-            self.tags = [
-            TagModel().from_dict(i)
-            for i in m.get('tags')
-            ]
+            self.tags = [TagModel().from_dict(i) for i in m.get('tags')]
         if m.get('deleteProtect') is not None:
             self.delete_protect = m.get('deleteProtect')
         return self

@@ -1,5 +1,5 @@
 """
-This module provides the IkeConfig class for handling IKE configuration parameters.
+IkeConfig information
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
@@ -7,28 +7,32 @@ from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 class IkeConfig(AbstractModel):
     """
-    IKE configuration parameters class.
-    
-    Attributes:
-        ike_version (str): IKE version
-        ike_mode (str): IKE mode
-        ike_enc_alg (str): IKE encryption algorithm
-        ike_auth_alg (str): IKE authentication algorithm
-        ike_pfs (str): IKE PFS (Perfect Forward Secrecy)
-        ike_life_time (int): IKE lifetime in seconds
+    IkeConfig
     """
-    
-    def __init__(self, ike_version=None, ike_mode=None, ike_enc_alg=None, ike_auth_alg=None, ike_pfs=None, ike_life_time=None):
+
+    def __init__(
+        self, ike_version=None, ike_mode=None, ike_enc_alg=None, ike_auth_alg=None, ike_pfs=None, ike_life_time=None
+    ):
         """
-        Initialize IkeConfig with given parameters.
-        
-        Args:
-            ike_version (str, optional): IKE version. Defaults to None.
-            ike_mode (str, optional): IKE mode. Defaults to None.
-            ike_enc_alg (str, optional): IKE encryption algorithm. Defaults to None.
-            ike_auth_alg (str, optional): IKE authentication algorithm. Defaults to None.
-            ike_pfs (str, optional): IKE PFS. Defaults to None.
-            ike_life_time (int, optional): IKE lifetime in seconds. Defaults to None.
+        Initialize IkeConfig instance.
+
+        :param ike_version: 版本，取值范围：v1/v2
+        :type ike_version: str (optional)
+
+        :param ike_mode: 协商模式，取值范围：main/aggressive
+        :type ike_mode: str (optional)
+
+        :param ike_enc_alg: 加密算法，取值范围：aes/aes192/aes256/3des
+        :type ike_enc_alg: str (optional)
+
+        :param ike_auth_alg: 认证算法，取值范围：sha1/md5
+        :type ike_auth_alg: str (optional)
+
+        :param ike_pfs: DH分组，取值范围：group2/group5/group14/group24
+        :type ike_pfs: str (optional)
+
+        :param ike_life_time: SA生命周期,取值范围：60-86400
+        :type ike_life_time: str (optional)
         """
         super().__init__()
         self.ike_version = ike_version
@@ -40,10 +44,12 @@ class IkeConfig(AbstractModel):
 
     def to_dict(self):
         """
-        Convert the IkeConfig object to a dictionary.
-        
-        Returns:
-            dict: A dictionary containing all non-None attributes of the IkeConfig object.
+        Convert the model instance to a dictionary representation.
+
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the model
+        :rtype: dict
         """
         _map = super().to_dict()
         if _map is not None:
@@ -63,16 +69,20 @@ class IkeConfig(AbstractModel):
             result['ikeLifeTime'] = self.ike_life_time
         return result
 
-
     def from_dict(self, m):
         """
-        Initialize the IkeConfig object from a dictionary.
-        
-        Args:
-            m (dict): A dictionary containing IKE configuration parameters.
-            
-        Returns:
-            IkeConfig: The IkeConfig object initialized from the dictionary.
+        Populate the model instance from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing model data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: IkeConfig
+
+        :raises TypeError: If input is not a dictionary type
+        :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
         if m.get('ikeVersion') is not None:

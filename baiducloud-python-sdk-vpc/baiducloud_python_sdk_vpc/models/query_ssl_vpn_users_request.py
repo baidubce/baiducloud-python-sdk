@@ -1,19 +1,32 @@
+"""
+Request entity for QuerySslVpnUsersRequest information.
+"""
+
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
 class QuerySslVpnUsersRequest(AbstractModel):
     """
-    查询SSL VPN用户请求类
+    Request entity for QuerySslVpnUsersRequest operation.
+
+    This class encapsulates all parameters for the API request.
     """
-    
+
     def __init__(self, vpn_id, marker=None, max_keys=None, user_name=None):
         """
-        初始化查询SSL VPN用户请求
-        
-        :param vpn_id: VPN实例ID
-        :param marker: 分页标记
-        :param max_keys: 每页返回的最大数量
-        :param user_name: 用户名
+        Initialize QuerySslVpnUsersRequest request entity.
+
+        :param vpn_id: vpn_id parameter
+        :type vpn_id: str (required)
+
+        :param marker: marker parameter
+        :type marker: str (optional)
+
+        :param max_keys: max_keys parameter
+        :type max_keys: int (optional)
+
+        :param user_name: user_name parameter
+        :type user_name: str (optional)
         """
         super().__init__()
         self.vpn_id = vpn_id
@@ -23,9 +36,12 @@ class QuerySslVpnUsersRequest(AbstractModel):
 
     def to_dict(self):
         """
-        将对象转换为字典
-        
-        :return: 包含对象属性的字典
+        Convert the request entity to a dictionary representation.
+
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the request
+        :rtype: dict
         """
         _map = super().to_dict()
         if _map is not None:
@@ -33,13 +49,20 @@ class QuerySslVpnUsersRequest(AbstractModel):
         result = dict()
         return result
 
-
     def from_dict(self, m):
         """
-        从字典初始化对象
-        
-        :param m: 包含对象属性的字典
-        :return: 初始化后的对象
+        Populate the request entity from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing request data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: QuerySslVpnUsersRequest
+
+        :raises TypeError: If input is not a dictionary or field type mismatch
+        :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
         if m.get('vpnId') is not None:

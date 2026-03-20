@@ -1,5 +1,5 @@
 """
-This module provides the BatchCreateSslVpnUsersResponse class for handling SSL VPN user creation responses.
+Request entity for BatchCreateSslVpnUsersResponse information.
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
@@ -7,28 +7,28 @@ from baiducloud_python_sdk_core.bce_response import BceResponse
 
 class BatchCreateSslVpnUsersResponse(BceResponse):
     """
-    Represents a response for batch creating SSL VPN users.
-
-    Attributes:
-        ssl_vpn_user_ids (list): List of created SSL VPN user IDs.
+    BatchCreateSslVpnUsersResponse
     """
-    
+
     def __init__(self, ssl_vpn_user_ids=None):
         """
-        Initializes the BatchCreateSslVpnUsersResponse instance.
+        Initialize BatchCreateSslVpnUsersResponse response.
 
-        Args:
-            ssl_vpn_user_ids (list, optional): List of SSL VPN user IDs. Defaults to None.
+        :param ssl_vpn_user_ids: SSL-VPN用户ID列表
+        :type ssl_vpn_user_ids: List[str] (optional)
         """
         super().__init__()
         self.ssl_vpn_user_ids = ssl_vpn_user_ids
 
     def to_dict(self):
         """
-        Converts the response object to a dictionary.
+        Convert the response instance to a dictionary representation.
 
-        Returns:
-            dict: A dictionary containing the response data.
+        Includes metadata from the parent BceResponse class.
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the response
+        :rtype: dict
         """
         _map = super().to_dict()
         if _map is not None:
@@ -42,13 +42,18 @@ class BatchCreateSslVpnUsersResponse(BceResponse):
 
     def from_dict(self, m):
         """
-        Populates the response object from a dictionary.
+        Populate the response instance from a dictionary.
 
-        Args:
-            m (dict): A dictionary containing the response data.
+        Nested dictionaries are recursively converted to model objects.
 
-        Returns:
-            BatchCreateSslVpnUsersResponse: The populated response object.
+        :param m: Dictionary containing response data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: BatchCreateSslVpnUsersResponse
+
+        :raises TypeError: If input is not a dictionary or field type mismatch
+        :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
         if m.get('sslVpnUserIds') is not None:

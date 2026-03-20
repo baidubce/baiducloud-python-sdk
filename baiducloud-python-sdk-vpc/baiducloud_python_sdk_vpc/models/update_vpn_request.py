@@ -1,19 +1,32 @@
+"""
+Request entity for UpdateVpnRequest information.
+"""
+
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
 class UpdateVpnRequest(AbstractModel):
     """
-    更新VPN请求类
+    Request entity for UpdateVpnRequest operation.
+
+    This class encapsulates all parameters for the API request.
     """
-    
+
     def __init__(self, vpn_id, client_token=None, vpn_name=None, description=None):
         """
-        初始化UpdateVpnRequest实例
-        
-        :param vpn_id: VPN ID
-        :param client_token: 客户端token
-        :param vpn_name: VPN名称
-        :param description: VPN描述
+        Initialize UpdateVpnRequest request entity.
+
+        :param vpn_id: vpn_id parameter
+        :type vpn_id: str (required)
+
+        :param client_token: client_token parameter
+        :type client_token: str (optional)
+
+        :param vpn_name: VPN名称,不能取值\"default\",长度不超过65个字符，可由数字，字符，下划线组成
+        :type vpn_name: str (optional)
+
+        :param description: VPN描述，不超过200字符
+        :type description: str (optional)
         """
         super().__init__()
         self.vpn_id = vpn_id
@@ -23,9 +36,11 @@ class UpdateVpnRequest(AbstractModel):
 
     def to_dict(self):
         """
-        将对象转换为字典
-        
-        :return: 包含对象属性的字典
+        Convert the request entity to a dictionary representation.
+
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the request
         :rtype: dict
         """
         _map = super().to_dict()
@@ -38,15 +53,20 @@ class UpdateVpnRequest(AbstractModel):
             result['description'] = self.description
         return result
 
-
     def from_dict(self, m):
         """
-        从字典初始化对象
-        
-        :param m: 包含对象属性的字典
+        Populate the request entity from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing request data
         :type m: dict
-        :return: 初始化后的对象
+
+        :return: Self reference for method chaining
         :rtype: UpdateVpnRequest
+
+        :raises TypeError: If input is not a dictionary or field type mismatch
+        :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
         if m.get('vpnId') is not None:

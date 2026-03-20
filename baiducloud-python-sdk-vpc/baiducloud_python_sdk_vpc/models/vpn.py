@@ -1,3 +1,7 @@
+"""
+Vpn information
+"""
+
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 from baiducloud_python_sdk_vpc.models.vpn_conn import VpnConn
@@ -9,28 +13,83 @@ from baiducloud_python_sdk_vpc.models.tag_model import TagModel
 
 class Vpn(AbstractModel):
     """
-    Vpn class represents a virtual private network configuration.
-    
-    Attributes:
-        vpn_id (str): The ID of the VPN.
-        vpn_name (str): The name of the VPN.
-        type (str): The type of the VPN.
-        description (str): The description of the VPN.
-        status (str): The status of the VPN.
-        expired_time (str): The expired time of the VPN.
-        payment_timing (str): The payment timing of the VPN.
-        eip (str): The EIP associated with the VPN.
-        max_connection (int): The maximum connections of the VPN.
-        bandwidth_in_mbps (int): The bandwidth in Mbps of the VPN.
-        vpc_id (str): The VPC ID associated with the VPN.
-        vpn_conn_num (int): The number of VPN connections.
-        vpn_conns (list): List of VPN connections.
-        ssl_vpn_server (SslVpnServer): The SSL VPN server configuration.
-        delete_protect (bool): Whether delete protection is enabled.
-        tags (list): List of tags associated with the VPN.
-        create_time (str): The creation time of the VPN.
+    Vpn
     """
-    def __init__(self, vpn_id=None, vpn_name=None, type=None, description=None, status=None, expired_time=None, payment_timing=None, eip=None, max_connection=None, bandwidth_in_mbps=None, vpc_id=None, vpn_conn_num=None, vpn_conns=None, ssl_vpn_server=None, delete_protect=None, tags=None, create_time=None):
+
+    def __init__(
+        self,
+        vpn_id=None,
+        vpn_name=None,
+        type=None,
+        description=None,
+        status=None,
+        expired_time=None,
+        payment_timing=None,
+        eip=None,
+        max_connection=None,
+        bandwidth_in_mbps=None,
+        vpc_id=None,
+        vpn_conn_num=None,
+        vpn_conns=None,
+        ssl_vpn_server=None,
+        delete_protect=None,
+        tags=None,
+        create_time=None,
+    ):
+        """
+        Initialize Vpn instance.
+
+        :param vpn_id: VPN的ID
+        :type vpn_id: str (optional)
+
+        :param vpn_name: 名称
+        :type vpn_name: str (optional)
+
+        :param type: 网关类型，取值[IPSec, SSL]
+        :type type: str (optional)
+
+        :param description: 描述
+        :type description: str (optional)
+
+        :param status: vpn状态，active：可用，building：创建中，unconfigured：未配置
+        :type status: str (optional)
+
+        :param expired_time: 到期时间
+        :type expired_time: str (optional)
+
+        :param payment_timing: 计费类型
+        :type payment_timing: str (optional)
+
+        :param eip: 公网IP
+        :type eip: str (optional)
+
+        :param max_connection: SSL-VPN最大客户端连接数
+        :type max_connection: int (optional)
+
+        :param bandwidth_in_mbps: EIP带宽
+        :type bandwidth_in_mbps: int (optional)
+
+        :param vpc_id: VPC的ID
+        :type vpc_id: str (optional)
+
+        :param vpn_conn_num: 隧道数量
+        :type vpn_conn_num: int (optional)
+
+        :param vpn_conns: VPN隧道列表
+        :type vpn_conns: List[VpnConn] (optional)
+
+        :param ssl_vpn_server: ssl_vpn_server attribute
+        :type ssl_vpn_server: SslVpnServer (optional)
+
+        :param delete_protect: 是否开启释放保护
+        :type delete_protect: bool (optional)
+
+        :param tags: VPN绑定的标签集合
+        :type tags: List[TagModel] (optional)
+
+        :param create_time: 创建时间
+        :type create_time: str (optional)
+        """
         super().__init__()
         self.vpn_id = vpn_id
         self.vpn_name = vpn_name
@@ -52,10 +111,12 @@ class Vpn(AbstractModel):
 
     def to_dict(self):
         """
-        Convert the Vpn object to a dictionary.
-        
-        Returns:
-            dict: A dictionary containing all attributes of the Vpn object.
+        Convert the model instance to a dictionary representation.
+
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the model
+        :rtype: dict
         """
         _map = super().to_dict()
         if _map is not None:
@@ -97,16 +158,20 @@ class Vpn(AbstractModel):
             result['createTime'] = self.create_time
         return result
 
-
     def from_dict(self, m):
         """
-        Convert a dictionary to a Vpn object.
-        
-        Args:
-            m (dict): A dictionary containing attributes to set on the Vpn object.
-            
-        Returns:
-            Vpn: The Vpn object with attributes set from the dictionary.
+        Populate the model instance from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing model data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: Vpn
+
+        :raises TypeError: If input is not a dictionary type
+        :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
         if m.get('vpnId') is not None:
@@ -134,19 +199,13 @@ class Vpn(AbstractModel):
         if m.get('vpnConnNum') is not None:
             self.vpn_conn_num = m.get('vpnConnNum')
         if m.get('vpnConns') is not None:
-            self.vpn_conns = [
-            VpnConn().from_dict(i)
-            for i in m.get('vpnConns')
-            ]
+            self.vpn_conns = [VpnConn().from_dict(i) for i in m.get('vpnConns')]
         if m.get('sslVpnServer') is not None:
             self.ssl_vpn_server = SslVpnServer().from_dict(m.get('sslVpnServer'))
         if m.get('deleteProtect') is not None:
             self.delete_protect = m.get('deleteProtect')
         if m.get('tags') is not None:
-            self.tags = [
-            TagModel().from_dict(i)
-            for i in m.get('tags')
-            ]
+            self.tags = [TagModel().from_dict(i) for i in m.get('tags')]
         if m.get('createTime') is not None:
             self.create_time = m.get('createTime')
         return self

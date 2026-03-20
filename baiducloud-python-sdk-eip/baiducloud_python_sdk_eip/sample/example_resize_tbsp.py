@@ -1,3 +1,7 @@
+"""
+Example for eip resize_tbsp method.
+"""
+
 from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
@@ -10,14 +14,12 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(credentials=BceCredentials(access_key_id, secret_access_key), endpoint = endpoint)
-        EipClient = EipClient(config)
-        request = ResizeTbspRequest(
-            id = "", 
-            ip_capacity = 0, 
-            client_token = ""
+        config = BceClientConfiguration(
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        res = EipClient.resize_tbsp(request)
+        client = EipClient(config)
+        request = ResizeTbspRequest(id="", ip_capacity=0, client_token="")
+        res = client.resize_tbsp(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。

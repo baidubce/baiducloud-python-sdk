@@ -1,5 +1,5 @@
 """
-This module provides the CreateSslVpnServerResponse class for handling SSL VPN server creation responses.
+Request entity for CreateSslVpnServerResponse information.
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
@@ -7,28 +7,28 @@ from baiducloud_python_sdk_core.bce_response import BceResponse
 
 class CreateSslVpnServerResponse(BceResponse):
     """
-    Represents a response for creating an SSL VPN server.
-
-    Attributes:
-        ssl_vpn_server_id (str): The ID of the created SSL VPN server.
+    CreateSslVpnServerResponse
     """
-    
+
     def __init__(self, ssl_vpn_server_id=None):
         """
-        Initializes the CreateSslVpnServerResponse instance.
+        Initialize CreateSslVpnServerResponse response.
 
-        Args:
-            ssl_vpn_server_id (str, optional): The ID of the created SSL VPN server. Defaults to None.
+        :param ssl_vpn_server_id: SSL-VPN服务端唯一ID
+        :type ssl_vpn_server_id: str (optional)
         """
         super().__init__()
         self.ssl_vpn_server_id = ssl_vpn_server_id
 
     def to_dict(self):
         """
-        Converts the response object to a dictionary.
+        Convert the response instance to a dictionary representation.
 
-        Returns:
-            dict: A dictionary containing the response data.
+        Includes metadata from the parent BceResponse class.
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the response
+        :rtype: dict
         """
         _map = super().to_dict()
         if _map is not None:
@@ -42,13 +42,18 @@ class CreateSslVpnServerResponse(BceResponse):
 
     def from_dict(self, m):
         """
-        Populates the response object from a dictionary.
+        Populate the response instance from a dictionary.
 
-        Args:
-            m (dict): A dictionary containing the response data.
+        Nested dictionaries are recursively converted to model objects.
 
-        Returns:
-            CreateSslVpnServerResponse: The populated response object.
+        :param m: Dictionary containing response data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: CreateSslVpnServerResponse
+
+        :raises TypeError: If input is not a dictionary or field type mismatch
+        :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
         if m.get('sslVpnServerId') is not None:

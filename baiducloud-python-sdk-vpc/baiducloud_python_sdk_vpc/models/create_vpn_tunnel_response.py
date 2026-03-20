@@ -1,30 +1,34 @@
+"""
+Request entity for CreateVpnTunnelResponse information.
+"""
+
 from baiducloud_python_sdk_core.bce_response import BceResponse
 
 
 class CreateVpnTunnelResponse(BceResponse):
     """
-    CreateVpnTunnelResponse 用于表示创建VPN隧道的响应
-
-    Attributes:
-        vpn_conn_id (str): VPN连接ID
+    CreateVpnTunnelResponse
     """
-    
+
     def __init__(self, vpn_conn_id=None):
         """
-        初始化CreateVpnTunnelResponse实例
+        Initialize CreateVpnTunnelResponse response.
 
-        Args:
-            vpn_conn_id (str, optional): VPN连接ID. 默认为None.
+        :param vpn_conn_id: VPN隧道的ID
+        :type vpn_conn_id: str (optional)
         """
         super().__init__()
         self.vpn_conn_id = vpn_conn_id
 
     def to_dict(self):
         """
-        将响应对象转换为字典
+        Convert the response instance to a dictionary representation.
 
-        Returns:
-            dict: 包含响应数据的字典
+        Includes metadata from the parent BceResponse class.
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the response
+        :rtype: dict
         """
         _map = super().to_dict()
         if _map is not None:
@@ -36,16 +40,20 @@ class CreateVpnTunnelResponse(BceResponse):
             result['vpnConnId'] = self.vpn_conn_id
         return result
 
-
     def from_dict(self, m):
         """
-        从字典数据初始化响应对象
+        Populate the response instance from a dictionary.
 
-        Args:
-            m (dict): 包含响应数据的字典
+        Nested dictionaries are recursively converted to model objects.
 
-        Returns:
-            CreateVpnTunnelResponse: 初始化后的响应对象
+        :param m: Dictionary containing response data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: CreateVpnTunnelResponse
+
+        :raises TypeError: If input is not a dictionary or field type mismatch
+        :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
         if m.get('vpnConnId') is not None:
