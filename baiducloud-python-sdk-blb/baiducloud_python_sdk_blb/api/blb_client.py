@@ -13,6 +13,7 @@ from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import http_methods
 from baiducloud_python_sdk_blb.models.billing_change_post_to_pre_blb_response import BillingChangePostToPreBlbResponse
 from baiducloud_python_sdk_blb.models.billing_change_pre_to_post_blb_response import BillingChangePreToPostBlbResponse
+from baiducloud_python_sdk_blb.models.blb_inquiry_response import BlbInquiryResponse
 from baiducloud_python_sdk_blb.models.resize_blb_response import ResizeBlbResponse
 
 _logger = logging.getLogger(__name__)
@@ -137,14 +138,16 @@ class BlbClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing BlbInquiryResponse data
+        :rtype: BlbInquiryResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(BlbClient.VERSION_V1, BlbClient.CONSTANT_BLB, BlbClient.CONSTANT_PRICE)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=config)
+        return self._send_request(
+            http_methods.POST, path=path, body=request.to_json_string(), config=config, model=BlbInquiryResponse
+        )
 
     def refund_blb(self, request, config=None):
         """

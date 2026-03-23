@@ -3,6 +3,9 @@ import unittest
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
 from baiducloud_python_sdk_blb.api.blb_client import BlbClient
+from baiducloud_python_sdk_blb.models.billing import Billing
+from baiducloud_python_sdk_blb.models.blb_inquiry_request import BlbInquiryRequest
+from baiducloud_python_sdk_blb.models.reservation import Reservation
 
 
 class BlbClientTest(unittest.TestCase):
@@ -34,7 +37,21 @@ class BlbClientTest(unittest.TestCase):
         self.client.billing_change_pre_to_post_blb(None)
 
     def test_blb_inquiry(self):
-        self.client.blb_inquiry(None)
+        request = BlbInquiryRequest(
+            blb_type='ipv6Application',
+            performance_level='small1',
+            count=1,
+            billing=Billing(
+                payment_timing='Prepaid',
+                reservation=Reservation(reservation_length=1),
+            ),
+        )
+        response = self.client.blb_inquiry(request)
+        print('metadata:', response.metadata)
+        print('prices:', response.prices)
+        if response.prices:
+            for p in response.prices:
+                print(' -', p.to_dict())
 
     def test_refund_blb(self):
         self.client.refund_blb(None)
