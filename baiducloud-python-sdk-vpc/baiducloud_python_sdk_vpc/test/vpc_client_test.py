@@ -33,6 +33,9 @@ class VpcClientTest(unittest.TestCase):
     def test_close_vpc_relay(self):
         self.client.close_vpc_relay(None)
 
+    def test_create_gateway_limit_rules(self):
+        self.client.create_gateway_limit_rules(None)
+
     def test_create_ip_reserved(self):
         self.client.create_ip_reserved(None)
 
@@ -53,6 +56,9 @@ class VpcClientTest(unittest.TestCase):
 
     def test_create_vpn_tunnel(self):
         self.client.create_vpn_tunnel(None)
+
+    def test_delete_gateway_limit_rule(self):
+        self.client.delete_gateway_limit_rule(None)
 
     def test_delete_ip_reserve(self):
         self.client.delete_ip_reserve(None)
@@ -80,6 +86,9 @@ class VpcClientTest(unittest.TestCase):
 
     def test_list_ip_reserve(self):
         self.client.list_ip_reserve(None)
+
+    def test_modify_gateway_limit_rules(self):
+        self.client.modify_gateway_limit_rules(None)
 
     def test_open_vpc_relay(self):
         self.client.open_vpc_relay(None)
@@ -153,12 +162,16 @@ class VpcClientTest(unittest.TestCase):
     def test_user_gateway_list(self):
         self.client.user_gateway_list(None)
 
+    def test_view_gateway_limit_rules(self):
+        self.client.view_gateway_limit_rules(None)
+
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()
     suite.addTest(VpcClientTest("test_batch_create_ssl_vpn_users"))
     suite.addTest(VpcClientTest("test_bind_eip"))
     suite.addTest(VpcClientTest("test_close_vpc_relay"))
+    suite.addTest(VpcClientTest("test_create_gateway_limit_rules"))
     suite.addTest(VpcClientTest("test_create_ip_reserved"))
     suite.addTest(VpcClientTest("test_create_ssl_vpn_server"))
     suite.addTest(VpcClientTest("test_create_subnet"))
@@ -166,6 +179,7 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_create_vpc"))
     suite.addTest(VpcClientTest("test_create_vpn"))
     suite.addTest(VpcClientTest("test_create_vpn_tunnel"))
+    suite.addTest(VpcClientTest("test_delete_gateway_limit_rule"))
     suite.addTest(VpcClientTest("test_delete_ip_reserve"))
     suite.addTest(VpcClientTest("test_delete_ssl_vpn_server"))
     suite.addTest(VpcClientTest("test_delete_ssl_vpn_user"))
@@ -175,6 +189,7 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_delete_vpn_tunnel"))
     suite.addTest(VpcClientTest("test_get_vpc_resource_ip_info"))
     suite.addTest(VpcClientTest("test_list_ip_reserve"))
+    suite.addTest(VpcClientTest("test_modify_gateway_limit_rules"))
     suite.addTest(VpcClientTest("test_open_vpc_relay"))
     suite.addTest(VpcClientTest("test_query_specified_subnet"))
     suite.addTest(VpcClientTest("test_query_specified_vpc"))
@@ -199,5 +214,6 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_update_vpn_tunnel"))
     suite.addTest(VpcClientTest("test_user_gateway_details"))
     suite.addTest(VpcClientTest("test_user_gateway_list"))
+    suite.addTest(VpcClientTest("test_view_gateway_limit_rules"))
     runner = unittest.TextTestRunner()
     runner.run(suite)

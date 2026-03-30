@@ -1,3 +1,5 @@
+2026-03-30 Version: 0.0.7
+- vpc 新增网关限速规则sdk
 2026-03-16 Version: 0.0.6
 - vpn sdk 支持
 2026-02-26 Version: 0.0.5

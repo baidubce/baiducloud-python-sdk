@@ -12,6 +12,7 @@ from baiducloud_python_sdk_core.http import bce_http_client
 from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import http_methods
 from baiducloud_python_sdk_vpc.models.batch_create_ssl_vpn_users_response import BatchCreateSslVpnUsersResponse
+from baiducloud_python_sdk_vpc.models.create_gateway_limit_rules_response import CreateGatewayLimitRulesResponse
 from baiducloud_python_sdk_vpc.models.create_ip_reserved_response import CreateIpReservedResponse
 from baiducloud_python_sdk_vpc.models.create_ssl_vpn_server_response import CreateSslVpnServerResponse
 from baiducloud_python_sdk_vpc.models.create_subnet_response import CreateSubnetResponse
@@ -33,6 +34,7 @@ from baiducloud_python_sdk_vpc.models.search_for_vpn_details_response import Sea
 from baiducloud_python_sdk_vpc.models.search_vpn_tunnel_response import SearchVpnTunnelResponse
 from baiducloud_python_sdk_vpc.models.user_gateway_details_response import UserGatewayDetailsResponse
 from baiducloud_python_sdk_vpc.models.user_gateway_list_response import UserGatewayListResponse
+from baiducloud_python_sdk_vpc.models.view_gateway_limit_rules_response import ViewGatewayLimitRulesResponse
 
 _logger = logging.getLogger(__name__)
 
@@ -57,6 +59,10 @@ class VpcClient(BceBaseClient):
     CONSTANT_RESOURCE_IP = b'resourceIp'
 
     CONSTANT_CGW = b'cgw'
+
+    CONSTANT_GATEWAY = b'gateway'
+
+    CONSTANT_LIMITRULE = b'limitrule'
 
     CONSTANT_SSL_VPN_USER = b'sslVpnUser'
 
@@ -155,6 +161,34 @@ class VpcClient(BceBaseClient):
         if request.client_token is not None:
             params['clientToken'] = request.client_token
         return self._send_request(http_methods.PUT, path=path, params=params, config=config)
+
+    def create_gateway_limit_rules(self, request, config=None):
+        """
+        create_gateway_limit_rules
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing CreateGatewayLimitRulesResponse data
+        :rtype: CreateGatewayLimitRulesResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_GATEWAY, VpcClient.CONSTANT_LIMITRULE)
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=config,
+            model=CreateGatewayLimitRulesResponse,
+        )
 
     def create_ip_reserved(self, request, config=None):
         """
@@ -355,6 +389,29 @@ class VpcClient(BceBaseClient):
             config=config,
             model=CreateVpnTunnelResponse,
         )
+
+    def delete_gateway_limit_rule(self, request, config=None):
+        """
+        delete_gateway_limit_rule
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1, VpcClient.CONSTANT_GATEWAY, VpcClient.CONSTANT_LIMITRULE, request.glr_id
+        )
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        return self._send_request(http_methods.DELETE, path=path, params=params, config=config)
 
     def delete_ip_reserve(self, request, config=None):
         """
@@ -572,6 +629,31 @@ class VpcClient(BceBaseClient):
             params['maxKeys'] = request.max_keys
         return self._send_request(
             http_methods.GET, path=path, params=params, config=config, model=ListIpReserveResponse
+        )
+
+    def modify_gateway_limit_rules(self, request, config=None):
+        """
+        modify_gateway_limit_rules
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1, VpcClient.CONSTANT_GATEWAY, VpcClient.CONSTANT_LIMITRULE, request.glr_id
+        )
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=config
         )
 
     def open_vpc_relay(self, request, config=None):
@@ -1161,6 +1243,39 @@ class VpcClient(BceBaseClient):
             params['maxKeys'] = request.max_keys
         return self._send_request(
             http_methods.GET, path=path, params=params, config=config, model=UserGatewayListResponse
+        )
+
+    def view_gateway_limit_rules(self, request, config=None):
+        """
+        view_gateway_limit_rules
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing ViewGatewayLimitRulesResponse data
+        :rtype: ViewGatewayLimitRulesResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_GATEWAY, VpcClient.CONSTANT_LIMITRULE)
+        params = {}
+        if request.service_type is not None:
+            params['serviceType'] = request.service_type
+        if request.name is not None:
+            params['name'] = request.name
+        if request.glr_id is not None:
+            params['glrId'] = request.glr_id
+        if request.resource_id is not None:
+            params['resourceId'] = request.resource_id
+        if request.marker is not None:
+            params['marker'] = request.marker
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
+        return self._send_request(
+            http_methods.GET, path=path, params=params, config=config, model=ViewGatewayLimitRulesResponse
         )
 
     def _merge_config(self, config=None):
