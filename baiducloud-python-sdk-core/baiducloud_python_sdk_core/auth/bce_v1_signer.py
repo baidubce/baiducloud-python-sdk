@@ -37,6 +37,7 @@ def _get_canonical_headers(headers, headers_to_sign=None):
                                b"content-length",
                                b"content-type"])
     result = []
+    actual_signed_headers = set()
     for k in headers:
         k_lower = k.strip().lower()
         value = utils.convert_to_standard_string(headers[k]).strip()
@@ -44,8 +45,9 @@ def _get_canonical_headers(headers, headers_to_sign=None):
                 or k_lower in headers_to_sign:
             str_tmp = b"%s:%s" % (utils.normalize_string(k_lower), utils.normalize_string(value))
             result.append(str_tmp)
+            actual_signed_headers.add(k_lower)
     result.sort()
-    return (b'\n').join(result)
+    return (b'\n').join(result), actual_signed_headers
 
 
 def sign(credentials, http_method, path, headers, params,
@@ -75,7 +77,9 @@ def sign(credentials, http_method, path, headers, params,
     canonical_uri = path
     canonical_querystring = utils.get_canonical_querystring(params, True)
 
-    canonical_headers = _get_canonical_headers(headers, headers_to_sign)
+    # 获取规范化 headers 字符串和实际签名的 headers 列表
+    canonical_headers, actual_signed_headers = _get_canonical_headers(headers, headers_to_sign)
+    
     string_to_sign = (b'\n').join([
         http_method, canonical_uri, 
         canonical_querystring, canonical_headers
@@ -84,8 +88,10 @@ def sign(credentials, http_method, path, headers, params,
     # convert to bytes
     sign_result = compat.convert_to_bytes(sign_result)
 
-    if headers_to_sign:
-        result = b'%s/%s/%s' % (sign_key_info, (b';').join(headers_to_sign), sign_result)
+    if actual_signed_headers:
+        # 排序以保证顺序一致性
+        sorted_signed_headers = sorted(actual_signed_headers)
+        result = b'%s/%s/%s' % (sign_key_info, (b';').join(sorted_signed_headers), sign_result)
     else:
         result = b'%s//%s' % (sign_key_info, sign_result)
 

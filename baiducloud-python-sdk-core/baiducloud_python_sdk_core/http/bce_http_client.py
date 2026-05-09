@@ -160,17 +160,19 @@ def send_request(
 
     if isinstance(body, str):
         body = body.encode(baiducloud_python_sdk_core.DEFAULT_ENCODING)
+    offset = None
     if not body:
         headers[http_headers.CONTENT_LENGTH] = 0
     elif isinstance(body, bytes):
         headers[http_headers.CONTENT_LENGTH] = len(body)
-    elif http_headers.CONTENT_LENGTH not in headers:
-        raise ValueError(b'No %s is specified.' % http_headers.CONTENT_LENGTH)
-    # store the offset of fp body
-    offset = None
-    if hasattr(body, "tell") and hasattr(body, "seek"):
-        offset = body.tell()
-
+    else:
+        if hasattr(body, "tell") and hasattr(body, "seek"):
+            offset = body.tell()
+        if http_headers.CONTENT_LENGTH not in headers:
+            from baiducloud_python_sdk_core.util import request_body_utils
+            content_length = request_body_utils._calculate_content_length(body)
+            if content_length is not None:
+                headers[http_headers.CONTENT_LENGTH] = content_length
     protocol, host, port = utils.parse_host_port(request_endpoint, config.protocol)
 
     headers[http_headers.HOST] = host

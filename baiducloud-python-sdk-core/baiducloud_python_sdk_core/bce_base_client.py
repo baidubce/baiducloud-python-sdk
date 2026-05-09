@@ -88,3 +88,79 @@ class BceBaseClient(object):
     def _set_if_nonnull(self, params, param_name=None, value=None):
         if value is not None:
             params[param_name] = value
+
+    def _extract_host_annotation_value(self, bce_request):
+        if bce_request is None:
+            return None
+        try:
+            from baiducloud_python_sdk_core.annotation import is_host_field
+            # 获取类的所有属性（包括property）
+            for attr_name in dir(bce_request):
+                # 跳过私有属性和内置属性
+                if attr_name.startswith('_'):
+                    continue
+                try:
+                    # 获取类属性（property 对象）
+                    class_attr = getattr(type(bce_request), attr_name, None)
+                    # 检查是否被 @host 装饰
+                    if class_attr is not None and is_host_field(class_attr):
+                        # 获取实例属性的值
+                        value = getattr(bce_request, attr_name, None)
+                        if value is not None and isinstance(value, str):
+                            return value
+                    # 也检查 property 的 fget
+                    if isinstance(class_attr, property) and class_attr.fget is not None:
+                        if is_host_field(class_attr.fget):
+                            value = getattr(bce_request, attr_name, None)
+                            if value is not None and isinstance(value, str):
+                                return value
+                except (AttributeError, TypeError):
+                    # 如果访问某个属性失败，跳过
+                    continue
+        except ImportError:
+            # 如果 annotation 模块不存在，返回 None
+            pass
+        except Exception:
+            # 其他异常也返回 None，不影响正常流程
+            pass
+
+        return None
+
+    def _build_host_endpoint(self, original_endpoint, host_prefix):
+        if not original_endpoint or not host_prefix:
+            return original_endpoint
+        try:
+            # 转换为字符串进行处理
+            if isinstance(original_endpoint, bytes):
+                endpoint_str = original_endpoint.decode('utf-8')
+            else:
+                endpoint_str = original_endpoint
+            # 检查是否包含协议
+            if '://' in endpoint_str:
+                protocol, host = endpoint_str.split('://', 1)
+                result = protocol + '://' + host_prefix + '.' + host
+            else:
+                result = host_prefix + '.' + endpoint_str
+            # 返回与输入相同的类型
+            if isinstance(original_endpoint, bytes):
+                return result.encode('utf-8')
+            return result
+        except Exception:
+            # 如果构建失败，返回原始 endpoint
+            return original_endpoint
+    
+    def _create_request_with_host(self, bce_request, config=None):
+        # 1. 合并配置
+        merged_config = copy.deepcopy(self.config)
+        if config is not None:
+            merged_config.merge_non_none_values(config)
+        
+        # 2. 提取 @host 注解值
+        host_prefix = self._extract_host_annotation_value(bce_request)
+        
+        # 3. 如果存在 @host 注解，修改 endpoint
+        if host_prefix:
+            merged_config.endpoint = self._build_host_endpoint(
+                merged_config.endpoint, host_prefix)
+        
+        return merged_config

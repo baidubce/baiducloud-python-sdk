@@ -33,16 +33,10 @@ class BceResponse(object):
     def set_metadata_from_headers(self, headers):
         """
 
-        :param headers:
+        :param headers: Response headers dict with original header names
         :return:
         """
-        for k, v in iteritems(headers):
-            if k.startswith(compat.convert_to_string(http_headers.BCE_PREFIX)):
-                k = 'bce_' + k[len(compat.convert_to_string(http_headers.BCE_PREFIX)):]
-            k = utils.pythonize_name(k.replace('-', '_'))
-            if k.lower() == compat.convert_to_string(http_headers.ETAG.lower()):
-                v = v.strip('"')
-            self.metadata[k] = v
+        self.metadata = dict(headers) if headers else {}
 
     def to_dict(self):
         return self._map
@@ -59,3 +53,75 @@ class BceResponse(object):
         if item.startswith('__'):
             raise AttributeError
         return None
+
+
+class BceStreamResponse(BceResponse):
+    """
+    Response class for BCE responses that contain a file stream.
+    The caller is responsible for closing the stream after use.
+    """
+    def __init__(self):
+        super(BceStreamResponse, self).__init__()
+        self._stream = None
+        self._content_type = None
+        self._content_length = -1
+        self._http_response = None
+
+    @property
+    def stream(self):
+        """
+        Get the raw content stream from the HTTP response.
+        The caller is responsible for reading and closing this stream.
+        """
+        return self._stream
+
+    @stream.setter
+    def stream(self, value):
+        self._stream = value
+
+    @property
+    def content_type(self):
+        """Get the content type of the response."""
+        return self._content_type
+
+    @content_type.setter
+    def content_type(self, value):
+        self._content_type = value
+
+    @property
+    def content_length(self):
+        """Get the content length of the response, or -1 if unknown."""
+        return self._content_length
+
+    @content_length.setter
+    def content_length(self, value):
+        self._content_length = value
+
+    def read(self, size=None):
+        """
+        Read content from the stream.
+        :param size: Number of bytes to read, or None to read all.
+        :return: The content bytes.
+        """
+        if self._stream is None:
+            return b''
+        if size is None:
+            return self._stream.read()
+        return self._stream.read(size)
+
+    def close(self):
+        """
+        Close the underlying stream and HTTP response.
+        Must be called after the stream has been fully consumed.
+        """
+        if self._http_response is not None:
+            self._http_response.close()
+            self._http_response = None
+        self._stream = None
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.close()
+        return False

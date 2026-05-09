@@ -22,6 +22,60 @@ from baiducloud_python_sdk_core import utils
 from baiducloud_python_sdk_core import compat
 from baiducloud_python_sdk_core.exception import BceClientError
 from baiducloud_python_sdk_core.exception import BceServerError
+from baiducloud_python_sdk_core.bce_response import BceStreamResponse
+
+
+def parse_stream(http_response, response):
+    """
+    Handle stream responses for both BceStreamResponse and Response models with stream fields.
+
+    For BceStreamResponse: sets _stream and _http_response
+    For Response models: finds the stream field (marked with x-bce-stream:download) and assigns http_response to it
+
+    :param http_response: the http_response object returned by HTTPConnection.getresponse()
+    :param response: response object (BceStreamResponse or Response model with stream field)
+    :return: True if handled as stream, False to continue handler chain
+    """
+    if isinstance(response, BceStreamResponse):
+        # Legacy BceStreamResponse handling
+        response._stream = http_response
+        response._http_response = http_response
+
+        # Get content type
+        content_type = None
+        for k, v in response.metadata.items():
+            if k.lower() == 'content-type':
+                content_type = v
+                break
+        response.content_type = content_type
+
+        # Get content length
+        content_length = -1
+        for k, v in response.metadata.items():
+            if k.lower() == 'content-length':
+                try:
+                    content_length = int(v)
+                except (ValueError, TypeError):
+                    pass
+                break
+        response.content_length = content_length
+
+        # Return True to stop the handler chain
+        return True
+
+    # Check if response model has a stream field (e.g., GetObjectResponse.object_content)
+    # Look for fields that should contain the stream (typically named like object_content, body, etc.)
+    stream_field_candidates = ['object_content', 'body', 'content', 'data']
+
+    for field_name in stream_field_candidates:
+        if hasattr(response, field_name):
+            # Set the http_response as the stream field value
+            setattr(response, field_name, http_response)
+            # Return True to indicate we handled the stream and stop further processing
+            return True
+    # Not a stream response, continue to next handler
+    return False
+
 
 def parse_json(http_response, response):
     """If the body is not empty, convert it to a python object and set as the value of
@@ -71,6 +125,7 @@ def parse_error(http_response, response):
         d = json.loads(compat.convert_to_string(body))
         bse = BceServerError(d['message'], code=d['code'], request_id=d['requestId'])
     if bse is None:
-        bse = BceServerError(http_response.reason, request_id=response.metadata.bce_request_id)
+        request_id = response.metadata.get('x-bce-request-id')
+        bse = BceServerError(http_response.reason, request_id=request_id)
     bse.status_code = http_response.status
     raise bse
