@@ -9,6 +9,9 @@
 # License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
 # either express or implied. See the License for the specific language governing permissions
 # and limitations under the License.
+"""
+Request body utility functions for encoding and filling HTTP request payloads.
+"""
 
 import io
 import json
@@ -32,15 +35,27 @@ DEFAULT_ENCODING = 'utf-8'
 
 
 def fill_payload(request, body_type, custom_content_type=None):
+    """
+    Fill request payload with body type.
+
+    :param request: The request object to encode
+    :param body_type: The BodyType enum specifying encoding format
+    :param custom_content_type: Optional custom Content-Type header value
+    :return: Tuple of (body_bytes, content_type, length)
+    """
     if not body_type.has_content_type():
         return None, None, 0
     
     # 确定最终的 content_type
     if custom_content_type:
-        final_content_type = custom_content_type if isinstance(custom_content_type, bytes) else custom_content_type.encode(DEFAULT_ENCODING)
+        final_content_type = (
+            custom_content_type
+            if isinstance(custom_content_type, bytes)
+            else custom_content_type.encode(DEFAULT_ENCODING)
+        )
     else:
         final_content_type = body_type.get_content_type().encode(DEFAULT_ENCODING)
-    
+
     if body_type == BodyType.JSON:
         try:
             body_bytes = _encode_as_json(request)
@@ -62,7 +77,18 @@ def fill_payload(request, body_type, custom_content_type=None):
         raise ValueError("Unsupported BodyType: {}".format(body_type))
 
 
-def fill_payload_as_stream_with_body_type(stream, body_type, content_length=None, custom_content_type=None):
+def fill_payload_as_stream_with_body_type(
+        stream, body_type, content_length=None, custom_content_type=None
+):
+    """
+    Fill payload from a stream with specified body type.
+
+    :param stream: The stream data source
+    :param body_type: The BodyType enum specifying encoding format
+    :param content_length: Optional content length (auto-calculated if None)
+    :param custom_content_type: Optional custom Content-Type header value
+    :return: Tuple of (stream, content_type, content_length)
+    """
     if stream is None:
         raise ValueError("stream cannot be None")
     
@@ -80,18 +106,39 @@ def fill_payload_as_stream_with_body_type(stream, body_type, content_length=None
 
 
 def fill_payload_as_byte_array_with_body_type(data, body_type):
+    """
+    Fill payload from byte array with specified body type.
+
+    :param data: The byte data to send
+    :param body_type: The BodyType enum specifying encoding format
+    :return: Tuple of (data, content_type, length)
+    """
     if data is None:
         raise ValueError("data cannot be None")
-    
+
     content_type = body_type.get_content_type().encode(DEFAULT_ENCODING)
     return data, content_type, len(data)
 
 
 def fill_payload_as_json(request, content_type=None):
+    """
+    Fill payload as JSON format.
+
+    :param request: The request object to encode
+    :param content_type: Optional custom Content-Type header value
+    :return: Tuple of (body_bytes, content_type, length)
+    """
     return fill_payload(request, BodyType.JSON, content_type)
 
 
 def fill_payload_as_form(request, content_type=None):
+    """
+    Fill payload as form-urlencoded format.
+
+    :param request: The request object to encode
+    :param content_type: Optional custom Content-Type header value
+    :return: Tuple of (body_bytes, content_type, length)
+    """
     return fill_payload(request, BodyType.FORM, content_type)
 
 
@@ -246,6 +293,13 @@ def _calculate_content_length(stream):
 # ========== Host 处理工具方法 ==========
 
 def build_host_endpoint(endpoint, host_param):
+    """
+    Build host endpoint with prefix parameter.
+
+    :param endpoint: The original endpoint URL or hostname
+    :param host_param: The prefix parameter to prepend to host
+    :return: Modified endpoint with host prefix
+    """
     if not host_param:
         return endpoint
     
@@ -278,10 +332,25 @@ def build_host_endpoint(endpoint, host_param):
 # ========== 请求体填充方法（类似 Java 的 RequestBodyUtils）==========
 
 def fill_request_as_json(headers, request):
+    """
+    Fill request headers with JSON body.
+
+    :param headers: The headers dict to populate
+    :param request: The request object to encode as JSON
+    :return: The JSON-encoded request body
+    """
     return fill_request_as_json_with_content_type(headers, request, None)
 
 
 def fill_request_as_json_with_content_type(headers, request, content_type):
+    """
+    Fill request headers with JSON body and custom content type.
+
+    :param headers: The headers dict to populate
+    :param request: The request object to encode as JSON
+    :param content_type: Optional custom Content-Type header value
+    :return: The JSON-encoded request body
+    """
     body, ct, length = fill_payload_as_json(request, content_type)
     headers[b'Content-Type'] = ct
     if length is not None:
@@ -309,6 +378,15 @@ def fill_request_as_form_with_content_type(headers, request, content_type):
 
 
 def fill_request_as_stream(headers, stream, content_type=None, content_length=None):
+    """
+    Fill request headers with stream body.
+
+    :param headers: The headers dict to populate
+    :param stream: The stream data to send
+    :param content_type: Optional Content-Type header value
+    :param content_length: Optional content length (auto-calculated if None)
+    :return: The stream body
+    """
     body, ct, auto_length = fill_payload_as_stream(stream, content_length, content_type)
     headers[b'Content-Type'] = ct
     # 如果用户指定了 content_length，使用用户的值
