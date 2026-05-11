@@ -119,12 +119,11 @@ def parse_error(http_response, response):
         return False
     if http_response.status // 100 == http.client.CONTINUE // 100:
         raise BceClientError(b'Can not handle 1xx http status code')
-    bse = None
     body = http_response.read()
     if body:
         d = json.loads(compat.convert_to_string(body))
         bse = BceServerError(d['message'], code=d['code'], request_id=d['requestId'])
-    if bse is None:
+    else:
         request_id = response.metadata.get('x-bce-request-id')
         bse = BceServerError(http_response.reason, request_id=request_id)
     bse.status_code = http_response.status
