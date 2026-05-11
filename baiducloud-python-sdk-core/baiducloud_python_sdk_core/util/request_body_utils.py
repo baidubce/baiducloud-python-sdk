@@ -98,7 +98,11 @@ def fill_payload_as_stream_with_body_type(
     
     # 确定最终的 content_type
     if custom_content_type:
-        final_content_type = custom_content_type if isinstance(custom_content_type, bytes) else custom_content_type.encode(DEFAULT_ENCODING)
+        final_content_type = (
+            custom_content_type
+            if isinstance(custom_content_type, bytes)
+            else custom_content_type.encode(DEFAULT_ENCODING)
+        )
     else:
         final_content_type = body_type.get_content_type().encode(DEFAULT_ENCODING)
     
@@ -143,6 +147,14 @@ def fill_payload_as_form(request, content_type=None):
 
 
 def fill_payload_as_stream(stream, content_length=None, content_type=None):
+    """
+    Fill payload from a stream with octet-stream content type.
+
+    :param stream: The stream data source
+    :param content_length: Optional content length (auto-calculated if None)
+    :param content_type: Optional Content-Type header value
+    :return: Tuple of (stream, content_type, content_length)
+    """
     if stream is None:
         raise ValueError("stream cannot be None")
     
@@ -159,6 +171,13 @@ def fill_payload_as_stream(stream, content_length=None, content_type=None):
 
 
 def fill_payload_as_byte_array(data, content_type=None):
+    """
+    Fill payload from a byte array with octet-stream content type.
+
+    :param data: The byte data to send
+    :param content_type: Optional Content-Type header value
+    :return: Tuple of (data, content_type, length)
+    """
     if data is None:
         raise ValueError("data cannot be None")
     
