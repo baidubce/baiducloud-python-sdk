@@ -49,7 +49,9 @@ class BodyType(Enum):
     
     def __str__(self):
         """String representation of the body type."""
-        return self.name if self.value is None else f"{self.name}({self.value})"
+        if self.value is None:
+            return self.name
+        return f"{self.name}({self.value})"
     
     def __repr__(self):
         """Detailed string representation."""

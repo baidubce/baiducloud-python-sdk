@@ -128,5 +128,4 @@ def parse_error(http_response, response):
         request_id = response.metadata.get('x-bce-request-id')
         bse = BceServerError(http_response.reason, request_id=request_id)
     bse.status_code = http_response.status
-    if bse is not None:
-        raise bse
+    raise bse
