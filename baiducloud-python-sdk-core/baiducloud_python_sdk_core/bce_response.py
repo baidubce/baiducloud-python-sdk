@@ -13,12 +13,7 @@
 """
 This module provides a general response class for BCE services.
 """
-from future.utils import iteritems
-from builtins import str
-from builtins import bytes
-from baiducloud_python_sdk_core import utils
-from baiducloud_python_sdk_core import compat
-from baiducloud_python_sdk_core.http import http_headers
+from requests.structures import CaseInsensitiveDict
 import json
 
 
@@ -36,7 +31,7 @@ class BceResponse(object):
         :param headers: Response headers dict with original header names
         :return:
         """
-        self.metadata = dict(headers) if headers else {}
+        self.metadata = CaseInsensitiveDict(headers) if headers else {}
 
     def to_dict(self):
         return self._map
