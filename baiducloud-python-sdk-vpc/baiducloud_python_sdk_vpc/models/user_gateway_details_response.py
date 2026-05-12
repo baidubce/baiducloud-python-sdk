@@ -55,7 +55,7 @@ class UserGatewayDetailsResponse(BceResponse):
             return _map
         result = dict()
         if self.metadata is not None:
-            result['metadata'] = self.metadata
+            result['metadata'] = dict(self.metadata)
         if self.cgw_id is not None:
             result['cgwId'] = self.cgw_id
         if self.name is not None:

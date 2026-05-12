@@ -35,7 +35,7 @@ class CreateVpcResponse(BceResponse):
             return _map
         result = dict()
         if self.metadata is not None:
-            result['metadata'] = self.metadata
+            result['metadata'] = dict(self.metadata)
         if self.vpc_id is not None:
             result['vpcId'] = self.vpc_id
         return result

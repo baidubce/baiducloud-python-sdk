@@ -52,7 +52,7 @@ class ViewGatewayLimitRulesResponse(BceResponse):
             return _map
         result = dict()
         if self.metadata is not None:
-            result['metadata'] = self.metadata
+            result['metadata'] = dict(self.metadata)
         if self.result is not None:
             result['result'] = [i.to_dict() for i in self.result]
         if self.marker is not None:

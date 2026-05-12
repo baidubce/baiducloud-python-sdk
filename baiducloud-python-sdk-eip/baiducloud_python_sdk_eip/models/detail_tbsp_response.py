@@ -106,7 +106,7 @@ class DetailTbspResponse(BceResponse):
             return _map
         result = dict()
         if self.metadata is not None:
-            result['metadata'] = self.metadata
+            result['metadata'] = dict(self.metadata)
         if self.name is not None:
             result['name'] = self.name
         if self.id is not None:

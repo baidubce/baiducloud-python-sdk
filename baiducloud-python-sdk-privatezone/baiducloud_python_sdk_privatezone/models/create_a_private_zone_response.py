@@ -35,7 +35,7 @@ class CreateAPrivateZoneResponse(BceResponse):
             return _map
         result = dict()
         if self.metadata is not None:
-            result['metadata'] = self.metadata
+            result['metadata'] = dict(self.metadata)
         if self.zone_id is not None:
             result['zoneId'] = self.zone_id
         return result

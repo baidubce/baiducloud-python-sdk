@@ -35,7 +35,7 @@ class BatchCreateSslVpnUsersResponse(BceResponse):
             return _map
         result = dict()
         if self.metadata is not None:
-            result['metadata'] = self.metadata
+            result['metadata'] = dict(self.metadata)
         if self.ssl_vpn_user_ids is not None:
             result['sslVpnUserIds'] = self.ssl_vpn_user_ids
         return result

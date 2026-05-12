@@ -52,7 +52,7 @@ class ListEipTransferResponse(BceResponse):
             return _map
         result = dict()
         if self.metadata is not None:
-            result['metadata'] = self.metadata
+            result['metadata'] = dict(self.metadata)
         if self.transfer_list is not None:
             result['transferList'] = [i.to_dict() for i in self.transfer_list]
         if self.marker is not None:

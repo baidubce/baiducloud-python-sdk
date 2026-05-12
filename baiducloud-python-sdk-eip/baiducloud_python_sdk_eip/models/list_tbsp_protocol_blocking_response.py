@@ -40,7 +40,7 @@ class ListTbspProtocolBlockingResponse(BceResponse):
             return _map
         result = dict()
         if self.metadata is not None:
-            result['metadata'] = self.metadata
+            result['metadata'] = dict(self.metadata)
         if self.protocol_blocking_list is not None:
             result['protocolBlockingList'] = [i.to_dict() for i in self.protocol_blocking_list]
         if self.id is not None:

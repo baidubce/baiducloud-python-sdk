@@ -35,7 +35,7 @@ class CreateIpReservedResponse(BceResponse):
             return _map
         result = dict()
         if self.metadata is not None:
-            result['metadata'] = self.metadata
+            result['metadata'] = dict(self.metadata)
         if self.ip_reserve_id is not None:
             result['ipReserveId'] = self.ip_reserve_id
         return result

@@ -48,7 +48,7 @@ class GetVpcResourceIpInfoResponse(BceResponse):
             return _map
         result = dict()
         if self.metadata is not None:
-            result['metadata'] = self.metadata
+            result['metadata'] = dict(self.metadata)
         if self.page_no is not None:
             result['pageNo'] = self.page_no
         if self.page_size is not None:

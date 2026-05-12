@@ -78,7 +78,7 @@ class QuerySslVpnServerResponse(BceResponse):
             return _map
         result = dict()
         if self.metadata is not None:
-            result['metadata'] = self.metadata
+            result['metadata'] = dict(self.metadata)
         if self.vpn_id is not None:
             result['vpnId'] = self.vpn_id
         if self.ssl_vpn_server_id is not None:

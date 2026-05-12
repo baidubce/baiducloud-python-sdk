@@ -36,7 +36,7 @@ class QueryVpcIntranetIpResponse(BceResponse):
             return _map
         result = dict()
         if self.metadata is not None:
-            result['metadata'] = self.metadata
+            result['metadata'] = dict(self.metadata)
         if self.vpc_private_ip_addresses is not None:
             result['vpcPrivateIpAddresses'] = [i.to_dict() for i in self.vpc_private_ip_addresses]
         return result

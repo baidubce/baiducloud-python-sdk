@@ -36,7 +36,7 @@ class BlbInquiryResponse(BceResponse):
             return _map
         result = dict()
         if self.metadata is not None:
-            result['metadata'] = self.metadata
+            result['metadata'] = dict(self.metadata)
         if self.prices is not None:
             result['prices'] = [i.to_dict() for i in self.prices]
         return result

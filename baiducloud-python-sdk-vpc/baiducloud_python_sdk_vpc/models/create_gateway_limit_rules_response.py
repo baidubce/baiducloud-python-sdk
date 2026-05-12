@@ -35,7 +35,7 @@ class CreateGatewayLimitRulesResponse(BceResponse):
             return _map
         result = dict()
         if self.metadata is not None:
-            result['metadata'] = self.metadata
+            result['metadata'] = dict(self.metadata)
         if self.glr_id is not None:
             result['glrId'] = self.glr_id
         return result

@@ -36,7 +36,7 @@ class SearchVpnTunnelResponse(BceResponse):
             return _map
         result = dict()
         if self.metadata is not None:
-            result['metadata'] = self.metadata
+            result['metadata'] = dict(self.metadata)
         if self.vpn_conns is not None:
             result['vpnConns'] = [i.to_dict() for i in self.vpn_conns]
         return result

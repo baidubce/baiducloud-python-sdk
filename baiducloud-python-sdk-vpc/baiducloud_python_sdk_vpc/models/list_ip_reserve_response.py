@@ -52,7 +52,7 @@ class ListIpReserveResponse(BceResponse):
             return _map
         result = dict()
         if self.metadata is not None:
-            result['metadata'] = self.metadata
+            result['metadata'] = dict(self.metadata)
         if self.ip_reserves is not None:
             result['ipReserves'] = [i.to_dict() for i in self.ip_reserves]
         if self.marker is not None:

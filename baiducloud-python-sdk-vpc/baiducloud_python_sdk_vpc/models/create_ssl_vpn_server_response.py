@@ -35,7 +35,7 @@ class CreateSslVpnServerResponse(BceResponse):
             return _map
         result = dict()
         if self.metadata is not None:
-            result['metadata'] = self.metadata
+            result['metadata'] = dict(self.metadata)
         if self.ssl_vpn_server_id is not None:
             result['sslVpnServerId'] = self.ssl_vpn_server_id
         return result

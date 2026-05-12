@@ -35,7 +35,7 @@ class CreateSubnetResponse(BceResponse):
             return _map
         result = dict()
         if self.metadata is not None:
-            result['metadata'] = self.metadata
+            result['metadata'] = dict(self.metadata)
         if self.subnet_id is not None:
             result['subnetId'] = self.subnet_id
         return result

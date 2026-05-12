@@ -36,7 +36,7 @@ class QuerySpecifiedSubnetResponse(BceResponse):
             return _map
         result = dict()
         if self.metadata is not None:
-            result['metadata'] = self.metadata
+            result['metadata'] = dict(self.metadata)
         if self.subnet is not None:
             result['subnet'] = self.subnet.to_dict()
         return result

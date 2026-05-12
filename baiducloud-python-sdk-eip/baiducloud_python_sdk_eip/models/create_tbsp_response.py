@@ -35,7 +35,7 @@ class CreateTbspResponse(BceResponse):
             return _map
         result = dict()
         if self.metadata is not None:
-            result['metadata'] = self.metadata
+            result['metadata'] = dict(self.metadata)
         if self.id is not None:
             result['id'] = self.id
         return result

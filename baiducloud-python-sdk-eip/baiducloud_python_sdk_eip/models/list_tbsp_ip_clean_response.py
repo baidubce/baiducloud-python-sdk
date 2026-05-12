@@ -52,7 +52,7 @@ class ListTbspIpCleanResponse(BceResponse):
             return _map
         result = dict()
         if self.metadata is not None:
-            result['metadata'] = self.metadata
+            result['metadata'] = dict(self.metadata)
         if self.ip_clean_list is not None:
             result['ipCleanList'] = [i.to_dict() for i in self.ip_clean_list]
         if self.marker is not None:

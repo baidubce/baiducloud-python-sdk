@@ -35,7 +35,7 @@ class AddParsingRecordsResponse(BceResponse):
             return _map
         result = dict()
         if self.metadata is not None:
-            result['metadata'] = self.metadata
+            result['metadata'] = dict(self.metadata)
         if self.record_id is not None:
             result['recordId'] = self.record_id
         return result

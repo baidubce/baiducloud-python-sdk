@@ -52,7 +52,7 @@ class QueryEipListResponse(BceResponse):
             return _map
         result = dict()
         if self.metadata is not None:
-            result['metadata'] = self.metadata
+            result['metadata'] = dict(self.metadata)
         if self.eip_list is not None:
             result['eipList'] = [i.to_dict() for i in self.eip_list]
         if self.marker is not None:

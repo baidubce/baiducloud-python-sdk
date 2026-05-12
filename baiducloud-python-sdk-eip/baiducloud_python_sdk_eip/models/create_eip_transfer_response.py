@@ -36,7 +36,7 @@ class CreateEipTransferResponse(BceResponse):
             return _map
         result = dict()
         if self.metadata is not None:
-            result['metadata'] = self.metadata
+            result['metadata'] = dict(self.metadata)
         if self.transfers is not None:
             result['transfers'] = [i.to_dict() for i in self.transfers]
         return result

@@ -35,7 +35,7 @@ class SharedDataPackageInquiryResponse(BceResponse):
             return _map
         result = dict()
         if self.metadata is not None:
-            result['metadata'] = self.metadata
+            result['metadata'] = dict(self.metadata)
         if self.price is not None:
             result['price'] = self.price
         return result
