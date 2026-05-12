@@ -37,7 +37,7 @@ setup(
     install_requires=['pycryptodome>=3.8.0',
                       'future>=0.6.0',
                       'six>=1.4.0',
-                      'baiducloud-python-sdk-core>=0.0.2'],
+                      'baiducloud-python-sdk-core>=0.0.3'],
     python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, <4',
     packages=find_packages(exclude=["tests*"]),
     url='https://github.com/baidubce/baiducloud-python-sdk',
