@@ -7,6 +7,8 @@ from .batch_create_ssl_vpn_users_response import BatchCreateSslVpnUsersResponse
 from .billing import Billing
 from .bind_eip_request import BindEipRequest
 from .cgw import Cgw
+from .create_a_peer_to_peer_connection_request import CreateAPeerToPeerConnectionRequest
+from .create_a_peer_to_peer_connection_response import CreateAPeerToPeerConnectionResponse
 from .create_gateway_limit_rules_request import CreateGatewayLimitRulesRequest
 from .create_gateway_limit_rules_response import CreateGatewayLimitRulesResponse
 from .create_ip_reserved_request import CreateIpReservedRequest
@@ -23,6 +25,7 @@ from .create_vpn_request import CreateVpnRequest
 from .create_vpn_response import CreateVpnResponse
 from .create_vpn_tunnel_request import CreateVpnTunnelRequest
 from .create_vpn_tunnel_response import CreateVpnTunnelResponse
+from .dns_status import DnsStatus
 from .get_vpc_resource_ip_info_response import GetVpcResourceIpInfoResponse
 from .glr_item import GlrItem
 from .ike_config import IkeConfig
@@ -30,11 +33,18 @@ from .ip_reserve import IpReserve
 from .ipsec_config import IpsecConfig
 from .list_ip_reserve_response import ListIpReserveResponse
 from .modify_gateway_limit_rules_request import ModifyGatewayLimitRulesRequest
+from .peer_conn import PeerConn
+from .peer_conn_status import PeerConnStatus
+from .peer_to_peer_connection_bandwidth_upgrade_and_downgrade_request import (
+    PeerToPeerConnectionBandwidthUpgradeAndDowngradeRequest,
+)
+from .peer_to_peer_connection_renewal_request import PeerToPeerConnectionRenewalRequest
 from .query_specified_subnet_response import QuerySpecifiedSubnetResponse
 from .query_specified_vpc_response import QuerySpecifiedVpcResponse
 from .query_ssl_vpn_server_response import QuerySslVpnServerResponse
 from .query_ssl_vpn_users_response import QuerySslVpnUsersResponse
 from .query_subnet_list_response import QuerySubnetListResponse
+from .query_the_list_of_peer_connections_response import QueryTheListOfPeerConnectionsResponse
 from .query_vpc_intranet_ip_response import QueryVpcIntranetIpResponse
 from .query_vpc_list_response import QueryVpcListResponse
 from .query_vpn_list_response import QueryVpnListResponse
@@ -50,9 +60,15 @@ from .ssl_vpn_user_vo import SslVpnUserVo
 from .subnet import Subnet
 from .subnet_detail import SubnetDetail
 from .tag_model import TagModel
+from .update_peer_to_peer_connection_release_protection_switch_request import (
+    UpdatePeerToPeerConnectionReleaseProtectionSwitchRequest,
+)
 from .update_ssl_vpn_server_request import UpdateSslVpnServerRequest
 from .update_ssl_vpn_users_request import UpdateSslVpnUsersRequest
 from .update_subnet_request import UpdateSubnetRequest
+from .update_the_name_and_comments_of_the_local_interface_for_peer_to_peer_connections_request import (
+    UpdateTheNameAndCommentsOfTheLocalInterfaceForPeerToPeerConnectionsRequest,
+)
 from .update_user_gateway_request import UpdateUserGatewayRequest
 from .update_vpc_request import UpdateVpcRequest
 from .update_vpn_release_protection_request import UpdateVpnReleaseProtectionRequest
@@ -61,6 +77,7 @@ from .update_vpn_tunnel_request import UpdateVpnTunnelRequest
 from .user_gateway_details_response import UserGatewayDetailsResponse
 from .user_gateway_list_response import UserGatewayListResponse
 from .view_gateway_limit_rules_response import ViewGatewayLimitRulesResponse
+from .view_peer_to_peer_connection_details_response import ViewPeerToPeerConnectionDetailsResponse
 from .vpc import Vpc
 from .vpc_private_ip_address import VpcPrivateIpAddress
 from .vpn import Vpn
@@ -71,24 +88,34 @@ from .delete_ssl_vpn_server_request import DeleteSslVpnServerRequest
 from .close_vpc_relay_request import CloseVpcRelayRequest
 from .delete_vpn_tunnel_request import DeleteVpnTunnelRequest
 from .get_vpc_resource_ip_info_request import GetVpcResourceIpInfoRequest
-from .delete_gateway_limit_rule_request import DeleteGatewayLimitRuleRequest
-from .query_ssl_vpn_users_request import QuerySslVpnUsersRequest
-from .delete_subnet_request import DeleteSubnetRequest
+from .prepaid_peer_to_peer_connection_unsubscribe_request import PrepaidPeerToPeerConnectionUnsubscribeRequest
 from .query_vpc_intranet_ip_request import QueryVpcIntranetIpRequest
 from .query_ssl_vpn_server_request import QuerySslVpnServerRequest
-from .view_gateway_limit_rules_request import ViewGatewayLimitRulesRequest
-from .list_ip_reserve_request import ListIpReserveRequest
-from .user_gateway_details_request import UserGatewayDetailsRequest
-from .delete_user_gateway_request import DeleteUserGatewayRequest
 from .user_gateway_list_request import UserGatewayListRequest
 from .delete_vpc_request import DeleteVpcRequest
-from .query_vpc_list_request import QueryVpcListRequest
-from .query_specified_subnet_request import QuerySpecifiedSubnetRequest
-from .open_vpc_relay_request import OpenVpcRelayRequest
-from .search_for_vpn_details_request import SearchForVpnDetailsRequest
+from .close_peer_to_peer_connection_to_synchronize_dns_request import ClosePeerToPeerConnectionToSynchronizeDnsRequest
 from .query_vpn_list_request import QueryVpnListRequest
 from .delete_ssl_vpn_user_request import DeleteSslVpnUserRequest
 from .query_subnet_list_request import QuerySubnetListRequest
 from .search_vpn_tunnel_request import SearchVpnTunnelRequest
+from .user_gateway_details_request import UserGatewayDetailsRequest
+from .delete_user_gateway_request import DeleteUserGatewayRequest
+from .view_peer_to_peer_connection_details_request import ViewPeerToPeerConnectionDetailsRequest
+from .accept_peer_to_peer_connection_applications_request import AcceptPeerToPeerConnectionApplicationsRequest
+from .delete_gateway_limit_rule_request import DeleteGatewayLimitRuleRequest
+from .query_ssl_vpn_users_request import QuerySslVpnUsersRequest
+from .delete_subnet_request import DeleteSubnetRequest
+from .view_gateway_limit_rules_request import ViewGatewayLimitRulesRequest
+from .list_ip_reserve_request import ListIpReserveRequest
+from .query_vpc_list_request import QueryVpcListRequest
+from .enable_peer_to_peer_connection_to_synchronize_dns_request import (
+    EnablePeerToPeerConnectionToSynchronizeDnsRequest,
+)
+from .release_peer_to_peer_connection_request import ReleasePeerToPeerConnectionRequest
+from .query_specified_subnet_request import QuerySpecifiedSubnetRequest
+from .open_vpc_relay_request import OpenVpcRelayRequest
+from .query_the_list_of_peer_connections_request import QueryTheListOfPeerConnectionsRequest
+from .search_for_vpn_details_request import SearchForVpnDetailsRequest
+from .reject_peer_to_peer_connection_request_request import RejectPeerToPeerConnectionRequestRequest
 from .delete_ip_reserve_request import DeleteIpReserveRequest
 from .release_vpn_request import ReleaseVpnRequest

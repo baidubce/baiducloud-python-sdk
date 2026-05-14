@@ -62,7 +62,7 @@ class CreateVpnRequest(AbstractModel):
         :param billing: billing parameter
         :type billing: Billing (required)
 
-        :param max_connection: SSL-VPN最大客户端连接数。可选 [5, 10, 20, 50, 100, 200, 500, 1000]。仅SSL-VPN需要选这个参数。
+        :param max_connection: max_connection parameter
         :type max_connection: int (optional)
 
         :param delete_protect: 是否开启释放保护。缺省值为false，代表允许删除

@@ -12,6 +12,9 @@ from baiducloud_python_sdk_core.http import bce_http_client
 from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import http_methods
 from baiducloud_python_sdk_vpc.models.batch_create_ssl_vpn_users_response import BatchCreateSslVpnUsersResponse
+from baiducloud_python_sdk_vpc.models.create_a_peer_to_peer_connection_response import (
+    CreateAPeerToPeerConnectionResponse,
+)
 from baiducloud_python_sdk_vpc.models.create_gateway_limit_rules_response import CreateGatewayLimitRulesResponse
 from baiducloud_python_sdk_vpc.models.create_ip_reserved_response import CreateIpReservedResponse
 from baiducloud_python_sdk_vpc.models.create_ssl_vpn_server_response import CreateSslVpnServerResponse
@@ -27,6 +30,9 @@ from baiducloud_python_sdk_vpc.models.query_specified_vpc_response import QueryS
 from baiducloud_python_sdk_vpc.models.query_ssl_vpn_server_response import QuerySslVpnServerResponse
 from baiducloud_python_sdk_vpc.models.query_ssl_vpn_users_response import QuerySslVpnUsersResponse
 from baiducloud_python_sdk_vpc.models.query_subnet_list_response import QuerySubnetListResponse
+from baiducloud_python_sdk_vpc.models.query_the_list_of_peer_connections_response import (
+    QueryTheListOfPeerConnectionsResponse,
+)
 from baiducloud_python_sdk_vpc.models.query_vpc_intranet_ip_response import QueryVpcIntranetIpResponse
 from baiducloud_python_sdk_vpc.models.query_vpc_list_response import QueryVpcListResponse
 from baiducloud_python_sdk_vpc.models.query_vpn_list_response import QueryVpnListResponse
@@ -35,6 +41,9 @@ from baiducloud_python_sdk_vpc.models.search_vpn_tunnel_response import SearchVp
 from baiducloud_python_sdk_vpc.models.user_gateway_details_response import UserGatewayDetailsResponse
 from baiducloud_python_sdk_vpc.models.user_gateway_list_response import UserGatewayListResponse
 from baiducloud_python_sdk_vpc.models.view_gateway_limit_rules_response import ViewGatewayLimitRulesResponse
+from baiducloud_python_sdk_vpc.models.view_peer_to_peer_connection_details_response import (
+    ViewPeerToPeerConnectionDetailsResponse,
+)
 
 _logger = logging.getLogger(__name__)
 
@@ -50,25 +59,27 @@ class VpcClient(BceBaseClient):
 
     CONSTANT_VPN = b'vpn'
 
-    CONSTANT_VPNCONN = b'vpnconn'
-
     CONSTANT_SSL_VPN_SERVER = b'sslVpnServer'
 
     CONSTANT_SHUTDOWN_RELAY = b'shutdownRelay'
+
+    CONSTANT_VPNCONN = b'vpnconn'
 
     CONSTANT_RESOURCE_IP = b'resourceIp'
 
     CONSTANT_CGW = b'cgw'
 
-    CONSTANT_GATEWAY = b'gateway'
+    CONSTANT_PEERCONN = b'peerconn'
 
-    CONSTANT_LIMITRULE = b'limitrule'
+    CONSTANT_PRIVATE_IP_ADDRESS_INFO = b'privateIpAddressInfo'
 
     CONSTANT_SSL_VPN_USER = b'sslVpnUser'
 
     CONSTANT_SUBNET = b'subnet'
 
-    CONSTANT_PRIVATE_IP_ADDRESS_INFO = b'privateIpAddressInfo'
+    CONSTANT_GATEWAY = b'gateway'
+
+    CONSTANT_LIMITRULE = b'limitrule'
 
     CONSTANT_IPRESERVE = b'ipreserve'
 
@@ -84,6 +95,30 @@ class VpcClient(BceBaseClient):
         :type config: baidubce.BceClientConfiguration
         """
         bce_base_client.BceBaseClient.__init__(self, config)
+
+    def accept_peer_to_peer_connection_applications(self, request, config=None):
+        """
+        accept_peer_to_peer_connection_applications
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_PEERCONN, request.peer_conn_id)
+        headers = None
+        params = {}
+        params['accept'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.PUT, path=path, params=params, config=merged_config)
 
     def batch_create_ssl_vpn_users(self, request, config=None):
         """
@@ -103,15 +138,17 @@ class VpcClient(BceBaseClient):
         path = utils.append_uri(
             VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_SSL_VPN_USER
         )
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.POST,
             path=path,
             body=request.to_json_string(),
             params=params,
-            config=config,
+            config=merged_config,
             model=BatchCreateSslVpnUsersResponse,
         )
 
@@ -131,13 +168,41 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id)
+        headers = None
         params = {}
         params['bind'] = None
         if request.client_token is not None:
             params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=config
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
         )
+
+    def close_peer_to_peer_connection_to_synchronize_dns(self, request, config=None):
+        """
+        close_peer_to_peer_connection_to_synchronize_dns
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_PEERCONN, request.peer_conn_id)
+        headers = None
+        params = {}
+        params['close'] = None
+        if request.role is not None:
+            params['role'] = request.role
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.PUT, path=path, params=params, config=merged_config)
 
     def close_vpc_relay(self, request, config=None):
         """
@@ -157,10 +222,42 @@ class VpcClient(BceBaseClient):
         path = utils.append_uri(
             VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC, VpcClient.CONSTANT_SHUTDOWN_RELAY, request.vpc_id
         )
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.PUT, path=path, params=params, config=config)
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.PUT, path=path, params=params, config=merged_config)
+
+    def create_a_peer_to_peer_connection(self, request, config=None):
+        """
+        create_a_peer_to_peer_connection
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing CreateAPeerToPeerConnectionResponse data
+        :rtype: CreateAPeerToPeerConnectionResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_PEERCONN)
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=CreateAPeerToPeerConnectionResponse,
+        )
 
     def create_gateway_limit_rules(self, request, config=None):
         """
@@ -178,15 +275,17 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_GATEWAY, VpcClient.CONSTANT_LIMITRULE)
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.POST,
             path=path,
             body=request.to_json_string(),
             params=params,
-            config=config,
+            config=merged_config,
             model=CreateGatewayLimitRulesResponse,
         )
 
@@ -206,15 +305,17 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET, VpcClient.CONSTANT_IPRESERVE)
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.POST,
             path=path,
             body=request.to_json_string(),
             params=params,
-            config=config,
+            config=merged_config,
             model=CreateIpReservedResponse,
         )
 
@@ -236,15 +337,17 @@ class VpcClient(BceBaseClient):
         path = utils.append_uri(
             VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_SSL_VPN_SERVER
         )
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.POST,
             path=path,
             body=request.to_json_string(),
             params=params,
-            config=config,
+            config=merged_config,
             model=CreateSslVpnServerResponse,
         )
 
@@ -264,15 +367,17 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET)
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.POST,
             path=path,
             body=request.to_json_string(),
             params=params,
-            config=config,
+            config=merged_config,
             model=CreateSubnetResponse,
         )
 
@@ -292,15 +397,17 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, VpcClient.CONSTANT_CGW)
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.POST,
             path=path,
             body=request.to_json_string(),
             params=params,
-            config=config,
+            config=merged_config,
             model=CreateUserGatewayResponse,
         )
 
@@ -320,15 +427,17 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC)
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.POST,
             path=path,
             body=request.to_json_string(),
             params=params,
-            config=config,
+            config=merged_config,
             model=CreateVpcResponse,
         )
 
@@ -348,15 +457,17 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN)
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.POST,
             path=path,
             body=request.to_json_string(),
             params=params,
-            config=config,
+            config=merged_config,
             model=CreateVpnResponse,
         )
 
@@ -378,15 +489,17 @@ class VpcClient(BceBaseClient):
         path = utils.append_uri(
             VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_VPNCONN
         )
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.POST,
             path=path,
             body=request.to_json_string(),
             params=params,
-            config=config,
+            config=merged_config,
             model=CreateVpnTunnelResponse,
         )
 
@@ -408,10 +521,12 @@ class VpcClient(BceBaseClient):
         path = utils.append_uri(
             VpcClient.VERSION_V1, VpcClient.CONSTANT_GATEWAY, VpcClient.CONSTANT_LIMITRULE, request.glr_id
         )
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.DELETE, path=path, params=params, config=config)
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
 
     def delete_ip_reserve(self, request, config=None):
         """
@@ -431,10 +546,12 @@ class VpcClient(BceBaseClient):
         path = utils.append_uri(
             VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET, VpcClient.CONSTANT_IPRESERVE, request.ip_reserve_id
         )
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.DELETE, path=path, params=params, config=config)
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
 
     def delete_ssl_vpn_server(self, request, config=None):
         """
@@ -458,10 +575,12 @@ class VpcClient(BceBaseClient):
             VpcClient.CONSTANT_SSL_VPN_SERVER,
             request.ssl_vpn_server_id,
         )
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.DELETE, path=path, params=params, config=config)
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
 
     def delete_ssl_vpn_user(self, request, config=None):
         """
@@ -485,10 +604,12 @@ class VpcClient(BceBaseClient):
             VpcClient.CONSTANT_SSL_VPN_USER,
             request.user_id,
         )
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.DELETE, path=path, params=params, config=config)
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
 
     def delete_subnet(self, request, config=None):
         """
@@ -506,10 +627,12 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET, request.subnet_id)
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.DELETE, path=path, params=params, config=config)
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
 
     def delete_user_gateway(self, request, config=None):
         """
@@ -527,7 +650,9 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, VpcClient.CONSTANT_CGW, request.cgw_id)
-        return self._send_request(http_methods.DELETE, path=path, config=config)
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.DELETE, path=path, config=merged_config)
 
     def delete_vpc(self, request, config=None):
         """
@@ -545,10 +670,12 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC, request.vpc_id)
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.DELETE, path=path, params=params, config=config)
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
 
     def delete_vpn_tunnel(self, request, config=None):
         """
@@ -568,10 +695,38 @@ class VpcClient(BceBaseClient):
         path = utils.append_uri(
             VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, VpcClient.CONSTANT_VPNCONN, request.vpn_conn_id
         )
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.DELETE, path=path, params=params, config=config)
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
+
+    def enable_peer_to_peer_connection_to_synchronize_dns(self, request, config=None):
+        """
+        enable_peer_to_peer_connection_to_synchronize_dns
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_PEERCONN, request.peer_conn_id)
+        headers = None
+        params = {}
+        params['open'] = None
+        if request.role is not None:
+            params['role'] = request.role
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.PUT, path=path, params=params, config=merged_config)
 
     def get_vpc_resource_ip_info(self, request, config=None):
         """
@@ -589,6 +744,7 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC, VpcClient.CONSTANT_RESOURCE_IP)
+        headers = None
         params = {}
         if request.vpc_id is not None:
             params['vpcId'] = request.vpc_id
@@ -600,8 +756,9 @@ class VpcClient(BceBaseClient):
             params['pageNo'] = request.page_no
         if request.page_size is not None:
             params['pageSize'] = request.page_size
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.GET, path=path, params=params, config=config, model=GetVpcResourceIpInfoResponse
+            http_methods.GET, path=path, params=params, config=merged_config, model=GetVpcResourceIpInfoResponse
         )
 
     def list_ip_reserve(self, request, config=None):
@@ -620,6 +777,7 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET, VpcClient.CONSTANT_IPRESERVE)
+        headers = None
         params = {}
         if request.subnet_id is not None:
             params['subnetId'] = request.subnet_id
@@ -627,8 +785,9 @@ class VpcClient(BceBaseClient):
             params['marker'] = request.marker
         if request.max_keys is not None:
             params['maxKeys'] = request.max_keys
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.GET, path=path, params=params, config=config, model=ListIpReserveResponse
+            http_methods.GET, path=path, params=params, config=merged_config, model=ListIpReserveResponse
         )
 
     def modify_gateway_limit_rules(self, request, config=None):
@@ -649,11 +808,13 @@ class VpcClient(BceBaseClient):
         path = utils.append_uri(
             VpcClient.VERSION_V1, VpcClient.CONSTANT_GATEWAY, VpcClient.CONSTANT_LIMITRULE, request.glr_id
         )
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=config
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
         )
 
     def open_vpc_relay(self, request, config=None):
@@ -674,10 +835,88 @@ class VpcClient(BceBaseClient):
         path = utils.append_uri(
             VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC, VpcClient.CONSTANT_OPEN_RELAY, request.vpc_id
         )
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.PUT, path=path, params=params, config=config)
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.PUT, path=path, params=params, config=merged_config)
+
+    def peer_to_peer_connection_bandwidth_upgrade_and_downgrade(self, request, config=None):
+        """
+        peer_to_peer_connection_bandwidth_upgrade_and_downgrade
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_PEERCONN, request.peer_conn_id)
+        headers = None
+        params = {}
+        params['resize'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
+    def peer_to_peer_connection_renewal(self, request, config=None):
+        """
+        peer_to_peer_connection_renewal
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_PEERCONN, request.peer_conn_id)
+        headers = None
+        params = {}
+        params['purchaseReserved'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
+    def prepaid_peer_to_peer_connection_unsubscribe(self, request, config=None):
+        """
+        prepaid_peer_to_peer_connection_unsubscribe
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_PEERCONN, request.peer_conn_id)
+        headers = None
+        params = {}
+        params['refund'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.PUT, path=path, params=params, config=merged_config)
 
     def query_specified_subnet(self, request, config=None):
         """
@@ -695,7 +934,11 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET, request.subnet_id)
-        return self._send_request(http_methods.GET, path=path, config=config, model=QuerySpecifiedSubnetResponse)
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.GET, path=path, config=merged_config, model=QuerySpecifiedSubnetResponse
+        )
 
     def query_specified_vpc(self, request, config=None):
         """
@@ -713,7 +956,9 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC, request.vpc_id)
-        return self._send_request(http_methods.GET, path=path, config=config, model=QuerySpecifiedVpcResponse)
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.GET, path=path, config=merged_config, model=QuerySpecifiedVpcResponse)
 
     def query_ssl_vpn_server(self, request, config=None):
         """
@@ -733,11 +978,13 @@ class VpcClient(BceBaseClient):
         path = utils.append_uri(
             VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_SSL_VPN_SERVER
         )
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.GET, path=path, params=params, config=config, model=QuerySslVpnServerResponse
+            http_methods.GET, path=path, params=params, config=merged_config, model=QuerySslVpnServerResponse
         )
 
     def query_ssl_vpn_users(self, request, config=None):
@@ -758,6 +1005,7 @@ class VpcClient(BceBaseClient):
         path = utils.append_uri(
             VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_SSL_VPN_USER
         )
+        headers = None
         params = {}
         if request.marker is not None:
             params['marker'] = request.marker
@@ -765,8 +1013,9 @@ class VpcClient(BceBaseClient):
             params['maxKeys'] = request.max_keys
         if request.user_name is not None:
             params['userName'] = request.user_name
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.GET, path=path, params=params, config=config, model=QuerySslVpnUsersResponse
+            http_methods.GET, path=path, params=params, config=merged_config, model=QuerySslVpnUsersResponse
         )
 
     def query_subnet_list(self, request, config=None):
@@ -785,6 +1034,7 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET)
+        headers = None
         params = {}
         if request.marker is not None:
             params['marker'] = request.marker
@@ -798,8 +1048,40 @@ class VpcClient(BceBaseClient):
             params['subnetType'] = request.subnet_type
         if request.subnet_ids is not None:
             params['subnetIds'] = request.subnet_ids
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.GET, path=path, params=params, config=config, model=QuerySubnetListResponse
+            http_methods.GET, path=path, params=params, config=merged_config, model=QuerySubnetListResponse
+        )
+
+    def query_the_list_of_peer_connections(self, request, config=None):
+        """
+        query_the_list_of_peer_connections
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing QueryTheListOfPeerConnectionsResponse data
+        :rtype: QueryTheListOfPeerConnectionsResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_PEERCONN)
+        headers = None
+        params = {}
+        if request.marker is not None:
+            params['marker'] = request.marker
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.GET,
+            path=path,
+            params=params,
+            config=merged_config,
+            model=QueryTheListOfPeerConnectionsResponse,
         )
 
     def query_vpc_intranet_ip(self, request, config=None):
@@ -820,13 +1102,15 @@ class VpcClient(BceBaseClient):
         path = utils.append_uri(
             VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC, request.vpc_id, VpcClient.CONSTANT_PRIVATE_IP_ADDRESS_INFO
         )
+        headers = None
         params = {}
         if request.private_ip_addresses is not None:
             params['privateIpAddresses'] = ','.join(request.private_ip_addresses)
         if request.private_ip_range is not None:
             params['privateIpRange'] = request.private_ip_range
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.GET, path=path, params=params, config=config, model=QueryVpcIntranetIpResponse
+            http_methods.GET, path=path, params=params, config=merged_config, model=QueryVpcIntranetIpResponse
         )
 
     def query_vpc_list(self, request, config=None):
@@ -845,6 +1129,7 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC)
+        headers = None
         params = {}
         if request.marker is not None:
             params['marker'] = request.marker
@@ -854,8 +1139,9 @@ class VpcClient(BceBaseClient):
             params['isDefault'] = request.is_default
         if request.vpc_ids is not None:
             params['vpcIds'] = request.vpc_ids
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.GET, path=path, params=params, config=config, model=QueryVpcListResponse
+            http_methods.GET, path=path, params=params, config=merged_config, model=QueryVpcListResponse
         )
 
     def query_vpn_list(self, request, config=None):
@@ -874,6 +1160,7 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN)
+        headers = None
         params = {}
         if request.vpc_id is not None:
             params['vpcId'] = request.vpc_id
@@ -885,9 +1172,57 @@ class VpcClient(BceBaseClient):
             params['eip'] = request.eip
         if request.type is not None:
             params['type'] = request.type
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.GET, path=path, params=params, config=config, model=QueryVpnListResponse
+            http_methods.GET, path=path, params=params, config=merged_config, model=QueryVpnListResponse
         )
+
+    def reject_peer_to_peer_connection_request(self, request, config=None):
+        """
+        reject_peer_to_peer_connection_request
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_PEERCONN, request.peer_conn_id)
+        headers = None
+        params = {}
+        params['reject'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.PUT, path=path, params=params, config=merged_config)
+
+    def release_peer_to_peer_connection(self, request, config=None):
+        """
+        release_peer_to_peer_connection
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_PEERCONN, request.peer_conn_id)
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
 
     def release_vpn(self, request, config=None):
         """
@@ -905,10 +1240,12 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id)
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.DELETE, path=path, params=params, config=config)
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
 
     def renew_vpn(self, request, config=None):
         """
@@ -926,12 +1263,14 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id)
+        headers = None
         params = {}
         params['purchaseReserved'] = None
         if request.client_token is not None:
             params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=config
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
         )
 
     def search_for_vpn_details(self, request, config=None):
@@ -950,7 +1289,9 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id)
-        return self._send_request(http_methods.GET, path=path, config=config, model=SearchForVpnDetailsResponse)
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.GET, path=path, config=merged_config, model=SearchForVpnDetailsResponse)
 
     def search_vpn_tunnel(self, request, config=None):
         """
@@ -970,11 +1311,13 @@ class VpcClient(BceBaseClient):
         path = utils.append_uri(
             VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, VpcClient.CONSTANT_VPNCONN, request.vpn_id
         )
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.GET, path=path, params=params, config=config, model=SearchVpnTunnelResponse
+            http_methods.GET, path=path, params=params, config=merged_config, model=SearchVpnTunnelResponse
         )
 
     def unbind_eip(self, request, config=None):
@@ -993,11 +1336,35 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id)
+        headers = None
         params = {}
         params['unbind'] = None
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.PUT, path=path, params=params, config=config)
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.PUT, path=path, params=params, config=merged_config)
+
+    def update_peer_to_peer_connection_release_protection_switch(self, request, config=None):
+        """
+        update_peer_to_peer_connection_release_protection_switch
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1, VpcClient.CONSTANT_PEERCONN, request.peer_conn_id, VpcClient.CONSTANT_DELETE_PROTECT
+        )
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.PUT, path=path, body=request.to_json_string(), config=merged_config)
 
     def update_ssl_vpn_server(self, request, config=None):
         """
@@ -1021,11 +1388,13 @@ class VpcClient(BceBaseClient):
             VpcClient.CONSTANT_SSL_VPN_SERVER,
             request.ssl_vpn_server_id,
         )
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=config
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
         )
 
     def update_ssl_vpn_users(self, request, config=None):
@@ -1050,11 +1419,13 @@ class VpcClient(BceBaseClient):
             VpcClient.CONSTANT_SSL_VPN_USER,
             request.user_id,
         )
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=config
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
         )
 
     def update_subnet(self, request, config=None):
@@ -1073,13 +1444,35 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET, request.subnet_id)
+        headers = None
         params = {}
         params['modifyAttribute'] = None
         if request.client_token is not None:
             params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=config
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
         )
+
+    def update_the_name_and_comments_of_the_local_interface_for_peer_to_peer_connections(self, request, config=None):
+        """
+        update_the_name_and_comments_of_the_local_interface_for_peer_to_peer_connections
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_PEERCONN, request.peer_conn_id)
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.PUT, path=path, body=request.to_json_string(), config=merged_config)
 
     def update_user_gateway(self, request, config=None):
         """
@@ -1097,11 +1490,13 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, VpcClient.CONSTANT_CGW, request.cgw_id)
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=config
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
         )
 
     def update_vpc(self, request, config=None):
@@ -1120,12 +1515,14 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPC, request.vpc_id)
+        headers = None
         params = {}
         params['modifyAttribute'] = None
         if request.client_token is not None:
             params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=config
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
         )
 
     def update_vpn(self, request, config=None):
@@ -1144,12 +1541,14 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id)
+        headers = None
         params = {}
         params['modifyAttribute'] = None
         if request.client_token is not None:
             params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=config
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
         )
 
     def update_vpn_release_protection(self, request, config=None):
@@ -1170,11 +1569,13 @@ class VpcClient(BceBaseClient):
         path = utils.append_uri(
             VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, request.vpn_id, VpcClient.CONSTANT_DELETE_PROTECT
         )
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=config
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
         )
 
     def update_vpn_tunnel(self, request, config=None):
@@ -1195,11 +1596,13 @@ class VpcClient(BceBaseClient):
         path = utils.append_uri(
             VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, VpcClient.CONSTANT_VPNCONN, request.vpn_conn_id
         )
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=config
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
         )
 
     def user_gateway_details(self, request, config=None):
@@ -1218,7 +1621,9 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, VpcClient.CONSTANT_CGW, request.cgw_id)
-        return self._send_request(http_methods.GET, path=path, config=config, model=UserGatewayDetailsResponse)
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.GET, path=path, config=merged_config, model=UserGatewayDetailsResponse)
 
     def user_gateway_list(self, request, config=None):
         """
@@ -1236,13 +1641,15 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN, VpcClient.CONSTANT_CGW)
+        headers = None
         params = {}
         if request.marker is not None:
             params['marker'] = request.marker
         if request.max_keys is not None:
             params['maxKeys'] = request.max_keys
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.GET, path=path, params=params, config=config, model=UserGatewayListResponse
+            http_methods.GET, path=path, params=params, config=merged_config, model=UserGatewayListResponse
         )
 
     def view_gateway_limit_rules(self, request, config=None):
@@ -1261,6 +1668,7 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_GATEWAY, VpcClient.CONSTANT_LIMITRULE)
+        headers = None
         params = {}
         if request.service_type is not None:
             params['serviceType'] = request.service_type
@@ -1274,8 +1682,38 @@ class VpcClient(BceBaseClient):
             params['marker'] = request.marker
         if request.max_keys is not None:
             params['maxKeys'] = request.max_keys
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.GET, path=path, params=params, config=config, model=ViewGatewayLimitRulesResponse
+            http_methods.GET, path=path, params=params, config=merged_config, model=ViewGatewayLimitRulesResponse
+        )
+
+    def view_peer_to_peer_connection_details(self, request, config=None):
+        """
+        view_peer_to_peer_connection_details
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing ViewPeerToPeerConnectionDetailsResponse data
+        :rtype: ViewPeerToPeerConnectionDetailsResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_PEERCONN, request.peer_conn_id)
+        headers = None
+        params = {}
+        if request.role is not None:
+            params['role'] = request.role
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.GET,
+            path=path,
+            params=params,
+            config=merged_config,
+            model=ViewPeerToPeerConnectionDetailsResponse,
         )
 
     def _merge_config(self, config=None):

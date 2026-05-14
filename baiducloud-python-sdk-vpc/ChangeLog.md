@@ -1,3 +1,6 @@
+2026-05-14 Version: 0.0.10
+- 涉及产品: VPC，SDK版本更新
+
 2026-04-10 Version: 0.0.9
 - 涉及产品: VPC，更新models中的init文件，支持import *方式引入model
 

@@ -6,9 +6,7 @@ from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
 from baiducloud_python_sdk_vpc.api.vpc_client import VpcClient
-from baiducloud_python_sdk_vpc.models.update_vpn_tunnel_request import UpdateVpnTunnelRequest
-from baiducloud_python_sdk_vpc.models.ipsec_config import IpsecConfig
-from baiducloud_python_sdk_vpc.models.ike_config import IkeConfig
+from baiducloud_python_sdk_vpc import models as vpc_models
 
 if __name__ == '__main__':
     try:
@@ -20,11 +18,11 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = VpcClient(config)
-        ike_config = IkeConfig(
+        ike_config = vpc_models.IkeConfig(
             ike_version="", ike_mode="", ike_enc_alg="", ike_auth_alg="", ike_pfs="", ike_life_time=""
         )
-        ipsec_config = IpsecConfig(ipsec_enc_alg="", ipsec_auth_alg="", ipsec_pfs="", ipsec_lifetime="")
-        request = UpdateVpnTunnelRequest(
+        ipsec_config = vpc_models.IpsecConfig(ipsec_enc_alg="", ipsec_auth_alg="", ipsec_pfs="", ipsec_lifetime="")
+        request = vpc_models.UpdateVpnTunnelRequest(
             vpn_conn_id="",
             vpn_id="",
             secret_key="",
