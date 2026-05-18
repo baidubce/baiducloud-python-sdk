@@ -34,7 +34,7 @@ class TbspIpCleanModel(AbstractModel):
         :param eip_id: DDoS增强防护包防护对象EIP ID
         :type eip_id: str (optional)
 
-        :param threshold_type: DDoS增强防护包IP清洗阈值类型，包含按带宽上限 (bandwidth)、智能阈值 (auto) 和手动设置 (manual)
+        :param threshold_type: threshold_type attribute
         :type threshold_type: str (optional)
 
         :param ip_clean_mbps: 清洗阈值每秒流量带宽Mbps

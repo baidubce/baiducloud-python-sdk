@@ -40,9 +40,7 @@ class ApplyForEipRequest(AbstractModel):
         :param route_type: EIP线路类型，包含标准BGP（BGP）和增强BGP（BGP_S），默认标准BGP。
         :type route_type: str (optional)
 
-        :param bandwidth_in_mbps:
-            公网带宽，单位为Mbps。对于预付费以及按使用带宽计费的后付费EIP，标准型BGP限制为1~500之间的整数，增强型BGP限制为100~5000之间的整数（代表带宽上限）；对于按使用流量计费的后付费EIP，
-            标准型BGP限制为1~200之间的整数（代表允许的带宽流量峰值）
+        :param bandwidth_in_mbps: bandwidth_in_mbps parameter
         :type bandwidth_in_mbps: int (required)
 
         :param billing: billing parameter
@@ -60,7 +58,7 @@ class ApplyForEipRequest(AbstractModel):
         :param auto_renew_time_unit: 支持创建 EIP同时开通自动续费，取值为 month 获 year （默认 month）。
         :type auto_renew_time_unit: str (optional)
 
-        :param auto_renew_time: 支持创建 EIP同时开通自动续费，根据autoRenewTimeUnit的取值有不同的范围，month 为1到9，year 为1到3。
+        :param auto_renew_time: auto_renew_time parameter
         :type auto_renew_time: int (optional)
 
         :param delete_protect: 是否开启释放保护。缺省值为false，代表允许删除

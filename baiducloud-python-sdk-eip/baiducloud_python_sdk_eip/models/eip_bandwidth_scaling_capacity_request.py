@@ -22,8 +22,7 @@ class EipBandwidthScalingCapacityRequest(AbstractModel):
         :param client_token: client_token parameter
         :type client_token: str (optional)
 
-        :param new_bandwidth_in_mbps:
-            公网带宽，单位为Mbps。对于预付费(prepay)以及按带宽(bandwidth)类型的EIP，限制为1~200之间的整数，对于按流量(traffic)类型的EIP，限制为1~1000之间的整数。
+        :param new_bandwidth_in_mbps: new_bandwidth_in_mbps parameter
         :type new_bandwidth_in_mbps: int (required)
         """
         super().__init__()
