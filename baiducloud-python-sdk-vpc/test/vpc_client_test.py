@@ -36,6 +36,9 @@ class VpcClientTest(unittest.TestCase):
     def test_bind_eip(self):
         self.client.bind_eip(vpc_models.BindEipRequest())
 
+    def test_bind_physical_dedicated_line(self):
+        self.client.bind_physical_dedicated_line(vpc_models.BindPhysicalDedicatedLineRequest())
+
     def test_close_peer_to_peer_connection_to_synchronize_dns(self):
         self.client.close_peer_to_peer_connection_to_synchronize_dns(
             vpc_models.ClosePeerToPeerConnectionToSynchronizeDnsRequest()
@@ -46,6 +49,12 @@ class VpcClientTest(unittest.TestCase):
 
     def test_create_a_peer_to_peer_connection(self):
         self.client.create_a_peer_to_peer_connection(vpc_models.CreateAPeerToPeerConnectionRequest())
+
+    def test_create_dedicated_gateway(self):
+        self.client.create_dedicated_gateway(vpc_models.CreateDedicatedGatewayRequest())
+
+    def test_create_dedicated_gateway_health_check(self):
+        self.client.create_dedicated_gateway_health_check(vpc_models.CreateDedicatedGatewayHealthCheckRequest())
 
     def test_create_gateway_limit_rules(self):
         self.client.create_gateway_limit_rules(vpc_models.CreateGatewayLimitRulesRequest())
@@ -140,6 +149,14 @@ class VpcClientTest(unittest.TestCase):
     def test_query_subnet_list(self):
         self.client.query_subnet_list(vpc_models.QuerySubnetListRequest())
 
+    def test_query_the_details_of_the_dedicated_gateway(self):
+        self.client.query_the_details_of_the_dedicated_gateway(
+            vpc_models.QueryTheDetailsOfTheDedicatedGatewayRequest()
+        )
+
+    def test_query_the_list_of_dedicated_line_gateways(self):
+        self.client.query_the_list_of_dedicated_line_gateways(vpc_models.QueryTheListOfDedicatedLineGatewaysRequest())
+
     def test_query_the_list_of_peer_connections(self):
         self.client.query_the_list_of_peer_connections(vpc_models.QueryTheListOfPeerConnectionsRequest())
 
@@ -154,6 +171,9 @@ class VpcClientTest(unittest.TestCase):
 
     def test_reject_peer_to_peer_connection_request(self):
         self.client.reject_peer_to_peer_connection_request(vpc_models.RejectPeerToPeerConnectionRequestRequest())
+
+    def test_release_dedicated_gateway(self):
+        self.client.release_dedicated_gateway(vpc_models.ReleaseDedicatedGatewayRequest())
 
     def test_release_peer_to_peer_connection(self):
         self.client.release_peer_to_peer_connection(vpc_models.ReleasePeerToPeerConnectionRequest())
@@ -172,6 +192,12 @@ class VpcClientTest(unittest.TestCase):
 
     def test_unbind_eip(self):
         self.client.unbind_eip(vpc_models.UnbindEipRequest())
+
+    def test_unbind_physical_dedicated_line(self):
+        self.client.unbind_physical_dedicated_line(vpc_models.UnbindPhysicalDedicatedLineRequest())
+
+    def test_update_dedicated_gateway(self):
+        self.client.update_dedicated_gateway(vpc_models.UpdateDedicatedGatewayRequest())
 
     def test_update_peer_to_peer_connection_release_protection_switch(self):
         self.client.update_peer_to_peer_connection_release_protection_switch(
@@ -225,9 +251,12 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_accept_peer_to_peer_connection_applications"))
     suite.addTest(VpcClientTest("test_batch_create_ssl_vpn_users"))
     suite.addTest(VpcClientTest("test_bind_eip"))
+    suite.addTest(VpcClientTest("test_bind_physical_dedicated_line"))
     suite.addTest(VpcClientTest("test_close_peer_to_peer_connection_to_synchronize_dns"))
     suite.addTest(VpcClientTest("test_close_vpc_relay"))
     suite.addTest(VpcClientTest("test_create_a_peer_to_peer_connection"))
+    suite.addTest(VpcClientTest("test_create_dedicated_gateway"))
+    suite.addTest(VpcClientTest("test_create_dedicated_gateway_health_check"))
     suite.addTest(VpcClientTest("test_create_gateway_limit_rules"))
     suite.addTest(VpcClientTest("test_create_ip_reserved"))
     suite.addTest(VpcClientTest("test_create_ssl_vpn_server"))
@@ -257,17 +286,22 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_query_ssl_vpn_server"))
     suite.addTest(VpcClientTest("test_query_ssl_vpn_users"))
     suite.addTest(VpcClientTest("test_query_subnet_list"))
+    suite.addTest(VpcClientTest("test_query_the_details_of_the_dedicated_gateway"))
+    suite.addTest(VpcClientTest("test_query_the_list_of_dedicated_line_gateways"))
     suite.addTest(VpcClientTest("test_query_the_list_of_peer_connections"))
     suite.addTest(VpcClientTest("test_query_vpc_intranet_ip"))
     suite.addTest(VpcClientTest("test_query_vpc_list"))
     suite.addTest(VpcClientTest("test_query_vpn_list"))
     suite.addTest(VpcClientTest("test_reject_peer_to_peer_connection_request"))
+    suite.addTest(VpcClientTest("test_release_dedicated_gateway"))
     suite.addTest(VpcClientTest("test_release_peer_to_peer_connection"))
     suite.addTest(VpcClientTest("test_release_vpn"))
     suite.addTest(VpcClientTest("test_renew_vpn"))
     suite.addTest(VpcClientTest("test_search_for_vpn_details"))
     suite.addTest(VpcClientTest("test_search_vpn_tunnel"))
     suite.addTest(VpcClientTest("test_unbind_eip"))
+    suite.addTest(VpcClientTest("test_unbind_physical_dedicated_line"))
+    suite.addTest(VpcClientTest("test_update_dedicated_gateway"))
     suite.addTest(VpcClientTest("test_update_peer_to_peer_connection_release_protection_switch"))
     suite.addTest(VpcClientTest("test_update_ssl_vpn_server"))
     suite.addTest(VpcClientTest("test_update_ssl_vpn_users"))

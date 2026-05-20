@@ -6,9 +6,13 @@ from .batch_create_ssl_vpn_users_request import BatchCreateSslVpnUsersRequest
 from .batch_create_ssl_vpn_users_response import BatchCreateSslVpnUsersResponse
 from .billing import Billing
 from .bind_eip_request import BindEipRequest
+from .bind_physical_dedicated_line_request import BindPhysicalDedicatedLineRequest
 from .cgw import Cgw
 from .create_a_peer_to_peer_connection_request import CreateAPeerToPeerConnectionRequest
 from .create_a_peer_to_peer_connection_response import CreateAPeerToPeerConnectionResponse
+from .create_dedicated_gateway_health_check_request import CreateDedicatedGatewayHealthCheckRequest
+from .create_dedicated_gateway_request import CreateDedicatedGatewayRequest
+from .create_dedicated_gateway_response import CreateDedicatedGatewayResponse
 from .create_gateway_limit_rules_request import CreateGatewayLimitRulesRequest
 from .create_gateway_limit_rules_response import CreateGatewayLimitRulesResponse
 from .create_ip_reserved_request import CreateIpReservedRequest
@@ -26,6 +30,7 @@ from .create_vpn_response import CreateVpnResponse
 from .create_vpn_tunnel_request import CreateVpnTunnelRequest
 from .create_vpn_tunnel_response import CreateVpnTunnelResponse
 from .dns_status import DnsStatus
+from .et_gateway import EtGateway
 from .get_vpc_resource_ip_info_response import GetVpcResourceIpInfoResponse
 from .glr_item import GlrItem
 from .ike_config import IkeConfig
@@ -44,6 +49,8 @@ from .query_specified_vpc_response import QuerySpecifiedVpcResponse
 from .query_ssl_vpn_server_response import QuerySslVpnServerResponse
 from .query_ssl_vpn_users_response import QuerySslVpnUsersResponse
 from .query_subnet_list_response import QuerySubnetListResponse
+from .query_the_details_of_the_dedicated_gateway_response import QueryTheDetailsOfTheDedicatedGatewayResponse
+from .query_the_list_of_dedicated_line_gateways_response import QueryTheListOfDedicatedLineGatewaysResponse
 from .query_the_list_of_peer_connections_response import QueryTheListOfPeerConnectionsResponse
 from .query_vpc_intranet_ip_response import QueryVpcIntranetIpResponse
 from .query_vpc_list_response import QueryVpcListResponse
@@ -60,6 +67,7 @@ from .ssl_vpn_user_vo import SslVpnUserVo
 from .subnet import Subnet
 from .subnet_detail import SubnetDetail
 from .tag_model import TagModel
+from .update_dedicated_gateway_request import UpdateDedicatedGatewayRequest
 from .update_peer_to_peer_connection_release_protection_switch_request import (
     UpdatePeerToPeerConnectionReleaseProtectionSwitchRequest,
 )
@@ -90,6 +98,7 @@ from .delete_vpn_tunnel_request import DeleteVpnTunnelRequest
 from .get_vpc_resource_ip_info_request import GetVpcResourceIpInfoRequest
 from .prepaid_peer_to_peer_connection_unsubscribe_request import PrepaidPeerToPeerConnectionUnsubscribeRequest
 from .query_vpc_intranet_ip_request import QueryVpcIntranetIpRequest
+from .release_dedicated_gateway_request import ReleaseDedicatedGatewayRequest
 from .query_ssl_vpn_server_request import QuerySslVpnServerRequest
 from .user_gateway_list_request import UserGatewayListRequest
 from .delete_vpc_request import DeleteVpcRequest
@@ -100,6 +109,7 @@ from .query_subnet_list_request import QuerySubnetListRequest
 from .search_vpn_tunnel_request import SearchVpnTunnelRequest
 from .user_gateway_details_request import UserGatewayDetailsRequest
 from .delete_user_gateway_request import DeleteUserGatewayRequest
+from .unbind_physical_dedicated_line_request import UnbindPhysicalDedicatedLineRequest
 from .view_peer_to_peer_connection_details_request import ViewPeerToPeerConnectionDetailsRequest
 from .accept_peer_to_peer_connection_applications_request import AcceptPeerToPeerConnectionApplicationsRequest
 from .delete_gateway_limit_rule_request import DeleteGatewayLimitRuleRequest
@@ -111,6 +121,7 @@ from .query_vpc_list_request import QueryVpcListRequest
 from .enable_peer_to_peer_connection_to_synchronize_dns_request import (
     EnablePeerToPeerConnectionToSynchronizeDnsRequest,
 )
+from .query_the_details_of_the_dedicated_gateway_request import QueryTheDetailsOfTheDedicatedGatewayRequest
 from .release_peer_to_peer_connection_request import ReleasePeerToPeerConnectionRequest
 from .query_specified_subnet_request import QuerySpecifiedSubnetRequest
 from .open_vpc_relay_request import OpenVpcRelayRequest
@@ -118,4 +129,5 @@ from .query_the_list_of_peer_connections_request import QueryTheListOfPeerConnec
 from .search_for_vpn_details_request import SearchForVpnDetailsRequest
 from .reject_peer_to_peer_connection_request_request import RejectPeerToPeerConnectionRequestRequest
 from .delete_ip_reserve_request import DeleteIpReserveRequest
+from .query_the_list_of_dedicated_line_gateways_request import QueryTheListOfDedicatedLineGatewaysRequest
 from .release_vpn_request import ReleaseVpnRequest
