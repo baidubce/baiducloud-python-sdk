@@ -18,7 +18,12 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = DnsClient(config)
-        request = dns_models.DomainNameRenewalRequest(name="", action="", billing=[], client_token="")
+        request = dns_models.DomainNameRenewalRequest(
+            name="testnewdomain52.com",
+            action="purchaseReserved",
+            billing=dns_models.BillingForRenew(reservation=dns_models.Reservation(reservation_length=1)),
+            client_token=""
+        )
         res = client.domain_name_renewal(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

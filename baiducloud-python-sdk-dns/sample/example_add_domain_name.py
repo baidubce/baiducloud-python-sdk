@@ -18,7 +18,7 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = DnsClient(config)
-        request = dns_models.AddDomainNameRequest(name="", client_token="")
+        request = dns_models.AddDomainNameRequest(name="pythontest.com", client_token="")
         res = client.add_domain_name(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

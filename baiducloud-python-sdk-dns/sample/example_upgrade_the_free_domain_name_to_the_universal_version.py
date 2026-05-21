@@ -19,7 +19,13 @@ if __name__ == '__main__':
         )
         client = DnsClient(config)
         request = dns_models.UpgradeTheFreeDomainNameToTheUniversalVersionRequest(
-            action="", names=[], billing=[], client_token=""
+            action="purchaseReserved",
+            names=["pythontest.com"],
+            billing=dns_models.Billing(
+                payment_timing="Prepaid",
+                reservation=dns_models.Reservation(reservation_length=1)
+            ),
+            client_token=""
         )
         res = client.upgrade_the_free_domain_name_to_the_universal_version(request)
         print(res.to_json_string())

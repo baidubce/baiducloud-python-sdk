@@ -27,7 +27,7 @@ class DomainNameRenewalRequest(AbstractModel):
         :type client_token: str (optional)
 
         :param billing: 计费信息。
-        :type billing: List[BillingForRenew] (required)
+        :type billing: BillingForRenew (required)
         """
         super().__init__()
         self.name = name
@@ -49,7 +49,7 @@ class DomainNameRenewalRequest(AbstractModel):
             return _map
         result = dict()
         if self.billing is not None:
-            result['billing'] = [i.to_dict() for i in self.billing]
+            result['billing'] = self.billing.to_dict()
         return result
 
     def from_dict(self, m):
@@ -75,5 +75,5 @@ class DomainNameRenewalRequest(AbstractModel):
         if m.get('clientToken') is not None:
             self.client_token = m.get('clientToken')
         if m.get('billing') is not None:
-            self.billing = [BillingForRenew().from_dict(i) for i in m.get('billing')]
+            self.billing = BillingForRenew().from_dict(m.get('billing'))
         return self

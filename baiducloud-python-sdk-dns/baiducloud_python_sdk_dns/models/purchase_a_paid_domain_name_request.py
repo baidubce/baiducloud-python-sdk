@@ -27,7 +27,7 @@ class PurchaseAPaidDomainNameRequest(AbstractModel):
         :type product_version: str (required)
 
         :param billing: 计费信息。
-        :type billing: List[Billing] (required)
+        :type billing: Billing (required)
         """
         super().__init__()
         self.client_token = client_token
@@ -53,7 +53,7 @@ class PurchaseAPaidDomainNameRequest(AbstractModel):
         if self.product_version is not None:
             result['productVersion'] = self.product_version
         if self.billing is not None:
-            result['billing'] = [i.to_dict() for i in self.billing]
+            result['billing'] = self.billing.to_dict()
         return result
 
     def from_dict(self, m):
@@ -79,5 +79,5 @@ class PurchaseAPaidDomainNameRequest(AbstractModel):
         if m.get('productVersion') is not None:
             self.product_version = m.get('productVersion')
         if m.get('billing') is not None:
-            self.billing = [Billing().from_dict(i) for i in m.get('billing')]
+            self.billing = Billing().from_dict(m.get('billing'))
         return self

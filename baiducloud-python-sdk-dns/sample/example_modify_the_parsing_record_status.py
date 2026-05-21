@@ -19,7 +19,7 @@ if __name__ == '__main__':
         )
         client = DnsClient(config)
         request = dns_models.ModifyTheParsingRecordStatusRequest(
-            zone_name="", record_id="", action="", client_token=""
+            zone_name="abbbbbb.com", record_id="463548", action="enable", client_token=""
         )
         res = client.modify_the_parsing_record_status(request)
         print(res.to_json_string())

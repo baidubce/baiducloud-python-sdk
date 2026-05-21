@@ -18,7 +18,15 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = DnsClient(config)
-        request = dns_models.PurchaseAPaidDomainNameRequest(names=[], product_version="", billing=[], client_token="")
+        request = dns_models.PurchaseAPaidDomainNameRequest(
+            names=["prepaid.com"],
+            product_version="discount",
+            billing=dns_models.Billing(
+                payment_timing="Prepaid",
+                reservation=dns_models.Reservation(reservation_length=1)
+            ),
+            client_token=""
+        )
         res = client.purchase_a_paid_domain_name(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

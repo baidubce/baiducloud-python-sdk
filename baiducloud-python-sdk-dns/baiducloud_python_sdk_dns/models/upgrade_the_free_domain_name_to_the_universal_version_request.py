@@ -27,7 +27,7 @@ class UpgradeTheFreeDomainNameToTheUniversalVersionRequest(AbstractModel):
         :type names: List[str] (required)
 
         :param billing: 计费信息。
-        :type billing: List[Billing] (required)
+        :type billing: Billing (required)
         """
         super().__init__()
         self.action = action
@@ -51,7 +51,7 @@ class UpgradeTheFreeDomainNameToTheUniversalVersionRequest(AbstractModel):
         if self.names is not None:
             result['names'] = self.names
         if self.billing is not None:
-            result['billing'] = [i.to_dict() for i in self.billing]
+            result['billing'] = self.billing.to_dict()
         return result
 
     def from_dict(self, m):
@@ -77,5 +77,5 @@ class UpgradeTheFreeDomainNameToTheUniversalVersionRequest(AbstractModel):
         if m.get('names') is not None:
             self.names = m.get('names')
         if m.get('billing') is not None:
-            self.billing = [Billing().from_dict(i) for i in m.get('billing')]
+            self.billing = Billing().from_dict(m.get('billing'))
         return self

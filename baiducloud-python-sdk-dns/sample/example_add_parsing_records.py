@@ -19,8 +19,8 @@ if __name__ == '__main__':
         )
         client = DnsClient(config)
         request = dns_models.AddParsingRecordsRequest(
-            zone_name="", rr="", type="", value="", client_token="", ttl=0, line="", description="", priority=0
-        )
+            zone_name="pythontest.com", rr="test", type="A", value="1.2.3.1",
+            client_token="", ttl=300, line="", description="", priority=0)
         res = client.add_parsing_records(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
