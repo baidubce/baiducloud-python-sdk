@@ -17,6 +17,8 @@ from .create_gateway_limit_rules_request import CreateGatewayLimitRulesRequest
 from .create_gateway_limit_rules_response import CreateGatewayLimitRulesResponse
 from .create_ip_reserved_request import CreateIpReservedRequest
 from .create_ip_reserved_response import CreateIpReservedResponse
+from .create_routing_rules_request import CreateRoutingRulesRequest
+from .create_routing_rules_response import CreateRoutingRulesResponse
 from .create_ssl_vpn_server_request import CreateSslVpnServerRequest
 from .create_ssl_vpn_server_response import CreateSslVpnServerResponse
 from .create_subnet_request import CreateSubnetRequest
@@ -38,12 +40,15 @@ from .ip_reserve import IpReserve
 from .ipsec_config import IpsecConfig
 from .list_ip_reserve_response import ListIpReserveResponse
 from .modify_gateway_limit_rules_request import ModifyGatewayLimitRulesRequest
+from .next_hop import NextHop
 from .peer_conn import PeerConn
 from .peer_conn_status import PeerConnStatus
 from .peer_to_peer_connection_bandwidth_upgrade_and_downgrade_request import (
     PeerToPeerConnectionBandwidthUpgradeAndDowngradeRequest,
 )
 from .peer_to_peer_connection_renewal_request import PeerToPeerConnectionRenewalRequest
+from .query_routing_rules_response import QueryRoutingRulesResponse
+from .query_routing_table_response import QueryRoutingTableResponse
 from .query_specified_subnet_response import QuerySpecifiedSubnetResponse
 from .query_specified_vpc_response import QuerySpecifiedVpcResponse
 from .query_ssl_vpn_server_response import QuerySslVpnServerResponse
@@ -58,6 +63,7 @@ from .query_vpn_list_response import QueryVpnListResponse
 from .renew_vpn_request import RenewVpnRequest
 from .reservation import Reservation
 from .resource_ip import ResourceIp
+from .route_rule import RouteRule
 from .search_for_vpn_details_response import SearchForVpnDetailsResponse
 from .search_vpn_tunnel_response import SearchVpnTunnelResponse
 from .show_vpc_model import ShowVpcModel
@@ -71,6 +77,7 @@ from .update_dedicated_gateway_request import UpdateDedicatedGatewayRequest
 from .update_peer_to_peer_connection_release_protection_switch_request import (
     UpdatePeerToPeerConnectionReleaseProtectionSwitchRequest,
 )
+from .update_routing_rules_request import UpdateRoutingRulesRequest
 from .update_ssl_vpn_server_request import UpdateSslVpnServerRequest
 from .update_ssl_vpn_users_request import UpdateSslVpnUsersRequest
 from .update_subnet_request import UpdateSubnetRequest
@@ -97,6 +104,7 @@ from .close_vpc_relay_request import CloseVpcRelayRequest
 from .delete_vpn_tunnel_request import DeleteVpnTunnelRequest
 from .get_vpc_resource_ip_info_request import GetVpcResourceIpInfoRequest
 from .prepaid_peer_to_peer_connection_unsubscribe_request import PrepaidPeerToPeerConnectionUnsubscribeRequest
+from .delete_routing_rules_request import DeleteRoutingRulesRequest
 from .query_vpc_intranet_ip_request import QueryVpcIntranetIpRequest
 from .release_dedicated_gateway_request import ReleaseDedicatedGatewayRequest
 from .query_ssl_vpn_server_request import QuerySslVpnServerRequest
@@ -125,9 +133,12 @@ from .query_the_details_of_the_dedicated_gateway_request import QueryTheDetailsO
 from .release_peer_to_peer_connection_request import ReleasePeerToPeerConnectionRequest
 from .query_specified_subnet_request import QuerySpecifiedSubnetRequest
 from .open_vpc_relay_request import OpenVpcRelayRequest
+from .query_routing_rules_request import QueryRoutingRulesRequest
 from .query_the_list_of_peer_connections_request import QueryTheListOfPeerConnectionsRequest
 from .search_for_vpn_details_request import SearchForVpnDetailsRequest
 from .reject_peer_to_peer_connection_request_request import RejectPeerToPeerConnectionRequestRequest
+from .query_routing_table_request import QueryRoutingTableRequest
+from .active_standby_switchover_request import ActiveStandbySwitchoverRequest
 from .delete_ip_reserve_request import DeleteIpReserveRequest
 from .query_the_list_of_dedicated_line_gateways_request import QueryTheListOfDedicatedLineGatewaysRequest
 from .release_vpn_request import ReleaseVpnRequest

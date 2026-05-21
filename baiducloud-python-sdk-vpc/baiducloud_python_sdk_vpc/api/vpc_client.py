@@ -18,6 +18,7 @@ from baiducloud_python_sdk_vpc.models.create_a_peer_to_peer_connection_response 
 from baiducloud_python_sdk_vpc.models.create_dedicated_gateway_response import CreateDedicatedGatewayResponse
 from baiducloud_python_sdk_vpc.models.create_gateway_limit_rules_response import CreateGatewayLimitRulesResponse
 from baiducloud_python_sdk_vpc.models.create_ip_reserved_response import CreateIpReservedResponse
+from baiducloud_python_sdk_vpc.models.create_routing_rules_response import CreateRoutingRulesResponse
 from baiducloud_python_sdk_vpc.models.create_ssl_vpn_server_response import CreateSslVpnServerResponse
 from baiducloud_python_sdk_vpc.models.create_subnet_response import CreateSubnetResponse
 from baiducloud_python_sdk_vpc.models.create_user_gateway_response import CreateUserGatewayResponse
@@ -26,6 +27,8 @@ from baiducloud_python_sdk_vpc.models.create_vpn_response import CreateVpnRespon
 from baiducloud_python_sdk_vpc.models.create_vpn_tunnel_response import CreateVpnTunnelResponse
 from baiducloud_python_sdk_vpc.models.get_vpc_resource_ip_info_response import GetVpcResourceIpInfoResponse
 from baiducloud_python_sdk_vpc.models.list_ip_reserve_response import ListIpReserveResponse
+from baiducloud_python_sdk_vpc.models.query_routing_rules_response import QueryRoutingRulesResponse
+from baiducloud_python_sdk_vpc.models.query_routing_table_response import QueryRoutingTableResponse
 from baiducloud_python_sdk_vpc.models.query_specified_subnet_response import QuerySpecifiedSubnetResponse
 from baiducloud_python_sdk_vpc.models.query_specified_vpc_response import QuerySpecifiedVpcResponse
 from baiducloud_python_sdk_vpc.models.query_ssl_vpn_server_response import QuerySslVpnServerResponse
@@ -78,6 +81,10 @@ class VpcClient(BceBaseClient):
 
     CONSTANT_PEERCONN = b'peerconn'
 
+    CONSTANT_ROUTE = b'route'
+
+    CONSTANT_RULE = b'rule'
+
     CONSTANT_PRIVATE_IP_ADDRESS_INFO = b'privateIpAddressInfo'
 
     CONSTANT_ET_GATEWAY = b'etGateway'
@@ -126,6 +133,32 @@ class VpcClient(BceBaseClient):
         headers = None
         params = {}
         params['accept'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.PUT, path=path, params=params, config=merged_config)
+
+    def active_standby_switchover(self, request, config=None):
+        """
+        active_standby_switchover
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1, VpcClient.CONSTANT_ROUTE, VpcClient.CONSTANT_RULE, request.route_rule_id
+        )
+        headers = None
+        params = {}
+        params['switchRouteHA'] = None
         if request.client_token is not None:
             params['clientToken'] = request.client_token
         merged_config = self._create_request_with_host(request, config)
@@ -413,6 +446,36 @@ class VpcClient(BceBaseClient):
             model=CreateIpReservedResponse,
         )
 
+    def create_routing_rules(self, request, config=None):
+        """
+        create_routing_rules
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing CreateRoutingRulesResponse data
+        :rtype: CreateRoutingRulesResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_ROUTE, VpcClient.CONSTANT_RULE)
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=CreateRoutingRulesResponse,
+        )
+
     def create_ssl_vpn_server(self, request, config=None):
         """
         create_ssl_vpn_server
@@ -639,6 +702,31 @@ class VpcClient(BceBaseClient):
         """
         path = utils.append_uri(
             VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET, VpcClient.CONSTANT_IPRESERVE, request.ip_reserve_id
+        )
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
+
+    def delete_routing_rules(self, request, config=None):
+        """
+        delete_routing_rules
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1, VpcClient.CONSTANT_ROUTE, VpcClient.CONSTANT_RULE, request.route_rule_id
         )
         headers = None
         params = {}
@@ -1011,6 +1099,64 @@ class VpcClient(BceBaseClient):
             params['clientToken'] = request.client_token
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.PUT, path=path, params=params, config=merged_config)
+
+    def query_routing_rules(self, request, config=None):
+        """
+        query_routing_rules
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing QueryRoutingRulesResponse data
+        :rtype: QueryRoutingRulesResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_ROUTE, VpcClient.CONSTANT_RULE)
+        headers = None
+        params = {}
+        if request.route_table_id is not None:
+            params['routeTableId'] = request.route_table_id
+        if request.vpc_id is not None:
+            params['vpcId'] = request.vpc_id
+        if request.marker is not None:
+            params['marker'] = request.marker
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.GET, path=path, params=params, config=merged_config, model=QueryRoutingRulesResponse
+        )
+
+    def query_routing_table(self, request, config=None):
+        """
+        query_routing_table
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing QueryRoutingTableResponse data
+        :rtype: QueryRoutingTableResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_ROUTE)
+        headers = None
+        params = {}
+        if request.route_table_id is not None:
+            params['routeTableId'] = request.route_table_id
+        if request.vpc_id is not None:
+            params['vpcId'] = request.vpc_id
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.GET, path=path, params=params, config=merged_config, model=QueryRoutingTableResponse
+        )
 
     def query_specified_subnet(self, request, config=None):
         """
@@ -1592,6 +1738,33 @@ class VpcClient(BceBaseClient):
         headers = None
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.PUT, path=path, body=request.to_json_string(), config=merged_config)
+
+    def update_routing_rules(self, request, config=None):
+        """
+        update_routing_rules
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1, VpcClient.CONSTANT_ROUTE, VpcClient.CONSTANT_RULE, request.route_rule_id
+        )
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
 
     def update_ssl_vpn_server(self, request, config=None):
         """

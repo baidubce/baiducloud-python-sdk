@@ -30,6 +30,9 @@ class VpcClientTest(unittest.TestCase):
             vpc_models.AcceptPeerToPeerConnectionApplicationsRequest()
         )
 
+    def test_active_standby_switchover(self):
+        self.client.active_standby_switchover(vpc_models.ActiveStandbySwitchoverRequest())
+
     def test_batch_create_ssl_vpn_users(self):
         self.client.batch_create_ssl_vpn_users(vpc_models.BatchCreateSslVpnUsersRequest())
 
@@ -62,6 +65,9 @@ class VpcClientTest(unittest.TestCase):
     def test_create_ip_reserved(self):
         self.client.create_ip_reserved(vpc_models.CreateIpReservedRequest())
 
+    def test_create_routing_rules(self):
+        self.client.create_routing_rules(vpc_models.CreateRoutingRulesRequest())
+
     def test_create_ssl_vpn_server(self):
         self.client.create_ssl_vpn_server(vpc_models.CreateSslVpnServerRequest())
 
@@ -85,6 +91,9 @@ class VpcClientTest(unittest.TestCase):
 
     def test_delete_ip_reserve(self):
         self.client.delete_ip_reserve(vpc_models.DeleteIpReserveRequest())
+
+    def test_delete_routing_rules(self):
+        self.client.delete_routing_rules(vpc_models.DeleteRoutingRulesRequest())
 
     def test_delete_ssl_vpn_server(self):
         self.client.delete_ssl_vpn_server(vpc_models.DeleteSslVpnServerRequest())
@@ -133,6 +142,12 @@ class VpcClientTest(unittest.TestCase):
         self.client.prepaid_peer_to_peer_connection_unsubscribe(
             vpc_models.PrepaidPeerToPeerConnectionUnsubscribeRequest()
         )
+
+    def test_query_routing_rules(self):
+        self.client.query_routing_rules(vpc_models.QueryRoutingRulesRequest())
+
+    def test_query_routing_table(self):
+        self.client.query_routing_table(vpc_models.QueryRoutingTableRequest())
 
     def test_query_specified_subnet(self):
         self.client.query_specified_subnet(vpc_models.QuerySpecifiedSubnetRequest())
@@ -204,6 +219,9 @@ class VpcClientTest(unittest.TestCase):
             vpc_models.UpdatePeerToPeerConnectionReleaseProtectionSwitchRequest()
         )
 
+    def test_update_routing_rules(self):
+        self.client.update_routing_rules(vpc_models.UpdateRoutingRulesRequest())
+
     def test_update_ssl_vpn_server(self):
         self.client.update_ssl_vpn_server(vpc_models.UpdateSslVpnServerRequest())
 
@@ -249,6 +267,7 @@ class VpcClientTest(unittest.TestCase):
 if __name__ == '__main__':
     suite = unittest.TestSuite()
     suite.addTest(VpcClientTest("test_accept_peer_to_peer_connection_applications"))
+    suite.addTest(VpcClientTest("test_active_standby_switchover"))
     suite.addTest(VpcClientTest("test_batch_create_ssl_vpn_users"))
     suite.addTest(VpcClientTest("test_bind_eip"))
     suite.addTest(VpcClientTest("test_bind_physical_dedicated_line"))
@@ -259,6 +278,7 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_create_dedicated_gateway_health_check"))
     suite.addTest(VpcClientTest("test_create_gateway_limit_rules"))
     suite.addTest(VpcClientTest("test_create_ip_reserved"))
+    suite.addTest(VpcClientTest("test_create_routing_rules"))
     suite.addTest(VpcClientTest("test_create_ssl_vpn_server"))
     suite.addTest(VpcClientTest("test_create_subnet"))
     suite.addTest(VpcClientTest("test_create_user_gateway"))
@@ -267,6 +287,7 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_create_vpn_tunnel"))
     suite.addTest(VpcClientTest("test_delete_gateway_limit_rule"))
     suite.addTest(VpcClientTest("test_delete_ip_reserve"))
+    suite.addTest(VpcClientTest("test_delete_routing_rules"))
     suite.addTest(VpcClientTest("test_delete_ssl_vpn_server"))
     suite.addTest(VpcClientTest("test_delete_ssl_vpn_user"))
     suite.addTest(VpcClientTest("test_delete_subnet"))
@@ -281,6 +302,8 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_peer_to_peer_connection_bandwidth_upgrade_and_downgrade"))
     suite.addTest(VpcClientTest("test_peer_to_peer_connection_renewal"))
     suite.addTest(VpcClientTest("test_prepaid_peer_to_peer_connection_unsubscribe"))
+    suite.addTest(VpcClientTest("test_query_routing_rules"))
+    suite.addTest(VpcClientTest("test_query_routing_table"))
     suite.addTest(VpcClientTest("test_query_specified_subnet"))
     suite.addTest(VpcClientTest("test_query_specified_vpc"))
     suite.addTest(VpcClientTest("test_query_ssl_vpn_server"))
@@ -303,6 +326,7 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_unbind_physical_dedicated_line"))
     suite.addTest(VpcClientTest("test_update_dedicated_gateway"))
     suite.addTest(VpcClientTest("test_update_peer_to_peer_connection_release_protection_switch"))
+    suite.addTest(VpcClientTest("test_update_routing_rules"))
     suite.addTest(VpcClientTest("test_update_ssl_vpn_server"))
     suite.addTest(VpcClientTest("test_update_ssl_vpn_users"))
     suite.addTest(VpcClientTest("test_update_subnet"))
