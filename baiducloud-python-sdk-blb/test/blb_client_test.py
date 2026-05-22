@@ -3,9 +3,7 @@ import unittest
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
 from baiducloud_python_sdk_blb.api.blb_client import BlbClient
-from baiducloud_python_sdk_blb.models.billing import Billing
-from baiducloud_python_sdk_blb.models.blb_inquiry_request import BlbInquiryRequest
-from baiducloud_python_sdk_blb.models.reservation import Reservation
+from baiducloud_python_sdk_blb import models as blb_models
 
 
 class BlbClientTest(unittest.TestCase):
@@ -28,36 +26,100 @@ class BlbClientTest(unittest.TestCase):
         self.the_client = None
 
     def test_billing_change_cancel_to_post_blb(self):
-        self.client.billing_change_cancel_to_post_blb(None)
+        self.client.billing_change_cancel_to_post_blb(blb_models.BillingChangeCancelToPostBlbRequest())
 
     def test_billing_change_post_to_pre_blb(self):
-        self.client.billing_change_post_to_pre_blb(None)
+        self.client.billing_change_post_to_pre_blb(blb_models.BillingChangePostToPreBlbRequest())
 
     def test_billing_change_pre_to_post_blb(self):
-        self.client.billing_change_pre_to_post_blb(None)
+        self.client.billing_change_pre_to_post_blb(blb_models.BillingChangePreToPostBlbRequest())
 
     def test_blb_inquiry(self):
-        request = BlbInquiryRequest(
-            blb_type='ipv6Application',
-            performance_level='small1',
-            count=1,
-            billing=Billing(
-                payment_timing='Prepaid',
-                reservation=Reservation(reservation_length=1),
-            ),
-        )
-        response = self.client.blb_inquiry(request)
-        print('metadata:', response.metadata)
-        print('prices:', response.prices)
-        if response.prices:
-            for p in response.prices:
-                print(' -', p.to_dict())
+        self.client.blb_inquiry(blb_models.BlbInquiryRequest())
+
+    def test_create_app_blb(self):
+        self.client.create_app_blb(blb_models.CreateAppBlbRequest())
+
+    def test_create_app_blb_http_listener(self):
+        self.client.create_app_blb_http_listener(blb_models.CreateAppBlbHttpListenerRequest())
+
+    def test_create_app_blb_https_listener(self):
+        self.client.create_app_blb_https_listener(blb_models.CreateAppBlbHttpsListenerRequest())
+
+    def test_create_app_blb_policy(self):
+        self.client.create_app_blb_policy(blb_models.CreateAppBlbPolicyRequest())
+
+    def test_create_app_blb_ssl_listener(self):
+        self.client.create_app_blb_ssl_listener(blb_models.CreateAppBlbSslListenerRequest())
+
+    def test_create_app_blb_tcp_listener(self):
+        self.client.create_app_blb_tcp_listener(blb_models.CreateAppBlbTcpListenerRequest())
+
+    def test_create_app_blb_udp_listener(self):
+        self.client.create_app_blb_udp_listener(blb_models.CreateAppBlbUdpListenerRequest())
+
+    def test_delete_app_blb_listener(self):
+        self.client.delete_app_blb_listener(blb_models.DeleteAppBlbListenerRequest())
+
+    def test_delete_app_blb_policy(self):
+        self.client.delete_app_blb_policy(blb_models.DeleteAppBlbPolicyRequest())
+
+    def test_describe_app_blb(self):
+        self.client.describe_app_blb(blb_models.DescribeAppBlbRequest())
+
+    def test_describe_app_blb_http_listener(self):
+        self.client.describe_app_blb_http_listener(blb_models.DescribeAppBlbHttpListenerRequest())
+
+    def test_describe_app_blb_https_listener(self):
+        self.client.describe_app_blb_https_listener(blb_models.DescribeAppBlbHttpsListenerRequest())
+
+    def test_describe_app_blb_listener(self):
+        self.client.describe_app_blb_listener(blb_models.DescribeAppBlbListenerRequest())
+
+    def test_describe_app_blb_policy(self):
+        self.client.describe_app_blb_policy(blb_models.DescribeAppBlbPolicyRequest())
+
+    def test_describe_app_blb_ssl_listener(self):
+        self.client.describe_app_blb_ssl_listener(blb_models.DescribeAppBlbSslListenerRequest())
+
+    def test_describe_app_blb_tcp_listener(self):
+        self.client.describe_app_blb_tcp_listener(blb_models.DescribeAppBlbTcpListenerRequest())
+
+    def test_describe_app_blb_udp_listener(self):
+        self.client.describe_app_blb_udp_listener(blb_models.DescribeAppBlbUdpListenerRequest())
+
+    def test_describe_app_blbs(self):
+        self.client.describe_app_blbs(blb_models.DescribeAppBlbsRequest())
 
     def test_refund_blb(self):
-        self.client.refund_blb(None)
+        self.client.refund_blb(blb_models.RefundBlbRequest())
+
+    def test_release_app_blb(self):
+        self.client.release_app_blb(blb_models.ReleaseAppBlbRequest())
 
     def test_resize_blb(self):
-        self.client.resize_blb(None)
+        self.client.resize_blb(blb_models.ResizeBlbRequest())
+
+    def test_update_app_blb(self):
+        self.client.update_app_blb(blb_models.UpdateAppBlbRequest())
+
+    def test_update_app_blb_http_listener(self):
+        self.client.update_app_blb_http_listener(blb_models.UpdateAppBlbHttpListenerRequest())
+
+    def test_update_app_blb_https_listener(self):
+        self.client.update_app_blb_https_listener(blb_models.UpdateAppBlbHttpsListenerRequest())
+
+    def test_update_app_blb_policy(self):
+        self.client.update_app_blb_policy(blb_models.UpdateAppBlbPolicyRequest())
+
+    def test_update_app_blb_ssl_listener(self):
+        self.client.update_app_blb_ssl_listener(blb_models.UpdateAppBlbSslListenerRequest())
+
+    def test_update_app_blb_tcp_listener(self):
+        self.client.update_app_blb_tcp_listener(blb_models.UpdateAppBlbTcpListenerRequest())
+
+    def test_update_app_blb_udp_listener(self):
+        self.client.update_app_blb_udp_listener(blb_models.UpdateAppBlbUdpListenerRequest())
 
 
 if __name__ == '__main__':
@@ -66,7 +128,33 @@ if __name__ == '__main__':
     suite.addTest(BlbClientTest("test_billing_change_post_to_pre_blb"))
     suite.addTest(BlbClientTest("test_billing_change_pre_to_post_blb"))
     suite.addTest(BlbClientTest("test_blb_inquiry"))
+    suite.addTest(BlbClientTest("test_create_app_blb"))
+    suite.addTest(BlbClientTest("test_create_app_blb_http_listener"))
+    suite.addTest(BlbClientTest("test_create_app_blb_https_listener"))
+    suite.addTest(BlbClientTest("test_create_app_blb_policy"))
+    suite.addTest(BlbClientTest("test_create_app_blb_ssl_listener"))
+    suite.addTest(BlbClientTest("test_create_app_blb_tcp_listener"))
+    suite.addTest(BlbClientTest("test_create_app_blb_udp_listener"))
+    suite.addTest(BlbClientTest("test_delete_app_blb_listener"))
+    suite.addTest(BlbClientTest("test_delete_app_blb_policy"))
+    suite.addTest(BlbClientTest("test_describe_app_blb"))
+    suite.addTest(BlbClientTest("test_describe_app_blb_http_listener"))
+    suite.addTest(BlbClientTest("test_describe_app_blb_https_listener"))
+    suite.addTest(BlbClientTest("test_describe_app_blb_listener"))
+    suite.addTest(BlbClientTest("test_describe_app_blb_policy"))
+    suite.addTest(BlbClientTest("test_describe_app_blb_ssl_listener"))
+    suite.addTest(BlbClientTest("test_describe_app_blb_tcp_listener"))
+    suite.addTest(BlbClientTest("test_describe_app_blb_udp_listener"))
+    suite.addTest(BlbClientTest("test_describe_app_blbs"))
     suite.addTest(BlbClientTest("test_refund_blb"))
+    suite.addTest(BlbClientTest("test_release_app_blb"))
     suite.addTest(BlbClientTest("test_resize_blb"))
+    suite.addTest(BlbClientTest("test_update_app_blb"))
+    suite.addTest(BlbClientTest("test_update_app_blb_http_listener"))
+    suite.addTest(BlbClientTest("test_update_app_blb_https_listener"))
+    suite.addTest(BlbClientTest("test_update_app_blb_policy"))
+    suite.addTest(BlbClientTest("test_update_app_blb_ssl_listener"))
+    suite.addTest(BlbClientTest("test_update_app_blb_tcp_listener"))
+    suite.addTest(BlbClientTest("test_update_app_blb_udp_listener"))
     runner = unittest.TextTestRunner()
     runner.run(suite)

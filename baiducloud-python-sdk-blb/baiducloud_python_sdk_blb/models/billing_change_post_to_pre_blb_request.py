@@ -25,9 +25,7 @@ class BillingChangePostToPreBlbRequest(AbstractModel):
         :param billing_method: 计费类型。当前只支持默认值\"BySpec\"。
         :type billing_method: str (optional)
 
-        :param performance_level:
-            性能规格。不填表示不进行配置变更。取值如下：\"small1\"标准型1，\"small2\"标准型2，\"medium1\"增强型1，\"medium2\"增强型2，\"large1\"超大型1，
-            \"large2\"超大型2，\"large3\"超大型3。注意：预付费不支持\"unlimited\"不限速
+        :param performance_level: performance_level parameter
         :type performance_level: str (optional)
 
         :param reservation_length: 购买月份时长，[1,2,3,4,5,6,7,8,9,12,24,36]

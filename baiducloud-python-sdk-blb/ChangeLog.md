@@ -1,3 +1,8 @@
+2026-05-22 Version: 0.0.5
+- 涉及产品: BLB，新增应用型实例创建、查询、更新、释放接口
+- 涉及产品: BLB，新增TCP/UDP/HTTP/HTTPS/SSL监听器增删改查接口
+- 涉及产品: BLB，新增转发策略创建、修改、查询、删除接口
+
 2026-04-10 Version: 0.0.4
 - 涉及产品: BLB, 更新models中的init文件，支持import *方式引入model
 
