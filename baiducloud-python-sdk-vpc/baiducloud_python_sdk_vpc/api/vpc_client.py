@@ -15,7 +15,13 @@ from baiducloud_python_sdk_vpc.models.batch_create_ssl_vpn_users_response import
 from baiducloud_python_sdk_vpc.models.create_a_peer_to_peer_connection_response import (
     CreateAPeerToPeerConnectionResponse,
 )
+from baiducloud_python_sdk_vpc.models.create_a_regular_security_group_v2_response import (
+    CreateARegularSecurityGroupV2Response,
+)
 from baiducloud_python_sdk_vpc.models.create_dedicated_gateway_response import CreateDedicatedGatewayResponse
+from baiducloud_python_sdk_vpc.models.create_enterprise_security_group_response import (
+    CreateEnterpriseSecurityGroupResponse,
+)
 from baiducloud_python_sdk_vpc.models.create_gateway_limit_rules_response import CreateGatewayLimitRulesResponse
 from baiducloud_python_sdk_vpc.models.create_ip_reserved_response import CreateIpReservedResponse
 from baiducloud_python_sdk_vpc.models.create_routing_rules_response import CreateRoutingRulesResponse
@@ -40,8 +46,14 @@ from baiducloud_python_sdk_vpc.models.query_the_details_of_the_dedicated_gateway
 from baiducloud_python_sdk_vpc.models.query_the_list_of_dedicated_line_gateways_response import (
     QueryTheListOfDedicatedLineGatewaysResponse,
 )
+from baiducloud_python_sdk_vpc.models.query_the_list_of_enterprise_security_groups_response import (
+    QueryTheListOfEnterpriseSecurityGroupsResponse,
+)
 from baiducloud_python_sdk_vpc.models.query_the_list_of_peer_connections_response import (
     QueryTheListOfPeerConnectionsResponse,
+)
+from baiducloud_python_sdk_vpc.models.query_the_list_of_regular_security_groups_v2_response import (
+    QueryTheListOfRegularSecurityGroupsV2Response,
 )
 from baiducloud_python_sdk_vpc.models.query_vpc_intranet_ip_response import QueryVpcIntranetIpResponse
 from baiducloud_python_sdk_vpc.models.query_vpc_list_response import QueryVpcListResponse
@@ -54,6 +66,7 @@ from baiducloud_python_sdk_vpc.models.view_gateway_limit_rules_response import V
 from baiducloud_python_sdk_vpc.models.view_peer_to_peer_connection_details_response import (
     ViewPeerToPeerConnectionDetailsResponse,
 )
+from baiducloud_python_sdk_vpc.models.view_security_group_details_v2_response import ViewSecurityGroupDetailsV2Response
 
 _logger = logging.getLogger(__name__)
 
@@ -65,7 +78,11 @@ class VpcClient(BceBaseClient):
 
     VERSION_V1 = b'/v1'
 
+    VERSION_V2 = b'/v2'
+
     CONSTANT_VPC = b'vpc'
+
+    CONSTANT_SECURITY_GROUP = b'securityGroup'
 
     CONSTANT_VPN = b'vpn'
 
@@ -75,6 +92,8 @@ class VpcClient(BceBaseClient):
 
     CONSTANT_VPNCONN = b'vpnconn'
 
+    CONSTANT_RULE = b'rule'
+
     CONSTANT_RESOURCE_IP = b'resourceIp'
 
     CONSTANT_CGW = b'cgw'
@@ -83,13 +102,15 @@ class VpcClient(BceBaseClient):
 
     CONSTANT_ROUTE = b'route'
 
-    CONSTANT_RULE = b'rule'
-
     CONSTANT_PRIVATE_IP_ADDRESS_INFO = b'privateIpAddressInfo'
 
     CONSTANT_ET_GATEWAY = b'etGateway'
 
     CONSTANT_HEALTH_CHECK = b'healthCheck'
+
+    CONSTANT_ENTERPRISE = b'enterprise'
+
+    CONSTANT_SECURITY = b'security'
 
     CONSTANT_SSL_VPN_USER = b'sslVpnUser'
 
@@ -98,6 +119,8 @@ class VpcClient(BceBaseClient):
     CONSTANT_GATEWAY = b'gateway'
 
     CONSTANT_LIMITRULE = b'limitrule'
+
+    CONSTANT_UPDATE = b'update'
 
     CONSTANT_IPRESERVE = b'ipreserve'
 
@@ -163,6 +186,65 @@ class VpcClient(BceBaseClient):
             params['clientToken'] = request.client_token
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.PUT, path=path, params=params, config=merged_config)
+
+    def authorize_regular_security_group_rules_v2(self, request, config=None):
+        """
+        authorize_regular_security_group_rules_v2
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V2, VpcClient.CONSTANT_SECURITY_GROUP, request.security_group_id)
+        headers = None
+        params = {}
+        params['authorizeRule'] = None
+        if request.sg_version is not None:
+            params['sgVersion'] = request.sg_version
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
+    def authorized_enterprise_security_group_rules(self, request, config=None):
+        """
+        authorized_enterprise_security_group_rules
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1,
+            VpcClient.CONSTANT_ENTERPRISE,
+            VpcClient.CONSTANT_SECURITY,
+            request.enterprise_security_group_id,
+        )
+        headers = None
+        params = {}
+        params['authorizeRule'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
 
     def batch_create_ssl_vpn_users(self, request, config=None):
         """
@@ -329,6 +411,36 @@ class VpcClient(BceBaseClient):
             model=CreateAPeerToPeerConnectionResponse,
         )
 
+    def create_a_regular_security_group_v2(self, request, config=None):
+        """
+        create_a_regular_security_group_v2
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing CreateARegularSecurityGroupV2Response data
+        :rtype: CreateARegularSecurityGroupV2Response
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V2, VpcClient.CONSTANT_SECURITY_GROUP)
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=CreateARegularSecurityGroupV2Response,
+        )
+
     def create_dedicated_gateway(self, request, config=None):
         """
         create_dedicated_gateway
@@ -384,6 +496,36 @@ class VpcClient(BceBaseClient):
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.POST, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
+    def create_enterprise_security_group(self, request, config=None):
+        """
+        create_enterprise_security_group
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing CreateEnterpriseSecurityGroupResponse data
+        :rtype: CreateEnterpriseSecurityGroupResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_ENTERPRISE, VpcClient.CONSTANT_SECURITY)
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=CreateEnterpriseSecurityGroupResponse,
         )
 
     def create_gateway_limit_rules(self, request, config=None):
@@ -660,6 +802,63 @@ class VpcClient(BceBaseClient):
             model=CreateVpnTunnelResponse,
         )
 
+    def delete_enterprise_security_group(self, request, config=None):
+        """
+        delete_enterprise_security_group
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1,
+            VpcClient.CONSTANT_ENTERPRISE,
+            VpcClient.CONSTANT_SECURITY,
+            request.enterprise_security_group_id,
+        )
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
+
+    def delete_enterprise_security_group_rules(self, request, config=None):
+        """
+        delete_enterprise_security_group_rules
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1,
+            VpcClient.CONSTANT_ENTERPRISE,
+            VpcClient.CONSTANT_SECURITY,
+            VpcClient.CONSTANT_RULE,
+            request.enterprise_security_group_rule_id,
+        )
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
+
     def delete_gateway_limit_rule(self, request, config=None):
         """
         delete_gateway_limit_rule
@@ -703,6 +902,59 @@ class VpcClient(BceBaseClient):
         path = utils.append_uri(
             VpcClient.VERSION_V1, VpcClient.CONSTANT_SUBNET, VpcClient.CONSTANT_IPRESERVE, request.ip_reserve_id
         )
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
+
+    def delete_regular_security_group_rules_v2(self, request, config=None):
+        """
+        delete_regular_security_group_rules_v2
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V2,
+            VpcClient.CONSTANT_SECURITY_GROUP,
+            VpcClient.CONSTANT_RULE,
+            request.security_group_rule_id,
+        )
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        if request.sg_version is not None:
+            params['sgVersion'] = request.sg_version
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
+
+    def delete_regular_security_group_v2(self, request, config=None):
+        """
+        delete_regular_security_group_v2
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V2, VpcClient.CONSTANT_SECURITY_GROUP, request.security_group_id)
         headers = None
         params = {}
         if request.client_token is not None:
@@ -1354,6 +1606,39 @@ class VpcClient(BceBaseClient):
             model=QueryTheListOfDedicatedLineGatewaysResponse,
         )
 
+    def query_the_list_of_enterprise_security_groups(self, request, config=None):
+        """
+        query_the_list_of_enterprise_security_groups
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing QueryTheListOfEnterpriseSecurityGroupsResponse data
+        :rtype: QueryTheListOfEnterpriseSecurityGroupsResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_ENTERPRISE, VpcClient.CONSTANT_SECURITY)
+        headers = None
+        params = {}
+        if request.marker is not None:
+            params['marker'] = request.marker
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
+        if request.instance_id is not None:
+            params['instanceId'] = request.instance_id
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.GET,
+            path=path,
+            params=params,
+            config=merged_config,
+            model=QueryTheListOfEnterpriseSecurityGroupsResponse,
+        )
+
     def query_the_list_of_peer_connections(self, request, config=None):
         """
         query_the_list_of_peer_connections
@@ -1383,6 +1668,45 @@ class VpcClient(BceBaseClient):
             params=params,
             config=merged_config,
             model=QueryTheListOfPeerConnectionsResponse,
+        )
+
+    def query_the_list_of_regular_security_groups_v2(self, request, config=None):
+        """
+        query_the_list_of_regular_security_groups_v2
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing QueryTheListOfRegularSecurityGroupsV2Response data
+        :rtype: QueryTheListOfRegularSecurityGroupsV2Response
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V2, VpcClient.CONSTANT_SECURITY_GROUP)
+        headers = None
+        params = {}
+        if request.marker is not None:
+            params['marker'] = request.marker
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
+        if request.instance_id is not None:
+            params['instanceId'] = request.instance_id
+        if request.vpc_id is not None:
+            params['vpcId'] = request.vpc_id
+        if request.security_group_id is not None:
+            params['securityGroupId'] = request.security_group_id
+        if request.security_group_ids is not None:
+            params['securityGroupIds'] = request.security_group_ids
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.GET,
+            path=path,
+            params=params,
+            config=merged_config,
+            model=QueryTheListOfRegularSecurityGroupsV2Response,
         )
 
     def query_vpc_intranet_ip(self, request, config=None):
@@ -1597,6 +1921,34 @@ class VpcClient(BceBaseClient):
             http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
         )
 
+    def revoke_regular_security_group_rules_v2(self, request, config=None):
+        """
+        revoke_regular_security_group_rules_v2
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V2, VpcClient.CONSTANT_SECURITY_GROUP, request.security_group_id)
+        headers = None
+        params = {}
+        params['revokeRule'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        if request.sg_version is not None:
+            params['sgVersion'] = request.sg_version
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
     def search_for_vpn_details(self, request, config=None):
         """
         search_for_vpn_details
@@ -1717,6 +2069,37 @@ class VpcClient(BceBaseClient):
             http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
         )
 
+    def update_enterprise_security_group_rules(self, request, config=None):
+        """
+        update_enterprise_security_group_rules
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1,
+            VpcClient.CONSTANT_ENTERPRISE,
+            VpcClient.CONSTANT_SECURITY,
+            VpcClient.CONSTANT_RULE,
+            request.enterprise_security_group_rule_id,
+        )
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
     def update_peer_to_peer_connection_release_protection_switch(self, request, config=None):
         """
         update_peer_to_peer_connection_release_protection_switch
@@ -1738,6 +2121,35 @@ class VpcClient(BceBaseClient):
         headers = None
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.PUT, path=path, body=request.to_json_string(), config=merged_config)
+
+    def update_regular_security_group_rules_v2(self, request, config=None):
+        """
+        update_regular_security_group_rules_v2
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V2, VpcClient.CONSTANT_SECURITY_GROUP, VpcClient.CONSTANT_RULE, VpcClient.CONSTANT_UPDATE
+        )
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        if request.sg_version is not None:
+            params['sgVersion'] = request.sg_version
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
 
     def update_routing_rules(self, request, config=None):
         """
@@ -2114,6 +2526,28 @@ class VpcClient(BceBaseClient):
             params=params,
             config=merged_config,
             model=ViewPeerToPeerConnectionDetailsResponse,
+        )
+
+    def view_security_group_details_v2(self, request, config=None):
+        """
+        view_security_group_details_v2
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing ViewSecurityGroupDetailsV2Response data
+        :rtype: ViewSecurityGroupDetailsV2Response
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V2, VpcClient.CONSTANT_SECURITY_GROUP, request.security_group_id)
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.GET, path=path, config=merged_config, model=ViewSecurityGroupDetailsV2Response
         )
 
     def _merge_config(self, config=None):

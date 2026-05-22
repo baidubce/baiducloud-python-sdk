@@ -33,6 +33,14 @@ class VpcClientTest(unittest.TestCase):
     def test_active_standby_switchover(self):
         self.client.active_standby_switchover(vpc_models.ActiveStandbySwitchoverRequest())
 
+    def test_authorize_regular_security_group_rules_v2(self):
+        self.client.authorize_regular_security_group_rules_v2(vpc_models.AuthorizeRegularSecurityGroupRulesV2Request())
+
+    def test_authorized_enterprise_security_group_rules(self):
+        self.client.authorized_enterprise_security_group_rules(
+            vpc_models.AuthorizedEnterpriseSecurityGroupRulesRequest()
+        )
+
     def test_batch_create_ssl_vpn_users(self):
         self.client.batch_create_ssl_vpn_users(vpc_models.BatchCreateSslVpnUsersRequest())
 
@@ -53,11 +61,17 @@ class VpcClientTest(unittest.TestCase):
     def test_create_a_peer_to_peer_connection(self):
         self.client.create_a_peer_to_peer_connection(vpc_models.CreateAPeerToPeerConnectionRequest())
 
+    def test_create_a_regular_security_group_v2(self):
+        self.client.create_a_regular_security_group_v2(vpc_models.CreateARegularSecurityGroupV2Request())
+
     def test_create_dedicated_gateway(self):
         self.client.create_dedicated_gateway(vpc_models.CreateDedicatedGatewayRequest())
 
     def test_create_dedicated_gateway_health_check(self):
         self.client.create_dedicated_gateway_health_check(vpc_models.CreateDedicatedGatewayHealthCheckRequest())
+
+    def test_create_enterprise_security_group(self):
+        self.client.create_enterprise_security_group(vpc_models.CreateEnterpriseSecurityGroupRequest())
 
     def test_create_gateway_limit_rules(self):
         self.client.create_gateway_limit_rules(vpc_models.CreateGatewayLimitRulesRequest())
@@ -86,11 +100,23 @@ class VpcClientTest(unittest.TestCase):
     def test_create_vpn_tunnel(self):
         self.client.create_vpn_tunnel(vpc_models.CreateVpnTunnelRequest())
 
+    def test_delete_enterprise_security_group(self):
+        self.client.delete_enterprise_security_group(vpc_models.DeleteEnterpriseSecurityGroupRequest())
+
+    def test_delete_enterprise_security_group_rules(self):
+        self.client.delete_enterprise_security_group_rules(vpc_models.DeleteEnterpriseSecurityGroupRulesRequest())
+
     def test_delete_gateway_limit_rule(self):
         self.client.delete_gateway_limit_rule(vpc_models.DeleteGatewayLimitRuleRequest())
 
     def test_delete_ip_reserve(self):
         self.client.delete_ip_reserve(vpc_models.DeleteIpReserveRequest())
+
+    def test_delete_regular_security_group_rules_v2(self):
+        self.client.delete_regular_security_group_rules_v2(vpc_models.DeleteRegularSecurityGroupRulesV2Request())
+
+    def test_delete_regular_security_group_v2(self):
+        self.client.delete_regular_security_group_v2(vpc_models.DeleteRegularSecurityGroupV2Request())
 
     def test_delete_routing_rules(self):
         self.client.delete_routing_rules(vpc_models.DeleteRoutingRulesRequest())
@@ -172,8 +198,18 @@ class VpcClientTest(unittest.TestCase):
     def test_query_the_list_of_dedicated_line_gateways(self):
         self.client.query_the_list_of_dedicated_line_gateways(vpc_models.QueryTheListOfDedicatedLineGatewaysRequest())
 
+    def test_query_the_list_of_enterprise_security_groups(self):
+        self.client.query_the_list_of_enterprise_security_groups(
+            vpc_models.QueryTheListOfEnterpriseSecurityGroupsRequest()
+        )
+
     def test_query_the_list_of_peer_connections(self):
         self.client.query_the_list_of_peer_connections(vpc_models.QueryTheListOfPeerConnectionsRequest())
+
+    def test_query_the_list_of_regular_security_groups_v2(self):
+        self.client.query_the_list_of_regular_security_groups_v2(
+            vpc_models.QueryTheListOfRegularSecurityGroupsV2Request()
+        )
 
     def test_query_vpc_intranet_ip(self):
         self.client.query_vpc_intranet_ip(vpc_models.QueryVpcIntranetIpRequest())
@@ -199,6 +235,9 @@ class VpcClientTest(unittest.TestCase):
     def test_renew_vpn(self):
         self.client.renew_vpn(vpc_models.RenewVpnRequest())
 
+    def test_revoke_regular_security_group_rules_v2(self):
+        self.client.revoke_regular_security_group_rules_v2(vpc_models.RevokeRegularSecurityGroupRulesV2Request())
+
     def test_search_for_vpn_details(self):
         self.client.search_for_vpn_details(vpc_models.SearchForVpnDetailsRequest())
 
@@ -214,10 +253,16 @@ class VpcClientTest(unittest.TestCase):
     def test_update_dedicated_gateway(self):
         self.client.update_dedicated_gateway(vpc_models.UpdateDedicatedGatewayRequest())
 
+    def test_update_enterprise_security_group_rules(self):
+        self.client.update_enterprise_security_group_rules(vpc_models.UpdateEnterpriseSecurityGroupRulesRequest())
+
     def test_update_peer_to_peer_connection_release_protection_switch(self):
         self.client.update_peer_to_peer_connection_release_protection_switch(
             vpc_models.UpdatePeerToPeerConnectionReleaseProtectionSwitchRequest()
         )
+
+    def test_update_regular_security_group_rules_v2(self):
+        self.client.update_regular_security_group_rules_v2(vpc_models.UpdateRegularSecurityGroupRulesV2Request())
 
     def test_update_routing_rules(self):
         self.client.update_routing_rules(vpc_models.UpdateRoutingRulesRequest())
@@ -263,19 +308,26 @@ class VpcClientTest(unittest.TestCase):
     def test_view_peer_to_peer_connection_details(self):
         self.client.view_peer_to_peer_connection_details(vpc_models.ViewPeerToPeerConnectionDetailsRequest())
 
+    def test_view_security_group_details_v2(self):
+        self.client.view_security_group_details_v2(vpc_models.ViewSecurityGroupDetailsV2Request())
+
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()
     suite.addTest(VpcClientTest("test_accept_peer_to_peer_connection_applications"))
     suite.addTest(VpcClientTest("test_active_standby_switchover"))
+    suite.addTest(VpcClientTest("test_authorize_regular_security_group_rules_v2"))
+    suite.addTest(VpcClientTest("test_authorized_enterprise_security_group_rules"))
     suite.addTest(VpcClientTest("test_batch_create_ssl_vpn_users"))
     suite.addTest(VpcClientTest("test_bind_eip"))
     suite.addTest(VpcClientTest("test_bind_physical_dedicated_line"))
     suite.addTest(VpcClientTest("test_close_peer_to_peer_connection_to_synchronize_dns"))
     suite.addTest(VpcClientTest("test_close_vpc_relay"))
     suite.addTest(VpcClientTest("test_create_a_peer_to_peer_connection"))
+    suite.addTest(VpcClientTest("test_create_a_regular_security_group_v2"))
     suite.addTest(VpcClientTest("test_create_dedicated_gateway"))
     suite.addTest(VpcClientTest("test_create_dedicated_gateway_health_check"))
+    suite.addTest(VpcClientTest("test_create_enterprise_security_group"))
     suite.addTest(VpcClientTest("test_create_gateway_limit_rules"))
     suite.addTest(VpcClientTest("test_create_ip_reserved"))
     suite.addTest(VpcClientTest("test_create_routing_rules"))
@@ -285,8 +337,12 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_create_vpc"))
     suite.addTest(VpcClientTest("test_create_vpn"))
     suite.addTest(VpcClientTest("test_create_vpn_tunnel"))
+    suite.addTest(VpcClientTest("test_delete_enterprise_security_group"))
+    suite.addTest(VpcClientTest("test_delete_enterprise_security_group_rules"))
     suite.addTest(VpcClientTest("test_delete_gateway_limit_rule"))
     suite.addTest(VpcClientTest("test_delete_ip_reserve"))
+    suite.addTest(VpcClientTest("test_delete_regular_security_group_rules_v2"))
+    suite.addTest(VpcClientTest("test_delete_regular_security_group_v2"))
     suite.addTest(VpcClientTest("test_delete_routing_rules"))
     suite.addTest(VpcClientTest("test_delete_ssl_vpn_server"))
     suite.addTest(VpcClientTest("test_delete_ssl_vpn_user"))
@@ -311,7 +367,9 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_query_subnet_list"))
     suite.addTest(VpcClientTest("test_query_the_details_of_the_dedicated_gateway"))
     suite.addTest(VpcClientTest("test_query_the_list_of_dedicated_line_gateways"))
+    suite.addTest(VpcClientTest("test_query_the_list_of_enterprise_security_groups"))
     suite.addTest(VpcClientTest("test_query_the_list_of_peer_connections"))
+    suite.addTest(VpcClientTest("test_query_the_list_of_regular_security_groups_v2"))
     suite.addTest(VpcClientTest("test_query_vpc_intranet_ip"))
     suite.addTest(VpcClientTest("test_query_vpc_list"))
     suite.addTest(VpcClientTest("test_query_vpn_list"))
@@ -320,12 +378,15 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_release_peer_to_peer_connection"))
     suite.addTest(VpcClientTest("test_release_vpn"))
     suite.addTest(VpcClientTest("test_renew_vpn"))
+    suite.addTest(VpcClientTest("test_revoke_regular_security_group_rules_v2"))
     suite.addTest(VpcClientTest("test_search_for_vpn_details"))
     suite.addTest(VpcClientTest("test_search_vpn_tunnel"))
     suite.addTest(VpcClientTest("test_unbind_eip"))
     suite.addTest(VpcClientTest("test_unbind_physical_dedicated_line"))
     suite.addTest(VpcClientTest("test_update_dedicated_gateway"))
+    suite.addTest(VpcClientTest("test_update_enterprise_security_group_rules"))
     suite.addTest(VpcClientTest("test_update_peer_to_peer_connection_release_protection_switch"))
+    suite.addTest(VpcClientTest("test_update_regular_security_group_rules_v2"))
     suite.addTest(VpcClientTest("test_update_routing_rules"))
     suite.addTest(VpcClientTest("test_update_ssl_vpn_server"))
     suite.addTest(VpcClientTest("test_update_ssl_vpn_users"))
@@ -342,5 +403,6 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_user_gateway_list"))
     suite.addTest(VpcClientTest("test_view_gateway_limit_rules"))
     suite.addTest(VpcClientTest("test_view_peer_to_peer_connection_details"))
+    suite.addTest(VpcClientTest("test_view_security_group_details_v2"))
     runner = unittest.TextTestRunner()
     runner.run(suite)
