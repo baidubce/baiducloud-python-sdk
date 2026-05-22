@@ -58,6 +58,9 @@ class BlbClientTest(unittest.TestCase):
     def test_create_app_blb_udp_listener(self):
         self.client.create_app_blb_udp_listener(blb_models.CreateAppBlbUdpListenerRequest())
 
+    def test_create_blb(self):
+        self.client.create_blb(blb_models.CreateBlbRequest())
+
     def test_delete_app_blb_listener(self):
         self.client.delete_app_blb_listener(blb_models.DeleteAppBlbListenerRequest())
 
@@ -91,11 +94,20 @@ class BlbClientTest(unittest.TestCase):
     def test_describe_app_blbs(self):
         self.client.describe_app_blbs(blb_models.DescribeAppBlbsRequest())
 
+    def test_describe_blb(self):
+        self.client.describe_blb(blb_models.DescribeBlbRequest())
+
+    def test_describe_blbs(self):
+        self.client.describe_blbs(blb_models.DescribeBlbsRequest())
+
     def test_refund_blb(self):
         self.client.refund_blb(blb_models.RefundBlbRequest())
 
     def test_release_app_blb(self):
         self.client.release_app_blb(blb_models.ReleaseAppBlbRequest())
+
+    def test_release_blb(self):
+        self.client.release_blb(blb_models.ReleaseBlbRequest())
 
     def test_resize_blb(self):
         self.client.resize_blb(blb_models.ResizeBlbRequest())
@@ -121,6 +133,15 @@ class BlbClientTest(unittest.TestCase):
     def test_update_app_blb_udp_listener(self):
         self.client.update_app_blb_udp_listener(blb_models.UpdateAppBlbUdpListenerRequest())
 
+    def test_update_blb(self):
+        self.client.update_blb(blb_models.UpdateBlbRequest())
+
+    def test_update_blb_acl(self):
+        self.client.update_blb_acl(blb_models.UpdateBlbAclRequest())
+
+    def test_update_blb_modify_protection(self):
+        self.client.update_blb_modify_protection(blb_models.UpdateBlbModifyProtectionRequest())
+
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()
@@ -135,6 +156,7 @@ if __name__ == '__main__':
     suite.addTest(BlbClientTest("test_create_app_blb_ssl_listener"))
     suite.addTest(BlbClientTest("test_create_app_blb_tcp_listener"))
     suite.addTest(BlbClientTest("test_create_app_blb_udp_listener"))
+    suite.addTest(BlbClientTest("test_create_blb"))
     suite.addTest(BlbClientTest("test_delete_app_blb_listener"))
     suite.addTest(BlbClientTest("test_delete_app_blb_policy"))
     suite.addTest(BlbClientTest("test_describe_app_blb"))
@@ -146,8 +168,11 @@ if __name__ == '__main__':
     suite.addTest(BlbClientTest("test_describe_app_blb_tcp_listener"))
     suite.addTest(BlbClientTest("test_describe_app_blb_udp_listener"))
     suite.addTest(BlbClientTest("test_describe_app_blbs"))
+    suite.addTest(BlbClientTest("test_describe_blb"))
+    suite.addTest(BlbClientTest("test_describe_blbs"))
     suite.addTest(BlbClientTest("test_refund_blb"))
     suite.addTest(BlbClientTest("test_release_app_blb"))
+    suite.addTest(BlbClientTest("test_release_blb"))
     suite.addTest(BlbClientTest("test_resize_blb"))
     suite.addTest(BlbClientTest("test_update_app_blb"))
     suite.addTest(BlbClientTest("test_update_app_blb_http_listener"))
@@ -156,5 +181,8 @@ if __name__ == '__main__':
     suite.addTest(BlbClientTest("test_update_app_blb_ssl_listener"))
     suite.addTest(BlbClientTest("test_update_app_blb_tcp_listener"))
     suite.addTest(BlbClientTest("test_update_app_blb_udp_listener"))
+    suite.addTest(BlbClientTest("test_update_blb"))
+    suite.addTest(BlbClientTest("test_update_blb_acl"))
+    suite.addTest(BlbClientTest("test_update_blb_modify_protection"))
     runner = unittest.TextTestRunner()
     runner.run(suite)
