@@ -25,12 +25,60 @@ class CfwClientTest(unittest.TestCase):
         """
         self.the_client = None
 
-    def test_query_cfw_list(self):
-        self.client.query_cfw_list(cfw_models.QueryCfwListRequest())
+    def test_bind_cfw(self):
+        self.client.bind_cfw(cfw_models.BindCfwRequest())
+
+    def test_create_cfw(self):
+        self.client.create_cfw(cfw_models.CreateCfwRequest())
+
+    def test_create_cfw_rule(self):
+        self.client.create_cfw_rule(cfw_models.CreateCfwRuleRequest())
+
+    def test_delete_cfw(self):
+        self.client.delete_cfw(cfw_models.DeleteCfwRequest())
+
+    def test_delete_cfw_rule(self):
+        self.client.delete_cfw_rule(cfw_models.DeleteCfwRuleRequest())
+
+    def test_disable_cfw_protect(self):
+        self.client.disable_cfw_protect(cfw_models.DisableCfwProtectRequest())
+
+    def test_enable_cfw_protect(self):
+        self.client.enable_cfw_protect(cfw_models.EnableCfwProtectRequest())
+
+    def test_get_cfw(self):
+        self.client.get_cfw(cfw_models.GetCfwRequest())
+
+    def test_list_cfw(self):
+        self.client.list_cfw(cfw_models.ListCfwRequest())
+
+    def test_list_protect_instances(self):
+        self.client.list_protect_instances(cfw_models.ListProtectInstancesRequest())
+
+    def test_unbind_cfw(self):
+        self.client.unbind_cfw(cfw_models.UnbindCfwRequest())
+
+    def test_update_cfw(self):
+        self.client.update_cfw(cfw_models.UpdateCfwRequest())
+
+    def test_update_cfw_rule(self):
+        self.client.update_cfw_rule(cfw_models.UpdateCfwRuleRequest())
 
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()
-    suite.addTest(CfwClientTest("test_query_cfw_list"))
+    suite.addTest(CfwClientTest("test_bind_cfw"))
+    suite.addTest(CfwClientTest("test_create_cfw"))
+    suite.addTest(CfwClientTest("test_create_cfw_rule"))
+    suite.addTest(CfwClientTest("test_delete_cfw"))
+    suite.addTest(CfwClientTest("test_delete_cfw_rule"))
+    suite.addTest(CfwClientTest("test_disable_cfw_protect"))
+    suite.addTest(CfwClientTest("test_enable_cfw_protect"))
+    suite.addTest(CfwClientTest("test_get_cfw"))
+    suite.addTest(CfwClientTest("test_list_cfw"))
+    suite.addTest(CfwClientTest("test_list_protect_instances"))
+    suite.addTest(CfwClientTest("test_unbind_cfw"))
+    suite.addTest(CfwClientTest("test_update_cfw"))
+    suite.addTest(CfwClientTest("test_update_cfw_rule"))
     runner = unittest.TextTestRunner()
     runner.run(suite)
