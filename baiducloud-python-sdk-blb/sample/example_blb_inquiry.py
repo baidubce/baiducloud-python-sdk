@@ -6,7 +6,9 @@ from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
 from baiducloud_python_sdk_blb.api.blb_client import BlbClient
-from baiducloud_python_sdk_blb import models as blb_models
+from baiducloud_python_sdk_blb.models.reservation import Reservation
+from baiducloud_python_sdk_blb.models.billing import Billing
+from baiducloud_python_sdk_blb.models.blb_inquiry_request import BlbInquiryRequest
 
 if __name__ == '__main__':
     try:
@@ -19,9 +21,9 @@ if __name__ == '__main__':
         )
         client = BlbClient(config)
 
-        reservation = blb_models.Reservation(reservation_length=0)
-        billing = blb_models.Billing(payment_timing="", billing_method="", reservation=reservation)
-        request = blb_models.BlbInquiryRequest(blb_type="", performance_level="", count=0, billing=billing)
+        reservation = Reservation(reservation_length=0)
+        billing = Billing(payment_timing="", billing_method="", reservation=reservation)
+        request = BlbInquiryRequest(blb_type="", performance_level="", count=0, billing=billing)
         res = client.blb_inquiry(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

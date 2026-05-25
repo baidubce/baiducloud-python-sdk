@@ -17,10 +17,13 @@ class BlbInquiryRequest(AbstractModel):
         """
         Initialize BlbInquiryRequest request entity.
 
-        :param blb_type: blb_type parameter
+        :param blb_type: blb类型，不传默认是普通型blb。
+            取值可以为\"normal\"代表普通型，\"application\"代表应用型，\"ipv6\"代表普通型IPv6，\"ipv6Application\"代表应用型IPv6
         :type blb_type: str (optional)
 
-        :param performance_level: performance_level parameter
+        :param performance_level:
+            性能规格参数，不传默认为共享型。取值如下：\"small1\"标准型1，\"small2\"标准型2，\"medium1\"增强型1，\"medium2\"增强型1，\"large1\"超大型1，
+            \"large2\"超大型2，\"large3\"超大型3
         :type performance_level: str (optional)
 
         :param count: 购买数量，不传默认是1

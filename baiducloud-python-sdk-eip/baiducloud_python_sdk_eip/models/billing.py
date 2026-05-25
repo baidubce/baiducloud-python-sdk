@@ -19,7 +19,8 @@ class Billing(AbstractModel):
         :param payment_timing: 付款时间，预支付（Prepaid）和后支付（Postpaid）
         :type payment_timing: str (optional)
 
-        :param billing_method: billing_method attribute
+        :param billing_method:
+            计费方式，按流量（ByTraffic）、按带宽（ByBandwidth）、按增强95（ByPeak95）（只有共享带宽后付费支持）、按主流量计费(ByNetrafficMax)（只有共享带宽后付费支持）
         :type billing_method: str (optional)
 
         :param reservation: reservation attribute

@@ -25,7 +25,7 @@ class ModifyTbspIpCleanThresholdRequest(AbstractModel):
         :param ip: DDoS增强防护包防护对象IP地址
         :type ip: str (optional)
 
-        :param threshold_type: threshold_type parameter
+        :param threshold_type: 防护对象IP清洗阈值设置类型，包含按带宽上限 (bandwidth)、智能阈值 (auto) 和手动设置 (manual)
         :type threshold_type: str (optional)
 
         :param clean_mbps: 每秒流量带宽Mbps，最小值为120Mbps，最大值为10000Mbps (当清洗阈值设置类型为manual时必填)

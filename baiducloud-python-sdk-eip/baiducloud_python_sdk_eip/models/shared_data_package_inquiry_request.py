@@ -22,10 +22,13 @@ class SharedDataPackageInquiryRequest(AbstractModel):
         :param reservation_length: 共享流量包有效期（单位：月），1/6/12
         :type reservation_length: int (required)
 
-        :param capacity: capacity parameter
+        :param capacity: 共享流量包容量，有效期为1时，对应可选规格 \"10G\"/\"50G\"/\"100G\"/\"500G\"/\"1T\"/\"5T\"/\"10T\"/\"50T\"；
+            有效期为6时，对应可选规格 \"60G\"/\"300G\"/\"600G\"/\"3T\"/\"6T\"/\"30T\"/\"60T\"/\"300T\"；
+            有效期为12时，对应可选规格 \"1T\"/\"10T\"/\"50T\"/\"100T\"/\"500T\"/\"1P\"，需按照对应可选规格进行容量选择
         :type capacity: str (required)
 
-        :param deduct_policy: deduct_policy parameter
+        :param deduct_policy: 共享流量包扣费策略，包含 \"FullTimeDurationPackage\" 全时；\"TimeDurationPackage\" 闲时，默认为
+            \"FullTimeDurationPackage\"
         :type deduct_policy: str (optional)
 
         :param package_type: 共享流量包线路类型，当前支持 \"WebOutBytes\" 动态，默认为 \"WebOutBytes\"

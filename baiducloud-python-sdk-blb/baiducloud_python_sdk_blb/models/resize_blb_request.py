@@ -22,7 +22,9 @@ class ResizeBlbRequest(AbstractModel):
         :param client_token: client_token parameter
         :type client_token: str (optional)
 
-        :param performance_level: performance_level parameter
+        :param performance_level:
+            性能规格。取值如下：\"small1\"标准型1，\"small2\"标准型2，\"medium1\"增强型1，\"medium2\"增强型2，\"large1\"超大型1，\"large2\"超大型2，
+            \"large3\"超大型3。仅后付费-按使用量支持变配为\"unlimited\"不限速。
         :type performance_level: str (optional)
         """
         super().__init__()

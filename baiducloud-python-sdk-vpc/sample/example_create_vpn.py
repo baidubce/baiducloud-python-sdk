@@ -6,7 +6,9 @@ from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
 from baiducloud_python_sdk_vpc.api.vpc_client import VpcClient
-from baiducloud_python_sdk_vpc import models as vpc_models
+from baiducloud_python_sdk_vpc.models.create_vpn_request import CreateVpnRequest
+from baiducloud_python_sdk_vpc.models.reservation import Reservation
+from baiducloud_python_sdk_vpc.models.billing import Billing
 
 if __name__ == '__main__':
     try:
@@ -19,9 +21,9 @@ if __name__ == '__main__':
         )
         client = VpcClient(config)
 
-        reservation = vpc_models.Reservation(reservation_length=0, reservation_time_unit="")
-        billing = vpc_models.Billing(payment_timing="", reservation=reservation)
-        request = vpc_models.CreateVpnRequest(
+        reservation = Reservation(reservation_length=0, reservation_time_unit="")
+        billing = Billing(payment_timing="", reservation=reservation)
+        request = CreateVpnRequest(
             vpc_id="",
             vpn_name="",
             billing=billing,

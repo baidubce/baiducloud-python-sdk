@@ -6,7 +6,9 @@ from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
 from baiducloud_python_sdk_eip.api.eip_client import EipClient
-from baiducloud_python_sdk_eip import models as eip_models
+from baiducloud_python_sdk_eip.models.reservation import Reservation
+from baiducloud_python_sdk_eip.models.billing import Billing
+from baiducloud_python_sdk_eip.models.shared_bandwidth_inquiry_request import SharedBandwidthInquiryRequest
 
 if __name__ == '__main__':
     try:
@@ -19,9 +21,9 @@ if __name__ == '__main__':
         )
         client = EipClient(config)
 
-        reservation = eip_models.Reservation(reservation_length=0, reservation_time_unit="")
-        billing = eip_models.Billing(payment_timing="", billing_method="", reservation=reservation)
-        request = eip_models.SharedBandwidthInquiryRequest(bandwidth_in_mbps=0, ip_num=0, billing=billing, count=0)
+        reservation = Reservation(reservation_length=0, reservation_time_unit="")
+        billing = Billing(payment_timing="", billing_method="", reservation=reservation)
+        request = SharedBandwidthInquiryRequest(bandwidth_in_mbps=0, ip_num=0, billing=billing, count=0)
         res = client.shared_bandwidth_inquiry(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

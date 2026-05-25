@@ -6,7 +6,7 @@ from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
 from baiducloud_python_sdk_vpc.api.vpc_client import VpcClient
-from baiducloud_python_sdk_vpc import models as vpc_models
+from baiducloud_python_sdk_vpc.models.modify_gateway_limit_rules_request import ModifyGatewayLimitRulesRequest
 
 if __name__ == '__main__':
     try:
@@ -18,9 +18,7 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = VpcClient(config)
-        request = vpc_models.ModifyGatewayLimitRulesRequest(
-            glr_id="", client_token="", name="", description="", bandwidth=0
-        )
+        request = ModifyGatewayLimitRulesRequest(glr_id="", client_token="", name="", description="", bandwidth=0)
         res = client.modify_gateway_limit_rules(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

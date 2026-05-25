@@ -41,16 +41,19 @@ class CreateGatewayLimitRulesRequest(AbstractModel):
         :param description: 描述信息。长度0-200
         :type description: str (optional)
 
-        :param service_type: service_type parameter
+        :param service_type: 服务类型(peerconn,et,csn)<br/>peerconn-对等连接<br/>et-专线网关<br/>csn-云智能网
         :type service_type: str (required)
 
-        :param sub_service_type: sub_service_type parameter
+        :param sub_service_type:
+            子服务类型，当serviceType=\"csn\"时,必传。<br/>LOCAL-网络实例带宽类型。<br>PEER_CLOUD-夸地域带宽云间互通<br/>PEER_EDGE-云边互通
         :type sub_service_type: str (optional)
 
-        :param peer_region: peer_region parameter
+        :param peer_region: 当subServiceType是PEER_CLOUD或PEER_EDGE时必传。表示对端地域。例如华北-北京传递\"bj\",华北保定传递\"bd\"
         :type peer_region: str (optional)
 
-        :param resource_id: resource_id parameter
+        :param resource_id:
+            资源ID，对等连接ID或网关ID。当subServiceType=\"LOCAL\"时候，该resourceId=\"csnId:vpcId\"。
+            当subServiceType=\"PEER_CLOUD\"时为csnId
         :type resource_id: str (required)
 
         :param direction: 限速方向: egress

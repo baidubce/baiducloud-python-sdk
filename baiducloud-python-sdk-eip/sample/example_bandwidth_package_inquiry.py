@@ -6,7 +6,7 @@ from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
 from baiducloud_python_sdk_eip.api.eip_client import EipClient
-from baiducloud_python_sdk_eip import models as eip_models
+from baiducloud_python_sdk_eip.models.bandwidth_package_inquiry_request import BandwidthPackageInquiryRequest
 
 if __name__ == '__main__':
     try:
@@ -18,7 +18,7 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = EipClient(config)
-        request = eip_models.BandwidthPackageInquiryRequest(bandwidth_in_mbps=0, count=0, type="")
+        request = BandwidthPackageInquiryRequest(bandwidth_in_mbps=0, count=0, type="")
         res = client.bandwidth_package_inquiry(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

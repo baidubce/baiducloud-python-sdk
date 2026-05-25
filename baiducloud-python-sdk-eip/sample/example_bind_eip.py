@@ -6,7 +6,7 @@ from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
 from baiducloud_python_sdk_eip.api.eip_client import EipClient
-from baiducloud_python_sdk_eip import models as eip_models
+from baiducloud_python_sdk_eip.models.bind_eip_request import BindEipRequest
 
 if __name__ == '__main__':
     try:
@@ -18,7 +18,7 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = EipClient(config)
-        request = eip_models.BindEipRequest(eip="", instance_type="", instance_id="", client_token="", instance_ip="")
+        request = BindEipRequest(eip="", instance_type="", instance_id="", client_token="", instance_ip="")
         res = client.bind_eip(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

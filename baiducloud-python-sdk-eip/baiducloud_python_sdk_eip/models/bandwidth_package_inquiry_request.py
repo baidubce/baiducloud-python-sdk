@@ -22,7 +22,7 @@ class BandwidthPackageInquiryRequest(AbstractModel):
         :param count: EIP数量，默认为1。
         :type count: int (optional)
 
-        :param type: type parameter
+        :param type: 带宽包的类型，包括BandwidthPackage（带宽包）和AccelerationPackage（跨境加速包），其中跨境加速包仅支持中国香港区域，默认为BandwidthPackage
         :type type: str (optional)
         """
         super().__init__()

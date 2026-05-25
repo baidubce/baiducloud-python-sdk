@@ -6,7 +6,7 @@ from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
 from baiducloud_python_sdk_blb.api.blb_client import BlbClient
-from baiducloud_python_sdk_blb import models as blb_models
+from baiducloud_python_sdk_blb.models.billing_change_pre_to_post_blb_request import BillingChangePreToPostBlbRequest
 
 if __name__ == '__main__':
     try:
@@ -18,7 +18,7 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = BlbClient(config)
-        request = blb_models.BillingChangePreToPostBlbRequest(
+        request = BillingChangePreToPostBlbRequest(
             blb_id="", client_token="", billing_method="", performance_level="", effective_immediately=False
         )
         res = client.billing_change_pre_to_post_blb(request)

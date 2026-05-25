@@ -28,7 +28,7 @@ class AddTbspAreaBlockingRequest(AbstractModel):
         :param block_time: 区域封禁时长 (单位: 分钟)，最小值为30，最大值为1440，添加固定时长区域封禁时blockTime必填
         :type block_time: int (optional)
 
-        :param block_type: block_type parameter
+        :param block_type: 封禁类型，可为fixedDuration(固定时长)或systemDetermines（系统判定），不填默认fixedDuration类型
         :type block_type: str (optional)
         """
         super().__init__()

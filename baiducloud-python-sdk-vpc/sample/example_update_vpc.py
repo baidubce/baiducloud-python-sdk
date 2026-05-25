@@ -6,7 +6,7 @@ from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
 from baiducloud_python_sdk_vpc.api.vpc_client import VpcClient
-from baiducloud_python_sdk_vpc import models as vpc_models
+from baiducloud_python_sdk_vpc.models.update_vpc_request import UpdateVpcRequest
 
 if __name__ == '__main__':
     try:
@@ -18,7 +18,7 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = VpcClient(config)
-        request = vpc_models.UpdateVpcRequest(
+        request = UpdateVpcRequest(
             vpc_id="", name="", client_token="", description="", enable_ipv6=False, secondary_cidr=[]
         )
         res = client.update_vpc(request)
