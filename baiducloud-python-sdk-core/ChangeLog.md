@@ -1,3 +1,6 @@
+2026-05-25 Version: 0.0.4
+- install_requires增加requests
+
 2026-02-11 Version: 0.0.3
 - 升级metadata类型
 
