@@ -12,12 +12,15 @@ class UpdateBlbRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, blb_id, name=None, desc=None, allow_delete=None, allocate_ipv6=None):
+    def __init__(self, blb_id, client_token=None, name=None, desc=None, allow_delete=None, allocate_ipv6=None):
         """
         Initialize UpdateBlbRequest request entity.
 
         :param blb_id: blb_id parameter
         :type blb_id: str (required)
+
+        :param client_token: client_token parameter
+        :type client_token: str (optional)
 
         :param name: name parameter
         :type name: str (optional)
@@ -33,6 +36,7 @@ class UpdateBlbRequest(AbstractModel):
         """
         super().__init__()
         self.blb_id = blb_id
+        self.client_token = client_token
         self.name = name
         self.desc = desc
         self.allow_delete = allow_delete
@@ -79,6 +83,8 @@ class UpdateBlbRequest(AbstractModel):
         m = m or dict()
         if m.get('blbId') is not None:
             self.blb_id = m.get('blbId')
+        if m.get('clientToken') is not None:
+            self.client_token = m.get('clientToken')
         if m.get('name') is not None:
             self.name = m.get('name')
         if m.get('desc') is not None:
