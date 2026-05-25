@@ -19,7 +19,7 @@ class Billing(AbstractModel):
         :param payment_timing: 付款时间，预支付（Prepaid）和后支付（Postpaid）
         :type payment_timing: str (optional)
 
-        :param billing_method: 计费方式，预付费的时候不要传，后付费的时候传，按固定规格计费（BySpec）和按使用量计费（ByCapacityUnit）
+        :param billing_method: billing_method attribute
         :type billing_method: str (optional)
 
         :param reservation: reservation attribute

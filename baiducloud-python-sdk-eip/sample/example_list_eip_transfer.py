@@ -6,7 +6,7 @@ from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
 from baiducloud_python_sdk_eip.api.eip_client import EipClient
-from baiducloud_python_sdk_eip.models.list_eip_transfer_request import ListEipTransferRequest
+from baiducloud_python_sdk_eip import models as eip_models
 
 if __name__ == '__main__':
     try:
@@ -18,7 +18,7 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = EipClient(config)
-        request = ListEipTransferRequest(
+        request = eip_models.ListEipTransferRequest(
             max_keys=0,
             marker="",
             direction="",

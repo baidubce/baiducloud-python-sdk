@@ -17,14 +17,13 @@ class EipInquiryRequest(AbstractModel):
         """
         Initialize EipInquiryRequest request entity.
 
-        :param bandwidth_in_mbps:
-            公网带宽，单位为Mbps。对于使用带宽计费的EIP，限制为为1~200之间的整数（代表带宽上限）；对于按使用流量计费的EIP，限制为1~1000之间的整数（代表允许的带宽流量峰值）。
+        :param bandwidth_in_mbps: bandwidth_in_mbps parameter
         :type bandwidth_in_mbps: int (required)
 
         :param count: EIP数量，默认为1.
         :type count: int (optional)
 
-        :param purchase_type: EIP购买线路选择，可选择BGP、Static、ChinaTelcom、ChinaUnicom、ChinaMobile，默认BGP
+        :param purchase_type: purchase_type parameter
         :type purchase_type: str (optional)
 
         :param billing: billing parameter

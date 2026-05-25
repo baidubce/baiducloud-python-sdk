@@ -27,9 +27,7 @@ class BillingChangePreToPostBlbRequest(AbstractModel):
         :param billing_method: 计费方式。\"BySpec\"表示按固定规格计费(默认值)，\"ByCapacityUnit\"表示按使用量计费。
         :type billing_method: str (optional)
 
-        :param performance_level:
-            性能规格参数，默认为当前实例的性能规格。取值如下：\"small1\"标准型1，\"small2\"标准型2，\"medium1\"增强型1，\"medium2\"增强型2，\"large1\"超大型1，
-            \"large2\"超大型2，\"large3\"超大型3。仅后付费-按使用量支持\"unlimited\"不限速。
+        :param performance_level: performance_level parameter
         :type performance_level: str (optional)
 
         :param effective_immediately: 是否立即生效，默认false。

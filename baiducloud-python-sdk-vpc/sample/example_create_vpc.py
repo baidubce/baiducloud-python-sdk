@@ -6,7 +6,7 @@ from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
 from baiducloud_python_sdk_vpc.api.vpc_client import VpcClient
-from baiducloud_python_sdk_vpc.models.create_vpc_request import CreateVpcRequest
+from baiducloud_python_sdk_vpc import models as vpc_models
 
 if __name__ == '__main__':
     try:
@@ -18,7 +18,9 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = VpcClient(config)
-        request = CreateVpcRequest(name="", cidr="", client_token="", description="", enable_ipv6=False, tags=[])
+        request = vpc_models.CreateVpcRequest(
+            name="", cidr="", client_token="", description="", enable_ipv6=False, tags=[]
+        )
         res = client.create_vpc(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

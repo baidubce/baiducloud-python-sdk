@@ -6,7 +6,7 @@ from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
 from baiducloud_python_sdk_vpc.api.vpc_client import VpcClient
-from baiducloud_python_sdk_vpc.models.view_gateway_limit_rules_request import ViewGatewayLimitRulesRequest
+from baiducloud_python_sdk_vpc import models as vpc_models
 
 if __name__ == '__main__':
     try:
@@ -18,7 +18,7 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = VpcClient(config)
-        request = ViewGatewayLimitRulesRequest(
+        request = vpc_models.ViewGatewayLimitRulesRequest(
             service_type="", name="", glr_id="", resource_id="", marker="", max_keys=""
         )
         res = client.view_gateway_limit_rules(request)

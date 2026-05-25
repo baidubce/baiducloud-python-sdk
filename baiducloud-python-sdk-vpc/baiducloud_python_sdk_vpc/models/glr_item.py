@@ -44,7 +44,7 @@ class GlrItem(AbstractModel):
         :param service_type: 服务类型： <br>perrconn-对等连接 <br>et-专线网关 <br> csn-云智能网
         :type service_type: str (optional)
 
-        :param sub_service_type: 子服务类型，当serviceType是csn时该字段存在值：<br>LOCAL 实例带宽 <br> PEER_CLOUD 云间互通 <br>PEER_EDGE 云边互通
+        :param sub_service_type: sub_service_type attribute
         :type sub_service_type: str (optional)
 
         :param resource_id: 资源ID

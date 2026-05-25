@@ -14,7 +14,7 @@ class EipInquiryResponse(BceResponse):
         """
         Initialize EipInquiryResponse response.
 
-        :param prices: 价格明细（包含purchasePrice（预付费价格）、configPrice（配置价格）、netrafficPrice（流量价格））
+        :param prices: prices field
         :type prices: Dict[str, str] (optional)
         """
         super().__init__()

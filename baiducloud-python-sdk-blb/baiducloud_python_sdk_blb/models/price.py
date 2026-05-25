@@ -23,7 +23,7 @@ class Price(AbstractModel):
         :param original_price: 原价
         :type original_price: str (optional)
 
-        :param charge_unit: 计费单位。后付费的时候取值，比如\"minute\"。minute：表示计价单元是按每分钟来计算。GB：表示计价单元是按每GB来计算。 \"lcu\"代表按每lcu单位计费
+        :param charge_unit: charge_unit attribute
         :type charge_unit: str (optional)
         """
         super().__init__()

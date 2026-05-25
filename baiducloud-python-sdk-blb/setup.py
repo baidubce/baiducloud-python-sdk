@@ -13,6 +13,7 @@
 """
 The setup script to install BCE SDK for python
 """
+
 from __future__ import absolute_import
 import io
 import os
@@ -34,10 +35,7 @@ setup(
     description='Baidu Cloud blbApi SDK Library for Python',
     long_description=LONG_DESCRIPTION,
     long_description_content_type='text/markdown',
-    install_requires=['pycryptodome>=3.8.0',
-                      'future>=0.6.0',
-                      'six>=1.4.0',
-                      'baiducloud-python-sdk-core>=0.0.3'],
+    install_requires=['pycryptodome>=3.8.0', 'future>=0.6.0', 'six>=1.4.0', 'baiducloud-python-sdk-core>=0.0.3'],
     python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, <4',
     packages=find_packages(exclude=["tests*"]),
     url='https://github.com/baidubce/baiducloud-python-sdk',
@@ -67,8 +65,7 @@ setup(
         'Source': 'https://github.com/baidubce/baiducloud-python-sdk',
         'Documentation': 'https://github.com/baidubce/baiducloud-python-sdk/tree/master/docs',
         'Changelog': (
-            'https://github.com/baidubce/baiducloud-python-sdk/blob/master/'
-            'baiducloud-python-sdk-blb/ChangeLog.md'
+            'https://github.com/baidubce/baiducloud-python-sdk/blob/master/baiducloud-python-sdk-blb/ChangeLog.md'
         ),
     },
 )

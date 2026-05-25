@@ -55,7 +55,7 @@ class TransferEipVo(AbstractModel):
         :param instance_bandwidth: 实例带宽
         :type instance_bandwidth: str (optional)
 
-        :param status: 状态(处理中-processing、转移中-transfering、转移撤销-cancel、转移拒绝-reject、转移超时-timeout、转移失败-failed、转移成功-success)
+        :param status: status attribute
         :type status: str (optional)
 
         :param create_time: 创建时间
