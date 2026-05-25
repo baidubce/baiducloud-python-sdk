@@ -53,7 +53,7 @@ class AclRule(AbstractModel):
         :type destination_port: str (optional)
 
         :param position: 优先级 1-32768且不能与已有条目重复。数值越小，优先级越高，规则匹配顺序为按优先级由高到低匹配
-        :type position: str (optional)
+        :type position: int (optional)
 
         :param direction: 规则的入站ingress 规则的出站egress
         :type direction: str (optional)
