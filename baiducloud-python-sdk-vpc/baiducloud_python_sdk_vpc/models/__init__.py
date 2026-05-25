@@ -14,6 +14,10 @@ from .add_ipv6_only_outbound_and_no_inbound_policy_request import AddIpv6OnlyOut
 from .add_ipv6_only_outbound_and_no_inbound_policy_response import AddIpv6OnlyOutboundAndNoInboundPolicyResponse
 from .authorize_regular_security_group_rules_v2_request import AuthorizeRegularSecurityGroupRulesV2Request
 from .authorized_enterprise_security_group_rules_request import AuthorizedEnterpriseSecurityGroupRulesRequest
+from .batch_add_dnat_rules_request import BatchAddDnatRulesRequest
+from .batch_add_dnat_rules_response import BatchAddDnatRulesResponse
+from .batch_add_snat_rules_request import BatchAddSnatRulesRequest
+from .batch_add_snat_rules_response import BatchAddSnatRulesResponse
 from .batch_create_ssl_vpn_users_request import BatchCreateSslVpnUsersRequest
 from .batch_create_ssl_vpn_users_response import BatchCreateSslVpnUsersResponse
 from .batch_delete_elastic_network_card_intranet_ip_request import BatchDeleteElasticNetworkCardIntranetIpRequest
@@ -34,6 +38,8 @@ from .create_an_ipv6_gateway_response import CreateAnIpv6GatewayResponse
 from .create_dedicated_gateway_health_check_request import CreateDedicatedGatewayHealthCheckRequest
 from .create_dedicated_gateway_request import CreateDedicatedGatewayRequest
 from .create_dedicated_gateway_response import CreateDedicatedGatewayResponse
+from .create_dnat_rule_request import CreateDnatRuleRequest
+from .create_dnat_rule_response import CreateDnatRuleResponse
 from .create_elastic_network_card_request import CreateElasticNetworkCardRequest
 from .create_elastic_network_card_response import CreateElasticNetworkCardResponse
 from .create_enterprise_security_group_request import CreateEnterpriseSecurityGroupRequest
@@ -48,10 +54,14 @@ from .create_ip_reserved_request import CreateIpReservedRequest
 from .create_ip_reserved_response import CreateIpReservedResponse
 from .create_ipv6_gateway_speed_limit_policy_request import CreateIpv6GatewaySpeedLimitPolicyRequest
 from .create_ipv6_gateway_speed_limit_policy_response import CreateIpv6GatewaySpeedLimitPolicyResponse
+from .create_nat_request import CreateNatRequest
+from .create_nat_response import CreateNatResponse
 from .create_network_detection_request import CreateNetworkDetectionRequest
 from .create_network_detection_response import CreateNetworkDetectionResponse
 from .create_routing_rules_request import CreateRoutingRulesRequest
 from .create_routing_rules_response import CreateRoutingRulesResponse
+from .create_snat_rule_request import CreateSnatRuleRequest
+from .create_snat_rule_response import CreateSnatRuleResponse
 from .create_ssl_vpn_server_request import CreateSslVpnServerRequest
 from .create_ssl_vpn_server_response import CreateSslVpnServerResponse
 from .create_subnet_request import CreateSubnetRequest
@@ -65,6 +75,8 @@ from .create_vpn_response import CreateVpnResponse
 from .create_vpn_tunnel_request import CreateVpnTunnelRequest
 from .create_vpn_tunnel_response import CreateVpnTunnelResponse
 from .delete_ip_address_from_ip_address_group_request import DeleteIpAddressFromIpAddressGroupRequest
+from .dnat_rule import DnatRule
+from .dnat_rule_request import DnatRuleRequest
 from .dns_status import DnsStatus
 from .egress_only_rule import EgressOnlyRule
 from .elastic_network_card_binding_eip_request import ElasticNetworkCardBindingEipRequest
@@ -85,6 +97,7 @@ from .eni import Eni
 from .enterprise_security_group_model import EnterpriseSecurityGroupModel
 from .enterprise_security_group_rule_model import EnterpriseSecurityGroupRuleModel
 from .et_gateway import EtGateway
+from .get_nat_response import GetNatResponse
 from .get_vpc_resource_ip_info_response import GetVpcResourceIpInfoResponse
 from .glr_item import GlrItem
 from .ha_vip import HaVip
@@ -99,8 +112,16 @@ from .ip_reserve import IpReserve
 from .ip_set import IpSet
 from .ipsec_config import IpsecConfig
 from .ipv6_gateway_bandwidth_upgrade_and_downgrade_request import Ipv6GatewayBandwidthUpgradeAndDowngradeRequest
+from .list_dnat_rule_response import ListDnatRuleResponse
 from .list_ip_reserve_response import ListIpReserveResponse
+from .list_nat_response import ListNatResponse
+from .list_snat_rule_response import ListSnatRuleResponse
 from .modify_gateway_limit_rules_request import ModifyGatewayLimitRulesRequest
+from .modify_nat_request import ModifyNatRequest
+from .nat import NAT
+from .nat_bind_eip_request import NatBindEipRequest
+from .nat_status import NatStatus
+from .nat_un_bind_eip_request import NatUnBindEipRequest
 from .next_hop import NextHop
 from .peer_conn import PeerConn
 from .peer_conn_status import PeerConnStatus
@@ -110,6 +131,7 @@ from .peer_to_peer_connection_bandwidth_upgrade_and_downgrade_request import (
 from .peer_to_peer_connection_renewal_request import PeerToPeerConnectionRenewalRequest
 from .private_ip import PrivateIP
 from .probe import Probe
+from .purchase_reserved_nat_request import PurchaseReservedNatRequest
 from .query_acl_response import QueryAclResponse
 from .query_acl_rules_response import QueryAclRulesResponse
 from .query_ip_address_family_list_response import QueryIpAddressFamilyListResponse
@@ -149,6 +171,7 @@ from .rate_limit_rule import RateLimitRule
 from .remove_ip_address_group_from_ip_address_family_request import RemoveIpAddressGroupFromIpAddressFamilyRequest
 from .renew_vpn_request import RenewVpnRequest
 from .reservation import Reservation
+from .resize_nat_request import ResizeNatRequest
 from .resource_ip import ResourceIp
 from .revoke_regular_security_group_rules_v2_request import RevokeRegularSecurityGroupRulesV2Request
 from .route_rule import RouteRule
@@ -156,7 +179,10 @@ from .search_for_vpn_details_response import SearchForVpnDetailsResponse
 from .search_vpn_tunnel_response import SearchVpnTunnelResponse
 from .security_group_model import SecurityGroupModel
 from .security_group_rule_model import SecurityGroupRuleModel
+from .session_config import SessionConfig
 from .show_vpc_model import ShowVpcModel
+from .snat_rule import SnatRule
+from .snat_rule_request import SnatRuleRequest
 from .ssl_vpn_server import SslVpnServer
 from .ssl_vpn_user import SslVpnUser
 from .ssl_vpn_user_vo import SslVpnUserVo
@@ -166,6 +192,7 @@ from .tag_model import TagModel
 from .template_ip_address_info import TemplateIpAddressInfo
 from .update_acl_rules_request import UpdateAclRulesRequest
 from .update_dedicated_gateway_request import UpdateDedicatedGatewayRequest
+from .update_dnat_rule_request import UpdateDnatRuleRequest
 from .update_elastic_network_card_request import UpdateElasticNetworkCardRequest
 from .update_enterprise_security_group_rules_request import UpdateEnterpriseSecurityGroupRulesRequest
 from .update_highly_available_virtual_ip_request import UpdateHighlyAvailableVirtualIpRequest
@@ -173,12 +200,14 @@ from .update_ip_address_family_request import UpdateIpAddressFamilyRequest
 from .update_ip_address_group_request import UpdateIpAddressGroupRequest
 from .update_ipv6_gateway_release_protection_switch_request import UpdateIpv6GatewayReleaseProtectionSwitchRequest
 from .update_ipv6_gateway_speed_limit_policy_request import UpdateIpv6GatewaySpeedLimitPolicyRequest
+from .update_nat_release_protection_switch_request import UpdateNatReleaseProtectionSwitchRequest
 from .update_network_detection_request import UpdateNetworkDetectionRequest
 from .update_peer_to_peer_connection_release_protection_switch_request import (
     UpdatePeerToPeerConnectionReleaseProtectionSwitchRequest,
 )
 from .update_regular_security_group_rules_v2_request import UpdateRegularSecurityGroupRulesV2Request
 from .update_routing_rules_request import UpdateRoutingRulesRequest
+from .update_snat_rule_request import UpdateSnatRuleRequest
 from .update_ssl_vpn_server_request import UpdateSslVpnServerRequest
 from .update_ssl_vpn_users_request import UpdateSslVpnUsersRequest
 from .update_subnet_request import UpdateSubnetRequest
@@ -202,10 +231,14 @@ from .vpn_conn import VpnConn
 from .query_specified_vpc_request import QuerySpecifiedVpcRequest
 from .delete_regular_security_group_v2_request import DeleteRegularSecurityGroupV2Request
 from .get_vpc_resource_ip_info_request import GetVpcResourceIpInfoRequest
+from .release_nat_request import ReleaseNatRequest
 from .delete_ip_address_family_request import DeleteIpAddressFamilyRequest
 from .query_vpc_intranet_ip_request import QueryVpcIntranetIpRequest
+from .delete_dnat_rule_request import DeleteDnatRuleRequest
+from .list_snat_rule_request import ListSnatRuleRequest
 from .query_the_specified_highly_available_virtual_ip_request import QueryTheSpecifiedHighlyAvailableVirtualIpRequest
 from .release_dedicated_gateway_request import ReleaseDedicatedGatewayRequest
+from .list_dnat_rule_request import ListDnatRuleRequest
 from .user_gateway_list_request import UserGatewayListRequest
 from .delete_ipv6_gateway_speed_limit_policy_request import DeleteIpv6GatewaySpeedLimitPolicyRequest
 from .remove_elastic_network_card_request import RemoveElasticNetworkCardRequest
@@ -224,6 +257,7 @@ from .list_ip_reserve_request import ListIpReserveRequest
 from .query_the_specified_ip_address_family_request import QueryTheSpecifiedIpAddressFamilyRequest
 from .query_the_list_of_elastic_network_cards_request import QueryTheListOfElasticNetworkCardsRequest
 from .delete_vpn_tunnel_request import DeleteVpnTunnelRequest
+from .get_nat_request import GetNatRequest
 from .query_network_detection_details_request import QueryNetworkDetectionDetailsRequest
 from .delete_ssl_vpn_server_request import DeleteSslVpnServerRequest
 from .release_peer_to_peer_connection_request import ReleasePeerToPeerConnectionRequest
@@ -235,9 +269,11 @@ from .query_the_list_of_speed_limit_policies_for_ipv6_gateway_request import (
 )
 from .query_the_list_of_peer_connections_request import QueryTheListOfPeerConnectionsRequest
 from .delete_ipv6_gateway_request import DeleteIpv6GatewayRequest
+from .delete_snat_rule_request import DeleteSnatRuleRequest
 from .reject_peer_to_peer_connection_request_request import RejectPeerToPeerConnectionRequestRequest
 from .active_standby_switchover_request import ActiveStandbySwitchoverRequest
 from .query_the_specified_elastic_network_card_request import QueryTheSpecifiedElasticNetworkCardRequest
+from .list_nat_request import ListNatRequest
 from .unbind_eip_request import UnbindEipRequest
 from .close_vpc_relay_request import CloseVpcRelayRequest
 from .delete_regular_security_group_rules_v2_request import DeleteRegularSecurityGroupRulesV2Request

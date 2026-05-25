@@ -17,6 +17,8 @@ from baiducloud_python_sdk_vpc.models.add_elastic_network_card_auxiliary_ip_resp
 from baiducloud_python_sdk_vpc.models.add_ipv6_only_outbound_and_no_inbound_policy_response import (
     AddIpv6OnlyOutboundAndNoInboundPolicyResponse,
 )
+from baiducloud_python_sdk_vpc.models.batch_add_dnat_rules_response import BatchAddDnatRulesResponse
+from baiducloud_python_sdk_vpc.models.batch_add_snat_rules_response import BatchAddSnatRulesResponse
 from baiducloud_python_sdk_vpc.models.batch_create_ssl_vpn_users_response import BatchCreateSslVpnUsersResponse
 from baiducloud_python_sdk_vpc.models.batch_increase_elastic_network_card_intranet_ip_response import (
     BatchIncreaseElasticNetworkCardIntranetIpResponse,
@@ -32,6 +34,7 @@ from baiducloud_python_sdk_vpc.models.create_a_regular_security_group_v2_respons
 )
 from baiducloud_python_sdk_vpc.models.create_an_ipv6_gateway_response import CreateAnIpv6GatewayResponse
 from baiducloud_python_sdk_vpc.models.create_dedicated_gateway_response import CreateDedicatedGatewayResponse
+from baiducloud_python_sdk_vpc.models.create_dnat_rule_response import CreateDnatRuleResponse
 from baiducloud_python_sdk_vpc.models.create_elastic_network_card_response import CreateElasticNetworkCardResponse
 from baiducloud_python_sdk_vpc.models.create_enterprise_security_group_response import (
     CreateEnterpriseSecurityGroupResponse,
@@ -43,16 +46,22 @@ from baiducloud_python_sdk_vpc.models.create_ip_reserved_response import CreateI
 from baiducloud_python_sdk_vpc.models.create_ipv6_gateway_speed_limit_policy_response import (
     CreateIpv6GatewaySpeedLimitPolicyResponse,
 )
+from baiducloud_python_sdk_vpc.models.create_nat_response import CreateNatResponse
 from baiducloud_python_sdk_vpc.models.create_network_detection_response import CreateNetworkDetectionResponse
 from baiducloud_python_sdk_vpc.models.create_routing_rules_response import CreateRoutingRulesResponse
+from baiducloud_python_sdk_vpc.models.create_snat_rule_response import CreateSnatRuleResponse
 from baiducloud_python_sdk_vpc.models.create_ssl_vpn_server_response import CreateSslVpnServerResponse
 from baiducloud_python_sdk_vpc.models.create_subnet_response import CreateSubnetResponse
 from baiducloud_python_sdk_vpc.models.create_user_gateway_response import CreateUserGatewayResponse
 from baiducloud_python_sdk_vpc.models.create_vpc_response import CreateVpcResponse
 from baiducloud_python_sdk_vpc.models.create_vpn_response import CreateVpnResponse
 from baiducloud_python_sdk_vpc.models.create_vpn_tunnel_response import CreateVpnTunnelResponse
+from baiducloud_python_sdk_vpc.models.get_nat_response import GetNatResponse
 from baiducloud_python_sdk_vpc.models.get_vpc_resource_ip_info_response import GetVpcResourceIpInfoResponse
+from baiducloud_python_sdk_vpc.models.list_dnat_rule_response import ListDnatRuleResponse
 from baiducloud_python_sdk_vpc.models.list_ip_reserve_response import ListIpReserveResponse
+from baiducloud_python_sdk_vpc.models.list_nat_response import ListNatResponse
+from baiducloud_python_sdk_vpc.models.list_snat_rule_response import ListSnatRuleResponse
 from baiducloud_python_sdk_vpc.models.query_acl_response import QueryAclResponse
 from baiducloud_python_sdk_vpc.models.query_acl_rules_response import QueryAclRulesResponse
 from baiducloud_python_sdk_vpc.models.query_ip_address_family_list_response import QueryIpAddressFamilyListResponse
@@ -142,6 +151,10 @@ class VpcClient(BceBaseClient):
 
     CONSTANT_SECURITY_GROUP = b'securityGroup'
 
+    CONSTANT_NAT = b'nat'
+
+    CONSTANT_DNAT_RULE = b'dnatRule'
+
     CONSTANT_RESOURCE_IP = b'resourceIp'
 
     CONSTANT_ENI = b'eni'
@@ -149,6 +162,8 @@ class VpcClient(BceBaseClient):
     CONSTANT_IP_GROUP = b'ipGroup'
 
     CONSTANT_PRIVATE_IP_ADDRESS_INFO = b'privateIpAddressInfo'
+
+    CONSTANT_SNAT_RULE = b'snatRule'
 
     CONSTANT_HAVIP = b'havip'
 
@@ -171,6 +186,8 @@ class VpcClient(BceBaseClient):
     CONSTANT_I_PV6_GATEWAY = b'IPv6Gateway'
 
     CONSTANT_RATE_LIMIT_RULE = b'rateLimitRule'
+
+    CONSTANT_BATCH_CREATE = b'batchCreate'
 
     CONSTANT_VPNCONN = b'vpnconn'
 
@@ -482,6 +499,74 @@ class VpcClient(BceBaseClient):
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
+    def batch_add_dnat_rules(self, request, config=None):
+        """
+        batch_add_dnat_rules
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing BatchAddDnatRulesResponse data
+        :rtype: BatchAddDnatRulesResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1,
+            VpcClient.CONSTANT_NAT,
+            request.nat_id,
+            VpcClient.CONSTANT_DNAT_RULE,
+            VpcClient.CONSTANT_BATCH_CREATE,
+        )
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=BatchAddDnatRulesResponse,
+        )
+
+    def batch_add_snat_rules(self, request, config=None):
+        """
+        batch_add_snat_rules
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing BatchAddSnatRulesResponse data
+        :rtype: BatchAddSnatRulesResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1, VpcClient.CONSTANT_NAT, VpcClient.CONSTANT_SNAT_RULE, VpcClient.CONSTANT_BATCH_CREATE
+        )
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=BatchAddSnatRulesResponse,
         )
 
     def batch_create_ssl_vpn_users(self, request, config=None):
@@ -863,6 +948,38 @@ class VpcClient(BceBaseClient):
             http_methods.POST, path=path, body=request.to_json_string(), params=params, config=merged_config
         )
 
+    def create_dnat_rule(self, request, config=None):
+        """
+        create_dnat_rule
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing CreateDnatRuleResponse data
+        :rtype: CreateDnatRuleResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1, VpcClient.CONSTANT_NAT, request.nat_id, VpcClient.CONSTANT_DNAT_RULE
+        )
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=CreateDnatRuleResponse,
+        )
+
     def create_elastic_network_card(self, request, config=None):
         """
         create_elastic_network_card
@@ -1078,6 +1195,36 @@ class VpcClient(BceBaseClient):
             model=CreateIpv6GatewaySpeedLimitPolicyResponse,
         )
 
+    def create_nat(self, request, config=None):
+        """
+        create_nat
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing CreateNatResponse data
+        :rtype: CreateNatResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_NAT)
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=CreateNatResponse,
+        )
+
     def create_network_detection(self, request, config=None):
         """
         create_network_detection
@@ -1136,6 +1283,38 @@ class VpcClient(BceBaseClient):
             params=params,
             config=merged_config,
             model=CreateRoutingRulesResponse,
+        )
+
+    def create_snat_rule(self, request, config=None):
+        """
+        create_snat_rule
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing CreateSnatRuleResponse data
+        :rtype: CreateSnatRuleResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1, VpcClient.CONSTANT_NAT, request.nat_id, VpcClient.CONSTANT_SNAT_RULE
+        )
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=CreateSnatRuleResponse,
         )
 
     def create_ssl_vpn_server(self, request, config=None):
@@ -1339,6 +1518,31 @@ class VpcClient(BceBaseClient):
         """
         path = utils.append_uri(
             VpcClient.VERSION_V1, VpcClient.CONSTANT_ACL, VpcClient.CONSTANT_RULE, request.acl_rule_id
+        )
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
+
+    def delete_dnat_rule(self, request, config=None):
+        """
+        delete_dnat_rule
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1, VpcClient.CONSTANT_NAT, request.nat_id, VpcClient.CONSTANT_DNAT_RULE, request.rule_id
         )
         headers = None
         params = {}
@@ -1761,6 +1965,31 @@ class VpcClient(BceBaseClient):
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
 
+    def delete_snat_rule(self, request, config=None):
+        """
+        delete_snat_rule
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1, VpcClient.CONSTANT_NAT, request.nat_id, VpcClient.CONSTANT_SNAT_RULE, request.rule_id
+        )
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
+
     def delete_ssl_vpn_server(self, request, config=None):
         """
         delete_ssl_vpn_server
@@ -2092,6 +2321,26 @@ class VpcClient(BceBaseClient):
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.PUT, path=path, params=params, config=merged_config)
 
+    def get_nat(self, request, config=None):
+        """
+        get_nat
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing GetNatResponse data
+        :rtype: GetNatResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_NAT, request.nat_id)
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.GET, path=path, config=merged_config, model=GetNatResponse)
+
     def get_vpc_resource_ip_info(self, request, config=None):
         """
         get_vpc_resource_ip_info
@@ -2253,6 +2502,35 @@ class VpcClient(BceBaseClient):
             http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
         )
 
+    def list_dnat_rule(self, request, config=None):
+        """
+        list_dnat_rule
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing ListDnatRuleResponse data
+        :rtype: ListDnatRuleResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1, VpcClient.CONSTANT_NAT, request.nat_id, VpcClient.CONSTANT_DNAT_RULE
+        )
+        headers = None
+        params = {}
+        if request.marker is not None:
+            params['marker'] = request.marker
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.GET, path=path, params=params, config=merged_config, model=ListDnatRuleResponse
+        )
+
     def list_ip_reserve(self, request, config=None):
         """
         list_ip_reserve
@@ -2282,6 +2560,70 @@ class VpcClient(BceBaseClient):
             http_methods.GET, path=path, params=params, config=merged_config, model=ListIpReserveResponse
         )
 
+    def list_nat(self, request, config=None):
+        """
+        list_nat
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing ListNatResponse data
+        :rtype: ListNatResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_NAT)
+        headers = None
+        params = {}
+        if request.vpc_id is not None:
+            params['vpcId'] = request.vpc_id
+        if request.nat_id is not None:
+            params['natId'] = request.nat_id
+        if request.name is not None:
+            params['name'] = request.name
+        if request.ip is not None:
+            params['ip'] = request.ip
+        if request.marker is not None:
+            params['marker'] = request.marker
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.GET, path=path, params=params, config=merged_config, model=ListNatResponse
+        )
+
+    def list_snat_rule(self, request, config=None):
+        """
+        list_snat_rule
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing ListSnatRuleResponse data
+        :rtype: ListSnatRuleResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1, VpcClient.CONSTANT_NAT, request.nat_id, VpcClient.CONSTANT_SNAT_RULE
+        )
+        headers = None
+        params = {}
+        if request.marker is not None:
+            params['marker'] = request.marker
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.GET, path=path, params=params, config=merged_config, model=ListSnatRuleResponse
+        )
+
     def modify_gateway_limit_rules(self, request, config=None):
         """
         modify_gateway_limit_rules
@@ -2302,6 +2644,83 @@ class VpcClient(BceBaseClient):
         )
         headers = None
         params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
+    def modify_nat(self, request, config=None):
+        """
+        modify_nat
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_NAT, request.nat_id)
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
+    def nat_bind_eip(self, request, config=None):
+        """
+        nat_bind_eip
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_NAT, request.nat_id)
+        headers = None
+        params = {}
+        params['bind'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
+    def nat_un_bind_eip(self, request, config=None):
+        """
+        nat_un_bind_eip
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_NAT, request.nat_id)
+        headers = None
+        params = {}
+        params['unbind'] = None
         if request.client_token is not None:
             params['clientToken'] = request.client_token
         merged_config = self._create_request_with_host(request, config)
@@ -2409,6 +2828,32 @@ class VpcClient(BceBaseClient):
             params['clientToken'] = request.client_token
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.PUT, path=path, params=params, config=merged_config)
+
+    def purchase_reserved_nat(self, request, config=None):
+        """
+        purchase_reserved_nat
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_NAT, request.nat_id)
+        headers = None
+        params = {}
+        params['purchaseReserved'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
 
     def query_acl(self, request, config=None):
         """
@@ -3353,6 +3798,29 @@ class VpcClient(BceBaseClient):
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
 
+    def release_nat(self, request, config=None):
+        """
+        release_nat
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_NAT, request.nat_id)
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
+
     def release_peer_to_peer_connection(self, request, config=None):
         """
         release_peer_to_peer_connection
@@ -3468,6 +3936,32 @@ class VpcClient(BceBaseClient):
         headers = None
         params = {}
         params['purchaseReserved'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
+    def resize_nat(self, request, config=None):
+        """
+        resize_nat
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_NAT, request.nat_id)
+        headers = None
+        params = {}
+        params['resize'] = None
         if request.client_token is not None:
             params['clientToken'] = request.client_token
         merged_config = self._create_request_with_host(request, config)
@@ -3641,6 +4135,33 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_ET_GATEWAY, request.et_gateway_id)
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
+    def update_dnat_rule(self, request, config=None):
+        """
+        update_dnat_rule
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1, VpcClient.CONSTANT_NAT, request.nat_id, VpcClient.CONSTANT_DNAT_RULE, request.rule_id
+        )
         headers = None
         params = {}
         if request.client_token is not None:
@@ -3846,6 +4367,33 @@ class VpcClient(BceBaseClient):
             http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
         )
 
+    def update_nat_release_protection_switch(self, request, config=None):
+        """
+        update_nat_release_protection_switch
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1, VpcClient.CONSTANT_NAT, request.nat_id, VpcClient.CONSTANT_DELETE_PROTECT
+        )
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
     def update_network_detection(self, request, config=None):
         """
         update_network_detection
@@ -3939,6 +4487,33 @@ class VpcClient(BceBaseClient):
         """
         path = utils.append_uri(
             VpcClient.VERSION_V1, VpcClient.CONSTANT_ROUTE, VpcClient.CONSTANT_RULE, request.route_rule_id
+        )
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
+    def update_snat_rule(self, request, config=None):
+        """
+        update_snat_rule
+
+        :param request: Request entity containing all parameters
+        :type request: VpcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            VpcClient.VERSION_V1, VpcClient.CONSTANT_NAT, request.nat_id, VpcClient.CONSTANT_SNAT_RULE, request.rule_id
         )
         headers = None
         params = {}

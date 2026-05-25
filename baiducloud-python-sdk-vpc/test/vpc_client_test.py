@@ -58,6 +58,12 @@ class VpcClientTest(unittest.TestCase):
             vpc_models.AuthorizedEnterpriseSecurityGroupRulesRequest()
         )
 
+    def test_batch_add_dnat_rules(self):
+        self.client.batch_add_dnat_rules(vpc_models.BatchAddDnatRulesRequest())
+
+    def test_batch_add_snat_rules(self):
+        self.client.batch_add_snat_rules(vpc_models.BatchAddSnatRulesRequest())
+
     def test_batch_create_ssl_vpn_users(self):
         self.client.batch_create_ssl_vpn_users(vpc_models.BatchCreateSslVpnUsersRequest())
 
@@ -103,6 +109,9 @@ class VpcClientTest(unittest.TestCase):
     def test_create_dedicated_gateway_health_check(self):
         self.client.create_dedicated_gateway_health_check(vpc_models.CreateDedicatedGatewayHealthCheckRequest())
 
+    def test_create_dnat_rule(self):
+        self.client.create_dnat_rule(vpc_models.CreateDnatRuleRequest())
+
     def test_create_elastic_network_card(self):
         self.client.create_elastic_network_card(vpc_models.CreateElasticNetworkCardRequest())
 
@@ -124,11 +133,17 @@ class VpcClientTest(unittest.TestCase):
     def test_create_ipv6_gateway_speed_limit_policy(self):
         self.client.create_ipv6_gateway_speed_limit_policy(vpc_models.CreateIpv6GatewaySpeedLimitPolicyRequest())
 
+    def test_create_nat(self):
+        self.client.create_nat(vpc_models.CreateNatRequest())
+
     def test_create_network_detection(self):
         self.client.create_network_detection(vpc_models.CreateNetworkDetectionRequest())
 
     def test_create_routing_rules(self):
         self.client.create_routing_rules(vpc_models.CreateRoutingRulesRequest())
+
+    def test_create_snat_rule(self):
+        self.client.create_snat_rule(vpc_models.CreateSnatRuleRequest())
 
     def test_create_ssl_vpn_server(self):
         self.client.create_ssl_vpn_server(vpc_models.CreateSslVpnServerRequest())
@@ -150,6 +165,9 @@ class VpcClientTest(unittest.TestCase):
 
     def test_delete_acl_rule(self):
         self.client.delete_acl_rule(vpc_models.DeleteAclRuleRequest())
+
+    def test_delete_dnat_rule(self):
+        self.client.delete_dnat_rule(vpc_models.DeleteDnatRuleRequest())
 
     def test_delete_elastic_network_card_auxiliary_ip(self):
         self.client.delete_elastic_network_card_auxiliary_ip(vpc_models.DeleteElasticNetworkCardAuxiliaryIpRequest())
@@ -198,6 +216,9 @@ class VpcClientTest(unittest.TestCase):
 
     def test_delete_routing_rules(self):
         self.client.delete_routing_rules(vpc_models.DeleteRoutingRulesRequest())
+
+    def test_delete_snat_rule(self):
+        self.client.delete_snat_rule(vpc_models.DeleteSnatRuleRequest())
 
     def test_delete_ssl_vpn_server(self):
         self.client.delete_ssl_vpn_server(vpc_models.DeleteSslVpnServerRequest())
@@ -248,6 +269,9 @@ class VpcClientTest(unittest.TestCase):
             vpc_models.EnablePeerToPeerConnectionToSynchronizeDnsRequest()
         )
 
+    def test_get_nat(self):
+        self.client.get_nat(vpc_models.GetNatRequest())
+
     def test_get_vpc_resource_ip_info(self):
         self.client.get_vpc_resource_ip_info(vpc_models.GetVpcResourceIpInfoRequest())
 
@@ -274,11 +298,29 @@ class VpcClientTest(unittest.TestCase):
             vpc_models.Ipv6GatewayBandwidthUpgradeAndDowngradeRequest()
         )
 
+    def test_list_dnat_rule(self):
+        self.client.list_dnat_rule(vpc_models.ListDnatRuleRequest())
+
     def test_list_ip_reserve(self):
         self.client.list_ip_reserve(vpc_models.ListIpReserveRequest())
 
+    def test_list_nat(self):
+        self.client.list_nat(vpc_models.ListNatRequest())
+
+    def test_list_snat_rule(self):
+        self.client.list_snat_rule(vpc_models.ListSnatRuleRequest())
+
     def test_modify_gateway_limit_rules(self):
         self.client.modify_gateway_limit_rules(vpc_models.ModifyGatewayLimitRulesRequest())
+
+    def test_modify_nat(self):
+        self.client.modify_nat(vpc_models.ModifyNatRequest())
+
+    def test_nat_bind_eip(self):
+        self.client.nat_bind_eip(vpc_models.NatBindEipRequest())
+
+    def test_nat_un_bind_eip(self):
+        self.client.nat_un_bind_eip(vpc_models.NatUnBindEipRequest())
 
     def test_open_vpc_relay(self):
         self.client.open_vpc_relay(vpc_models.OpenVpcRelayRequest())
@@ -295,6 +337,9 @@ class VpcClientTest(unittest.TestCase):
         self.client.prepaid_peer_to_peer_connection_unsubscribe(
             vpc_models.PrepaidPeerToPeerConnectionUnsubscribeRequest()
         )
+
+    def test_purchase_reserved_nat(self):
+        self.client.purchase_reserved_nat(vpc_models.PurchaseReservedNatRequest())
 
     def test_query_acl(self):
         self.client.query_acl(vpc_models.QueryAclRequest())
@@ -411,6 +456,9 @@ class VpcClientTest(unittest.TestCase):
     def test_release_dedicated_gateway(self):
         self.client.release_dedicated_gateway(vpc_models.ReleaseDedicatedGatewayRequest())
 
+    def test_release_nat(self):
+        self.client.release_nat(vpc_models.ReleaseNatRequest())
+
     def test_release_peer_to_peer_connection(self):
         self.client.release_peer_to_peer_connection(vpc_models.ReleasePeerToPeerConnectionRequest())
 
@@ -427,6 +475,9 @@ class VpcClientTest(unittest.TestCase):
 
     def test_renew_vpn(self):
         self.client.renew_vpn(vpc_models.RenewVpnRequest())
+
+    def test_resize_nat(self):
+        self.client.resize_nat(vpc_models.ResizeNatRequest())
 
     def test_revoke_regular_security_group_rules_v2(self):
         self.client.revoke_regular_security_group_rules_v2(vpc_models.RevokeRegularSecurityGroupRulesV2Request())
@@ -448,6 +499,9 @@ class VpcClientTest(unittest.TestCase):
 
     def test_update_dedicated_gateway(self):
         self.client.update_dedicated_gateway(vpc_models.UpdateDedicatedGatewayRequest())
+
+    def test_update_dnat_rule(self):
+        self.client.update_dnat_rule(vpc_models.UpdateDnatRuleRequest())
 
     def test_update_elastic_network_card(self):
         self.client.update_elastic_network_card(vpc_models.UpdateElasticNetworkCardRequest())
@@ -472,6 +526,9 @@ class VpcClientTest(unittest.TestCase):
     def test_update_ipv6_gateway_speed_limit_policy(self):
         self.client.update_ipv6_gateway_speed_limit_policy(vpc_models.UpdateIpv6GatewaySpeedLimitPolicyRequest())
 
+    def test_update_nat_release_protection_switch(self):
+        self.client.update_nat_release_protection_switch(vpc_models.UpdateNatReleaseProtectionSwitchRequest())
+
     def test_update_network_detection(self):
         self.client.update_network_detection(vpc_models.UpdateNetworkDetectionRequest())
 
@@ -485,6 +542,9 @@ class VpcClientTest(unittest.TestCase):
 
     def test_update_routing_rules(self):
         self.client.update_routing_rules(vpc_models.UpdateRoutingRulesRequest())
+
+    def test_update_snat_rule(self):
+        self.client.update_snat_rule(vpc_models.UpdateSnatRuleRequest())
 
     def test_update_ssl_vpn_server(self):
         self.client.update_ssl_vpn_server(vpc_models.UpdateSslVpnServerRequest())
@@ -542,6 +602,8 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_add_ipv6_only_outbound_and_no_inbound_policy"))
     suite.addTest(VpcClientTest("test_authorize_regular_security_group_rules_v2"))
     suite.addTest(VpcClientTest("test_authorized_enterprise_security_group_rules"))
+    suite.addTest(VpcClientTest("test_batch_add_dnat_rules"))
+    suite.addTest(VpcClientTest("test_batch_add_snat_rules"))
     suite.addTest(VpcClientTest("test_batch_create_ssl_vpn_users"))
     suite.addTest(VpcClientTest("test_batch_delete_elastic_network_card_intranet_ip"))
     suite.addTest(VpcClientTest("test_batch_increase_elastic_network_card_intranet_ip"))
@@ -555,6 +617,7 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_create_an_ipv6_gateway"))
     suite.addTest(VpcClientTest("test_create_dedicated_gateway"))
     suite.addTest(VpcClientTest("test_create_dedicated_gateway_health_check"))
+    suite.addTest(VpcClientTest("test_create_dnat_rule"))
     suite.addTest(VpcClientTest("test_create_elastic_network_card"))
     suite.addTest(VpcClientTest("test_create_enterprise_security_group"))
     suite.addTest(VpcClientTest("test_create_gateway_limit_rules"))
@@ -562,8 +625,10 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_create_ip_address_group"))
     suite.addTest(VpcClientTest("test_create_ip_reserved"))
     suite.addTest(VpcClientTest("test_create_ipv6_gateway_speed_limit_policy"))
+    suite.addTest(VpcClientTest("test_create_nat"))
     suite.addTest(VpcClientTest("test_create_network_detection"))
     suite.addTest(VpcClientTest("test_create_routing_rules"))
+    suite.addTest(VpcClientTest("test_create_snat_rule"))
     suite.addTest(VpcClientTest("test_create_ssl_vpn_server"))
     suite.addTest(VpcClientTest("test_create_subnet"))
     suite.addTest(VpcClientTest("test_create_user_gateway"))
@@ -571,6 +636,7 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_create_vpn"))
     suite.addTest(VpcClientTest("test_create_vpn_tunnel"))
     suite.addTest(VpcClientTest("test_delete_acl_rule"))
+    suite.addTest(VpcClientTest("test_delete_dnat_rule"))
     suite.addTest(VpcClientTest("test_delete_elastic_network_card_auxiliary_ip"))
     suite.addTest(VpcClientTest("test_delete_enterprise_security_group"))
     suite.addTest(VpcClientTest("test_delete_enterprise_security_group_rules"))
@@ -587,6 +653,7 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_delete_regular_security_group_rules_v2"))
     suite.addTest(VpcClientTest("test_delete_regular_security_group_v2"))
     suite.addTest(VpcClientTest("test_delete_routing_rules"))
+    suite.addTest(VpcClientTest("test_delete_snat_rule"))
     suite.addTest(VpcClientTest("test_delete_ssl_vpn_server"))
     suite.addTest(VpcClientTest("test_delete_ssl_vpn_user"))
     suite.addTest(VpcClientTest("test_delete_subnet"))
@@ -600,18 +667,26 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_elastic_network_card_update_enterprise_security_group"))
     suite.addTest(VpcClientTest("test_elastic_network_card_updates_regular_security_group"))
     suite.addTest(VpcClientTest("test_enable_peer_to_peer_connection_to_synchronize_dns"))
+    suite.addTest(VpcClientTest("test_get_nat"))
     suite.addTest(VpcClientTest("test_get_vpc_resource_ip_info"))
     suite.addTest(VpcClientTest("test_high_availability_virtual_ip_unbinding_eip"))
     suite.addTest(VpcClientTest("test_high_availability_virtual_ip_unbinding_instance"))
     suite.addTest(VpcClientTest("test_highly_available_virtual_ip_binding_eip"))
     suite.addTest(VpcClientTest("test_highly_available_virtual_ip_binding_instance"))
     suite.addTest(VpcClientTest("test_ipv6_gateway_bandwidth_upgrade_and_downgrade"))
+    suite.addTest(VpcClientTest("test_list_dnat_rule"))
     suite.addTest(VpcClientTest("test_list_ip_reserve"))
+    suite.addTest(VpcClientTest("test_list_nat"))
+    suite.addTest(VpcClientTest("test_list_snat_rule"))
     suite.addTest(VpcClientTest("test_modify_gateway_limit_rules"))
+    suite.addTest(VpcClientTest("test_modify_nat"))
+    suite.addTest(VpcClientTest("test_nat_bind_eip"))
+    suite.addTest(VpcClientTest("test_nat_un_bind_eip"))
     suite.addTest(VpcClientTest("test_open_vpc_relay"))
     suite.addTest(VpcClientTest("test_peer_to_peer_connection_bandwidth_upgrade_and_downgrade"))
     suite.addTest(VpcClientTest("test_peer_to_peer_connection_renewal"))
     suite.addTest(VpcClientTest("test_prepaid_peer_to_peer_connection_unsubscribe"))
+    suite.addTest(VpcClientTest("test_purchase_reserved_nat"))
     suite.addTest(VpcClientTest("test_query_acl"))
     suite.addTest(VpcClientTest("test_query_acl_rules"))
     suite.addTest(VpcClientTest("test_query_ip_address_family_list"))
@@ -645,11 +720,13 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_querying_the_ipv6_policy_list_with_only_output_and_no_inclusion"))
     suite.addTest(VpcClientTest("test_reject_peer_to_peer_connection_request"))
     suite.addTest(VpcClientTest("test_release_dedicated_gateway"))
+    suite.addTest(VpcClientTest("test_release_nat"))
     suite.addTest(VpcClientTest("test_release_peer_to_peer_connection"))
     suite.addTest(VpcClientTest("test_release_vpn"))
     suite.addTest(VpcClientTest("test_remove_elastic_network_card"))
     suite.addTest(VpcClientTest("test_remove_ip_address_group_from_ip_address_family"))
     suite.addTest(VpcClientTest("test_renew_vpn"))
+    suite.addTest(VpcClientTest("test_resize_nat"))
     suite.addTest(VpcClientTest("test_revoke_regular_security_group_rules_v2"))
     suite.addTest(VpcClientTest("test_search_for_vpn_details"))
     suite.addTest(VpcClientTest("test_search_vpn_tunnel"))
@@ -657,6 +734,7 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_unbind_physical_dedicated_line"))
     suite.addTest(VpcClientTest("test_update_acl_rules"))
     suite.addTest(VpcClientTest("test_update_dedicated_gateway"))
+    suite.addTest(VpcClientTest("test_update_dnat_rule"))
     suite.addTest(VpcClientTest("test_update_elastic_network_card"))
     suite.addTest(VpcClientTest("test_update_enterprise_security_group_rules"))
     suite.addTest(VpcClientTest("test_update_highly_available_virtual_ip"))
@@ -664,10 +742,12 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_update_ip_address_group"))
     suite.addTest(VpcClientTest("test_update_ipv6_gateway_release_protection_switch"))
     suite.addTest(VpcClientTest("test_update_ipv6_gateway_speed_limit_policy"))
+    suite.addTest(VpcClientTest("test_update_nat_release_protection_switch"))
     suite.addTest(VpcClientTest("test_update_network_detection"))
     suite.addTest(VpcClientTest("test_update_peer_to_peer_connection_release_protection_switch"))
     suite.addTest(VpcClientTest("test_update_regular_security_group_rules_v2"))
     suite.addTest(VpcClientTest("test_update_routing_rules"))
+    suite.addTest(VpcClientTest("test_update_snat_rule"))
     suite.addTest(VpcClientTest("test_update_ssl_vpn_server"))
     suite.addTest(VpcClientTest("test_update_ssl_vpn_users"))
     suite.addTest(VpcClientTest("test_update_subnet"))
