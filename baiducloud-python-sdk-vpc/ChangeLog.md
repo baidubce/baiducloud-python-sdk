@@ -1,3 +1,6 @@
+2026-05-25 Version: 0.0.17
+- 涉及产品: VPC，listDnatRule接口publicPort和privatePort字段类型由string改为integer
+
 2026-05-25 Version: 0.0.16
 - 涉及产品: VPC，queryAcl和queryAclRules的position字段类型从string修改为integer
 

@@ -42,10 +42,10 @@ class DnatRule(AbstractModel):
         :type protocol: str (optional)
 
         :param public_port: 公网IP端口（1-65535）
-        :type public_port: str (optional)
+        :type public_port: int (optional)
 
         :param private_port: 内网IP端口（1-65535）
-        :type private_port: str (optional)
+        :type private_port: int (optional)
 
         :param status: 规则状态
         :type status: str (optional)
