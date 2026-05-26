@@ -38,7 +38,7 @@ class EnterpriseSecurityGroupRuleModel(AbstractModel):
         :param direction: 入站/出站，取值ingress或egress。
         :type direction: str (optional)
 
-        :param ethertype: 网络类型，取值IPv4或IPv6。值为空时表示默认取值IPv4。
+        :param ethertype: 网络类型，取值IPv4或IPv6。
         :type ethertype: str (optional)
 
         :param port_range: port_range attribute
@@ -47,7 +47,7 @@ class EnterpriseSecurityGroupRuleModel(AbstractModel):
         :param source_port_range: source_port_range attribute
         :type source_port_range: str (optional)
 
-        :param protocol: 协议类型，tcp、udp或icmp，值为空时默认取值all。
+        :param protocol: 协议类型，tcp、udp或icmp。
         :type protocol: str (optional)
 
         :param source_ip: 源IP地址，all表示全部。
