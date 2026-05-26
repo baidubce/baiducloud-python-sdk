@@ -3,6 +3,7 @@ Request entity for GetNatResponse information.
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
+from baiducloud_python_sdk_vpc.models.session_config import SessionConfig
 from baiducloud_python_sdk_vpc.models.tag_model import TagModel
 
 
@@ -22,6 +23,7 @@ class GetNatResponse(BceResponse):
         bind_eips=None,
         status=None,
         ip_version=None,
+        session_config=None,
         payment_timing=None,
         expired_time=None,
         create_time=None,
@@ -58,6 +60,9 @@ class GetNatResponse(BceResponse):
         :param ip_version: NAT IP类型，v4/v6
         :type ip_version: str (optional)
 
+        :param session_config: session_config field
+        :type session_config: SessionConfig (optional)
+
         :param payment_timing: 付费方式 预付费Prepaid 后付费Postpaid
         :type payment_timing: str (optional)
 
@@ -83,6 +88,7 @@ class GetNatResponse(BceResponse):
         self.bind_eips = bind_eips
         self.status = status
         self.ip_version = ip_version
+        self.session_config = session_config
         self.payment_timing = payment_timing
         self.expired_time = expired_time
         self.create_time = create_time
@@ -123,6 +129,8 @@ class GetNatResponse(BceResponse):
             result['status'] = self.status
         if self.ip_version is not None:
             result['ipVersion'] = self.ip_version
+        if self.session_config is not None:
+            result['sessionConfig'] = self.session_config.to_dict()
         if self.payment_timing is not None:
             result['paymentTiming'] = self.payment_timing
         if self.expired_time is not None:
@@ -169,6 +177,8 @@ class GetNatResponse(BceResponse):
             self.status = m.get('status')
         if m.get('ipVersion') is not None:
             self.ip_version = m.get('ipVersion')
+        if m.get('sessionConfig') is not None:
+            self.session_config = SessionConfig().from_dict(m.get('sessionConfig'))
         if m.get('paymentTiming') is not None:
             self.payment_timing = m.get('paymentTiming')
         if m.get('expiredTime') is not None:
