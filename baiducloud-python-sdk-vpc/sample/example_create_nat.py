@@ -21,6 +21,7 @@ if __name__ == '__main__':
 
         reservation = vpc_models.Reservation(reservation_length=0, reservation_time_unit="")
         billing = vpc_models.Billing(payment_timing="", reservation=reservation)
+        session_config = vpc_models.SessionConfig(tcp_timeout=0, udp_timeout=0, icmp_timeout=0)
         request = vpc_models.CreateNatRequest(
             name="",
             vpc_id="",
@@ -29,6 +30,7 @@ if __name__ == '__main__':
             client_token="",
             ip_version="",
             bind_eips=[],
+            session_config=session_config,
             tags=[],
             resource_group_id="",
             delete_protect=False,

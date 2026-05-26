@@ -4,6 +4,7 @@ Request entity for CreateNatRequest information.
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 from baiducloud_python_sdk_vpc.models.billing import Billing
+from baiducloud_python_sdk_vpc.models.session_config import SessionConfig
 from baiducloud_python_sdk_vpc.models.tag_model import TagModel
 
 
@@ -23,6 +24,7 @@ class CreateNatRequest(AbstractModel):
         client_token=None,
         ip_version=None,
         bind_eips=None,
+        session_config=None,
         tags=None,
         resource_group_id=None,
         delete_protect=None,
@@ -51,6 +53,9 @@ class CreateNatRequest(AbstractModel):
         :param billing: billing parameter
         :type billing: Billing (required)
 
+        :param session_config: session_config parameter
+        :type session_config: SessionConfig (optional)
+
         :param tags: 待创建的标签键值对列表。
         :type tags: List[TagModel] (optional)
 
@@ -68,6 +73,7 @@ class CreateNatRequest(AbstractModel):
         self.ip_version = ip_version
         self.bind_eips = bind_eips
         self.billing = billing
+        self.session_config = session_config
         self.tags = tags
         self.resource_group_id = resource_group_id
         self.delete_protect = delete_protect
@@ -97,6 +103,8 @@ class CreateNatRequest(AbstractModel):
             result['bindEips'] = self.bind_eips
         if self.billing is not None:
             result['billing'] = self.billing.to_dict()
+        if self.session_config is not None:
+            result['sessionConfig'] = self.session_config.to_dict()
         if self.tags is not None:
             result['tags'] = [i.to_dict() for i in self.tags]
         if self.resource_group_id is not None:
@@ -135,6 +143,8 @@ class CreateNatRequest(AbstractModel):
             self.bind_eips = m.get('bindEips')
         if m.get('billing') is not None:
             self.billing = Billing().from_dict(m.get('billing'))
+        if m.get('sessionConfig') is not None:
+            self.session_config = SessionConfig().from_dict(m.get('sessionConfig'))
         if m.get('tags') is not None:
             self.tags = [TagModel().from_dict(i) for i in m.get('tags')]
         if m.get('resourceGroupId') is not None:
