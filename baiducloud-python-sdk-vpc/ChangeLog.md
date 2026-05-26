@@ -1,3 +1,6 @@
+2026-05-26 Version: 0.0.24
+- 涉及产品: VPC，SDK版本更新
+
 2026-05-26 Version: 0.0.23
 - 涉及产品: VPC，addAclRule新增ipVersion字段并删除原ipversion字段
 - 涉及产品: VPC，queryNetworkDetectionList的destPort类型由integer改为string
