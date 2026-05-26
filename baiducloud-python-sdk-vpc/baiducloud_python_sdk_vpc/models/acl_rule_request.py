@@ -21,7 +21,7 @@ class AclRuleRequest(AbstractModel):
         destination_port=None,
         position=None,
         direction=None,
-        ipversion=None,
+        ip_version=None,
         action=None,
     ):
         """
@@ -54,8 +54,8 @@ class AclRuleRequest(AbstractModel):
         :param direction: 规则的入站ingress 规则的出站egress
         :type direction: str (optional)
 
-        :param ipversion: 默认为4。如果添加IPv6规则，则该值为6必传
-        :type ipversion: int (optional)
+        :param ip_version: 默认为4。如果添加IPv6规则，则该值为6必传
+        :type ip_version: int (optional)
 
         :param action: 策略，包括allow和deny
         :type action: str (optional)
@@ -70,7 +70,7 @@ class AclRuleRequest(AbstractModel):
         self.destination_port = destination_port
         self.position = position
         self.direction = direction
-        self.ipversion = ipversion
+        self.ip_version = ip_version
         self.action = action
 
     def to_dict(self):
@@ -104,8 +104,8 @@ class AclRuleRequest(AbstractModel):
             result['position'] = self.position
         if self.direction is not None:
             result['direction'] = self.direction
-        if self.ipversion is not None:
-            result['ipversion'] = self.ipversion
+        if self.ip_version is not None:
+            result['ipVersion'] = self.ip_version
         if self.action is not None:
             result['action'] = self.action
         return result
@@ -144,8 +144,8 @@ class AclRuleRequest(AbstractModel):
             self.position = m.get('position')
         if m.get('direction') is not None:
             self.direction = m.get('direction')
-        if m.get('ipversion') is not None:
-            self.ipversion = m.get('ipversion')
+        if m.get('ipVersion') is not None:
+            self.ip_version = m.get('ipVersion')
         if m.get('action') is not None:
             self.action = m.get('action')
         return self

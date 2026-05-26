@@ -38,7 +38,7 @@ class Probe(AbstractModel):
         :type dest_ip: str (optional)
 
         :param dest_port: 目的端口
-        :type dest_port: int (optional)
+        :type dest_port: str (optional)
 
         :param frequency: 探测频率
         :type frequency: int (optional)
