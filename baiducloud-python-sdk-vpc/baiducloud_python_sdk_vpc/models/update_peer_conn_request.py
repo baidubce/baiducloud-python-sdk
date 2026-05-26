@@ -1,23 +1,26 @@
 """
-Request entity for UpdateTheNameAndCommentsOfTheLocalInterfaceForPeerToPeerConnectionsRequest information.
+Request entity for UpdatePeerConnRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class UpdateTheNameAndCommentsOfTheLocalInterfaceForPeerToPeerConnectionsRequest(AbstractModel):
+class UpdatePeerConnRequest(AbstractModel):
     """
-    Request entity for UpdateTheNameAndCommentsOfTheLocalInterfaceForPeerToPeerConnectionsRequest operation.
+    Request entity for UpdatePeerConnRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, peer_conn_id, local_if_id, description=None, local_if_name=None):
+    def __init__(self, peer_conn_id, local_if_id, client_token=None, description=None, local_if_name=None):
         """
-        Initialize UpdateTheNameAndCommentsOfTheLocalInterfaceForPeerToPeerConnectionsRequest request entity.
+        Initialize UpdatePeerConnRequest request entity.
 
         :param peer_conn_id: peer_conn_id parameter
         :type peer_conn_id: str (required)
+
+        :param client_token: client_token parameter
+        :type client_token: str (optional)
 
         :param local_if_id: 对等连接的接口ID 不可更改
         :type local_if_id: str (required)
@@ -30,6 +33,7 @@ class UpdateTheNameAndCommentsOfTheLocalInterfaceForPeerToPeerConnectionsRequest
         """
         super().__init__()
         self.peer_conn_id = peer_conn_id
+        self.client_token = client_token
         self.local_if_id = local_if_id
         self.description = description
         self.local_if_name = local_if_name
@@ -65,7 +69,7 @@ class UpdateTheNameAndCommentsOfTheLocalInterfaceForPeerToPeerConnectionsRequest
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: UpdateTheNameAndCommentsOfTheLocalInterfaceForPeerToPeerConnectionsRequest
+        :rtype: UpdatePeerConnRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
@@ -73,6 +77,8 @@ class UpdateTheNameAndCommentsOfTheLocalInterfaceForPeerToPeerConnectionsRequest
         m = m or dict()
         if m.get('peerConnId') is not None:
             self.peer_conn_id = m.get('peerConnId')
+        if m.get('clientToken') is not None:
+            self.client_token = m.get('clientToken')
         if m.get('localIfId') is not None:
             self.local_if_id = m.get('localIfId')
         if m.get('description') is not None:

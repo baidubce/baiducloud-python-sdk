@@ -1,5 +1,5 @@
 """
-Example for vpc update_the_name_and_comments_of_the_local_interface_for_peer_to_peer_connections method.
+Example for vpc update_peer_conn method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -18,10 +18,10 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = VpcClient(config)
-        request = vpc_models.UpdateTheNameAndCommentsOfTheLocalInterfaceForPeerToPeerConnectionsRequest(
-            peer_conn_id="", local_if_id="", description="", local_if_name=""
+        request = vpc_models.UpdatePeerConnRequest(
+            peer_conn_id="", local_if_id="", client_token="", description="", local_if_name=""
         )
-        res = client.update_the_name_and_comments_of_the_local_interface_for_peer_to_peer_connections(request)
+        res = client.update_peer_conn(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。

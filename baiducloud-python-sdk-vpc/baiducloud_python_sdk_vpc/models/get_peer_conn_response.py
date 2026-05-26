@@ -1,16 +1,14 @@
 """
-Request entity for ViewPeerToPeerConnectionDetailsResponse information.
+Request entity for GetPeerConnResponse information.
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
-from baiducloud_python_sdk_vpc.models.peer_conn_status import PeerConnStatus
-from baiducloud_python_sdk_vpc.models.dns_status import DnsStatus
 from baiducloud_python_sdk_vpc.models.tag_model import TagModel
 
 
-class ViewPeerToPeerConnectionDetailsResponse(BceResponse):
+class GetPeerConnResponse(BceResponse):
     """
-    ViewPeerToPeerConnectionDetailsResponse
+    GetPeerConnResponse
     """
 
     def __init__(
@@ -35,7 +33,7 @@ class ViewPeerToPeerConnectionDetailsResponse(BceResponse):
         delete_protect=None,
     ):
         """
-        Initialize ViewPeerToPeerConnectionDetailsResponse response.
+        Initialize GetPeerConnResponse response.
 
         :param peer_conn_id: 对等连接的ID
         :type peer_conn_id: str (optional)
@@ -43,8 +41,8 @@ class ViewPeerToPeerConnectionDetailsResponse(BceResponse):
         :param role: \"initiator\"表示发起端\"acceptor\"表示接受端
         :type role: str (optional)
 
-        :param status: status field
-        :type status: PeerConnStatus (optional)
+        :param status: 对等连接的状态
+        :type status: str (optional)
 
         :param bandwidth_in_mbps: 对等连接的带宽
         :type bandwidth_in_mbps: int (optional)
@@ -79,8 +77,8 @@ class ViewPeerToPeerConnectionDetailsResponse(BceResponse):
         :param expired_time: 对等连接过期时间，后付费该值为空
         :type expired_time: str (optional)
 
-        :param dns_status: dns_status field
-        :type dns_status: DnsStatus (optional)
+        :param dns_status: 对等连接同步dns的状态
+        :type dns_status: str (optional)
 
         :param payment_timing: 对等连接的计费类型 \"Prepaid\"为预付费 \"Postpaid\"为后付费
         :type payment_timing: str (optional)
@@ -132,7 +130,7 @@ class ViewPeerToPeerConnectionDetailsResponse(BceResponse):
         if self.role is not None:
             result['role'] = self.role
         if self.status is not None:
-            result['status'] = self.status.to_dict()
+            result['status'] = self.status
         if self.bandwidth_in_mbps is not None:
             result['bandwidthInMbps'] = self.bandwidth_in_mbps
         if self.description is not None:
@@ -156,7 +154,7 @@ class ViewPeerToPeerConnectionDetailsResponse(BceResponse):
         if self.expired_time is not None:
             result['expiredTime'] = self.expired_time
         if self.dns_status is not None:
-            result['dnsStatus'] = self.dns_status.to_dict()
+            result['dnsStatus'] = self.dns_status
         if self.payment_timing is not None:
             result['paymentTiming'] = self.payment_timing
         if self.tags is not None:
@@ -175,7 +173,7 @@ class ViewPeerToPeerConnectionDetailsResponse(BceResponse):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: ViewPeerToPeerConnectionDetailsResponse
+        :rtype: GetPeerConnResponse
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
@@ -186,7 +184,7 @@ class ViewPeerToPeerConnectionDetailsResponse(BceResponse):
         if m.get('role') is not None:
             self.role = m.get('role')
         if m.get('status') is not None:
-            self.status = PeerConnStatus().from_dict(m.get('status'))
+            self.status = m.get('status')
         if m.get('bandwidthInMbps') is not None:
             self.bandwidth_in_mbps = m.get('bandwidthInMbps')
         if m.get('description') is not None:
@@ -210,7 +208,7 @@ class ViewPeerToPeerConnectionDetailsResponse(BceResponse):
         if m.get('expiredTime') is not None:
             self.expired_time = m.get('expiredTime')
         if m.get('dnsStatus') is not None:
-            self.dns_status = DnsStatus().from_dict(m.get('dnsStatus'))
+            self.dns_status = m.get('dnsStatus')
         if m.get('paymentTiming') is not None:
             self.payment_timing = m.get('paymentTiming')
         if m.get('tags') is not None:

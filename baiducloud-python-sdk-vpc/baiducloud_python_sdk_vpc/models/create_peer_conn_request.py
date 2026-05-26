@@ -1,5 +1,5 @@
 """
-Request entity for CreateAPeerToPeerConnectionRequest information.
+Request entity for CreatePeerConnRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
@@ -7,9 +7,9 @@ from baiducloud_python_sdk_vpc.models.billing import Billing
 from baiducloud_python_sdk_vpc.models.tag_model import TagModel
 
 
-class CreateAPeerToPeerConnectionRequest(AbstractModel):
+class CreatePeerConnRequest(AbstractModel):
     """
-    Request entity for CreateAPeerToPeerConnectionRequest operation.
+    Request entity for CreatePeerConnRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
@@ -31,7 +31,7 @@ class CreateAPeerToPeerConnectionRequest(AbstractModel):
         delete_protect=None,
     ):
         """
-        Initialize CreateAPeerToPeerConnectionRequest request entity.
+        Initialize CreatePeerConnRequest request entity.
 
         :param client_token: client_token parameter
         :type client_token: str (optional)
@@ -136,7 +136,7 @@ class CreateAPeerToPeerConnectionRequest(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: CreateAPeerToPeerConnectionRequest
+        :rtype: CreatePeerConnRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails

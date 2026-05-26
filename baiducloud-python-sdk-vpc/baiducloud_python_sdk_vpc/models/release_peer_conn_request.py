@@ -1,30 +1,30 @@
 """
-Request entity for ViewPeerToPeerConnectionDetailsRequest information.
+Request entity for ReleasePeerConnRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class ViewPeerToPeerConnectionDetailsRequest(AbstractModel):
+class ReleasePeerConnRequest(AbstractModel):
     """
-    Request entity for ViewPeerToPeerConnectionDetailsRequest operation.
+    Request entity for ReleasePeerConnRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, peer_conn_id, role=None):
+    def __init__(self, peer_conn_id, client_token=None):
         """
-        Initialize ViewPeerToPeerConnectionDetailsRequest request entity.
+        Initialize ReleasePeerConnRequest request entity.
 
         :param peer_conn_id: peer_conn_id parameter
         :type peer_conn_id: str (required)
 
-        :param role: role parameter
-        :type role: str (optional)
+        :param client_token: client_token parameter
+        :type client_token: str (optional)
         """
         super().__init__()
         self.peer_conn_id = peer_conn_id
-        self.role = role
+        self.client_token = client_token
 
     def to_dict(self):
         """
@@ -51,7 +51,7 @@ class ViewPeerToPeerConnectionDetailsRequest(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: ViewPeerToPeerConnectionDetailsRequest
+        :rtype: ReleasePeerConnRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
@@ -59,6 +59,6 @@ class ViewPeerToPeerConnectionDetailsRequest(AbstractModel):
         m = m or dict()
         if m.get('peerConnId') is not None:
             self.peer_conn_id = m.get('peerConnId')
-        if m.get('role') is not None:
-            self.role = m.get('role')
+        if m.get('clientToken') is not None:
+            self.client_token = m.get('clientToken')
         return self

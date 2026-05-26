@@ -1,5 +1,5 @@
 """
-Example for vpc release_peer_to_peer_connection method.
+Example for vpc release_peer_conn method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -18,8 +18,8 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = VpcClient(config)
-        request = vpc_models.ReleasePeerToPeerConnectionRequest(peer_conn_id="", client_token="")
-        res = client.release_peer_to_peer_connection(request)
+        request = vpc_models.ReleasePeerConnRequest(peer_conn_id="", client_token="")
+        res = client.release_peer_conn(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。

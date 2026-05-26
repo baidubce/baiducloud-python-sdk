@@ -1,33 +1,29 @@
 """
-Request entity for EnablePeerToPeerConnectionToSynchronizeDnsRequest information.
+Request entity for AcceptPeerConnRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class EnablePeerToPeerConnectionToSynchronizeDnsRequest(AbstractModel):
+class AcceptPeerConnRequest(AbstractModel):
     """
-    Request entity for EnablePeerToPeerConnectionToSynchronizeDnsRequest operation.
+    Request entity for AcceptPeerConnRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, peer_conn_id, role, client_token=None):
+    def __init__(self, peer_conn_id, client_token=None):
         """
-        Initialize EnablePeerToPeerConnectionToSynchronizeDnsRequest request entity.
+        Initialize AcceptPeerConnRequest request entity.
 
         :param peer_conn_id: peer_conn_id parameter
         :type peer_conn_id: str (required)
-
-        :param role: role parameter
-        :type role: str (required)
 
         :param client_token: client_token parameter
         :type client_token: str (optional)
         """
         super().__init__()
         self.peer_conn_id = peer_conn_id
-        self.role = role
         self.client_token = client_token
 
     def to_dict(self):
@@ -55,7 +51,7 @@ class EnablePeerToPeerConnectionToSynchronizeDnsRequest(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: EnablePeerToPeerConnectionToSynchronizeDnsRequest
+        :rtype: AcceptPeerConnRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
@@ -63,8 +59,6 @@ class EnablePeerToPeerConnectionToSynchronizeDnsRequest(AbstractModel):
         m = m or dict()
         if m.get('peerConnId') is not None:
             self.peer_conn_id = m.get('peerConnId')
-        if m.get('role') is not None:
-            self.role = m.get('role')
         if m.get('clientToken') is not None:
             self.client_token = m.get('clientToken')
         return self

@@ -1,30 +1,34 @@
 """
-Request entity for ReleasePeerToPeerConnectionRequest information.
+Request entity for ListPeerConnRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class ReleasePeerToPeerConnectionRequest(AbstractModel):
+class ListPeerConnRequest(AbstractModel):
     """
-    Request entity for ReleasePeerToPeerConnectionRequest operation.
+    Request entity for ListPeerConnRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, peer_conn_id, client_token=None):
+    def __init__(self, vpc_id=None, marker=None, max_keys=None):
         """
-        Initialize ReleasePeerToPeerConnectionRequest request entity.
+        Initialize ListPeerConnRequest request entity.
 
-        :param peer_conn_id: peer_conn_id parameter
-        :type peer_conn_id: str (required)
+        :param vpc_id: vpc_id parameter
+        :type vpc_id: str (optional)
 
-        :param client_token: client_token parameter
-        :type client_token: str (optional)
+        :param marker: marker parameter
+        :type marker: str (optional)
+
+        :param max_keys: max_keys parameter
+        :type max_keys: int (optional)
         """
         super().__init__()
-        self.peer_conn_id = peer_conn_id
-        self.client_token = client_token
+        self.vpc_id = vpc_id
+        self.marker = marker
+        self.max_keys = max_keys
 
     def to_dict(self):
         """
@@ -51,14 +55,16 @@ class ReleasePeerToPeerConnectionRequest(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: ReleasePeerToPeerConnectionRequest
+        :rtype: ListPeerConnRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('peerConnId') is not None:
-            self.peer_conn_id = m.get('peerConnId')
-        if m.get('clientToken') is not None:
-            self.client_token = m.get('clientToken')
+        if m.get('vpcId') is not None:
+            self.vpc_id = m.get('vpcId')
+        if m.get('marker') is not None:
+            self.marker = m.get('marker')
+        if m.get('maxKeys') is not None:
+            self.max_keys = m.get('maxKeys')
         return self

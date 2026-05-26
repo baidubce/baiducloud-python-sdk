@@ -25,10 +25,8 @@ class VpcClientTest(unittest.TestCase):
         """
         self.the_client = None
 
-    def test_accept_peer_to_peer_connection_applications(self):
-        self.client.accept_peer_to_peer_connection_applications(
-            vpc_models.AcceptPeerToPeerConnectionApplicationsRequest()
-        )
+    def test_accept_peer_conn(self):
+        self.client.accept_peer_conn(vpc_models.AcceptPeerConnRequest())
 
     def test_active_standby_switchover(self):
         self.client.active_standby_switchover(vpc_models.ActiveStandbySwitchoverRequest())
@@ -83,19 +81,14 @@ class VpcClientTest(unittest.TestCase):
     def test_bind_physical_dedicated_line(self):
         self.client.bind_physical_dedicated_line(vpc_models.BindPhysicalDedicatedLineRequest())
 
-    def test_close_peer_to_peer_connection_to_synchronize_dns(self):
-        self.client.close_peer_to_peer_connection_to_synchronize_dns(
-            vpc_models.ClosePeerToPeerConnectionToSynchronizeDnsRequest()
-        )
+    def test_close_peer_conn_sync_dns(self):
+        self.client.close_peer_conn_sync_dns(vpc_models.ClosePeerConnSyncDnsRequest())
 
     def test_close_vpc_relay(self):
         self.client.close_vpc_relay(vpc_models.CloseVpcRelayRequest())
 
     def test_create_a_highly_available_virtual_ip(self):
         self.client.create_a_highly_available_virtual_ip(vpc_models.CreateAHighlyAvailableVirtualIpRequest())
-
-    def test_create_a_peer_to_peer_connection(self):
-        self.client.create_a_peer_to_peer_connection(vpc_models.CreateAPeerToPeerConnectionRequest())
 
     def test_create_a_regular_security_group_v2(self):
         self.client.create_a_regular_security_group_v2(vpc_models.CreateARegularSecurityGroupV2Request())
@@ -138,6 +131,9 @@ class VpcClientTest(unittest.TestCase):
 
     def test_create_network_detection(self):
         self.client.create_network_detection(vpc_models.CreateNetworkDetectionRequest())
+
+    def test_create_peer_conn(self):
+        self.client.create_peer_conn(vpc_models.CreatePeerConnRequest())
 
     def test_create_routing_rules(self):
         self.client.create_routing_rules(vpc_models.CreateRoutingRulesRequest())
@@ -264,13 +260,11 @@ class VpcClientTest(unittest.TestCase):
             vpc_models.ElasticNetworkCardUpdatesRegularSecurityGroupRequest()
         )
 
-    def test_enable_peer_to_peer_connection_to_synchronize_dns(self):
-        self.client.enable_peer_to_peer_connection_to_synchronize_dns(
-            vpc_models.EnablePeerToPeerConnectionToSynchronizeDnsRequest()
-        )
-
     def test_get_nat(self):
         self.client.get_nat(vpc_models.GetNatRequest())
+
+    def test_get_peer_conn(self):
+        self.client.get_peer_conn(vpc_models.GetPeerConnRequest())
 
     def test_get_vpc_resource_ip_info(self):
         self.client.get_vpc_resource_ip_info(vpc_models.GetVpcResourceIpInfoRequest())
@@ -307,6 +301,9 @@ class VpcClientTest(unittest.TestCase):
     def test_list_nat(self):
         self.client.list_nat(vpc_models.ListNatRequest())
 
+    def test_list_peer_conn(self):
+        self.client.list_peer_conn(vpc_models.ListPeerConnRequest())
+
     def test_list_snat_rule(self):
         self.client.list_snat_rule(vpc_models.ListSnatRuleRequest())
 
@@ -322,21 +319,11 @@ class VpcClientTest(unittest.TestCase):
     def test_nat_un_bind_eip(self):
         self.client.nat_un_bind_eip(vpc_models.NatUnBindEipRequest())
 
+    def test_open_peer_conn_sync_dns(self):
+        self.client.open_peer_conn_sync_dns(vpc_models.OpenPeerConnSyncDnsRequest())
+
     def test_open_vpc_relay(self):
         self.client.open_vpc_relay(vpc_models.OpenVpcRelayRequest())
-
-    def test_peer_to_peer_connection_bandwidth_upgrade_and_downgrade(self):
-        self.client.peer_to_peer_connection_bandwidth_upgrade_and_downgrade(
-            vpc_models.PeerToPeerConnectionBandwidthUpgradeAndDowngradeRequest()
-        )
-
-    def test_peer_to_peer_connection_renewal(self):
-        self.client.peer_to_peer_connection_renewal(vpc_models.PeerToPeerConnectionRenewalRequest())
-
-    def test_prepaid_peer_to_peer_connection_unsubscribe(self):
-        self.client.prepaid_peer_to_peer_connection_unsubscribe(
-            vpc_models.PrepaidPeerToPeerConnectionUnsubscribeRequest()
-        )
 
     def test_purchase_reserved_nat(self):
         self.client.purchase_reserved_nat(vpc_models.PurchaseReservedNatRequest())
@@ -404,9 +391,6 @@ class VpcClientTest(unittest.TestCase):
     def test_query_the_list_of_ip_address_groups(self):
         self.client.query_the_list_of_ip_address_groups(vpc_models.QueryTheListOfIpAddressGroupsRequest())
 
-    def test_query_the_list_of_peer_connections(self):
-        self.client.query_the_list_of_peer_connections(vpc_models.QueryTheListOfPeerConnectionsRequest())
-
     def test_query_the_list_of_regular_security_groups_v2(self):
         self.client.query_the_list_of_regular_security_groups_v2(
             vpc_models.QueryTheListOfRegularSecurityGroupsV2Request()
@@ -450,8 +434,11 @@ class VpcClientTest(unittest.TestCase):
             vpc_models.QueryingTheIpv6PolicyListWithOnlyOutputAndNoInclusionRequest()
         )
 
-    def test_reject_peer_to_peer_connection_request(self):
-        self.client.reject_peer_to_peer_connection_request(vpc_models.RejectPeerToPeerConnectionRequestRequest())
+    def test_refund_peer_conn(self):
+        self.client.refund_peer_conn(vpc_models.RefundPeerConnRequest())
+
+    def test_reject_peer_conn(self):
+        self.client.reject_peer_conn(vpc_models.RejectPeerConnRequest())
 
     def test_release_dedicated_gateway(self):
         self.client.release_dedicated_gateway(vpc_models.ReleaseDedicatedGatewayRequest())
@@ -459,8 +446,8 @@ class VpcClientTest(unittest.TestCase):
     def test_release_nat(self):
         self.client.release_nat(vpc_models.ReleaseNatRequest())
 
-    def test_release_peer_to_peer_connection(self):
-        self.client.release_peer_to_peer_connection(vpc_models.ReleasePeerToPeerConnectionRequest())
+    def test_release_peer_conn(self):
+        self.client.release_peer_conn(vpc_models.ReleasePeerConnRequest())
 
     def test_release_vpn(self):
         self.client.release_vpn(vpc_models.ReleaseVpnRequest())
@@ -472,6 +459,9 @@ class VpcClientTest(unittest.TestCase):
         self.client.remove_ip_address_group_from_ip_address_family(
             vpc_models.RemoveIpAddressGroupFromIpAddressFamilyRequest()
         )
+
+    def test_renew_peer_conn(self):
+        self.client.renew_peer_conn(vpc_models.RenewPeerConnRequest())
 
     def test_renew_vpn(self):
         self.client.renew_vpn(vpc_models.RenewVpnRequest())
@@ -532,10 +522,14 @@ class VpcClientTest(unittest.TestCase):
     def test_update_network_detection(self):
         self.client.update_network_detection(vpc_models.UpdateNetworkDetectionRequest())
 
-    def test_update_peer_to_peer_connection_release_protection_switch(self):
-        self.client.update_peer_to_peer_connection_release_protection_switch(
-            vpc_models.UpdatePeerToPeerConnectionReleaseProtectionSwitchRequest()
-        )
+    def test_update_peer_conn(self):
+        self.client.update_peer_conn(vpc_models.UpdatePeerConnRequest())
+
+    def test_update_peer_conn_bandwidth(self):
+        self.client.update_peer_conn_bandwidth(vpc_models.UpdatePeerConnBandwidthRequest())
+
+    def test_update_peer_conn_delete_protect(self):
+        self.client.update_peer_conn_delete_protect(vpc_models.UpdatePeerConnDeleteProtectRequest())
 
     def test_update_regular_security_group_rules_v2(self):
         self.client.update_regular_security_group_rules_v2(vpc_models.UpdateRegularSecurityGroupRulesV2Request())
@@ -554,11 +548,6 @@ class VpcClientTest(unittest.TestCase):
 
     def test_update_subnet(self):
         self.client.update_subnet(vpc_models.UpdateSubnetRequest())
-
-    def test_update_the_name_and_comments_of_the_local_interface_for_peer_to_peer_connections(self):
-        self.client.update_the_name_and_comments_of_the_local_interface_for_peer_to_peer_connections(
-            vpc_models.UpdateTheNameAndCommentsOfTheLocalInterfaceForPeerToPeerConnectionsRequest()
-        )
 
     def test_update_user_gateway(self):
         self.client.update_user_gateway(vpc_models.UpdateUserGatewayRequest())
@@ -584,16 +573,13 @@ class VpcClientTest(unittest.TestCase):
     def test_view_gateway_limit_rules(self):
         self.client.view_gateway_limit_rules(vpc_models.ViewGatewayLimitRulesRequest())
 
-    def test_view_peer_to_peer_connection_details(self):
-        self.client.view_peer_to_peer_connection_details(vpc_models.ViewPeerToPeerConnectionDetailsRequest())
-
     def test_view_security_group_details_v2(self):
         self.client.view_security_group_details_v2(vpc_models.ViewSecurityGroupDetailsV2Request())
 
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()
-    suite.addTest(VpcClientTest("test_accept_peer_to_peer_connection_applications"))
+    suite.addTest(VpcClientTest("test_accept_peer_conn"))
     suite.addTest(VpcClientTest("test_active_standby_switchover"))
     suite.addTest(VpcClientTest("test_add_acl_rule"))
     suite.addTest(VpcClientTest("test_add_elastic_network_card_auxiliary_ip"))
@@ -609,10 +595,9 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_batch_increase_elastic_network_card_intranet_ip"))
     suite.addTest(VpcClientTest("test_bind_eip"))
     suite.addTest(VpcClientTest("test_bind_physical_dedicated_line"))
-    suite.addTest(VpcClientTest("test_close_peer_to_peer_connection_to_synchronize_dns"))
+    suite.addTest(VpcClientTest("test_close_peer_conn_sync_dns"))
     suite.addTest(VpcClientTest("test_close_vpc_relay"))
     suite.addTest(VpcClientTest("test_create_a_highly_available_virtual_ip"))
-    suite.addTest(VpcClientTest("test_create_a_peer_to_peer_connection"))
     suite.addTest(VpcClientTest("test_create_a_regular_security_group_v2"))
     suite.addTest(VpcClientTest("test_create_an_ipv6_gateway"))
     suite.addTest(VpcClientTest("test_create_dedicated_gateway"))
@@ -627,6 +612,7 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_create_ipv6_gateway_speed_limit_policy"))
     suite.addTest(VpcClientTest("test_create_nat"))
     suite.addTest(VpcClientTest("test_create_network_detection"))
+    suite.addTest(VpcClientTest("test_create_peer_conn"))
     suite.addTest(VpcClientTest("test_create_routing_rules"))
     suite.addTest(VpcClientTest("test_create_snat_rule"))
     suite.addTest(VpcClientTest("test_create_ssl_vpn_server"))
@@ -666,8 +652,8 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_elastic_network_card_uninstallation_cloud_product_instance"))
     suite.addTest(VpcClientTest("test_elastic_network_card_update_enterprise_security_group"))
     suite.addTest(VpcClientTest("test_elastic_network_card_updates_regular_security_group"))
-    suite.addTest(VpcClientTest("test_enable_peer_to_peer_connection_to_synchronize_dns"))
     suite.addTest(VpcClientTest("test_get_nat"))
+    suite.addTest(VpcClientTest("test_get_peer_conn"))
     suite.addTest(VpcClientTest("test_get_vpc_resource_ip_info"))
     suite.addTest(VpcClientTest("test_high_availability_virtual_ip_unbinding_eip"))
     suite.addTest(VpcClientTest("test_high_availability_virtual_ip_unbinding_instance"))
@@ -677,15 +663,14 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_list_dnat_rule"))
     suite.addTest(VpcClientTest("test_list_ip_reserve"))
     suite.addTest(VpcClientTest("test_list_nat"))
+    suite.addTest(VpcClientTest("test_list_peer_conn"))
     suite.addTest(VpcClientTest("test_list_snat_rule"))
     suite.addTest(VpcClientTest("test_modify_gateway_limit_rules"))
     suite.addTest(VpcClientTest("test_modify_nat"))
     suite.addTest(VpcClientTest("test_nat_bind_eip"))
     suite.addTest(VpcClientTest("test_nat_un_bind_eip"))
+    suite.addTest(VpcClientTest("test_open_peer_conn_sync_dns"))
     suite.addTest(VpcClientTest("test_open_vpc_relay"))
-    suite.addTest(VpcClientTest("test_peer_to_peer_connection_bandwidth_upgrade_and_downgrade"))
-    suite.addTest(VpcClientTest("test_peer_to_peer_connection_renewal"))
-    suite.addTest(VpcClientTest("test_prepaid_peer_to_peer_connection_unsubscribe"))
     suite.addTest(VpcClientTest("test_purchase_reserved_nat"))
     suite.addTest(VpcClientTest("test_query_acl"))
     suite.addTest(VpcClientTest("test_query_acl_rules"))
@@ -706,7 +691,6 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_query_the_list_of_enterprise_security_groups"))
     suite.addTest(VpcClientTest("test_query_the_list_of_highly_available_virtual_ips"))
     suite.addTest(VpcClientTest("test_query_the_list_of_ip_address_groups"))
-    suite.addTest(VpcClientTest("test_query_the_list_of_peer_connections"))
     suite.addTest(VpcClientTest("test_query_the_list_of_regular_security_groups_v2"))
     suite.addTest(VpcClientTest("test_query_the_list_of_speed_limit_policies_for_ipv6_gateway"))
     suite.addTest(VpcClientTest("test_query_the_specified_elastic_network_card"))
@@ -718,13 +702,15 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_query_vpc_list"))
     suite.addTest(VpcClientTest("test_query_vpn_list"))
     suite.addTest(VpcClientTest("test_querying_the_ipv6_policy_list_with_only_output_and_no_inclusion"))
-    suite.addTest(VpcClientTest("test_reject_peer_to_peer_connection_request"))
+    suite.addTest(VpcClientTest("test_refund_peer_conn"))
+    suite.addTest(VpcClientTest("test_reject_peer_conn"))
     suite.addTest(VpcClientTest("test_release_dedicated_gateway"))
     suite.addTest(VpcClientTest("test_release_nat"))
-    suite.addTest(VpcClientTest("test_release_peer_to_peer_connection"))
+    suite.addTest(VpcClientTest("test_release_peer_conn"))
     suite.addTest(VpcClientTest("test_release_vpn"))
     suite.addTest(VpcClientTest("test_remove_elastic_network_card"))
     suite.addTest(VpcClientTest("test_remove_ip_address_group_from_ip_address_family"))
+    suite.addTest(VpcClientTest("test_renew_peer_conn"))
     suite.addTest(VpcClientTest("test_renew_vpn"))
     suite.addTest(VpcClientTest("test_resize_nat"))
     suite.addTest(VpcClientTest("test_revoke_regular_security_group_rules_v2"))
@@ -744,16 +730,15 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_update_ipv6_gateway_speed_limit_policy"))
     suite.addTest(VpcClientTest("test_update_nat_release_protection_switch"))
     suite.addTest(VpcClientTest("test_update_network_detection"))
-    suite.addTest(VpcClientTest("test_update_peer_to_peer_connection_release_protection_switch"))
+    suite.addTest(VpcClientTest("test_update_peer_conn"))
+    suite.addTest(VpcClientTest("test_update_peer_conn_bandwidth"))
+    suite.addTest(VpcClientTest("test_update_peer_conn_delete_protect"))
     suite.addTest(VpcClientTest("test_update_regular_security_group_rules_v2"))
     suite.addTest(VpcClientTest("test_update_routing_rules"))
     suite.addTest(VpcClientTest("test_update_snat_rule"))
     suite.addTest(VpcClientTest("test_update_ssl_vpn_server"))
     suite.addTest(VpcClientTest("test_update_ssl_vpn_users"))
     suite.addTest(VpcClientTest("test_update_subnet"))
-    suite.addTest(
-        VpcClientTest("test_update_the_name_and_comments_of_the_local_interface_for_peer_to_peer_connections")
-    )
     suite.addTest(VpcClientTest("test_update_user_gateway"))
     suite.addTest(VpcClientTest("test_update_vpc"))
     suite.addTest(VpcClientTest("test_update_vpn"))
@@ -762,7 +747,6 @@ if __name__ == '__main__':
     suite.addTest(VpcClientTest("test_user_gateway_details"))
     suite.addTest(VpcClientTest("test_user_gateway_list"))
     suite.addTest(VpcClientTest("test_view_gateway_limit_rules"))
-    suite.addTest(VpcClientTest("test_view_peer_to_peer_connection_details"))
     suite.addTest(VpcClientTest("test_view_security_group_details_v2"))
     runner = unittest.TextTestRunner()
     runner.run(suite)

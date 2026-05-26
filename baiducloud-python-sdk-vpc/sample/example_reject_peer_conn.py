@@ -1,5 +1,5 @@
 """
-Example for vpc close_peer_to_peer_connection_to_synchronize_dns method.
+Example for vpc reject_peer_conn method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -18,10 +18,8 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = VpcClient(config)
-        request = vpc_models.ClosePeerToPeerConnectionToSynchronizeDnsRequest(
-            peer_conn_id="", role="", client_token=""
-        )
-        res = client.close_peer_to_peer_connection_to_synchronize_dns(request)
+        request = vpc_models.RejectPeerConnRequest(peer_conn_id="", client_token="")
+        res = client.reject_peer_conn(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。

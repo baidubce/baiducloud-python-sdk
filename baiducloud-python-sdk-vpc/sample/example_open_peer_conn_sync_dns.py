@@ -1,5 +1,5 @@
 """
-Example for vpc prepaid_peer_to_peer_connection_unsubscribe method.
+Example for vpc open_peer_conn_sync_dns method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -18,8 +18,8 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = VpcClient(config)
-        request = vpc_models.PrepaidPeerToPeerConnectionUnsubscribeRequest(peer_conn_id="", client_token="")
-        res = client.prepaid_peer_to_peer_connection_unsubscribe(request)
+        request = vpc_models.OpenPeerConnSyncDnsRequest(peer_conn_id="", role="", client_token="")
+        res = client.open_peer_conn_sync_dns(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。

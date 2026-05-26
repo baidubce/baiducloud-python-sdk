@@ -1,30 +1,34 @@
 """
-Request entity for RejectPeerToPeerConnectionRequestRequest information.
+Request entity for UpdatePeerConnDeleteProtectRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class RejectPeerToPeerConnectionRequestRequest(AbstractModel):
+class UpdatePeerConnDeleteProtectRequest(AbstractModel):
     """
-    Request entity for RejectPeerToPeerConnectionRequestRequest operation.
+    Request entity for UpdatePeerConnDeleteProtectRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, peer_conn_id, client_token=None):
+    def __init__(self, peer_conn_id, delete_protect, client_token=None):
         """
-        Initialize RejectPeerToPeerConnectionRequestRequest request entity.
+        Initialize UpdatePeerConnDeleteProtectRequest request entity.
 
         :param peer_conn_id: peer_conn_id parameter
         :type peer_conn_id: str (required)
 
         :param client_token: client_token parameter
         :type client_token: str (optional)
+
+        :param delete_protect: 是否开启释放保护
+        :type delete_protect: bool (required)
         """
         super().__init__()
         self.peer_conn_id = peer_conn_id
         self.client_token = client_token
+        self.delete_protect = delete_protect
 
     def to_dict(self):
         """
@@ -39,6 +43,8 @@ class RejectPeerToPeerConnectionRequestRequest(AbstractModel):
         if _map is not None:
             return _map
         result = dict()
+        if self.delete_protect is not None:
+            result['deleteProtect'] = self.delete_protect
         return result
 
     def from_dict(self, m):
@@ -51,7 +57,7 @@ class RejectPeerToPeerConnectionRequestRequest(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: RejectPeerToPeerConnectionRequestRequest
+        :rtype: UpdatePeerConnDeleteProtectRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
@@ -61,4 +67,6 @@ class RejectPeerToPeerConnectionRequestRequest(AbstractModel):
             self.peer_conn_id = m.get('peerConnId')
         if m.get('clientToken') is not None:
             self.client_token = m.get('clientToken')
+        if m.get('deleteProtect') is not None:
+            self.delete_protect = m.get('deleteProtect')
         return self

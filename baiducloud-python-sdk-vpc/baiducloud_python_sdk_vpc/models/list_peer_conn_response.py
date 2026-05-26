@@ -1,19 +1,19 @@
 """
-Request entity for QueryTheListOfPeerConnectionsResponse information.
+Request entity for ListPeerConnResponse information.
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
 from baiducloud_python_sdk_vpc.models.peer_conn import PeerConn
 
 
-class QueryTheListOfPeerConnectionsResponse(BceResponse):
+class ListPeerConnResponse(BceResponse):
     """
-    QueryTheListOfPeerConnectionsResponse
+    ListPeerConnResponse
     """
 
     def __init__(self, peer_conns=None, marker=None, is_truncated=None, next_marker=None, max_keys=None):
         """
-        Initialize QueryTheListOfPeerConnectionsResponse response.
+        Initialize ListPeerConnResponse response.
 
         :param peer_conns: 包含查询结果的列表
         :type peer_conns: List[PeerConn] (optional)
@@ -75,7 +75,7 @@ class QueryTheListOfPeerConnectionsResponse(BceResponse):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: QueryTheListOfPeerConnectionsResponse
+        :rtype: ListPeerConnResponse
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails

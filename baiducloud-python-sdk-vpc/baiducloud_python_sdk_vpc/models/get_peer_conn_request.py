@@ -1,34 +1,30 @@
 """
-Request entity for ClosePeerToPeerConnectionToSynchronizeDnsRequest information.
+Request entity for GetPeerConnRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class ClosePeerToPeerConnectionToSynchronizeDnsRequest(AbstractModel):
+class GetPeerConnRequest(AbstractModel):
     """
-    Request entity for ClosePeerToPeerConnectionToSynchronizeDnsRequest operation.
+    Request entity for GetPeerConnRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, peer_conn_id, role, client_token=None):
+    def __init__(self, peer_conn_id, role=None):
         """
-        Initialize ClosePeerToPeerConnectionToSynchronizeDnsRequest request entity.
+        Initialize GetPeerConnRequest request entity.
 
         :param peer_conn_id: peer_conn_id parameter
         :type peer_conn_id: str (required)
 
         :param role: role parameter
-        :type role: str (required)
-
-        :param client_token: client_token parameter
-        :type client_token: str (optional)
+        :type role: str (optional)
         """
         super().__init__()
         self.peer_conn_id = peer_conn_id
         self.role = role
-        self.client_token = client_token
 
     def to_dict(self):
         """
@@ -55,7 +51,7 @@ class ClosePeerToPeerConnectionToSynchronizeDnsRequest(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: ClosePeerToPeerConnectionToSynchronizeDnsRequest
+        :rtype: GetPeerConnRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
@@ -65,6 +61,4 @@ class ClosePeerToPeerConnectionToSynchronizeDnsRequest(AbstractModel):
             self.peer_conn_id = m.get('peerConnId')
         if m.get('role') is not None:
             self.role = m.get('role')
-        if m.get('clientToken') is not None:
-            self.client_token = m.get('clientToken')
         return self

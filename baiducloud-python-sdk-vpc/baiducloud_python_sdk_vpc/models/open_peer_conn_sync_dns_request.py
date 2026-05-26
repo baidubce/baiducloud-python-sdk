@@ -1,34 +1,34 @@
 """
-Request entity for QueryTheListOfPeerConnectionsRequest information.
+Request entity for OpenPeerConnSyncDnsRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class QueryTheListOfPeerConnectionsRequest(AbstractModel):
+class OpenPeerConnSyncDnsRequest(AbstractModel):
     """
-    Request entity for QueryTheListOfPeerConnectionsRequest operation.
+    Request entity for OpenPeerConnSyncDnsRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, vpc_id, marker=None, max_keys=None):
+    def __init__(self, peer_conn_id, role, client_token=None):
         """
-        Initialize QueryTheListOfPeerConnectionsRequest request entity.
+        Initialize OpenPeerConnSyncDnsRequest request entity.
 
-        :param vpc_id: vpc_id parameter
-        :type vpc_id: str (required)
+        :param peer_conn_id: peer_conn_id parameter
+        :type peer_conn_id: str (required)
 
-        :param marker: marker parameter
-        :type marker: str (optional)
+        :param role: role parameter
+        :type role: str (required)
 
-        :param max_keys: max_keys parameter
-        :type max_keys: int (optional)
+        :param client_token: client_token parameter
+        :type client_token: str (optional)
         """
         super().__init__()
-        self.vpc_id = vpc_id
-        self.marker = marker
-        self.max_keys = max_keys
+        self.peer_conn_id = peer_conn_id
+        self.role = role
+        self.client_token = client_token
 
     def to_dict(self):
         """
@@ -55,16 +55,16 @@ class QueryTheListOfPeerConnectionsRequest(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: QueryTheListOfPeerConnectionsRequest
+        :rtype: OpenPeerConnSyncDnsRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('vpcId') is not None:
-            self.vpc_id = m.get('vpcId')
-        if m.get('marker') is not None:
-            self.marker = m.get('marker')
-        if m.get('maxKeys') is not None:
-            self.max_keys = m.get('maxKeys')
+        if m.get('peerConnId') is not None:
+            self.peer_conn_id = m.get('peerConnId')
+        if m.get('role') is not None:
+            self.role = m.get('role')
+        if m.get('clientToken') is not None:
+            self.client_token = m.get('clientToken')
         return self

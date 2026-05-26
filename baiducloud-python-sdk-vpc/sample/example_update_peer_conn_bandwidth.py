@@ -1,5 +1,5 @@
 """
-Example for vpc peer_to_peer_connection_bandwidth_upgrade_and_downgrade method.
+Example for vpc update_peer_conn_bandwidth method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -18,10 +18,8 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = VpcClient(config)
-        request = vpc_models.PeerToPeerConnectionBandwidthUpgradeAndDowngradeRequest(
-            peer_conn_id="", new_bandwidth_in_mbps=0, client_token=""
-        )
-        res = client.peer_to_peer_connection_bandwidth_upgrade_and_downgrade(request)
+        request = vpc_models.UpdatePeerConnBandwidthRequest(peer_conn_id="", new_bandwidth_in_mbps=0, client_token="")
+        res = client.update_peer_conn_bandwidth(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。

@@ -1,21 +1,20 @@
 """
-Request entity for PeerToPeerConnectionRenewalRequest information.
+Request entity for UpdatePeerConnBandwidthRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
-from baiducloud_python_sdk_vpc.models.billing import Billing
 
 
-class PeerToPeerConnectionRenewalRequest(AbstractModel):
+class UpdatePeerConnBandwidthRequest(AbstractModel):
     """
-    Request entity for PeerToPeerConnectionRenewalRequest operation.
+    Request entity for UpdatePeerConnBandwidthRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, peer_conn_id, billing, client_token=None):
+    def __init__(self, peer_conn_id, new_bandwidth_in_mbps, client_token=None):
         """
-        Initialize PeerToPeerConnectionRenewalRequest request entity.
+        Initialize UpdatePeerConnBandwidthRequest request entity.
 
         :param peer_conn_id: peer_conn_id parameter
         :type peer_conn_id: str (required)
@@ -23,13 +22,13 @@ class PeerToPeerConnectionRenewalRequest(AbstractModel):
         :param client_token: client_token parameter
         :type client_token: str (optional)
 
-        :param billing: billing parameter
-        :type billing: Billing (required)
+        :param new_bandwidth_in_mbps: 升降级的带宽
+        :type new_bandwidth_in_mbps: int (required)
         """
         super().__init__()
         self.peer_conn_id = peer_conn_id
         self.client_token = client_token
-        self.billing = billing
+        self.new_bandwidth_in_mbps = new_bandwidth_in_mbps
 
     def to_dict(self):
         """
@@ -44,8 +43,8 @@ class PeerToPeerConnectionRenewalRequest(AbstractModel):
         if _map is not None:
             return _map
         result = dict()
-        if self.billing is not None:
-            result['billing'] = self.billing.to_dict()
+        if self.new_bandwidth_in_mbps is not None:
+            result['newBandwidthInMbps'] = self.new_bandwidth_in_mbps
         return result
 
     def from_dict(self, m):
@@ -58,7 +57,7 @@ class PeerToPeerConnectionRenewalRequest(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: PeerToPeerConnectionRenewalRequest
+        :rtype: UpdatePeerConnBandwidthRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
@@ -68,6 +67,6 @@ class PeerToPeerConnectionRenewalRequest(AbstractModel):
             self.peer_conn_id = m.get('peerConnId')
         if m.get('clientToken') is not None:
             self.client_token = m.get('clientToken')
-        if m.get('billing') is not None:
-            self.billing = Billing().from_dict(m.get('billing'))
+        if m.get('newBandwidthInMbps') is not None:
+            self.new_bandwidth_in_mbps = m.get('newBandwidthInMbps')
         return self

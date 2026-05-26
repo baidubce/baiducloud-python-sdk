@@ -1,18 +1,18 @@
 """
-Request entity for CreateAPeerToPeerConnectionResponse information.
+Request entity for CreatePeerConnResponse information.
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
 
 
-class CreateAPeerToPeerConnectionResponse(BceResponse):
+class CreatePeerConnResponse(BceResponse):
     """
-    CreateAPeerToPeerConnectionResponse
+    CreatePeerConnResponse
     """
 
     def __init__(self, peer_conn_id=None):
         """
-        Initialize CreateAPeerToPeerConnectionResponse response.
+        Initialize CreatePeerConnResponse response.
 
         :param peer_conn_id: 创建的对等连接ID
         :type peer_conn_id: str (optional)
@@ -50,7 +50,7 @@ class CreateAPeerToPeerConnectionResponse(BceResponse):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: CreateAPeerToPeerConnectionResponse
+        :rtype: CreatePeerConnResponse
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails

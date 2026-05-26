@@ -1,20 +1,20 @@
 """
-Request entity for PrepaidPeerToPeerConnectionUnsubscribeRequest information.
+Request entity for RejectPeerConnRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class PrepaidPeerToPeerConnectionUnsubscribeRequest(AbstractModel):
+class RejectPeerConnRequest(AbstractModel):
     """
-    Request entity for PrepaidPeerToPeerConnectionUnsubscribeRequest operation.
+    Request entity for RejectPeerConnRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
 
     def __init__(self, peer_conn_id, client_token=None):
         """
-        Initialize PrepaidPeerToPeerConnectionUnsubscribeRequest request entity.
+        Initialize RejectPeerConnRequest request entity.
 
         :param peer_conn_id: peer_conn_id parameter
         :type peer_conn_id: str (required)
@@ -51,7 +51,7 @@ class PrepaidPeerToPeerConnectionUnsubscribeRequest(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: PrepaidPeerToPeerConnectionUnsubscribeRequest
+        :rtype: RejectPeerConnRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails

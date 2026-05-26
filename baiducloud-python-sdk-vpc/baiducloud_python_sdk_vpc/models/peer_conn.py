@@ -4,10 +4,6 @@ PeerConn information
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
-from baiducloud_python_sdk_vpc.models.peer_conn_status import PeerConnStatus
-
-from baiducloud_python_sdk_vpc.models.dns_status import DnsStatus
-
 
 class PeerConn(AbstractModel):
     """
@@ -42,8 +38,8 @@ class PeerConn(AbstractModel):
         :param role: 对等连接角色 initiator发起端 acceptor接收端
         :type role: str (optional)
 
-        :param status: status attribute
-        :type status: PeerConnStatus (optional)
+        :param status: 对等连接状态
+        :type status: str (optional)
 
         :param bandwidth_in_mbps: 对等连接的带宽
         :type bandwidth_in_mbps: str (optional)
@@ -75,8 +71,8 @@ class PeerConn(AbstractModel):
         :param payment_timing: 对等连接的付费类型
         :type payment_timing: str (optional)
 
-        :param dns_status: dns_status attribute
-        :type dns_status: DnsStatus (optional)
+        :param dns_status: DNS同步状态
+        :type dns_status: str (optional)
 
         :param created_time: 对等连接的创建时间
         :type created_time: str (optional)
@@ -120,7 +116,7 @@ class PeerConn(AbstractModel):
         if self.role is not None:
             result['role'] = self.role
         if self.status is not None:
-            result['status'] = self.status.to_dict()
+            result['status'] = self.status
         if self.bandwidth_in_mbps is not None:
             result['bandwidthInMbps'] = self.bandwidth_in_mbps
         if self.description is not None:
@@ -142,7 +138,7 @@ class PeerConn(AbstractModel):
         if self.payment_timing is not None:
             result['paymentTiming'] = self.payment_timing
         if self.dns_status is not None:
-            result['dnsStatus'] = self.dns_status.to_dict()
+            result['dnsStatus'] = self.dns_status
         if self.created_time is not None:
             result['createdTime'] = self.created_time
         if self.expired_time is not None:
@@ -170,7 +166,7 @@ class PeerConn(AbstractModel):
         if m.get('role') is not None:
             self.role = m.get('role')
         if m.get('status') is not None:
-            self.status = PeerConnStatus().from_dict(m.get('status'))
+            self.status = m.get('status')
         if m.get('bandwidthInMbps') is not None:
             self.bandwidth_in_mbps = m.get('bandwidthInMbps')
         if m.get('description') is not None:
@@ -192,7 +188,7 @@ class PeerConn(AbstractModel):
         if m.get('paymentTiming') is not None:
             self.payment_timing = m.get('paymentTiming')
         if m.get('dnsStatus') is not None:
-            self.dns_status = DnsStatus().from_dict(m.get('dnsStatus'))
+            self.dns_status = m.get('dnsStatus')
         if m.get('createdTime') is not None:
             self.created_time = m.get('createdTime')
         if m.get('expiredTime') is not None:
