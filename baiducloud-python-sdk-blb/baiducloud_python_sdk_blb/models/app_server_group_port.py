@@ -1,0 +1,178 @@
+"""
+AppServerGroupPort information
+"""
+
+from baiducloud_python_sdk_core.abstract_model import AbstractModel
+
+
+class AppServerGroupPort(AbstractModel):
+    """
+    AppServerGroupPort
+    """
+
+    def __init__(
+        self,
+        id=None,
+        port=None,
+        type=None,
+        status=None,
+        health_check=None,
+        health_check_port=None,
+        health_check_timeout_in_second=None,
+        health_check_interval_in_second=None,
+        health_check_down_retry=None,
+        health_check_up_retry=None,
+        health_check_normal_status=None,
+        health_check_url_path=None,
+        health_check_host=None,
+        udp_health_check_string=None,
+    ):
+        """
+        Initialize AppServerGroupPort instance.
+
+        :param id: 服务器组端口标识符
+        :type id: str (optional)
+
+        :param port: 服务器组开放端口号
+        :type port: int (optional)
+
+        :param type: 端口协议类型，\"TCP\"/\"HTTP\"
+        :type type: str (optional)
+
+        :param status: 服务器组状态，详见[blbStatus](#blbStatus)
+        :type status: str (optional)
+
+        :param health_check: 健康检查协议，支持\"HTTP\"/\"TCP\"
+        :type health_check: str (optional)
+
+        :param health_check_port: 健康检查端口
+        :type health_check_port: int (optional)
+
+        :param health_check_timeout_in_second: 健康检查超时（单位：秒），默认为3，需为1-60间的整数
+        :type health_check_timeout_in_second: int (optional)
+
+        :param health_check_interval_in_second: 健康检查间隔（单位：秒），默认为3，需为1-10间的整数
+        :type health_check_interval_in_second: int (optional)
+
+        :param health_check_down_retry: 不健康阈值，即连续多少次健康检查失败后，屏蔽该后端服务器。默认为3，需为2-5间的整数
+        :type health_check_down_retry: int (optional)
+
+        :param health_check_up_retry: 健康阈值，即连续多少次健康检查成功后，重新将该后端服务器置为可用。默认为3，需为2-5间的整数
+        :type health_check_up_retry: int (optional)
+
+        :param health_check_normal_status: health_check_normal_status attribute
+        :type health_check_normal_status: str (optional)
+
+        :param health_check_url_path: 健康检查URI，默认/。当健康检查协议为\"HTTP\"时生效
+        :type health_check_url_path: str (optional)
+
+        :param health_check_host: health_check_host attribute
+        :type health_check_host: str (optional)
+
+        :param udp_health_check_string: udp健康检查字符串，当端口类型为udp是有效
+        :type udp_health_check_string: str (optional)
+        """
+        super().__init__()
+        self.id = id
+        self.port = port
+        self.type = type
+        self.status = status
+        self.health_check = health_check
+        self.health_check_port = health_check_port
+        self.health_check_timeout_in_second = health_check_timeout_in_second
+        self.health_check_interval_in_second = health_check_interval_in_second
+        self.health_check_down_retry = health_check_down_retry
+        self.health_check_up_retry = health_check_up_retry
+        self.health_check_normal_status = health_check_normal_status
+        self.health_check_url_path = health_check_url_path
+        self.health_check_host = health_check_host
+        self.udp_health_check_string = udp_health_check_string
+
+    def to_dict(self):
+        """
+        Convert the model instance to a dictionary representation.
+
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the model
+        :rtype: dict
+        """
+        _map = super().to_dict()
+        if _map is not None:
+            return _map
+        result = dict()
+        if self.id is not None:
+            result['id'] = self.id
+        if self.port is not None:
+            result['port'] = self.port
+        if self.type is not None:
+            result['type'] = self.type
+        if self.status is not None:
+            result['status'] = self.status
+        if self.health_check is not None:
+            result['healthCheck'] = self.health_check
+        if self.health_check_port is not None:
+            result['healthCheckPort'] = self.health_check_port
+        if self.health_check_timeout_in_second is not None:
+            result['healthCheckTimeoutInSecond'] = self.health_check_timeout_in_second
+        if self.health_check_interval_in_second is not None:
+            result['healthCheckIntervalInSecond'] = self.health_check_interval_in_second
+        if self.health_check_down_retry is not None:
+            result['healthCheckDownRetry'] = self.health_check_down_retry
+        if self.health_check_up_retry is not None:
+            result['healthCheckUpRetry'] = self.health_check_up_retry
+        if self.health_check_normal_status is not None:
+            result['healthCheckNormalStatus'] = self.health_check_normal_status
+        if self.health_check_url_path is not None:
+            result['healthCheckUrlPath'] = self.health_check_url_path
+        if self.health_check_host is not None:
+            result['healthCheckHost'] = self.health_check_host
+        if self.udp_health_check_string is not None:
+            result['udpHealthCheckString'] = self.udp_health_check_string
+        return result
+
+    def from_dict(self, m):
+        """
+        Populate the model instance from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing model data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: AppServerGroupPort
+
+        :raises TypeError: If input is not a dictionary type
+        :raises ValueError: If nested model conversion fails
+        """
+        m = m or dict()
+        if m.get('id') is not None:
+            self.id = m.get('id')
+        if m.get('port') is not None:
+            self.port = m.get('port')
+        if m.get('type') is not None:
+            self.type = m.get('type')
+        if m.get('status') is not None:
+            self.status = m.get('status')
+        if m.get('healthCheck') is not None:
+            self.health_check = m.get('healthCheck')
+        if m.get('healthCheckPort') is not None:
+            self.health_check_port = m.get('healthCheckPort')
+        if m.get('healthCheckTimeoutInSecond') is not None:
+            self.health_check_timeout_in_second = m.get('healthCheckTimeoutInSecond')
+        if m.get('healthCheckIntervalInSecond') is not None:
+            self.health_check_interval_in_second = m.get('healthCheckIntervalInSecond')
+        if m.get('healthCheckDownRetry') is not None:
+            self.health_check_down_retry = m.get('healthCheckDownRetry')
+        if m.get('healthCheckUpRetry') is not None:
+            self.health_check_up_retry = m.get('healthCheckUpRetry')
+        if m.get('healthCheckNormalStatus') is not None:
+            self.health_check_normal_status = m.get('healthCheckNormalStatus')
+        if m.get('healthCheckUrlPath') is not None:
+            self.health_check_url_path = m.get('healthCheckUrlPath')
+        if m.get('healthCheckHost') is not None:
+            self.health_check_host = m.get('healthCheckHost')
+        if m.get('udpHealthCheckString') is not None:
+            self.udp_health_check_string = m.get('udpHealthCheckString')
+        return self

@@ -15,11 +15,13 @@ class DescribeAppBlbResponse(BceResponse):
     def __init__(
         self,
         blb_id=None,
+        name=None,
         status=None,
         desc=None,
         address=None,
         public_ip=None,
         cidr=None,
+        vpc_id=None,
         vpc_name=None,
         subnet_cider=None,
         subnet_name=None,
@@ -37,12 +39,17 @@ class DescribeAppBlbResponse(BceResponse):
         eip_route_type=None,
         public_ipv6=None,
         eip_v6_route_type=None,
+        ipv6=None,
+        support_acl=None,
     ):
         """
         Initialize DescribeAppBlbResponse response.
 
         :param blb_id: LoadBalancer的标识符
         :type blb_id: str (optional)
+
+        :param name: BLB 实例名称
+        :type name: str (optional)
 
         :param status: BLB状态
         :type status: str (optional)
@@ -58,6 +65,9 @@ class DescribeAppBlbResponse(BceResponse):
 
         :param cidr: LoadBalancer所在网络cidr
         :type cidr: str (optional)
+
+        :param vpc_id: 所属VPC的ID
+        :type vpc_id: str (optional)
 
         :param vpc_name: LoadBalancer所属vpc名称
         :type vpc_name: str (optional)
@@ -109,14 +119,22 @@ class DescribeAppBlbResponse(BceResponse):
 
         :param eip_v6_route_type: EIPV6线路类型
         :type eip_v6_route_type: str (optional)
+
+        :param ipv6: IPv6 地址（为空字符串时表示未分配）
+        :type ipv6: str (optional)
+
+        :param support_acl: 该实例是否开启 ACL 访问控制，开启后负载均衡实例受ACL的访问控制
+        :type support_acl: bool (optional)
         """
         super().__init__()
         self.blb_id = blb_id
+        self.name = name
         self.status = status
         self.desc = desc
         self.address = address
         self.public_ip = public_ip
         self.cidr = cidr
+        self.vpc_id = vpc_id
         self.vpc_name = vpc_name
         self.subnet_cider = subnet_cider
         self.subnet_name = subnet_name
@@ -134,6 +152,8 @@ class DescribeAppBlbResponse(BceResponse):
         self.eip_route_type = eip_route_type
         self.public_ipv6 = public_ipv6
         self.eip_v6_route_type = eip_v6_route_type
+        self.ipv6 = ipv6
+        self.support_acl = support_acl
 
     def to_dict(self):
         """
@@ -153,6 +173,8 @@ class DescribeAppBlbResponse(BceResponse):
             result['metadata'] = dict(self.metadata)
         if self.blb_id is not None:
             result['blbId'] = self.blb_id
+        if self.name is not None:
+            result['name'] = self.name
         if self.status is not None:
             result['status'] = self.status
         if self.desc is not None:
@@ -163,6 +185,8 @@ class DescribeAppBlbResponse(BceResponse):
             result['publicIp'] = self.public_ip
         if self.cidr is not None:
             result['cidr'] = self.cidr
+        if self.vpc_id is not None:
+            result['vpcId'] = self.vpc_id
         if self.vpc_name is not None:
             result['vpcName'] = self.vpc_name
         if self.subnet_cider is not None:
@@ -197,6 +221,10 @@ class DescribeAppBlbResponse(BceResponse):
             result['publicIpv6'] = self.public_ipv6
         if self.eip_v6_route_type is not None:
             result['eipV6RouteType'] = self.eip_v6_route_type
+        if self.ipv6 is not None:
+            result['ipv6'] = self.ipv6
+        if self.support_acl is not None:
+            result['supportAcl'] = self.support_acl
         return result
 
     def from_dict(self, m):
@@ -217,6 +245,8 @@ class DescribeAppBlbResponse(BceResponse):
         m = m or dict()
         if m.get('blbId') is not None:
             self.blb_id = m.get('blbId')
+        if m.get('name') is not None:
+            self.name = m.get('name')
         if m.get('status') is not None:
             self.status = m.get('status')
         if m.get('desc') is not None:
@@ -227,6 +257,8 @@ class DescribeAppBlbResponse(BceResponse):
             self.public_ip = m.get('publicIp')
         if m.get('cidr') is not None:
             self.cidr = m.get('cidr')
+        if m.get('vpcId') is not None:
+            self.vpc_id = m.get('vpcId')
         if m.get('vpcName') is not None:
             self.vpc_name = m.get('vpcName')
         if m.get('subnetCider') is not None:
@@ -261,4 +293,8 @@ class DescribeAppBlbResponse(BceResponse):
             self.public_ipv6 = m.get('publicIpv6')
         if m.get('eipV6RouteType') is not None:
             self.eip_v6_route_type = m.get('eipV6RouteType')
+        if m.get('ipv6') is not None:
+            self.ipv6 = m.get('ipv6')
+        if m.get('supportAcl') is not None:
+            self.support_acl = m.get('supportAcl')
         return self
