@@ -1,12 +1,12 @@
 """
-Example for privatezone disassociate_vpc method.
+Example for privatezone enable_record method.
 """
 
 from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
 from baiducloud_python_sdk_privatezone.api.privatezone_client import PrivatezoneClient
-from baiducloud_python_sdk_privatezone.models.disassociate_vpc_request import DisassociateVpcRequest
+from baiducloud_python_sdk_privatezone import models as privatezone_models
 
 if __name__ == '__main__':
     try:
@@ -18,8 +18,8 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = PrivatezoneClient(config)
-        request = DisassociateVpcRequest(zone_id="", action="", region="", vpc_ids=[], client_token="")
-        res = client.disassociate_vpc(request)
+        request = privatezone_models.EnableRecordRequest(record_id="", action="", client_token="")
+        res = client.enable_record(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。

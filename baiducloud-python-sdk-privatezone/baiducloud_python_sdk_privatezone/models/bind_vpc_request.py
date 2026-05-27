@@ -1,20 +1,20 @@
 """
-Request entity for AssociateVpcRequest information.
+Request entity for BindVpcRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class AssociateVpcRequest(AbstractModel):
+class BindVpcRequest(AbstractModel):
     """
-    Request entity for AssociateVpcRequest operation.
+    Request entity for BindVpcRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
 
     def __init__(self, zone_id, action, region, vpc_ids, client_token=None):
         """
-        Initialize AssociateVpcRequest request entity.
+        Initialize BindVpcRequest request entity.
 
         :param zone_id: zone_id parameter
         :type zone_id: str (required)
@@ -67,7 +67,7 @@ class AssociateVpcRequest(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: AssociateVpcRequest
+        :rtype: BindVpcRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails

@@ -1,24 +1,24 @@
 """
-Request entity for AddParsingRecordsResponse information.
+Request entity for CreatePrivateZoneResponse information.
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
 
 
-class AddParsingRecordsResponse(BceResponse):
+class CreatePrivateZoneResponse(BceResponse):
     """
-    AddParsingRecordsResponse
+    CreatePrivateZoneResponse
     """
 
-    def __init__(self, record_id=None):
+    def __init__(self, zone_id=None):
         """
-        Initialize AddParsingRecordsResponse response.
+        Initialize CreatePrivateZoneResponse response.
 
-        :param record_id: 记录的ID
-        :type record_id: str (optional)
+        :param zone_id: Zone的ID
+        :type zone_id: str (optional)
         """
         super().__init__()
-        self.record_id = record_id
+        self.zone_id = zone_id
 
     def to_dict(self):
         """
@@ -36,8 +36,8 @@ class AddParsingRecordsResponse(BceResponse):
         result = dict()
         if self.metadata is not None:
             result['metadata'] = dict(self.metadata)
-        if self.record_id is not None:
-            result['recordId'] = self.record_id
+        if self.zone_id is not None:
+            result['zoneId'] = self.zone_id
         return result
 
     def from_dict(self, m):
@@ -50,12 +50,12 @@ class AddParsingRecordsResponse(BceResponse):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: AddParsingRecordsResponse
+        :rtype: CreatePrivateZoneResponse
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('recordId') is not None:
-            self.record_id = m.get('recordId')
+        if m.get('zoneId') is not None:
+            self.zone_id = m.get('zoneId')
         return self

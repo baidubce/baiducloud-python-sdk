@@ -1,21 +1,21 @@
 """
-Request entity for SearchForDetailsOfPrivatzoneResponse information.
+Request entity for GetPrivateZoneResponse information.
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
 from baiducloud_python_sdk_privatezone.models.vpc import Vpc
 
 
-class SearchForDetailsOfPrivatzoneResponse(BceResponse):
+class GetPrivateZoneResponse(BceResponse):
     """
-    SearchForDetailsOfPrivatzoneResponse
+    GetPrivateZoneResponse
     """
 
     def __init__(
         self, zone_id=None, zone_name=None, record_count=None, create_time=None, update_time=None, bind_vpcs=None
     ):
         """
-        Initialize SearchForDetailsOfPrivatzoneResponse response.
+        Initialize GetPrivateZoneResponse response.
 
         :param zone_id: Zone的ID
         :type zone_id: str (optional)
@@ -83,7 +83,7 @@ class SearchForDetailsOfPrivatzoneResponse(BceResponse):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: SearchForDetailsOfPrivatzoneResponse
+        :rtype: GetPrivateZoneResponse
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails

@@ -1,20 +1,20 @@
 """
-Request entity for ModifyParsingRecordsRequest information.
+Request entity for UpdateRecordRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class ModifyParsingRecordsRequest(AbstractModel):
+class UpdateRecordRequest(AbstractModel):
     """
-    Request entity for ModifyParsingRecordsRequest operation.
+    Request entity for UpdateRecordRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
 
     def __init__(self, record_id, rr, value, type, client_token=None, ttl=None, priority=None, description=None):
         """
-        Initialize ModifyParsingRecordsRequest request entity.
+        Initialize UpdateRecordRequest request entity.
 
         :param record_id: record_id parameter
         :type record_id: str (required)
@@ -87,7 +87,7 @@ class ModifyParsingRecordsRequest(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: ModifyParsingRecordsRequest
+        :rtype: UpdateRecordRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails

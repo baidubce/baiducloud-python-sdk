@@ -1,26 +1,30 @@
 """
-Request entity for SearchForDetailsOfPrivatzoneRequest information.
+Request entity for CreatePrivateZoneRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class SearchForDetailsOfPrivatzoneRequest(AbstractModel):
+class CreatePrivateZoneRequest(AbstractModel):
     """
-    Request entity for SearchForDetailsOfPrivatzoneRequest operation.
+    Request entity for CreatePrivateZoneRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, zone_id):
+    def __init__(self, zone_name, client_token=None):
         """
-        Initialize SearchForDetailsOfPrivatzoneRequest request entity.
+        Initialize CreatePrivateZoneRequest request entity.
 
-        :param zone_id: zone_id parameter
-        :type zone_id: str (required)
+        :param client_token: client_token parameter
+        :type client_token: str (optional)
+
+        :param zone_name: Zone名称，由两个及其以上的字母或者数字组成，最大长度不能超过240
+        :type zone_name: str (required)
         """
         super().__init__()
-        self.zone_id = zone_id
+        self.client_token = client_token
+        self.zone_name = zone_name
 
     def to_dict(self):
         """
@@ -35,6 +39,8 @@ class SearchForDetailsOfPrivatzoneRequest(AbstractModel):
         if _map is not None:
             return _map
         result = dict()
+        if self.zone_name is not None:
+            result['zoneName'] = self.zone_name
         return result
 
     def from_dict(self, m):
@@ -47,12 +53,14 @@ class SearchForDetailsOfPrivatzoneRequest(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: SearchForDetailsOfPrivatzoneRequest
+        :rtype: CreatePrivateZoneRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('zoneId') is not None:
-            self.zone_id = m.get('zoneId')
+        if m.get('clientToken') is not None:
+            self.client_token = m.get('clientToken')
+        if m.get('zoneName') is not None:
+            self.zone_name = m.get('zoneName')
         return self

@@ -1,30 +1,42 @@
 """
-Request entity for CreateAPrivateZoneRequest information.
+Request entity for UnbindVpcRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class CreateAPrivateZoneRequest(AbstractModel):
+class UnbindVpcRequest(AbstractModel):
     """
-    Request entity for CreateAPrivateZoneRequest operation.
+    Request entity for UnbindVpcRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, zone_name, client_token=None):
+    def __init__(self, zone_id, action, region, vpc_ids, client_token=None):
         """
-        Initialize CreateAPrivateZoneRequest request entity.
+        Initialize UnbindVpcRequest request entity.
+
+        :param zone_id: zone_id parameter
+        :type zone_id: str (required)
+
+        :param action: action parameter
+        :type action: str (required)
 
         :param client_token: client_token parameter
         :type client_token: str (optional)
 
-        :param zone_name: Zone名称，由两个及其以上的字母或者数字组成，最大长度不能超过240
-        :type zone_name: str (required)
+        :param region: 关联或者解关联的VPC所属的区域
+        :type region: str (required)
+
+        :param vpc_ids: 想要关联或者解关联的VPC的ID列表
+        :type vpc_ids: List[str] (required)
         """
         super().__init__()
+        self.zone_id = zone_id
+        self.action = action
         self.client_token = client_token
-        self.zone_name = zone_name
+        self.region = region
+        self.vpc_ids = vpc_ids
 
     def to_dict(self):
         """
@@ -39,8 +51,10 @@ class CreateAPrivateZoneRequest(AbstractModel):
         if _map is not None:
             return _map
         result = dict()
-        if self.zone_name is not None:
-            result['zoneName'] = self.zone_name
+        if self.region is not None:
+            result['region'] = self.region
+        if self.vpc_ids is not None:
+            result['vpcIds'] = self.vpc_ids
         return result
 
     def from_dict(self, m):
@@ -53,14 +67,20 @@ class CreateAPrivateZoneRequest(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: CreateAPrivateZoneRequest
+        :rtype: UnbindVpcRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
+        if m.get('zoneId') is not None:
+            self.zone_id = m.get('zoneId')
+        if m.get('action') is not None:
+            self.action = m.get('action')
         if m.get('clientToken') is not None:
             self.client_token = m.get('clientToken')
-        if m.get('zoneName') is not None:
-            self.zone_name = m.get('zoneName')
+        if m.get('region') is not None:
+            self.region = m.get('region')
+        if m.get('vpcIds') is not None:
+            self.vpc_ids = m.get('vpcIds')
         return self

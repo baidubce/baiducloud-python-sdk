@@ -1,34 +1,30 @@
 """
-Request entity for SetParsingRecordStatusRequest information.
+Request entity for DeleteRecordRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class SetParsingRecordStatusRequest(AbstractModel):
+class DeleteRecordRequest(AbstractModel):
     """
-    Request entity for SetParsingRecordStatusRequest operation.
+    Request entity for DeleteRecordRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, record_id, action, client_token=None):
+    def __init__(self, record_id, client_token=None):
         """
-        Initialize SetParsingRecordStatusRequest request entity.
+        Initialize DeleteRecordRequest request entity.
 
         :param record_id: record_id parameter
         :type record_id: str (required)
 
         :param client_token: client_token parameter
         :type client_token: str (optional)
-
-        :param action: action parameter
-        :type action: str (required)
         """
         super().__init__()
         self.record_id = record_id
         self.client_token = client_token
-        self.action = action
 
     def to_dict(self):
         """
@@ -55,7 +51,7 @@ class SetParsingRecordStatusRequest(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: SetParsingRecordStatusRequest
+        :rtype: DeleteRecordRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
@@ -65,6 +61,4 @@ class SetParsingRecordStatusRequest(AbstractModel):
             self.record_id = m.get('recordId')
         if m.get('clientToken') is not None:
             self.client_token = m.get('clientToken')
-        if m.get('action') is not None:
-            self.action = m.get('action')
         return self

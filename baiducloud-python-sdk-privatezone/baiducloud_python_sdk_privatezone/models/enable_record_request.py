@@ -1,30 +1,34 @@
 """
-Request entity for QueryTheListOfPrivateZonesRequest information.
+Request entity for EnableRecordRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class QueryTheListOfPrivateZonesRequest(AbstractModel):
+class EnableRecordRequest(AbstractModel):
     """
-    Request entity for QueryTheListOfPrivateZonesRequest operation.
+    Request entity for EnableRecordRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, marker=None, max_keys=None):
+    def __init__(self, record_id, action, client_token=None):
         """
-        Initialize QueryTheListOfPrivateZonesRequest request entity.
+        Initialize EnableRecordRequest request entity.
 
-        :param marker: marker parameter
-        :type marker: str (optional)
+        :param record_id: record_id parameter
+        :type record_id: str (required)
 
-        :param max_keys: max_keys parameter
-        :type max_keys: int (optional)
+        :param client_token: client_token parameter
+        :type client_token: str (optional)
+
+        :param action: action parameter
+        :type action: str (required)
         """
         super().__init__()
-        self.marker = marker
-        self.max_keys = max_keys
+        self.record_id = record_id
+        self.client_token = client_token
+        self.action = action
 
     def to_dict(self):
         """
@@ -51,14 +55,16 @@ class QueryTheListOfPrivateZonesRequest(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: QueryTheListOfPrivateZonesRequest
+        :rtype: EnableRecordRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('marker') is not None:
-            self.marker = m.get('marker')
-        if m.get('maxKeys') is not None:
-            self.max_keys = m.get('maxKeys')
+        if m.get('recordId') is not None:
+            self.record_id = m.get('recordId')
+        if m.get('clientToken') is not None:
+            self.client_token = m.get('clientToken')
+        if m.get('action') is not None:
+            self.action = m.get('action')
         return self

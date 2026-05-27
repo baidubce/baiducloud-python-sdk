@@ -1,50 +1,30 @@
 """
-Request entity for QueryAndParseRecordListRequest information.
+Request entity for ListPrivateZoneRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class QueryAndParseRecordListRequest(AbstractModel):
+class ListPrivateZoneRequest(AbstractModel):
     """
-    Request entity for QueryAndParseRecordListRequest operation.
+    Request entity for ListPrivateZoneRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, zone_id, marker=None, max_keys=None, rr=None, search_mode=None, type=None, value=None):
+    def __init__(self, marker=None, max_keys=None):
         """
-        Initialize QueryAndParseRecordListRequest request entity.
-
-        :param zone_id: zone_id parameter
-        :type zone_id: str (required)
+        Initialize ListPrivateZoneRequest request entity.
 
         :param marker: marker parameter
         :type marker: str (optional)
 
         :param max_keys: max_keys parameter
         :type max_keys: int (optional)
-
-        :param rr: rr parameter
-        :type rr: str (optional)
-
-        :param search_mode: search_mode parameter
-        :type search_mode: str (optional)
-
-        :param type: type parameter
-        :type type: str (optional)
-
-        :param value: value parameter
-        :type value: str (optional)
         """
         super().__init__()
-        self.zone_id = zone_id
         self.marker = marker
         self.max_keys = max_keys
-        self.rr = rr
-        self.search_mode = search_mode
-        self.type = type
-        self.value = value
 
     def to_dict(self):
         """
@@ -71,24 +51,14 @@ class QueryAndParseRecordListRequest(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: QueryAndParseRecordListRequest
+        :rtype: ListPrivateZoneRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('zoneId') is not None:
-            self.zone_id = m.get('zoneId')
         if m.get('marker') is not None:
             self.marker = m.get('marker')
         if m.get('maxKeys') is not None:
             self.max_keys = m.get('maxKeys')
-        if m.get('rr') is not None:
-            self.rr = m.get('rr')
-        if m.get('searchMode') is not None:
-            self.search_mode = m.get('searchMode')
-        if m.get('type') is not None:
-            self.type = m.get('type')
-        if m.get('value') is not None:
-            self.value = m.get('value')
         return self

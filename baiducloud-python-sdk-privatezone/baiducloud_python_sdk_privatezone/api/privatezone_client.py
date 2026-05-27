@@ -11,17 +11,13 @@ from baiducloud_python_sdk_core.bce_base_client import BceBaseClient
 from baiducloud_python_sdk_core.http import bce_http_client
 from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import http_methods
-from baiducloud_python_sdk_privatezone.models.add_parsing_records_response import AddParsingRecordsResponse
-from baiducloud_python_sdk_privatezone.models.create_a_private_zone_response import CreateAPrivateZoneResponse
-from baiducloud_python_sdk_privatezone.models.query_and_parse_record_list_response import (
-    QueryAndParseRecordListResponse,
-)
-from baiducloud_python_sdk_privatezone.models.query_the_list_of_private_zones_response import (
-    QueryTheListOfPrivateZonesResponse,
-)
-from baiducloud_python_sdk_privatezone.models.search_for_details_of_privatzone_response import (
-    SearchForDetailsOfPrivatzoneResponse,
-)
+from baiducloud_python_sdk_privatezone.models.add_record_response import AddRecordResponse
+from baiducloud_python_sdk_privatezone.models.create_private_zone_response import CreatePrivateZoneResponse
+from baiducloud_python_sdk_privatezone.models.object import object
+from baiducloud_python_sdk_privatezone.models.object import object
+from baiducloud_python_sdk_privatezone.models.get_private_zone_response import GetPrivateZoneResponse
+from baiducloud_python_sdk_privatezone.models.list_private_zone_response import ListPrivateZoneResponse
+from baiducloud_python_sdk_privatezone.models.list_record_response import ListRecordResponse
 
 _logger = logging.getLogger(__name__)
 
@@ -46,17 +42,17 @@ class PrivatezoneClient(BceBaseClient):
         """
         bce_base_client.BceBaseClient.__init__(self, config)
 
-    def add_parsing_records(self, request, config=None):
+    def add_record(self, request, config=None):
         """
-        add_parsing_records
+        add_record
 
         :param request: Request entity containing all parameters
         :type request: PrivatezoneClientRequest
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response containing AddParsingRecordsResponse data
-        :rtype: AddParsingRecordsResponse
+        :return: API response containing AddRecordResponse data
+        :rtype: AddRecordResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -67,21 +63,23 @@ class PrivatezoneClient(BceBaseClient):
             request.zone_id,
             PrivatezoneClient.CONSTANT_RECORD,
         )
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.POST,
             path=path,
             body=request.to_json_string(),
             params=params,
-            config=config,
-            model=AddParsingRecordsResponse,
+            config=merged_config,
+            model=AddRecordResponse,
         )
 
-    def associate_vpc(self, request, config=None):
+    def bind_vpc(self, request, config=None):
         """
-        associate_vpc
+        bind_vpc
 
         :param request: Request entity containing all parameters
         :type request: PrivatezoneClientRequest
@@ -95,67 +93,45 @@ class PrivatezoneClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(PrivatezoneClient.VERSION_V1, PrivatezoneClient.CONSTANT_PRIVATEZONE, request.zone_id)
+        headers = None
         params = {}
         params[request.action] = None
         if request.client_token is not None:
             params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=config
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
         )
 
-    def create_a_private_zone(self, request, config=None):
+    def create_private_zone(self, request, config=None):
         """
-        create_a_private_zone
+        create_private_zone
 
         :param request: Request entity containing all parameters
         :type request: PrivatezoneClientRequest
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response containing CreateAPrivateZoneResponse data
-        :rtype: CreateAPrivateZoneResponse
+        :return: API response containing CreatePrivateZoneResponse data
+        :rtype: CreatePrivateZoneResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(PrivatezoneClient.VERSION_V1, PrivatezoneClient.CONSTANT_PRIVATEZONE)
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.POST,
             path=path,
             body=request.to_json_string(),
             params=params,
-            config=config,
-            model=CreateAPrivateZoneResponse,
+            config=merged_config,
+            model=CreatePrivateZoneResponse,
         )
-
-    def delete_parsing_records(self, request, config=None):
-        """
-        delete_parsing_records
-
-        :param request: Request entity containing all parameters
-        :type request: PrivatezoneClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = utils.append_uri(
-            PrivatezoneClient.VERSION_V1,
-            PrivatezoneClient.CONSTANT_PRIVATEZONE,
-            PrivatezoneClient.CONSTANT_RECORD,
-            request.record_id,
-        )
-        params = {}
-        if request.client_token is not None:
-            params['clientToken'] = request.client_token
-        return self._send_request(http_methods.DELETE, path=path, params=params, config=config)
 
     def delete_private_zone(self, request, config=None):
         """
@@ -173,38 +149,16 @@ class PrivatezoneClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(PrivatezoneClient.VERSION_V1, PrivatezoneClient.CONSTANT_PRIVATEZONE, request.zone_id)
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.DELETE, path=path, params=params, config=config)
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
 
-    def disassociate_vpc(self, request, config=None):
+    def delete_record(self, request, config=None):
         """
-        disassociate_vpc
-
-        :param request: Request entity containing all parameters
-        :type request: PrivatezoneClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = utils.append_uri(PrivatezoneClient.VERSION_V1, PrivatezoneClient.CONSTANT_PRIVATEZONE, request.zone_id)
-        params = {}
-        params[request.action] = None
-        if request.client_token is not None:
-            params['clientToken'] = request.client_token
-        return self._send_request(
-            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=config
-        )
-
-    def modify_parsing_records(self, request, config=None):
-        """
-        modify_parsing_records
+        delete_record
 
         :param request: Request entity containing all parameters
         :type request: PrivatezoneClientRequest
@@ -223,24 +177,133 @@ class PrivatezoneClient(BceBaseClient):
             PrivatezoneClient.CONSTANT_RECORD,
             request.record_id,
         )
+        headers = None
         params = {}
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(
-            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=config
-        )
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
 
-    def query_and_parse_record_list(self, request, config=None):
+    def disable_record(self, request, config=None):
         """
-        query_and_parse_record_list
+        disable_record
 
         :param request: Request entity containing all parameters
         :type request: PrivatezoneClientRequest
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response containing QueryAndParseRecordListResponse data
-        :rtype: QueryAndParseRecordListResponse
+        :return: API response containing object data
+        :rtype: object
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            PrivatezoneClient.VERSION_V1,
+            PrivatezoneClient.CONSTANT_PRIVATEZONE,
+            PrivatezoneClient.CONSTANT_RECORD,
+            request.record_id,
+        )
+        headers = None
+        params = {}
+        params['disable'] = None
+        if request.action is not None:
+            params['action'] = request.action
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.PUT, path=path, params=params, config=merged_config, model=object)
+
+    def enable_record(self, request, config=None):
+        """
+        enable_record
+
+        :param request: Request entity containing all parameters
+        :type request: PrivatezoneClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing object data
+        :rtype: object
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            PrivatezoneClient.VERSION_V1,
+            PrivatezoneClient.CONSTANT_PRIVATEZONE,
+            PrivatezoneClient.CONSTANT_RECORD,
+            request.record_id,
+        )
+        headers = None
+        params = {}
+        params['enable'] = None
+        if request.action is not None:
+            params['action'] = request.action
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.PUT, path=path, params=params, config=merged_config, model=object)
+
+    def get_private_zone(self, request, config=None):
+        """
+        get_private_zone
+
+        :param request: Request entity containing all parameters
+        :type request: PrivatezoneClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing GetPrivateZoneResponse data
+        :rtype: GetPrivateZoneResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(PrivatezoneClient.VERSION_V1, PrivatezoneClient.CONSTANT_PRIVATEZONE, request.zone_id)
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.GET, path=path, config=merged_config, model=GetPrivateZoneResponse)
+
+    def list_private_zone(self, request, config=None):
+        """
+        list_private_zone
+
+        :param request: Request entity containing all parameters
+        :type request: PrivatezoneClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing ListPrivateZoneResponse data
+        :rtype: ListPrivateZoneResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(PrivatezoneClient.VERSION_V1, PrivatezoneClient.CONSTANT_PRIVATEZONE)
+        headers = None
+        params = {}
+        if request.marker is not None:
+            params['marker'] = request.marker
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.GET, path=path, params=params, config=merged_config, model=ListPrivateZoneResponse
+        )
+
+    def list_record(self, request, config=None):
+        """
+        list_record
+
+        :param request: Request entity containing all parameters
+        :type request: PrivatezoneClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing ListRecordResponse data
+        :rtype: ListRecordResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -251,6 +314,7 @@ class PrivatezoneClient(BceBaseClient):
             request.zone_id,
             PrivatezoneClient.CONSTANT_RECORD,
         )
+        headers = None
         params = {}
         if request.marker is not None:
             params['marker'] = request.marker
@@ -264,58 +328,40 @@ class PrivatezoneClient(BceBaseClient):
             params['type'] = request.type
         if request.value is not None:
             params['value'] = request.value
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.GET, path=path, params=params, config=config, model=QueryAndParseRecordListResponse
+            http_methods.GET, path=path, params=params, config=merged_config, model=ListRecordResponse
         )
 
-    def query_the_list_of_private_zones(self, request, config=None):
+    def unbind_vpc(self, request, config=None):
         """
-        query_the_list_of_private_zones
+        unbind_vpc
 
         :param request: Request entity containing all parameters
         :type request: PrivatezoneClientRequest
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response containing QueryTheListOfPrivateZonesResponse data
-        :rtype: QueryTheListOfPrivateZonesResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = utils.append_uri(PrivatezoneClient.VERSION_V1, PrivatezoneClient.CONSTANT_PRIVATEZONE)
-        params = {}
-        if request.marker is not None:
-            params['marker'] = request.marker
-        if request.max_keys is not None:
-            params['maxKeys'] = request.max_keys
-        return self._send_request(
-            http_methods.GET, path=path, params=params, config=config, model=QueryTheListOfPrivateZonesResponse
-        )
-
-    def search_for_details_of_privatzone(self, request, config=None):
-        """
-        search_for_details_of_privatzone
-
-        :param request: Request entity containing all parameters
-        :type request: PrivatezoneClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response containing SearchForDetailsOfPrivatzoneResponse data
-        :rtype: SearchForDetailsOfPrivatzoneResponse
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(PrivatezoneClient.VERSION_V1, PrivatezoneClient.CONSTANT_PRIVATEZONE, request.zone_id)
+        headers = None
+        params = {}
+        params[request.action] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.GET, path=path, config=config, model=SearchForDetailsOfPrivatzoneResponse
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
         )
 
-    def set_parsing_record_status(self, request, config=None):
+    def update_record(self, request, config=None):
         """
-        set_parsing_record_status
+        update_record
 
         :param request: Request entity containing all parameters
         :type request: PrivatezoneClientRequest
@@ -334,11 +380,14 @@ class PrivatezoneClient(BceBaseClient):
             PrivatezoneClient.CONSTANT_RECORD,
             request.record_id,
         )
+        headers = None
         params = {}
-        params[request.action] = None
         if request.client_token is not None:
             params['clientToken'] = request.client_token
-        return self._send_request(http_methods.PUT, path=path, params=params, config=config)
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
 
     def _merge_config(self, config=None):
         """

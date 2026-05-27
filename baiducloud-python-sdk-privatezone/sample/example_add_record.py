@@ -1,5 +1,5 @@
 """
-Example for privatezone delete_private_zone method.
+Example for privatezone add_record method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -18,8 +18,10 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = PrivatezoneClient(config)
-        request = privatezone_models.DeletePrivateZoneRequest(zone_id="", client_token="")
-        res = client.delete_private_zone(request)
+        request = privatezone_models.AddRecordRequest(
+            zone_id="", rr="", value="", type="", client_token="", priority=0, ttl=0, description=""
+        )
+        res = client.add_record(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。

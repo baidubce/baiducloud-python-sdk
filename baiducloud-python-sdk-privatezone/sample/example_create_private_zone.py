@@ -1,12 +1,12 @@
 """
-Example for privatezone set_parsing_record_status method.
+Example for privatezone create_private_zone method.
 """
 
 from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
 from baiducloud_python_sdk_privatezone.api.privatezone_client import PrivatezoneClient
-from baiducloud_python_sdk_privatezone.models.set_parsing_record_status_request import SetParsingRecordStatusRequest
+from baiducloud_python_sdk_privatezone import models as privatezone_models
 
 if __name__ == '__main__':
     try:
@@ -18,8 +18,8 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = PrivatezoneClient(config)
-        request = SetParsingRecordStatusRequest(record_id="", action="", client_token="")
-        res = client.set_parsing_record_status(request)
+        request = privatezone_models.CreatePrivateZoneRequest(zone_name="", client_token="")
+        res = client.create_private_zone(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。

@@ -1,19 +1,19 @@
 """
-Request entity for QueryTheListOfPrivateZonesResponse information.
+Request entity for ListRecordResponse information.
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
-from baiducloud_python_sdk_privatezone.models.private_zone import PrivateZone
+from baiducloud_python_sdk_privatezone.models.private_record import PrivateRecord
 
 
-class QueryTheListOfPrivateZonesResponse(BceResponse):
+class ListRecordResponse(BceResponse):
     """
-    QueryTheListOfPrivateZonesResponse
+    ListRecordResponse
     """
 
-    def __init__(self, marker=None, is_truncated=None, next_marker=None, max_keys=None, zones=None):
+    def __init__(self, marker=None, is_truncated=None, next_marker=None, max_keys=None, records=None):
         """
-        Initialize QueryTheListOfPrivateZonesResponse response.
+        Initialize ListRecordResponse response.
 
         :param marker: 标记查询的起始位置
         :type marker: str (optional)
@@ -27,15 +27,15 @@ class QueryTheListOfPrivateZonesResponse(BceResponse):
         :param max_keys: 每页包含的最大数量
         :type max_keys: int (optional)
 
-        :param zones: Zone的集合
-        :type zones: List[PrivateZone] (optional)
+        :param records: 解析记录的集合
+        :type records: List[PrivateRecord] (optional)
         """
         super().__init__()
         self.marker = marker
         self.is_truncated = is_truncated
         self.next_marker = next_marker
         self.max_keys = max_keys
-        self.zones = zones
+        self.records = records
 
     def to_dict(self):
         """
@@ -61,8 +61,8 @@ class QueryTheListOfPrivateZonesResponse(BceResponse):
             result['nextMarker'] = self.next_marker
         if self.max_keys is not None:
             result['maxKeys'] = self.max_keys
-        if self.zones is not None:
-            result['zones'] = [i.to_dict() for i in self.zones]
+        if self.records is not None:
+            result['records'] = [i.to_dict() for i in self.records]
         return result
 
     def from_dict(self, m):
@@ -75,7 +75,7 @@ class QueryTheListOfPrivateZonesResponse(BceResponse):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: QueryTheListOfPrivateZonesResponse
+        :rtype: ListRecordResponse
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
@@ -89,6 +89,6 @@ class QueryTheListOfPrivateZonesResponse(BceResponse):
             self.next_marker = m.get('nextMarker')
         if m.get('maxKeys') is not None:
             self.max_keys = m.get('maxKeys')
-        if m.get('zones') is not None:
-            self.zones = [PrivateZone().from_dict(i) for i in m.get('zones')]
+        if m.get('records') is not None:
+            self.records = [PrivateRecord().from_dict(i) for i in m.get('records')]
         return self
