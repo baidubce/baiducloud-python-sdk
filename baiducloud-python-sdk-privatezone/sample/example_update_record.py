@@ -22,7 +22,7 @@ if __name__ == '__main__':
             record_id="", rr="", value="", type="", client_token="", ttl=0, priority=0, description=""
         )
         res = client.update_record(request)
-        print(res.to_json_string())
+        print("update_record success")
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。
         print(e.last_error)

@@ -20,7 +20,7 @@ if __name__ == '__main__':
         client = PrivatezoneClient(config)
         request = privatezone_models.EnableRecordRequest(record_id="", action="", client_token="")
         res = client.enable_record(request)
-        print(res.to_json_string())
+        print("enable_record success")
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。
         print(e.last_error)

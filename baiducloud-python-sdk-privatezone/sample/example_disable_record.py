@@ -18,9 +18,9 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = PrivatezoneClient(config)
-        request = privatezone_models.DisableRecordRequest(record_id="", action="", client_token="")
+        request = privatezone_models.DisableRecordRequest(record_id="rc-sz1ubq7e795u", action="disable", client_token="")
         res = client.disable_record(request)
-        print(res.to_json_string())
+        print("disable_record success")
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。
         print(e.last_error)

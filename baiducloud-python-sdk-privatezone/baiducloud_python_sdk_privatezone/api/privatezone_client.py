@@ -13,8 +13,6 @@ from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import http_methods
 from baiducloud_python_sdk_privatezone.models.add_record_response import AddRecordResponse
 from baiducloud_python_sdk_privatezone.models.create_private_zone_response import CreatePrivateZoneResponse
-from baiducloud_python_sdk_privatezone.models.object import object
-from baiducloud_python_sdk_privatezone.models.object import object
 from baiducloud_python_sdk_privatezone.models.get_private_zone_response import GetPrivateZoneResponse
 from baiducloud_python_sdk_privatezone.models.list_private_zone_response import ListPrivateZoneResponse
 from baiducloud_python_sdk_privatezone.models.list_record_response import ListRecordResponse
@@ -193,8 +191,8 @@ class PrivatezoneClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response containing object data
-        :rtype: object
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -213,7 +211,7 @@ class PrivatezoneClient(BceBaseClient):
         if request.client_token is not None:
             params['clientToken'] = request.client_token
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.PUT, path=path, params=params, config=merged_config, model=object)
+        return self._send_request(http_methods.PUT, path=path, params=params, config=merged_config)
 
     def enable_record(self, request, config=None):
         """
@@ -224,8 +222,8 @@ class PrivatezoneClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response containing object data
-        :rtype: object
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -244,7 +242,7 @@ class PrivatezoneClient(BceBaseClient):
         if request.client_token is not None:
             params['clientToken'] = request.client_token
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.PUT, path=path, params=params, config=merged_config, model=object)
+        return self._send_request(http_methods.PUT, path=path, params=params, config=merged_config)
 
     def get_private_zone(self, request, config=None):
         """
