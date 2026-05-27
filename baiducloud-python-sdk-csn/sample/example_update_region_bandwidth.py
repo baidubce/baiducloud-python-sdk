@@ -1,0 +1,30 @@
+"""
+Example for csn update_region_bandwidth method.
+"""
+
+from baiducloud_python_sdk_core import exception
+from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
+from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
+from baiducloud_python_sdk_csn.api.csn_client import CsnClient
+from baiducloud_python_sdk_csn import models as csn_models
+
+if __name__ == '__main__':
+    try:
+        # 设置Client的Access Key ID和Secret Access Key，获取AKSK详见:https://cloud.baidu.com/doc/Reference/s/9jwvz2egb
+        access_key_id = ""
+        secret_access_key = ""
+        endpoint = ""
+        config = BceClientConfiguration(
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
+        )
+        client = CsnClient(config)
+        request = csn_models.UpdateRegionBandwidthRequest(
+            csn_bp_id="", local_region="", peer_region="", bandwidth=0, client_token=""
+        )
+        res = client.update_region_bandwidth(request)
+        print(res.to_json_string())
+    except exception.BceHttpClientError as e:
+        # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。
+        print(e.last_error)
+        print(e.request_id)
+        print(e.code)
