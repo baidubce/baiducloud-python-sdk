@@ -118,7 +118,7 @@ class CsnClient(BceBaseClient):
         path = utils.append_uri(CsnClient.VERSION_V1, CsnClient.CONSTANT_CSN, request.csn_id)
         headers = None
         params = {}
-        params[request.action] = None
+        params['attach'] = None
         if request.client_token is not None:
             params['clientToken'] = request.client_token
         merged_config = self._create_request_with_host(request, config)
@@ -144,7 +144,7 @@ class CsnClient(BceBaseClient):
         path = utils.append_uri(CsnClient.VERSION_V1, CsnClient.CONSTANT_CSN, CsnClient.CONSTANT_BP, request.csn_bp_id)
         headers = None
         params = {}
-        params[request.action] = None
+        params['bind'] = None
         if request.client_token is not None:
             params['clientToken'] = request.client_token
         merged_config = self._create_request_with_host(request, config)
@@ -491,7 +491,7 @@ class CsnClient(BceBaseClient):
         path = utils.append_uri(CsnClient.VERSION_V1, CsnClient.CONSTANT_CSN, request.csn_id)
         headers = None
         params = {}
-        params[request.action] = None
+        params['detach'] = None
         if request.client_token is not None:
             params['clientToken'] = request.client_token
         merged_config = self._create_request_with_host(request, config)
@@ -901,7 +901,7 @@ class CsnClient(BceBaseClient):
         path = utils.append_uri(CsnClient.VERSION_V1, CsnClient.CONSTANT_CSN, CsnClient.CONSTANT_BP, request.csn_bp_id)
         headers = None
         params = {}
-        params[request.action] = None
+        params['resize'] = None
         if request.client_token is not None:
             params['clientToken'] = request.client_token
         merged_config = self._create_request_with_host(request, config)
@@ -927,7 +927,7 @@ class CsnClient(BceBaseClient):
         path = utils.append_uri(CsnClient.VERSION_V1, CsnClient.CONSTANT_CSN, CsnClient.CONSTANT_BP, request.csn_bp_id)
         headers = None
         params = {}
-        params[request.action] = None
+        params['unbind'] = None
         if request.client_token is not None:
             params['clientToken'] = request.client_token
         merged_config = self._create_request_with_host(request, config)

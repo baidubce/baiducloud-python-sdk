@@ -12,7 +12,7 @@ class ResizeCsnBpRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, csn_bp_id, action, bandwidth, client_token=None):
+    def __init__(self, csn_bp_id, bandwidth, client_token=None):
         """
         Initialize ResizeCsnBpRequest request entity.
 
@@ -22,16 +22,12 @@ class ResizeCsnBpRequest(AbstractModel):
         :param client_token: client_token parameter
         :type client_token: str (optional)
 
-        :param action: action parameter
-        :type action: str (required)
-
         :param bandwidth: 升降级的带宽值，最大值为10000
         :type bandwidth: int (required)
         """
         super().__init__()
         self.csn_bp_id = csn_bp_id
         self.client_token = client_token
-        self.action = action
         self.bandwidth = bandwidth
 
     def to_dict(self):
@@ -71,8 +67,6 @@ class ResizeCsnBpRequest(AbstractModel):
             self.csn_bp_id = m.get('csnBpId')
         if m.get('clientToken') is not None:
             self.client_token = m.get('clientToken')
-        if m.get('action') is not None:
-            self.action = m.get('action')
         if m.get('bandwidth') is not None:
             self.bandwidth = m.get('bandwidth')
         return self

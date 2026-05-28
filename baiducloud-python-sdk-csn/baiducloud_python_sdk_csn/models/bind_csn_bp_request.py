@@ -12,7 +12,7 @@ class BindCsnBpRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, csn_bp_id, action, csn_id, client_token=None):
+    def __init__(self, csn_bp_id, csn_id, client_token=None):
         """
         Initialize BindCsnBpRequest request entity.
 
@@ -22,16 +22,12 @@ class BindCsnBpRequest(AbstractModel):
         :param client_token: client_token parameter
         :type client_token: str (optional)
 
-        :param action: action parameter
-        :type action: str (required)
-
         :param csn_id: 云智能网的ID
         :type csn_id: str (required)
         """
         super().__init__()
         self.csn_bp_id = csn_bp_id
         self.client_token = client_token
-        self.action = action
         self.csn_id = csn_id
 
     def to_dict(self):
@@ -71,8 +67,6 @@ class BindCsnBpRequest(AbstractModel):
             self.csn_bp_id = m.get('csnBpId')
         if m.get('clientToken') is not None:
             self.client_token = m.get('clientToken')
-        if m.get('action') is not None:
-            self.action = m.get('action')
         if m.get('csnId') is not None:
             self.csn_id = m.get('csnId')
         return self

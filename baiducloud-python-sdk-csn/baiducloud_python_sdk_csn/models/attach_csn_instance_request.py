@@ -13,7 +13,7 @@ class AttachCsnInstanceRequest(AbstractModel):
     """
 
     def __init__(
-        self, csn_id, action, instance_type, instance_id, instance_region, client_token=None, instance_account_id=None
+        self, csn_id, instance_type, instance_id, instance_region, client_token=None, instance_account_id=None
     ):
         """
         Initialize AttachCsnInstanceRequest request entity.
@@ -23,9 +23,6 @@ class AttachCsnInstanceRequest(AbstractModel):
 
         :param client_token: client_token parameter
         :type client_token: str (optional)
-
-        :param action: action parameter
-        :type action: str (required)
 
         :param instance_type: instance_type parameter
         :type instance_type: str (required)
@@ -42,7 +39,6 @@ class AttachCsnInstanceRequest(AbstractModel):
         super().__init__()
         self.csn_id = csn_id
         self.client_token = client_token
-        self.action = action
         self.instance_type = instance_type
         self.instance_id = instance_id
         self.instance_region = instance_region
@@ -91,8 +87,6 @@ class AttachCsnInstanceRequest(AbstractModel):
             self.csn_id = m.get('csnId')
         if m.get('clientToken') is not None:
             self.client_token = m.get('clientToken')
-        if m.get('action') is not None:
-            self.action = m.get('action')
         if m.get('instanceType') is not None:
             self.instance_type = m.get('instanceType')
         if m.get('instanceId') is not None:

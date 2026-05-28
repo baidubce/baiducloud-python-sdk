@@ -19,13 +19,7 @@ if __name__ == '__main__':
         )
         client = CsnClient(config)
         request = csn_models.DetachCsnInstanceRequest(
-            csn_id="",
-            action="",
-            instance_type="",
-            instance_id="",
-            instance_region="",
-            client_token="",
-            instance_account_id="",
+            csn_id="", instance_type="", instance_id="", instance_region="", client_token="", instance_account_id=""
         )
         res = client.detach_csn_instance(request)
         print(res.to_json_string())

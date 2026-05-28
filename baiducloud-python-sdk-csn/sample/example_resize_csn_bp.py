@@ -18,7 +18,7 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = CsnClient(config)
-        request = csn_models.ResizeCsnBpRequest(csn_bp_id="", action="", bandwidth=0, client_token="")
+        request = csn_models.ResizeCsnBpRequest(csn_bp_id="", bandwidth=0, client_token="")
         res = client.resize_csn_bp(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
