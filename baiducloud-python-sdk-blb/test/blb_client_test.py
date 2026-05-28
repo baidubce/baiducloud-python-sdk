@@ -70,6 +70,21 @@ class BlbClientTest(unittest.TestCase):
     def test_create_blb(self):
         self.client.create_blb(blb_models.CreateBlbRequest())
 
+    def test_create_blb_http_listener(self):
+        self.client.create_blb_http_listener(blb_models.CreateBlbHttpListenerRequest())
+
+    def test_create_blb_https_listener(self):
+        self.client.create_blb_https_listener(blb_models.CreateBlbHttpsListenerRequest())
+
+    def test_create_blb_ssl_listener(self):
+        self.client.create_blb_ssl_listener(blb_models.CreateBlbSslListenerRequest())
+
+    def test_create_blb_tcp_listener(self):
+        self.client.create_blb_tcp_listener(blb_models.CreateBlbTcpListenerRequest())
+
+    def test_create_blb_udp_listener(self):
+        self.client.create_blb_udp_listener(blb_models.CreateBlbUdpListenerRequest())
+
     def test_delete_app_blb_listener(self):
         self.client.delete_app_blb_listener(blb_models.DeleteAppBlbListenerRequest())
 
@@ -84,6 +99,9 @@ class BlbClientTest(unittest.TestCase):
 
     def test_delete_app_blb_server_group_rs(self):
         self.client.delete_app_blb_server_group_rs(blb_models.DeleteAppBlbServerGroupRsRequest())
+
+    def test_delete_blb_listener(self):
+        self.client.delete_blb_listener(blb_models.DeleteBlbListenerRequest())
 
     def test_describe_app_blb(self):
         self.client.describe_app_blb(blb_models.DescribeAppBlbRequest())
@@ -126,6 +144,24 @@ class BlbClientTest(unittest.TestCase):
 
     def test_describe_blb(self):
         self.client.describe_blb(blb_models.DescribeBlbRequest())
+
+    def test_describe_blb_http_listener(self):
+        self.client.describe_blb_http_listener(blb_models.DescribeBlbHttpListenerRequest())
+
+    def test_describe_blb_https_listener(self):
+        self.client.describe_blb_https_listener(blb_models.DescribeBlbHttpsListenerRequest())
+
+    def test_describe_blb_listener(self):
+        self.client.describe_blb_listener(blb_models.DescribeBlbListenerRequest())
+
+    def test_describe_blb_ssl_listener(self):
+        self.client.describe_blb_ssl_listener(blb_models.DescribeBlbSslListenerRequest())
+
+    def test_describe_blb_tcp_listener(self):
+        self.client.describe_blb_tcp_listener(blb_models.DescribeBlbTcpListenerRequest())
+
+    def test_describe_blb_udp_listener(self):
+        self.client.describe_blb_udp_listener(blb_models.DescribeBlbUdpListenerRequest())
 
     def test_describe_blbs(self):
         self.client.describe_blbs(blb_models.DescribeBlbsRequest())
@@ -178,8 +214,23 @@ class BlbClientTest(unittest.TestCase):
     def test_update_blb_acl(self):
         self.client.update_blb_acl(blb_models.UpdateBlbAclRequest())
 
+    def test_update_blb_http_listener(self):
+        self.client.update_blb_http_listener(blb_models.UpdateBlbHttpListenerRequest())
+
+    def test_update_blb_https_listener(self):
+        self.client.update_blb_https_listener(blb_models.UpdateBlbHttpsListenerRequest())
+
     def test_update_blb_modify_protection(self):
         self.client.update_blb_modify_protection(blb_models.UpdateBlbModifyProtectionRequest())
+
+    def test_update_blb_ssl_listener(self):
+        self.client.update_blb_ssl_listener(blb_models.UpdateBlbSslListenerRequest())
+
+    def test_update_blb_tcp_listener(self):
+        self.client.update_blb_tcp_listener(blb_models.UpdateBlbTcpListenerRequest())
+
+    def test_update_blb_udp_listener(self):
+        self.client.update_blb_udp_listener(blb_models.UpdateBlbUdpListenerRequest())
 
 
 if __name__ == '__main__':
@@ -199,11 +250,17 @@ if __name__ == '__main__':
     suite.addTest(BlbClientTest("test_create_app_blb_tcp_listener"))
     suite.addTest(BlbClientTest("test_create_app_blb_udp_listener"))
     suite.addTest(BlbClientTest("test_create_blb"))
+    suite.addTest(BlbClientTest("test_create_blb_http_listener"))
+    suite.addTest(BlbClientTest("test_create_blb_https_listener"))
+    suite.addTest(BlbClientTest("test_create_blb_ssl_listener"))
+    suite.addTest(BlbClientTest("test_create_blb_tcp_listener"))
+    suite.addTest(BlbClientTest("test_create_blb_udp_listener"))
     suite.addTest(BlbClientTest("test_delete_app_blb_listener"))
     suite.addTest(BlbClientTest("test_delete_app_blb_policy"))
     suite.addTest(BlbClientTest("test_delete_app_blb_server_group"))
     suite.addTest(BlbClientTest("test_delete_app_blb_server_group_port"))
     suite.addTest(BlbClientTest("test_delete_app_blb_server_group_rs"))
+    suite.addTest(BlbClientTest("test_delete_blb_listener"))
     suite.addTest(BlbClientTest("test_describe_app_blb"))
     suite.addTest(BlbClientTest("test_describe_app_blb_http_listener"))
     suite.addTest(BlbClientTest("test_describe_app_blb_https_listener"))
@@ -218,6 +275,12 @@ if __name__ == '__main__':
     suite.addTest(BlbClientTest("test_describe_app_blb_udp_listener"))
     suite.addTest(BlbClientTest("test_describe_app_blbs"))
     suite.addTest(BlbClientTest("test_describe_blb"))
+    suite.addTest(BlbClientTest("test_describe_blb_http_listener"))
+    suite.addTest(BlbClientTest("test_describe_blb_https_listener"))
+    suite.addTest(BlbClientTest("test_describe_blb_listener"))
+    suite.addTest(BlbClientTest("test_describe_blb_ssl_listener"))
+    suite.addTest(BlbClientTest("test_describe_blb_tcp_listener"))
+    suite.addTest(BlbClientTest("test_describe_blb_udp_listener"))
     suite.addTest(BlbClientTest("test_describe_blbs"))
     suite.addTest(BlbClientTest("test_refund_blb"))
     suite.addTest(BlbClientTest("test_release_app_blb"))
@@ -235,6 +298,11 @@ if __name__ == '__main__':
     suite.addTest(BlbClientTest("test_update_app_blb_udp_listener"))
     suite.addTest(BlbClientTest("test_update_blb"))
     suite.addTest(BlbClientTest("test_update_blb_acl"))
+    suite.addTest(BlbClientTest("test_update_blb_http_listener"))
+    suite.addTest(BlbClientTest("test_update_blb_https_listener"))
     suite.addTest(BlbClientTest("test_update_blb_modify_protection"))
+    suite.addTest(BlbClientTest("test_update_blb_ssl_listener"))
+    suite.addTest(BlbClientTest("test_update_blb_tcp_listener"))
+    suite.addTest(BlbClientTest("test_update_blb_udp_listener"))
     runner = unittest.TextTestRunner()
     runner.run(suite)
