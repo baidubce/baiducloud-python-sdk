@@ -40,6 +40,12 @@ class BlbClientTest(unittest.TestCase):
     def test_billing_change_pre_to_post_blb(self):
         self.client.billing_change_pre_to_post_blb(blb_models.BillingChangePreToPostBlbRequest())
 
+    def test_bind_blb_enterprise_security_group(self):
+        self.client.bind_blb_enterprise_security_group(blb_models.BindBlbEnterpriseSecurityGroupRequest())
+
+    def test_bind_blb_security_group(self):
+        self.client.bind_blb_security_group(blb_models.BindBlbSecurityGroupRequest())
+
     def test_blb_inquiry(self):
         self.client.blb_inquiry(blb_models.BlbInquiryRequest())
 
@@ -151,6 +157,9 @@ class BlbClientTest(unittest.TestCase):
     def test_describe_blb(self):
         self.client.describe_blb(blb_models.DescribeBlbRequest())
 
+    def test_describe_blb_enterprise_security_groups(self):
+        self.client.describe_blb_enterprise_security_groups(blb_models.DescribeBlbEnterpriseSecurityGroupsRequest())
+
     def test_describe_blb_http_listener(self):
         self.client.describe_blb_http_listener(blb_models.DescribeBlbHttpListenerRequest())
 
@@ -159,6 +168,9 @@ class BlbClientTest(unittest.TestCase):
 
     def test_describe_blb_listener(self):
         self.client.describe_blb_listener(blb_models.DescribeBlbListenerRequest())
+
+    def test_describe_blb_security_groups(self):
+        self.client.describe_blb_security_groups(blb_models.DescribeBlbSecurityGroupsRequest())
 
     def test_describe_blb_server_health(self):
         self.client.describe_blb_server_health(blb_models.DescribeBlbServerHealthRequest())
@@ -189,6 +201,12 @@ class BlbClientTest(unittest.TestCase):
 
     def test_resize_blb(self):
         self.client.resize_blb(blb_models.ResizeBlbRequest())
+
+    def test_unbind_blb_enterprise_security_group(self):
+        self.client.unbind_blb_enterprise_security_group(blb_models.UnbindBlbEnterpriseSecurityGroupRequest())
+
+    def test_unbind_blb_security_group(self):
+        self.client.unbind_blb_security_group(blb_models.UnbindBlbSecurityGroupRequest())
 
     def test_update_app_blb(self):
         self.client.update_app_blb(blb_models.UpdateAppBlbRequest())
@@ -255,6 +273,8 @@ if __name__ == '__main__':
     suite.addTest(BlbClientTest("test_billing_change_cancel_to_post_blb"))
     suite.addTest(BlbClientTest("test_billing_change_post_to_pre_blb"))
     suite.addTest(BlbClientTest("test_billing_change_pre_to_post_blb"))
+    suite.addTest(BlbClientTest("test_bind_blb_enterprise_security_group"))
+    suite.addTest(BlbClientTest("test_bind_blb_security_group"))
     suite.addTest(BlbClientTest("test_blb_inquiry"))
     suite.addTest(BlbClientTest("test_create_app_blb"))
     suite.addTest(BlbClientTest("test_create_app_blb_http_listener"))
@@ -292,9 +312,11 @@ if __name__ == '__main__':
     suite.addTest(BlbClientTest("test_describe_app_blb_udp_listener"))
     suite.addTest(BlbClientTest("test_describe_app_blbs"))
     suite.addTest(BlbClientTest("test_describe_blb"))
+    suite.addTest(BlbClientTest("test_describe_blb_enterprise_security_groups"))
     suite.addTest(BlbClientTest("test_describe_blb_http_listener"))
     suite.addTest(BlbClientTest("test_describe_blb_https_listener"))
     suite.addTest(BlbClientTest("test_describe_blb_listener"))
+    suite.addTest(BlbClientTest("test_describe_blb_security_groups"))
     suite.addTest(BlbClientTest("test_describe_blb_server_health"))
     suite.addTest(BlbClientTest("test_describe_blb_servers"))
     suite.addTest(BlbClientTest("test_describe_blb_ssl_listener"))
@@ -305,6 +327,8 @@ if __name__ == '__main__':
     suite.addTest(BlbClientTest("test_release_app_blb"))
     suite.addTest(BlbClientTest("test_release_blb"))
     suite.addTest(BlbClientTest("test_resize_blb"))
+    suite.addTest(BlbClientTest("test_unbind_blb_enterprise_security_group"))
+    suite.addTest(BlbClientTest("test_unbind_blb_security_group"))
     suite.addTest(BlbClientTest("test_update_app_blb"))
     suite.addTest(BlbClientTest("test_update_app_blb_http_listener"))
     suite.addTest(BlbClientTest("test_update_app_blb_https_listener"))
