@@ -1,5 +1,5 @@
 """
-Example for dns modify_the_parsing_record_status method.
+Example for dns list_zone method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -18,10 +18,8 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = DnsClient(config)
-        request = dns_models.ModifyTheParsingRecordStatusRequest(
-            zone_name="abbbbbb.com", record_id="463548", action="enable", client_token=""
-        )
-        res = client.modify_the_parsing_record_status(request)
+        request = dns_models.ListZoneRequest(name="", marker="", max_keys=0)
+        res = client.list_zone(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。

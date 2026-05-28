@@ -18,9 +18,7 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = DnsClient(config)
-        request = dns_models.UpdateLineGroupRequest(
-            line_id=6332, name="pythontest", lines=["henan.ct"], client_token=""
-        )
+        request = dns_models.UpdateLineGroupRequest(line_id=0, name="", lines=[], client_token="")
         res = client.update_line_group(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

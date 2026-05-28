@@ -1,34 +1,34 @@
 """
-Request entity for QueryDomainNameListRequest information.
+Request entity for UpdateRecordEnableRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class QueryDomainNameListRequest(AbstractModel):
+class UpdateRecordEnableRequest(AbstractModel):
     """
-    Request entity for QueryDomainNameListRequest operation.
+    Request entity for UpdateRecordEnableRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, name=None, marker=None, max_keys=None):
+    def __init__(self, zone_name, record_id, client_token=None):
         """
-        Initialize QueryDomainNameListRequest request entity.
+        Initialize UpdateRecordEnableRequest request entity.
 
-        :param name: name parameter
-        :type name: str (optional)
+        :param zone_name: zone_name parameter
+        :type zone_name: str (required)
 
-        :param marker: marker parameter
-        :type marker: str (optional)
+        :param record_id: record_id parameter
+        :type record_id: str (required)
 
-        :param max_keys: max_keys parameter
-        :type max_keys: int (optional)
+        :param client_token: client_token parameter
+        :type client_token: str (optional)
         """
         super().__init__()
-        self.name = name
-        self.marker = marker
-        self.max_keys = max_keys
+        self.zone_name = zone_name
+        self.record_id = record_id
+        self.client_token = client_token
 
     def to_dict(self):
         """
@@ -55,16 +55,16 @@ class QueryDomainNameListRequest(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: QueryDomainNameListRequest
+        :rtype: UpdateRecordEnableRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('name') is not None:
-            self.name = m.get('name')
-        if m.get('marker') is not None:
-            self.marker = m.get('marker')
-        if m.get('maxKeys') is not None:
-            self.max_keys = m.get('maxKeys')
+        if m.get('zoneName') is not None:
+            self.zone_name = m.get('zoneName')
+        if m.get('recordId') is not None:
+            self.record_id = m.get('recordId')
+        if m.get('clientToken') is not None:
+            self.client_token = m.get('clientToken')
         return self

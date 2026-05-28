@@ -1,5 +1,5 @@
 """
-Example for dns domain_name_renewal method.
+Example for dns list_line_group method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -18,13 +18,8 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = DnsClient(config)
-        request = dns_models.DomainNameRenewalRequest(
-            name="testnewdomain52.com",
-            action="purchaseReserved",
-            billing=dns_models.BillingForRenew(reservation=dns_models.Reservation(reservation_length=1)),
-            client_token=""
-        )
-        res = client.domain_name_renewal(request)
+        request = dns_models.ListLineGroupRequest(marker="", max_keys=0)
+        res = client.list_line_group(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。

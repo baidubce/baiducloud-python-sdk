@@ -1,5 +1,5 @@
 """
-Example for dns query_and_parse_record_list method.
+Example for dns update_record_disable method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -18,9 +18,8 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = DnsClient(config)
-        request = dns_models.QueryAndParseRecordListRequest(zone_name="abbbbbb.com", rr="", id="",
-                                                            marker="", max_keys=10)
-        res = client.query_and_parse_record_list(request)
+        request = dns_models.UpdateRecordDisableRequest(zone_name="", record_id="", client_token="")
+        res = client.update_record_disable(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。

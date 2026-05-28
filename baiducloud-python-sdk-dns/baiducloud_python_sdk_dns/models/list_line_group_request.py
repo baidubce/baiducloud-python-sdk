@@ -1,30 +1,30 @@
 """
-Request entity for AddDomainNameRequest information.
+Request entity for ListLineGroupRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class AddDomainNameRequest(AbstractModel):
+class ListLineGroupRequest(AbstractModel):
     """
-    Request entity for AddDomainNameRequest operation.
+    Request entity for ListLineGroupRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, name, client_token=None):
+    def __init__(self, marker=None, max_keys=None):
         """
-        Initialize AddDomainNameRequest request entity.
+        Initialize ListLineGroupRequest request entity.
 
-        :param client_token: client_token parameter
-        :type client_token: str (optional)
+        :param marker: marker parameter
+        :type marker: str (optional)
 
-        :param name: 域名的名称，比如baidu.com。
-        :type name: str (required)
+        :param max_keys: max_keys parameter
+        :type max_keys: int (optional)
         """
         super().__init__()
-        self.client_token = client_token
-        self.name = name
+        self.marker = marker
+        self.max_keys = max_keys
 
     def to_dict(self):
         """
@@ -39,8 +39,6 @@ class AddDomainNameRequest(AbstractModel):
         if _map is not None:
             return _map
         result = dict()
-        if self.name is not None:
-            result['name'] = self.name
         return result
 
     def from_dict(self, m):
@@ -53,14 +51,14 @@ class AddDomainNameRequest(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: AddDomainNameRequest
+        :rtype: ListLineGroupRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('clientToken') is not None:
-            self.client_token = m.get('clientToken')
-        if m.get('name') is not None:
-            self.name = m.get('name')
+        if m.get('marker') is not None:
+            self.marker = m.get('marker')
+        if m.get('maxKeys') is not None:
+            self.max_keys = m.get('maxKeys')
         return self

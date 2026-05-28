@@ -1,5 +1,5 @@
 """
-Example for dns add_line_group method.
+Example for dns upgrade_zone method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -18,8 +18,11 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = DnsClient(config)
-        request = dns_models.AddLineGroupRequest(name="", lines=[], client_token="")
-        res = client.add_line_group(request)
+
+        reservation = dns_models.Reservation(reservation_length=0)
+        billing = dns_models.Billing(payment_timing="", reservation=reservation)
+        request = dns_models.UpgradeZoneRequest(action="", names=[], billing=billing, client_token="")
+        res = client.upgrade_zone(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。

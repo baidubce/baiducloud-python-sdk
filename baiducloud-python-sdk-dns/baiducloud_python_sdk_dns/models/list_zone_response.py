@@ -1,19 +1,19 @@
 """
-Request entity for QueryAndParseRecordListResponse information.
+Request entity for ListZoneResponse information.
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
-from baiducloud_python_sdk_dns.models.public_record import PublicRecord
+from baiducloud_python_sdk_dns.models.public_zone import PublicZone
 
 
-class QueryAndParseRecordListResponse(BceResponse):
+class ListZoneResponse(BceResponse):
     """
-    QueryAndParseRecordListResponse
+    ListZoneResponse
     """
 
-    def __init__(self, marker=None, is_truncated=None, next_marker=None, max_keys=None, records=None):
+    def __init__(self, marker=None, is_truncated=None, next_marker=None, max_keys=None, zones=None):
         """
-        Initialize QueryAndParseRecordListResponse response.
+        Initialize ListZoneResponse response.
 
         :param marker: 标记查询的起始位置。
         :type marker: str (optional)
@@ -27,15 +27,15 @@ class QueryAndParseRecordListResponse(BceResponse):
         :param max_keys: 每页包含的最大数量。
         :type max_keys: int (optional)
 
-        :param records: 包含查询结果的解析记录列表。
-        :type records: List[PublicRecord] (optional)
+        :param zones: 包含查询结果的域名列表。
+        :type zones: List[PublicZone] (optional)
         """
         super().__init__()
         self.marker = marker
         self.is_truncated = is_truncated
         self.next_marker = next_marker
         self.max_keys = max_keys
-        self.records = records
+        self.zones = zones
 
     def to_dict(self):
         """
@@ -61,8 +61,8 @@ class QueryAndParseRecordListResponse(BceResponse):
             result['nextMarker'] = self.next_marker
         if self.max_keys is not None:
             result['maxKeys'] = self.max_keys
-        if self.records is not None:
-            result['records'] = [i.to_dict() for i in self.records]
+        if self.zones is not None:
+            result['zones'] = [i.to_dict() for i in self.zones]
         return result
 
     def from_dict(self, m):
@@ -75,7 +75,7 @@ class QueryAndParseRecordListResponse(BceResponse):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: QueryAndParseRecordListResponse
+        :rtype: ListZoneResponse
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
@@ -89,6 +89,6 @@ class QueryAndParseRecordListResponse(BceResponse):
             self.next_marker = m.get('nextMarker')
         if m.get('maxKeys') is not None:
             self.max_keys = m.get('maxKeys')
-        if m.get('records') is not None:
-            self.records = [PublicRecord().from_dict(i) for i in m.get('records')]
+        if m.get('zones') is not None:
+            self.zones = [PublicZone().from_dict(i) for i in m.get('zones')]
         return self

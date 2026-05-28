@@ -1,38 +1,30 @@
 """
-Request entity for ModifyTheParsingRecordStatusRequest information.
+Request entity for CreateZoneRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class ModifyTheParsingRecordStatusRequest(AbstractModel):
+class CreateZoneRequest(AbstractModel):
     """
-    Request entity for ModifyTheParsingRecordStatusRequest operation.
+    Request entity for CreateZoneRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, zone_name, record_id, action, client_token=None):
+    def __init__(self, name, client_token=None):
         """
-        Initialize ModifyTheParsingRecordStatusRequest request entity.
-
-        :param zone_name: zone_name parameter
-        :type zone_name: str (required)
-
-        :param record_id: record_id parameter
-        :type record_id: str (required)
-
-        :param action: action parameter
-        :type action: str (required)
+        Initialize CreateZoneRequest request entity.
 
         :param client_token: client_token parameter
         :type client_token: str (optional)
+
+        :param name: 域名的名称，比如baidu.com。
+        :type name: str (required)
         """
         super().__init__()
-        self.zone_name = zone_name
-        self.record_id = record_id
-        self.action = action
         self.client_token = client_token
+        self.name = name
 
     def to_dict(self):
         """
@@ -47,6 +39,8 @@ class ModifyTheParsingRecordStatusRequest(AbstractModel):
         if _map is not None:
             return _map
         result = dict()
+        if self.name is not None:
+            result['name'] = self.name
         return result
 
     def from_dict(self, m):
@@ -59,18 +53,14 @@ class ModifyTheParsingRecordStatusRequest(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: ModifyTheParsingRecordStatusRequest
+        :rtype: CreateZoneRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('zoneName') is not None:
-            self.zone_name = m.get('zoneName')
-        if m.get('recordId') is not None:
-            self.record_id = m.get('recordId')
-        if m.get('action') is not None:
-            self.action = m.get('action')
         if m.get('clientToken') is not None:
             self.client_token = m.get('clientToken')
+        if m.get('name') is not None:
+            self.name = m.get('name')
         return self

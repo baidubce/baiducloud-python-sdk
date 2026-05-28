@@ -1,20 +1,20 @@
 """
-Request entity for RemoveDomainNameRequest information.
+Request entity for DeleteZoneRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class RemoveDomainNameRequest(AbstractModel):
+class DeleteZoneRequest(AbstractModel):
     """
-    Request entity for RemoveDomainNameRequest operation.
+    Request entity for DeleteZoneRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
 
     def __init__(self, zone_name, client_token=None):
         """
-        Initialize RemoveDomainNameRequest request entity.
+        Initialize DeleteZoneRequest request entity.
 
         :param zone_name: zone_name parameter
         :type zone_name: str (required)
@@ -51,7 +51,7 @@ class RemoveDomainNameRequest(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: RemoveDomainNameRequest
+        :rtype: DeleteZoneRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails

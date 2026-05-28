@@ -1,5 +1,5 @@
 """
-Example for dns remove_domain_name method.
+Example for dns update_record method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -18,8 +18,10 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = DnsClient(config)
-        request = dns_models.RemoveDomainNameRequest(zone_name="test1.gov.cn", client_token="")
-        res = client.remove_domain_name(request)
+        request = dns_models.UpdateRecordRequest(
+            zone_name="", record_id="", rr="", type="", value="", client_token="", ttl=0, description="", priority=0
+        )
+        res = client.update_record(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。

@@ -1,20 +1,20 @@
 """
-Request entity for DeleteParsingRecordsRequest information.
+Request entity for DeleteRecordRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class DeleteParsingRecordsRequest(AbstractModel):
+class DeleteRecordRequest(AbstractModel):
     """
-    Request entity for DeleteParsingRecordsRequest operation.
+    Request entity for DeleteRecordRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
 
     def __init__(self, zone_name, record_id, client_token=None):
         """
-        Initialize DeleteParsingRecordsRequest request entity.
+        Initialize DeleteRecordRequest request entity.
 
         :param zone_name: zone_name parameter
         :type zone_name: str (required)
@@ -55,7 +55,7 @@ class DeleteParsingRecordsRequest(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: DeleteParsingRecordsRequest
+        :rtype: DeleteRecordRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails

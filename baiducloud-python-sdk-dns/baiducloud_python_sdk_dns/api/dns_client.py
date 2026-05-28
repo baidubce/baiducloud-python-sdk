@@ -11,9 +11,9 @@ from baiducloud_python_sdk_core.bce_base_client import BceBaseClient
 from baiducloud_python_sdk_core.http import bce_http_client
 from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import http_methods
-from baiducloud_python_sdk_dns.models.query_and_parse_record_list_response import QueryAndParseRecordListResponse
-from baiducloud_python_sdk_dns.models.query_domain_name_list_response import QueryDomainNameListResponse
-from baiducloud_python_sdk_dns.models.query_the_list_of_line_groups_response import QueryTheListOfLineGroupsResponse
+from baiducloud_python_sdk_dns.models.list_line_group_response import ListLineGroupResponse
+from baiducloud_python_sdk_dns.models.list_record_response import ListRecordResponse
+from baiducloud_python_sdk_dns.models.list_zone_response import ListZoneResponse
 
 _logger = logging.getLogger(__name__)
 
@@ -29,11 +29,11 @@ class DnsClient(BceBaseClient):
 
     CONSTANT_ZONE = b'zone'
 
-    CONSTANT_RECORD = b'record'
+    CONSTANT_ORDER = b'order'
 
     CONSTANT_CUSTOMLINE = b'customline'
 
-    CONSTANT_ORDER = b'order'
+    CONSTANT_RECORD = b'record'
 
     def __init__(self, config=None):
         """
@@ -43,31 +43,6 @@ class DnsClient(BceBaseClient):
         :type config: baidubce.BceClientConfiguration
         """
         bce_base_client.BceBaseClient.__init__(self, config)
-
-    def add_domain_name(self, request, config=None):
-        """
-        add_domain_name
-
-        :param request: Request entity containing all parameters
-        :type request: DnsClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = utils.append_uri(DnsClient.VERSION_V1, DnsClient.CONSTANT_DNS, DnsClient.CONSTANT_ZONE)
-        headers = None
-        params = {}
-        if request.client_token is not None:
-            params['clientToken'] = request.client_token
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(
-            http_methods.POST, path=path, body=request.to_json_string(), params=params, config=merged_config
-        )
 
     def add_line_group(self, request, config=None):
         """
@@ -94,9 +69,36 @@ class DnsClient(BceBaseClient):
             http_methods.POST, path=path, body=request.to_json_string(), params=params, config=merged_config
         )
 
-    def add_parsing_records(self, request, config=None):
+    def create_paid_zone(self, request, config=None):
         """
-        add_parsing_records
+        create_paid_zone
+
+        :param request: Request entity containing all parameters
+        :type request: DnsClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            DnsClient.VERSION_V1, DnsClient.CONSTANT_DNS, DnsClient.CONSTANT_ZONE, DnsClient.CONSTANT_ORDER
+        )
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
+    def create_record(self, request, config=None):
+        """
+        create_record
 
         :param request: Request entity containing all parameters
         :type request: DnsClientRequest
@@ -116,6 +118,31 @@ class DnsClient(BceBaseClient):
             request.zone_name,
             DnsClient.CONSTANT_RECORD,
         )
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
+    def create_zone(self, request, config=None):
+        """
+        create_zone
+
+        :param request: Request entity containing all parameters
+        :type request: DnsClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(DnsClient.VERSION_V1, DnsClient.CONSTANT_DNS, DnsClient.CONSTANT_ZONE)
         headers = None
         params = {}
         if request.client_token is not None:
@@ -150,9 +177,9 @@ class DnsClient(BceBaseClient):
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
 
-    def delete_parsing_records(self, request, config=None):
+    def delete_record(self, request, config=None):
         """
-        delete_parsing_records
+        delete_record
 
         :param request: Request entity containing all parameters
         :type request: DnsClientRequest
@@ -180,9 +207,9 @@ class DnsClient(BceBaseClient):
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
 
-    def domain_name_renewal(self, request, config=None):
+    def delete_zone(self, request, config=None):
         """
-        domain_name_renewal
+        delete_zone
 
         :param request: Request entity containing all parameters
         :type request: DnsClientRequest
@@ -196,123 +223,53 @@ class DnsClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(
-            DnsClient.VERSION_V1,
-            DnsClient.CONSTANT_DNS,
-            DnsClient.CONSTANT_ZONE,
-            DnsClient.CONSTANT_ORDER,
-            request.name,
+            DnsClient.VERSION_V1, DnsClient.CONSTANT_DNS, DnsClient.CONSTANT_ZONE, request.zone_name
         )
         headers = None
         params = {}
-        params[request.action] = None
         if request.client_token is not None:
             params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
+
+    def list_line_group(self, request, config=None):
+        """
+        list_line_group
+
+        :param request: Request entity containing all parameters
+        :type request: DnsClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing ListLineGroupResponse data
+        :rtype: ListLineGroupResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(DnsClient.VERSION_V1, DnsClient.CONSTANT_DNS, DnsClient.CONSTANT_CUSTOMLINE)
+        headers = None
+        params = {}
+        if request.marker is not None:
+            params['marker'] = request.marker
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+            http_methods.GET, path=path, params=params, config=merged_config, model=ListLineGroupResponse
         )
 
-    def modify_parsing_records(self, request, config=None):
+    def list_record(self, request, config=None):
         """
-        modify_parsing_records
+        list_record
 
         :param request: Request entity containing all parameters
         :type request: DnsClientRequest
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = utils.append_uri(
-            DnsClient.VERSION_V1,
-            DnsClient.CONSTANT_DNS,
-            DnsClient.CONSTANT_ZONE,
-            request.zone_name,
-            DnsClient.CONSTANT_RECORD,
-            request.record_id,
-        )
-        headers = None
-        params = {}
-        if request.client_token is not None:
-            params['clientToken'] = request.client_token
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(
-            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
-        )
-
-    def modify_the_parsing_record_status(self, request, config=None):
-        """
-        modify_the_parsing_record_status
-
-        :param request: Request entity containing all parameters
-        :type request: DnsClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = utils.append_uri(
-            DnsClient.VERSION_V1,
-            DnsClient.CONSTANT_DNS,
-            DnsClient.CONSTANT_ZONE,
-            request.zone_name,
-            DnsClient.CONSTANT_RECORD,
-            request.record_id,
-        )
-        headers = None
-        params = {}
-        params[request.action] = None
-        if request.client_token is not None:
-            params['clientToken'] = request.client_token
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.PUT, path=path, params=params, config=merged_config)
-
-    def purchase_a_paid_domain_name(self, request, config=None):
-        """
-        purchase_a_paid_domain_name
-
-        :param request: Request entity containing all parameters
-        :type request: DnsClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = utils.append_uri(
-            DnsClient.VERSION_V1, DnsClient.CONSTANT_DNS, DnsClient.CONSTANT_ZONE, DnsClient.CONSTANT_ORDER
-        )
-        headers = None
-        params = {}
-        if request.client_token is not None:
-            params['clientToken'] = request.client_token
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(
-            http_methods.POST, path=path, body=request.to_json_string(), params=params, config=merged_config
-        )
-
-    def query_and_parse_record_list(self, request, config=None):
-        """
-        query_and_parse_record_list
-
-        :param request: Request entity containing all parameters
-        :type request: DnsClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response containing QueryAndParseRecordListResponse data
-        :rtype: QueryAndParseRecordListResponse
+        :return: API response containing ListRecordResponse data
+        :rtype: ListRecordResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -336,20 +293,20 @@ class DnsClient(BceBaseClient):
             params['maxKeys'] = request.max_keys
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.GET, path=path, params=params, config=merged_config, model=QueryAndParseRecordListResponse
+            http_methods.GET, path=path, params=params, config=merged_config, model=ListRecordResponse
         )
 
-    def query_domain_name_list(self, request, config=None):
+    def list_zone(self, request, config=None):
         """
-        query_domain_name_list
+        list_zone
 
         :param request: Request entity containing all parameters
         :type request: DnsClientRequest
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response containing QueryDomainNameListResponse data
-        :rtype: QueryDomainNameListResponse
+        :return: API response containing ListZoneResponse data
+        :rtype: ListZoneResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -365,39 +322,12 @@ class DnsClient(BceBaseClient):
             params['maxKeys'] = request.max_keys
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.GET, path=path, params=params, config=merged_config, model=QueryDomainNameListResponse
+            http_methods.GET, path=path, params=params, config=merged_config, model=ListZoneResponse
         )
 
-    def query_the_list_of_line_groups(self, request, config=None):
+    def renew_zone(self, request, config=None):
         """
-        query_the_list_of_line_groups
-
-        :param request: Request entity containing all parameters
-        :type request: DnsClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response containing QueryTheListOfLineGroupsResponse data
-        :rtype: QueryTheListOfLineGroupsResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = utils.append_uri(DnsClient.VERSION_V1, DnsClient.CONSTANT_DNS, DnsClient.CONSTANT_CUSTOMLINE)
-        headers = None
-        params = {}
-        if request.marker is not None:
-            params['marker'] = request.marker
-        if request.max_keys is not None:
-            params['maxKeys'] = request.max_keys
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(
-            http_methods.GET, path=path, params=params, config=merged_config, model=QueryTheListOfLineGroupsResponse
-        )
-
-    def remove_domain_name(self, request, config=None):
-        """
-        remove_domain_name
+        renew_zone
 
         :param request: Request entity containing all parameters
         :type request: DnsClientRequest
@@ -411,14 +341,23 @@ class DnsClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(
-            DnsClient.VERSION_V1, DnsClient.CONSTANT_DNS, DnsClient.CONSTANT_ZONE, request.zone_name
+            DnsClient.VERSION_V1,
+            DnsClient.CONSTANT_DNS,
+            DnsClient.CONSTANT_ZONE,
+            DnsClient.CONSTANT_ORDER,
+            request.name,
         )
         headers = None
         params = {}
+        params['purchaseReserved'] = None
+        if request.action is not None:
+            params['action'] = request.action
         if request.client_token is not None:
             params['clientToken'] = request.client_token
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
 
     def update_line_group(self, request, config=None):
         """
@@ -447,9 +386,103 @@ class DnsClient(BceBaseClient):
             http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
         )
 
-    def upgrade_the_free_domain_name_to_the_universal_version(self, request, config=None):
+    def update_record(self, request, config=None):
         """
-        upgrade_the_free_domain_name_to_the_universal_version
+        update_record
+
+        :param request: Request entity containing all parameters
+        :type request: DnsClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            DnsClient.VERSION_V1,
+            DnsClient.CONSTANT_DNS,
+            DnsClient.CONSTANT_ZONE,
+            request.zone_name,
+            DnsClient.CONSTANT_RECORD,
+            request.record_id,
+        )
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
+    def update_record_disable(self, request, config=None):
+        """
+        update_record_disable
+
+        :param request: Request entity containing all parameters
+        :type request: DnsClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            DnsClient.VERSION_V1,
+            DnsClient.CONSTANT_DNS,
+            DnsClient.CONSTANT_ZONE,
+            request.zone_name,
+            DnsClient.CONSTANT_RECORD,
+            request.record_id,
+        )
+        headers = None
+        params = {}
+        params['disable'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.PUT, path=path, params=params, config=merged_config)
+
+    def update_record_enable(self, request, config=None):
+        """
+        update_record_enable
+
+        :param request: Request entity containing all parameters
+        :type request: DnsClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            DnsClient.VERSION_V1,
+            DnsClient.CONSTANT_DNS,
+            DnsClient.CONSTANT_ZONE,
+            request.zone_name,
+            DnsClient.CONSTANT_RECORD,
+            request.record_id,
+        )
+        headers = None
+        params = {}
+        params['enable'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.PUT, path=path, params=params, config=merged_config)
+
+    def upgrade_zone(self, request, config=None):
+        """
+        upgrade_zone
 
         :param request: Request entity containing all parameters
         :type request: DnsClientRequest
@@ -467,7 +500,9 @@ class DnsClient(BceBaseClient):
         )
         headers = None
         params = {}
-        params[request.action] = None
+        params['upgradeToDiscount'] = None
+        if request.action is not None:
+            params['action'] = request.action
         if request.client_token is not None:
             params['clientToken'] = request.client_token
         merged_config = self._create_request_with_host(request, config)

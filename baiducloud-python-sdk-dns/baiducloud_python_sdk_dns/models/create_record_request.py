@@ -1,13 +1,13 @@
 """
-Request entity for AddParsingRecordsRequest information.
+Request entity for CreateRecordRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class AddParsingRecordsRequest(AbstractModel):
+class CreateRecordRequest(AbstractModel):
     """
-    Request entity for AddParsingRecordsRequest operation.
+    Request entity for CreateRecordRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
@@ -16,7 +16,7 @@ class AddParsingRecordsRequest(AbstractModel):
         self, zone_name, rr, type, value, client_token=None, ttl=None, line=None, description=None, priority=None
     ):
         """
-        Initialize AddParsingRecordsRequest request entity.
+        Initialize CreateRecordRequest request entity.
 
         :param zone_name: zone_name parameter
         :type zone_name: str (required)
@@ -95,7 +95,7 @@ class AddParsingRecordsRequest(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: AddParsingRecordsRequest
+        :rtype: CreateRecordRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails

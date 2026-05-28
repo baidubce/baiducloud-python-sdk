@@ -1,19 +1,19 @@
 """
-Request entity for QueryDomainNameListResponse information.
+Request entity for ListLineGroupResponse information.
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
-from baiducloud_python_sdk_dns.models.public_zone import PublicZone
+from baiducloud_python_sdk_dns.models.line import Line
 
 
-class QueryDomainNameListResponse(BceResponse):
+class ListLineGroupResponse(BceResponse):
     """
-    QueryDomainNameListResponse
+    ListLineGroupResponse
     """
 
-    def __init__(self, marker=None, is_truncated=None, next_marker=None, max_keys=None, zones=None):
+    def __init__(self, marker=None, is_truncated=None, next_marker=None, max_keys=None, line_list=None):
         """
-        Initialize QueryDomainNameListResponse response.
+        Initialize ListLineGroupResponse response.
 
         :param marker: 标记查询的起始位置。
         :type marker: str (optional)
@@ -21,21 +21,21 @@ class QueryDomainNameListResponse(BceResponse):
         :param is_truncated: true表示后面还有数据，false表示已经是最后一页。
         :type is_truncated: bool (optional)
 
-        :param next_marker: 获取下一页所需要传递的marker值。当isTruncated为false时，该域不出现。
+        :param next_marker: 获取下一页所需要传递的marker值，当isTruncated为false时，该域不出现。
         :type next_marker: str (optional)
 
         :param max_keys: 每页包含的最大数量。
         :type max_keys: int (optional)
 
-        :param zones: 包含查询结果的域名列表。
-        :type zones: List[PublicZone] (optional)
+        :param line_list: 包含查询结果的线路组列表。
+        :type line_list: List[Line] (optional)
         """
         super().__init__()
         self.marker = marker
         self.is_truncated = is_truncated
         self.next_marker = next_marker
         self.max_keys = max_keys
-        self.zones = zones
+        self.line_list = line_list
 
     def to_dict(self):
         """
@@ -61,8 +61,8 @@ class QueryDomainNameListResponse(BceResponse):
             result['nextMarker'] = self.next_marker
         if self.max_keys is not None:
             result['maxKeys'] = self.max_keys
-        if self.zones is not None:
-            result['zones'] = [i.to_dict() for i in self.zones]
+        if self.line_list is not None:
+            result['lineList'] = [i.to_dict() for i in self.line_list]
         return result
 
     def from_dict(self, m):
@@ -75,7 +75,7 @@ class QueryDomainNameListResponse(BceResponse):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: QueryDomainNameListResponse
+        :rtype: ListLineGroupResponse
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
@@ -89,6 +89,6 @@ class QueryDomainNameListResponse(BceResponse):
             self.next_marker = m.get('nextMarker')
         if m.get('maxKeys') is not None:
             self.max_keys = m.get('maxKeys')
-        if m.get('zones') is not None:
-            self.zones = [PublicZone().from_dict(i) for i in m.get('zones')]
+        if m.get('lineList') is not None:
+            self.line_list = [Line().from_dict(i) for i in m.get('lineList')]
         return self

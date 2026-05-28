@@ -1,5 +1,5 @@
 """
-Example for dns add_domain_name method.
+Example for dns create_record method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -18,8 +18,10 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = DnsClient(config)
-        request = dns_models.AddDomainNameRequest(name="pythontest.com", client_token="")
-        res = client.add_domain_name(request)
+        request = dns_models.CreateRecordRequest(
+            zone_name="", rr="", type="", value="", client_token="", ttl=0, line="", description="", priority=0
+        )
+        res = client.create_record(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。

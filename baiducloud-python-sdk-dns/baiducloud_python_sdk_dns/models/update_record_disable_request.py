@@ -1,39 +1,34 @@
 """
-Request entity for DomainNameRenewalRequest information.
+Request entity for UpdateRecordDisableRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
-from baiducloud_python_sdk_dns.models.billing_for_renew import BillingForRenew
 
 
-class DomainNameRenewalRequest(AbstractModel):
+class UpdateRecordDisableRequest(AbstractModel):
     """
-    Request entity for DomainNameRenewalRequest operation.
+    Request entity for UpdateRecordDisableRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, name, action, billing, client_token=None):
+    def __init__(self, zone_name, record_id, client_token=None):
         """
-        Initialize DomainNameRenewalRequest request entity.
+        Initialize UpdateRecordDisableRequest request entity.
 
-        :param name: name parameter
-        :type name: str (required)
+        :param zone_name: zone_name parameter
+        :type zone_name: str (required)
 
-        :param action: action parameter
-        :type action: str (required)
+        :param record_id: record_id parameter
+        :type record_id: str (required)
 
         :param client_token: client_token parameter
         :type client_token: str (optional)
-
-        :param billing: 计费信息。
-        :type billing: BillingForRenew (required)
         """
         super().__init__()
-        self.name = name
-        self.action = action
+        self.zone_name = zone_name
+        self.record_id = record_id
         self.client_token = client_token
-        self.billing = billing
 
     def to_dict(self):
         """
@@ -48,8 +43,6 @@ class DomainNameRenewalRequest(AbstractModel):
         if _map is not None:
             return _map
         result = dict()
-        if self.billing is not None:
-            result['billing'] = self.billing.to_dict()
         return result
 
     def from_dict(self, m):
@@ -62,18 +55,16 @@ class DomainNameRenewalRequest(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: DomainNameRenewalRequest
+        :rtype: UpdateRecordDisableRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('name') is not None:
-            self.name = m.get('name')
-        if m.get('action') is not None:
-            self.action = m.get('action')
+        if m.get('zoneName') is not None:
+            self.zone_name = m.get('zoneName')
+        if m.get('recordId') is not None:
+            self.record_id = m.get('recordId')
         if m.get('clientToken') is not None:
             self.client_token = m.get('clientToken')
-        if m.get('billing') is not None:
-            self.billing = BillingForRenew().from_dict(m.get('billing'))
         return self

@@ -1,5 +1,5 @@
 """
-Example for dns delete_parsing_records method.
+Example for dns list_record method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -18,9 +18,8 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = DnsClient(config)
-        request = dns_models.DeleteParsingRecordsRequest(zone_name="pythontest.com",
-                                                         record_id="463554", client_token="")
-        res = client.delete_parsing_records(request)
+        request = dns_models.ListRecordRequest(zone_name="", rr="", id="", marker="", max_keys=0)
+        res = client.list_record(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。

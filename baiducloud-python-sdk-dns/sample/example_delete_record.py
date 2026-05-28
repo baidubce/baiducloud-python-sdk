@@ -1,5 +1,5 @@
 """
-Example for dns query_the_list_of_line_groups method.
+Example for dns delete_record method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -18,8 +18,8 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = DnsClient(config)
-        request = dns_models.QueryTheListOfLineGroupsRequest(marker="", max_keys=10)
-        res = client.query_the_list_of_line_groups(request)
+        request = dns_models.DeleteRecordRequest(zone_name="", record_id="", client_token="")
+        res = client.delete_record(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。
