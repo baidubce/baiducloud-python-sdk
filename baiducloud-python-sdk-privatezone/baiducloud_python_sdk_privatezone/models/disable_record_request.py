@@ -12,7 +12,7 @@ class DisableRecordRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, record_id, action, client_token=None):
+    def __init__(self, record_id, client_token=None):
         """
         Initialize DisableRecordRequest request entity.
 
@@ -21,14 +21,10 @@ class DisableRecordRequest(AbstractModel):
 
         :param client_token: client_token parameter
         :type client_token: str (optional)
-
-        :param action: action parameter
-        :type action: str (required)
         """
         super().__init__()
         self.record_id = record_id
         self.client_token = client_token
-        self.action = action
 
     def to_dict(self):
         """
@@ -65,6 +61,4 @@ class DisableRecordRequest(AbstractModel):
             self.record_id = m.get('recordId')
         if m.get('clientToken') is not None:
             self.client_token = m.get('clientToken')
-        if m.get('action') is not None:
-            self.action = m.get('action')
         return self

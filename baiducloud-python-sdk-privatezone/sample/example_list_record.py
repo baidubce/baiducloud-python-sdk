@@ -19,7 +19,7 @@ if __name__ == '__main__':
         )
         client = PrivatezoneClient(config)
         request = privatezone_models.ListRecordRequest(
-            zone_id="zone-3k8dt2sy97u5", marker="", max_keys=10, rr="", search_mode="", type="", value=""
+            zone_id="", marker="", max_keys=0, rr="", search_mode="", type="", value=""
         )
         res = client.list_record(request)
         print(res.to_json_string())

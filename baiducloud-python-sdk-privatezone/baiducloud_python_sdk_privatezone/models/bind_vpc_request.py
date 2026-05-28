@@ -12,15 +12,12 @@ class BindVpcRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, zone_id, action, region, vpc_ids, client_token=None):
+    def __init__(self, zone_id, region, vpc_ids, client_token=None):
         """
         Initialize BindVpcRequest request entity.
 
         :param zone_id: zone_id parameter
         :type zone_id: str (required)
-
-        :param action: action parameter
-        :type action: str (required)
 
         :param client_token: client_token parameter
         :type client_token: str (optional)
@@ -33,7 +30,6 @@ class BindVpcRequest(AbstractModel):
         """
         super().__init__()
         self.zone_id = zone_id
-        self.action = action
         self.client_token = client_token
         self.region = region
         self.vpc_ids = vpc_ids
@@ -75,8 +71,6 @@ class BindVpcRequest(AbstractModel):
         m = m or dict()
         if m.get('zoneId') is not None:
             self.zone_id = m.get('zoneId')
-        if m.get('action') is not None:
-            self.action = m.get('action')
         if m.get('clientToken') is not None:
             self.client_token = m.get('clientToken')
         if m.get('region') is not None:

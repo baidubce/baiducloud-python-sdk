@@ -93,7 +93,7 @@ class PrivatezoneClient(BceBaseClient):
         path = utils.append_uri(PrivatezoneClient.VERSION_V1, PrivatezoneClient.CONSTANT_PRIVATEZONE, request.zone_id)
         headers = None
         params = {}
-        params[request.action] = None
+        params['bind'] = None
         if request.client_token is not None:
             params['clientToken'] = request.client_token
         merged_config = self._create_request_with_host(request, config)
@@ -206,8 +206,6 @@ class PrivatezoneClient(BceBaseClient):
         headers = None
         params = {}
         params['disable'] = None
-        if request.action is not None:
-            params['action'] = request.action
         if request.client_token is not None:
             params['clientToken'] = request.client_token
         merged_config = self._create_request_with_host(request, config)

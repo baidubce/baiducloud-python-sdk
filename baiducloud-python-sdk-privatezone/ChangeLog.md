@@ -1,3 +1,7 @@
+2026-05-28 Version: 0.0.3
+- 涉及产品: PRIVATEZONE，disableRecord接口删除query.action字段
+- 涉及产品: PRIVATEZONE，bindVpc接口删除query.action字段
+
 2026-05-27 Version: 0.0.2
 - 涉及产品: PRIVATEZONE，新增disableRecord暂停解析记录能力
 
