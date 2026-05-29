@@ -58,6 +58,15 @@ class BlbClientTest(unittest.TestCase):
     def test_create_app_blb_https_listener(self):
         self.client.create_app_blb_https_listener(blb_models.CreateAppBlbHttpsListenerRequest())
 
+    def test_create_app_blb_ip_group(self):
+        self.client.create_app_blb_ip_group(blb_models.CreateAppBlbIpGroupRequest())
+
+    def test_create_app_blb_ip_group_member(self):
+        self.client.create_app_blb_ip_group_member(blb_models.CreateAppBlbIpGroupMemberRequest())
+
+    def test_create_app_blb_ip_group_protocol(self):
+        self.client.create_app_blb_ip_group_protocol(blb_models.CreateAppBlbIpGroupProtocolRequest())
+
     def test_create_app_blb_policy(self):
         self.client.create_app_blb_policy(blb_models.CreateAppBlbPolicyRequest())
 
@@ -94,6 +103,15 @@ class BlbClientTest(unittest.TestCase):
     def test_create_blb_udp_listener(self):
         self.client.create_blb_udp_listener(blb_models.CreateBlbUdpListenerRequest())
 
+    def test_delete_app_blb_ip_group(self):
+        self.client.delete_app_blb_ip_group(blb_models.DeleteAppBlbIpGroupRequest())
+
+    def test_delete_app_blb_ip_group_member(self):
+        self.client.delete_app_blb_ip_group_member(blb_models.DeleteAppBlbIpGroupMemberRequest())
+
+    def test_delete_app_blb_ip_group_protocol(self):
+        self.client.delete_app_blb_ip_group_protocol(blb_models.DeleteAppBlbIpGroupProtocolRequest())
+
     def test_delete_app_blb_listener(self):
         self.client.delete_app_blb_listener(blb_models.DeleteAppBlbListenerRequest())
 
@@ -123,6 +141,12 @@ class BlbClientTest(unittest.TestCase):
 
     def test_describe_app_blb_https_listener(self):
         self.client.describe_app_blb_https_listener(blb_models.DescribeAppBlbHttpsListenerRequest())
+
+    def test_describe_app_blb_ip_group(self):
+        self.client.describe_app_blb_ip_group(blb_models.DescribeAppBlbIpGroupRequest())
+
+    def test_describe_app_blb_ip_group_member(self):
+        self.client.describe_app_blb_ip_group_member(blb_models.DescribeAppBlbIpGroupMemberRequest())
 
     def test_describe_app_blb_listener(self):
         self.client.describe_app_blb_listener(blb_models.DescribeAppBlbListenerRequest())
@@ -217,6 +241,15 @@ class BlbClientTest(unittest.TestCase):
     def test_update_app_blb_https_listener(self):
         self.client.update_app_blb_https_listener(blb_models.UpdateAppBlbHttpsListenerRequest())
 
+    def test_update_app_blb_ip_group(self):
+        self.client.update_app_blb_ip_group(blb_models.UpdateAppBlbIpGroupRequest())
+
+    def test_update_app_blb_ip_group_member(self):
+        self.client.update_app_blb_ip_group_member(blb_models.UpdateAppBlbIpGroupMemberRequest())
+
+    def test_update_app_blb_ip_group_protocol(self):
+        self.client.update_app_blb_ip_group_protocol(blb_models.UpdateAppBlbIpGroupProtocolRequest())
+
     def test_update_app_blb_policy(self):
         self.client.update_app_blb_policy(blb_models.UpdateAppBlbPolicyRequest())
 
@@ -279,6 +312,9 @@ if __name__ == '__main__':
     suite.addTest(BlbClientTest("test_create_app_blb"))
     suite.addTest(BlbClientTest("test_create_app_blb_http_listener"))
     suite.addTest(BlbClientTest("test_create_app_blb_https_listener"))
+    suite.addTest(BlbClientTest("test_create_app_blb_ip_group"))
+    suite.addTest(BlbClientTest("test_create_app_blb_ip_group_member"))
+    suite.addTest(BlbClientTest("test_create_app_blb_ip_group_protocol"))
     suite.addTest(BlbClientTest("test_create_app_blb_policy"))
     suite.addTest(BlbClientTest("test_create_app_blb_server_group"))
     suite.addTest(BlbClientTest("test_create_app_blb_server_group_port"))
@@ -291,6 +327,9 @@ if __name__ == '__main__':
     suite.addTest(BlbClientTest("test_create_blb_ssl_listener"))
     suite.addTest(BlbClientTest("test_create_blb_tcp_listener"))
     suite.addTest(BlbClientTest("test_create_blb_udp_listener"))
+    suite.addTest(BlbClientTest("test_delete_app_blb_ip_group"))
+    suite.addTest(BlbClientTest("test_delete_app_blb_ip_group_member"))
+    suite.addTest(BlbClientTest("test_delete_app_blb_ip_group_protocol"))
     suite.addTest(BlbClientTest("test_delete_app_blb_listener"))
     suite.addTest(BlbClientTest("test_delete_app_blb_policy"))
     suite.addTest(BlbClientTest("test_delete_app_blb_server_group"))
@@ -301,6 +340,8 @@ if __name__ == '__main__':
     suite.addTest(BlbClientTest("test_describe_app_blb"))
     suite.addTest(BlbClientTest("test_describe_app_blb_http_listener"))
     suite.addTest(BlbClientTest("test_describe_app_blb_https_listener"))
+    suite.addTest(BlbClientTest("test_describe_app_blb_ip_group"))
+    suite.addTest(BlbClientTest("test_describe_app_blb_ip_group_member"))
     suite.addTest(BlbClientTest("test_describe_app_blb_listener"))
     suite.addTest(BlbClientTest("test_describe_app_blb_policy"))
     suite.addTest(BlbClientTest("test_describe_app_blb_server_group"))
@@ -332,6 +373,9 @@ if __name__ == '__main__':
     suite.addTest(BlbClientTest("test_update_app_blb"))
     suite.addTest(BlbClientTest("test_update_app_blb_http_listener"))
     suite.addTest(BlbClientTest("test_update_app_blb_https_listener"))
+    suite.addTest(BlbClientTest("test_update_app_blb_ip_group"))
+    suite.addTest(BlbClientTest("test_update_app_blb_ip_group_member"))
+    suite.addTest(BlbClientTest("test_update_app_blb_ip_group_protocol"))
     suite.addTest(BlbClientTest("test_update_app_blb_policy"))
     suite.addTest(BlbClientTest("test_update_app_blb_server_group"))
     suite.addTest(BlbClientTest("test_update_app_blb_server_group_port"))

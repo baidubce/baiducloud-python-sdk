@@ -15,6 +15,7 @@ from baiducloud_python_sdk_blb.models.billing_change_post_to_pre_blb_response im
 from baiducloud_python_sdk_blb.models.billing_change_pre_to_post_blb_response import BillingChangePreToPostBlbResponse
 from baiducloud_python_sdk_blb.models.blb_inquiry_response import BlbInquiryResponse
 from baiducloud_python_sdk_blb.models.create_app_blb_response import CreateAppBlbResponse
+from baiducloud_python_sdk_blb.models.create_app_blb_ip_group_response import CreateAppBlbIpGroupResponse
 from baiducloud_python_sdk_blb.models.create_app_blb_server_group_response import CreateAppBlbServerGroupResponse
 from baiducloud_python_sdk_blb.models.create_app_blb_server_group_port_response import (
     CreateAppBlbServerGroupPortResponse,
@@ -24,6 +25,10 @@ from baiducloud_python_sdk_blb.models.describe_app_blb_response import DescribeA
 from baiducloud_python_sdk_blb.models.describe_app_blb_http_listener_response import DescribeAppBlbHttpListenerResponse
 from baiducloud_python_sdk_blb.models.describe_app_blb_https_listener_response import (
     DescribeAppBlbHttpsListenerResponse,
+)
+from baiducloud_python_sdk_blb.models.describe_app_blb_ip_group_response import DescribeAppBlbIpGroupResponse
+from baiducloud_python_sdk_blb.models.describe_app_blb_ip_group_member_response import (
+    DescribeAppBlbIpGroupMemberResponse,
 )
 from baiducloud_python_sdk_blb.models.describe_app_blb_listener_response import DescribeAppBlbListenerResponse
 from baiducloud_python_sdk_blb.models.describe_app_blb_policy_response import DescribeAppBlbPolicyResponse
@@ -73,9 +78,11 @@ class BlbClient(BceBaseClient):
 
     CONSTANT_ENTERPRISE = b'enterprise'
 
-    CONSTANT_S_S_LLISTENER = b'SSLlistener'
-
     CONSTANT_APPBLB = b'appblb'
+
+    CONSTANT_IPGROUP = b'ipgroup'
+
+    CONSTANT_S_S_LLISTENER = b'SSLlistener'
 
     CONSTANT_APPSERVERGROUP = b'appservergroup'
 
@@ -84,6 +91,8 @@ class BlbClient(BceBaseClient):
     CONSTANT_H_T_T_PLISTENER = b'HTTPlistener'
 
     CONSTANT_BACKENDSERVER = b'backendserver'
+
+    CONSTANT_MEMBER = b'member'
 
     CONSTANT_CHARGE = b'charge'
 
@@ -94,6 +103,8 @@ class BlbClient(BceBaseClient):
     CONSTANT_BLBRS = b'blbrs'
 
     CONSTANT_U_D_PLISTENER = b'UDPlistener'
+
+    CONSTANT_BACKENDPOLICY = b'backendpolicy'
 
     CONSTANT_APPSERVERGROUPPORT = b'appservergroupport'
 
@@ -432,6 +443,100 @@ class BlbClient(BceBaseClient):
             http_methods.POST, path=path, body=request.to_json_string(), params=params, config=merged_config
         )
 
+    def create_app_blb_ip_group(self, request, config=None):
+        """
+        create_app_blb_ip_group
+
+        :param request: Request entity containing all parameters
+        :type request: BlbClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing CreateAppBlbIpGroupResponse data
+        :rtype: CreateAppBlbIpGroupResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            BlbClient.VERSION_V1, BlbClient.CONSTANT_APPBLB, request.blb_id, BlbClient.CONSTANT_IPGROUP
+        )
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=CreateAppBlbIpGroupResponse,
+        )
+
+    def create_app_blb_ip_group_member(self, request, config=None):
+        """
+        create_app_blb_ip_group_member
+
+        :param request: Request entity containing all parameters
+        :type request: BlbClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            BlbClient.VERSION_V1,
+            BlbClient.CONSTANT_APPBLB,
+            request.blb_id,
+            BlbClient.CONSTANT_IPGROUP,
+            BlbClient.CONSTANT_MEMBER,
+        )
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
+    def create_app_blb_ip_group_protocol(self, request, config=None):
+        """
+        create_app_blb_ip_group_protocol
+
+        :param request: Request entity containing all parameters
+        :type request: BlbClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            BlbClient.VERSION_V1,
+            BlbClient.CONSTANT_APPBLB,
+            request.blb_id,
+            BlbClient.CONSTANT_IPGROUP,
+            BlbClient.CONSTANT_BACKENDPOLICY,
+        )
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
     def create_app_blb_policy(self, request, config=None):
         """
         create_app_blb_policy
@@ -759,6 +864,98 @@ class BlbClient(BceBaseClient):
             http_methods.POST, path=path, body=request.to_json_string(), params=params, config=merged_config
         )
 
+    def delete_app_blb_ip_group(self, request, config=None):
+        """
+        delete_app_blb_ip_group
+
+        :param request: Request entity containing all parameters
+        :type request: BlbClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            BlbClient.VERSION_V1, BlbClient.CONSTANT_APPBLB, request.blb_id, BlbClient.CONSTANT_IPGROUP
+        )
+        headers = None
+        params = {}
+        params['delete'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
+    def delete_app_blb_ip_group_member(self, request, config=None):
+        """
+        delete_app_blb_ip_group_member
+
+        :param request: Request entity containing all parameters
+        :type request: BlbClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            BlbClient.VERSION_V1,
+            BlbClient.CONSTANT_APPBLB,
+            request.blb_id,
+            BlbClient.CONSTANT_IPGROUP,
+            BlbClient.CONSTANT_MEMBER,
+        )
+        headers = None
+        params = {}
+        params['delete'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
+    def delete_app_blb_ip_group_protocol(self, request, config=None):
+        """
+        delete_app_blb_ip_group_protocol
+
+        :param request: Request entity containing all parameters
+        :type request: BlbClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            BlbClient.VERSION_V1,
+            BlbClient.CONSTANT_APPBLB,
+            request.blb_id,
+            BlbClient.CONSTANT_IPGROUP,
+            BlbClient.CONSTANT_BACKENDPOLICY,
+        )
+        headers = None
+        params = {}
+        params['delete'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
     def delete_app_blb_listener(self, request, config=None):
         """
         delete_app_blb_listener
@@ -1034,6 +1231,74 @@ class BlbClient(BceBaseClient):
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.GET, path=path, params=params, config=merged_config, model=DescribeAppBlbHttpsListenerResponse
+        )
+
+    def describe_app_blb_ip_group(self, request, config=None):
+        """
+        describe_app_blb_ip_group
+
+        :param request: Request entity containing all parameters
+        :type request: BlbClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DescribeAppBlbIpGroupResponse data
+        :rtype: DescribeAppBlbIpGroupResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            BlbClient.VERSION_V1, BlbClient.CONSTANT_APPBLB, request.blb_id, BlbClient.CONSTANT_IPGROUP
+        )
+        headers = None
+        params = {}
+        if request.name is not None:
+            params['name'] = request.name
+        if request.exactly_match is not None:
+            params['exactlyMatch'] = request.exactly_match
+        if request.marker is not None:
+            params['marker'] = request.marker
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.GET, path=path, params=params, config=merged_config, model=DescribeAppBlbIpGroupResponse
+        )
+
+    def describe_app_blb_ip_group_member(self, request, config=None):
+        """
+        describe_app_blb_ip_group_member
+
+        :param request: Request entity containing all parameters
+        :type request: BlbClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DescribeAppBlbIpGroupMemberResponse data
+        :rtype: DescribeAppBlbIpGroupMemberResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            BlbClient.VERSION_V1,
+            BlbClient.CONSTANT_APPBLB,
+            request.blb_id,
+            BlbClient.CONSTANT_IPGROUP,
+            BlbClient.CONSTANT_MEMBER,
+        )
+        headers = None
+        params = {}
+        if request.ip_group_id is not None:
+            params['ipGroupId'] = request.ip_group_id
+        if request.marker is not None:
+            params['marker'] = request.marker
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.GET, path=path, params=params, config=merged_config, model=DescribeAppBlbIpGroupMemberResponse
         )
 
     def describe_app_blb_listener(self, request, config=None):
@@ -1955,6 +2220,95 @@ class BlbClient(BceBaseClient):
             params['clientToken'] = request.client_token
         if request.listener_port is not None:
             params['listenerPort'] = request.listener_port
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
+    def update_app_blb_ip_group(self, request, config=None):
+        """
+        update_app_blb_ip_group
+
+        :param request: Request entity containing all parameters
+        :type request: BlbClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            BlbClient.VERSION_V1, BlbClient.CONSTANT_APPBLB, request.blb_id, BlbClient.CONSTANT_IPGROUP
+        )
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
+    def update_app_blb_ip_group_member(self, request, config=None):
+        """
+        update_app_blb_ip_group_member
+
+        :param request: Request entity containing all parameters
+        :type request: BlbClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            BlbClient.VERSION_V1,
+            BlbClient.CONSTANT_APPBLB,
+            request.blb_id,
+            BlbClient.CONSTANT_IPGROUP,
+            BlbClient.CONSTANT_MEMBER,
+        )
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
+    def update_app_blb_ip_group_protocol(self, request, config=None):
+        """
+        update_app_blb_ip_group_protocol
+
+        :param request: Request entity containing all parameters
+        :type request: BlbClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            BlbClient.VERSION_V1,
+            BlbClient.CONSTANT_APPBLB,
+            request.blb_id,
+            BlbClient.CONSTANT_IPGROUP,
+            BlbClient.CONSTANT_BACKENDPOLICY,
+        )
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
