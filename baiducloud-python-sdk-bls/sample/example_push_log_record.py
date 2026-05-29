@@ -1,12 +1,12 @@
 """
-Example for dns renew_zone method.
+Example for bls push_log_record method.
 """
 
 from baiducloud_python_sdk_core import exception
 from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
 from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
-from baiducloud_python_sdk_dns.api.dns_client import DnsClient
-from baiducloud_python_sdk_dns import models as dns_models
+from baiducloud_python_sdk_bls.api.bls_client import BlsClient
+from baiducloud_python_sdk_bls import models as bls_models
 
 if __name__ == '__main__':
     try:
@@ -17,12 +17,11 @@ if __name__ == '__main__':
         config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = DnsClient(config)
-
-        reservation = dns_models.Reservation(reservation_length=1)
-        billing = dns_models.BillingForRenew(reservation=reservation)
-        request = dns_models.RenewZoneRequest(name="", action="", billing=billing, client_token="")
-        res = client.renew_zone(request)
+        client = BlsClient(config)
+        request = bls_models.PushLogRecordRequest(
+            log_store_name="", log_records=[], project="", log_stream_name="", type="", tags=[]
+        )
+        res = client.push_log_record(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。
