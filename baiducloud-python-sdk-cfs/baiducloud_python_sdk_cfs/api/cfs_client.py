@@ -465,8 +465,6 @@ class CfsClient(BceBaseClient):
         headers = None
         params = {}
         params['tag'] = None
-        if request.tag is not None:
-            params['tag'] = request.tag
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.POST, path=path, body=request.to_json_string(), params=params, config=merged_config

@@ -18,7 +18,7 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = CfsClient(config)
-        request = cfs_models.UpdateFileSystemLabelsRequest(tag="", fs_id=[], tags=[])
+        request = cfs_models.UpdateFileSystemLabelsRequest(fs_id=[], tags=[])
         res = client.update_file_system_labels(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

@@ -13,12 +13,9 @@ class UpdateFileSystemLabelsRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, tag, fs_id, tags=None):
+    def __init__(self, fs_id, tags=None):
         """
         Initialize UpdateFileSystemLabelsRequest request entity.
-
-        :param tag: tag parameter
-        :type tag: str (required)
 
         :param fs_id: FileSystem ID 列表
         :type fs_id: List[str] (required)
@@ -27,7 +24,6 @@ class UpdateFileSystemLabelsRequest(AbstractModel):
         :type tags: List[Tag] (optional)
         """
         super().__init__()
-        self.tag = tag
         self.fs_id = fs_id
         self.tags = tags
 
@@ -66,8 +62,6 @@ class UpdateFileSystemLabelsRequest(AbstractModel):
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('tag') is not None:
-            self.tag = m.get('tag')
         if m.get('fsId') is not None:
             self.fs_id = m.get('fsId')
         if m.get('tags') is not None:
