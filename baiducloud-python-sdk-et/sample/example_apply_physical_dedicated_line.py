@@ -1,0 +1,48 @@
+"""
+Example for et apply_physical_dedicated_line method.
+"""
+
+from baiducloud_python_sdk_core import exception
+from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
+from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
+from baiducloud_python_sdk_et.api.et_client import EtClient
+from baiducloud_python_sdk_et import models as et_models
+
+if __name__ == '__main__':
+    try:
+        # 设置Client的Access Key ID和Secret Access Key，获取AKSK详见:https://cloud.baidu.com/doc/Reference/s/9jwvz2egb
+        access_key_id = ""
+        secret_access_key = ""
+        endpoint = ""
+        config = BceClientConfiguration(
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
+        )
+        client = EtClient(config)
+
+        reservation = et_models.Reservation(reservation_length=0, reservation_time_unit="")
+        billing = et_models.Billing(payment_timing="", reservation=reservation)
+        auto_renew = et_models.Reservation(reservation_length=0, reservation_time_unit="")
+        request = et_models.ApplyPhysicalDedicatedLineRequest(
+            name="",
+            isp="",
+            intf_type="",
+            ap_type="",
+            ap_addr="",
+            user_name="",
+            user_phone="",
+            user_email="",
+            user_idc="",
+            client_token="",
+            description="",
+            link_delay=0,
+            billing=billing,
+            auto_renew=auto_renew,
+            tags=[],
+        )
+        res = client.apply_physical_dedicated_line(request)
+        print(res.to_json_string())
+    except exception.BceHttpClientError as e:
+        # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。
+        print(e.last_error)
+        print(e.request_id)
+        print(e.code)
