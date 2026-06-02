@@ -25,11 +25,20 @@ class PfsClientTest(unittest.TestCase):
         """
         self.the_client = None
 
+    def test_create_fileset(self):
+        self.client.create_fileset(pfs_models.CreateFilesetRequest())
+
     def test_create_pfs(self):
         self.client.create_pfs(pfs_models.CreatePfsRequest())
 
+    def test_delete_fileset(self):
+        self.client.delete_fileset(pfs_models.DeleteFilesetRequest())
+
     def test_delete_pfs(self):
         self.client.delete_pfs(pfs_models.DeletePfsRequest())
+
+    def test_desc_fileset(self):
+        self.client.desc_fileset(pfs_models.DescFilesetRequest())
 
     def test_desc_pfs(self):
         self.client.desc_pfs(pfs_models.DescPfsRequest())
@@ -37,11 +46,17 @@ class PfsClientTest(unittest.TestCase):
     def test_instance_list_clients(self):
         self.client.instance_list_clients(pfs_models.InstanceListClientsRequest())
 
+    def test_list_fileset(self):
+        self.client.list_fileset(pfs_models.ListFilesetRequest())
+
     def test_list_pfs(self):
         self.client.list_pfs(pfs_models.ListPfsRequest())
 
     def test_mount_target_list_clients(self):
         self.client.mount_target_list_clients(pfs_models.MountTargetListClientsRequest())
+
+    def test_update_fileset(self):
+        self.client.update_fileset(pfs_models.UpdateFilesetRequest())
 
     def test_update_pfs_tag(self):
         self.client.update_pfs_tag(pfs_models.UpdatePFSTagRequest())
@@ -49,12 +64,17 @@ class PfsClientTest(unittest.TestCase):
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()
+    suite.addTest(PfsClientTest("test_create_fileset"))
     suite.addTest(PfsClientTest("test_create_pfs"))
+    suite.addTest(PfsClientTest("test_delete_fileset"))
     suite.addTest(PfsClientTest("test_delete_pfs"))
+    suite.addTest(PfsClientTest("test_desc_fileset"))
     suite.addTest(PfsClientTest("test_desc_pfs"))
     suite.addTest(PfsClientTest("test_instance_list_clients"))
+    suite.addTest(PfsClientTest("test_list_fileset"))
     suite.addTest(PfsClientTest("test_list_pfs"))
     suite.addTest(PfsClientTest("test_mount_target_list_clients"))
+    suite.addTest(PfsClientTest("test_update_fileset"))
     suite.addTest(PfsClientTest("test_update_pfs_tag"))
     runner = unittest.TextTestRunner()
     runner.run(suite)
