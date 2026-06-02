@@ -26,6 +26,7 @@ from .app_server_group import AppServerGroup
 from .app_server_group_port import AppServerGroupPort
 from .app_tcp_listener_model import AppTCPListenerModel
 from .app_udp_listener_model import AppUDPListenerModel
+from .associate_blb_model import AssociateBlbModel
 from .auth import Auth
 from .blb_model import BLBModel
 from .backend_server_model import BackendServerModel
@@ -36,6 +37,7 @@ from .billing_change_post_to_pre_blb_response import BillingChangePostToPreBlbRe
 from .billing_change_pre_to_post_blb_request import BillingChangePreToPostBlbRequest
 from .billing_change_pre_to_post_blb_response import BillingChangePreToPostBlbResponse
 from .billing_for_create import BillingForCreate
+from .billing_for_renew import BillingForRenew
 from .bind_blb_enterprise_security_group_request import BindBlbEnterpriseSecurityGroupRequest
 from .bind_blb_security_group_request import BindBlbSecurityGroupRequest
 from .bind_instance_to_service_request import BindInstanceToServiceRequest
@@ -46,6 +48,7 @@ from .blb_inquiry_response import BlbInquiryResponse
 from .blb_security_group_model import BlbSecurityGroupModel
 from .blb_security_group_rule_model import BlbSecurityGroupRuleModel
 from .blb_status import BlbStatus
+from .cluster_model import ClusterModel
 from .create_app_blb_http_listener_request import CreateAppBlbHttpListenerRequest
 from .create_app_blb_https_listener_request import CreateAppBlbHttpsListenerRequest
 from .create_app_blb_ip_group_member_request import CreateAppBlbIpGroupMemberRequest
@@ -71,6 +74,8 @@ from .create_blb_response import CreateBlbResponse
 from .create_blb_ssl_listener_request import CreateBlbSslListenerRequest
 from .create_blb_tcp_listener_request import CreateBlbTcpListenerRequest
 from .create_blb_udp_listener_request import CreateBlbUdpListenerRequest
+from .create_lbdc_request import CreateLbdcRequest
+from .create_lbdc_response import CreateLbdcResponse
 from .create_service_request import CreateServiceRequest
 from .create_service_response import CreateServiceResponse
 from .delete_app_blb_ip_group_member_request import DeleteAppBlbIpGroupMemberRequest
@@ -111,6 +116,9 @@ from .describe_blb_ssl_listener_response import DescribeBlbSslListenerResponse
 from .describe_blb_tcp_listener_response import DescribeBlbTcpListenerResponse
 from .describe_blb_udp_listener_response import DescribeBlbUdpListenerResponse
 from .describe_blbs_response import DescribeBlbsResponse
+from .describe_lbdc_blb_response import DescribeLbdcBlbResponse
+from .describe_lbdc_response import DescribeLbdcResponse
+from .describe_lbdcs_response import DescribeLbdcsResponse
 from .describe_service_response import DescribeServiceResponse
 from .describe_services_response import DescribeServicesResponse
 from .http_listener_model import HTTPListenerModel
@@ -119,6 +127,7 @@ from .listener_model import ListenerModel
 from .port_type_model import PortTypeModel
 from .price import Price
 from .related_endpoint import RelatedEndpoint
+from .renew_lbdc_request import RenewLbdcRequest
 from .reservation import Reservation
 from .reservation_for_create import ReservationForCreate
 from .resize_blb_request import ResizeBlbRequest
@@ -152,8 +161,10 @@ from .update_blb_server_request import UpdateBlbServerRequest
 from .update_blb_ssl_listener_request import UpdateBlbSslListenerRequest
 from .update_blb_tcp_listener_request import UpdateBlbTcpListenerRequest
 from .update_blb_udp_listener_request import UpdateBlbUdpListenerRequest
+from .update_lbdc_request import UpdateLbdcRequest
 from .update_service_auth_request import UpdateServiceAuthRequest
 from .update_service_request import UpdateServiceRequest
+from .upgrade_lbdc_request import UpgradeLbdcRequest
 from .describe_blb_security_groups_request import DescribeBlbSecurityGroupsRequest
 from .unbind_instance_from_service_request import UnbindInstanceFromServiceRequest
 from .describe_blb_https_listener_request import DescribeBlbHttpsListenerRequest
@@ -168,11 +179,14 @@ from .describe_blbs_request import DescribeBlbsRequest
 from .describe_app_blb_listener_request import DescribeAppBlbListenerRequest
 from .describe_app_blb_request import DescribeAppBlbRequest
 from .release_app_blb_request import ReleaseAppBlbRequest
+from .describe_lbdc_blb_request import DescribeLbdcBlbRequest
+from .describe_lbdc_request import DescribeLbdcRequest
 from .describe_blb_http_listener_request import DescribeBlbHttpListenerRequest
 from .describe_app_blb_ip_group_request import DescribeAppBlbIpGroupRequest
 from .describe_app_blb_ip_group_member_request import DescribeAppBlbIpGroupMemberRequest
 from .describe_app_blb_server_group_request import DescribeAppBlbServerGroupRequest
 from .delete_service_request import DeleteServiceRequest
+from .describe_lbdcs_request import DescribeLbdcsRequest
 from .describe_app_blb_tcp_listener_request import DescribeAppBlbTcpListenerRequest
 from .describe_blb_listener_request import DescribeBlbListenerRequest
 from .describe_blb_udp_listener_request import DescribeBlbUdpListenerRequest
