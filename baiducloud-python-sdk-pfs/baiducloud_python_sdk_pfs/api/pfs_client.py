@@ -13,7 +13,9 @@ from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import http_methods
 from baiducloud_python_sdk_pfs.models.create_pfs_response import CreatePfsResponse
 from baiducloud_python_sdk_pfs.models.desc_pfs_response import DescPfsResponse
+from baiducloud_python_sdk_pfs.models.instance_list_clients_response import InstanceListClientsResponse
 from baiducloud_python_sdk_pfs.models.list_pfs_response import ListPfsResponse
+from baiducloud_python_sdk_pfs.models.mount_target_list_clients_response import MountTargetListClientsResponse
 
 _logger = logging.getLogger(__name__)
 
@@ -22,8 +24,6 @@ class PfsClient(BceBaseClient):
     """
     pfs base sdk client
     """
-
-    VERSION_V1 = b'/v1'
 
     CONSTANT_V1 = b'v1'
 
@@ -112,6 +112,37 @@ class PfsClient(BceBaseClient):
             http_methods.GET, path=path, params=params, config=merged_config, model=DescPfsResponse
         )
 
+    def instance_list_clients(self, request, config=None):
+        """
+        instance_list_clients
+
+        :param request: Request entity containing all parameters
+        :type request: PfsClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing InstanceListClientsResponse data
+        :rtype: InstanceListClientsResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = {}
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'InstanceListClients'
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            headers=headers,
+            params=params,
+            config=merged_config,
+            model=InstanceListClientsResponse,
+        )
+
     def list_pfs(self, request, config=None):
         """
         list_pfs
@@ -140,6 +171,37 @@ class PfsClient(BceBaseClient):
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.GET, path=path, params=params, config=merged_config, model=ListPfsResponse
+        )
+
+    def mount_target_list_clients(self, request, config=None):
+        """
+        mount_target_list_clients
+
+        :param request: Request entity containing all parameters
+        :type request: PfsClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing MountTargetListClientsResponse data
+        :rtype: MountTargetListClientsResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = {}
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'MountTargetListClients'
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            headers=headers,
+            params=params,
+            config=merged_config,
+            model=MountTargetListClientsResponse,
         )
 
     def update_pfs_tag(self, request, config=None):

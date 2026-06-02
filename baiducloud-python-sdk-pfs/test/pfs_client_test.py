@@ -34,8 +34,14 @@ class PfsClientTest(unittest.TestCase):
     def test_desc_pfs(self):
         self.client.desc_pfs(pfs_models.DescPfsRequest())
 
+    def test_instance_list_clients(self):
+        self.client.instance_list_clients(pfs_models.InstanceListClientsRequest())
+
     def test_list_pfs(self):
         self.client.list_pfs(pfs_models.ListPfsRequest())
+
+    def test_mount_target_list_clients(self):
+        self.client.mount_target_list_clients(pfs_models.MountTargetListClientsRequest())
 
     def test_update_pfs_tag(self):
         self.client.update_pfs_tag(pfs_models.UpdatePFSTagRequest())
@@ -46,7 +52,9 @@ if __name__ == '__main__':
     suite.addTest(PfsClientTest("test_create_pfs"))
     suite.addTest(PfsClientTest("test_delete_pfs"))
     suite.addTest(PfsClientTest("test_desc_pfs"))
+    suite.addTest(PfsClientTest("test_instance_list_clients"))
     suite.addTest(PfsClientTest("test_list_pfs"))
+    suite.addTest(PfsClientTest("test_mount_target_list_clients"))
     suite.addTest(PfsClientTest("test_update_pfs_tag"))
     runner = unittest.TextTestRunner()
     runner.run(suite)
