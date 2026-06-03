@@ -18,14 +18,14 @@ class NodeInfo(AbstractModel):
         zone_name=None,
         vpc_id=None,
         vpc_name=None,
-        instance_id_list=None,
-        node_status=None,
-        node_type=None,
-        mount_status=None,
-        passwd=None,
         mt_name=None,
         mt_id=None,
         mt_path=None,
+        node_type=None,
+        instance_id_list=None,
+        node_status=None,
+        mount_status=None,
+        passwd=None,
     ):
         """
         Initialize NodeInfo instance.
@@ -48,21 +48,6 @@ class NodeInfo(AbstractModel):
         :param vpc_name: vpc name
         :type vpc_name: str (optional)
 
-        :param instance_id_list: 节点挂载后端集群list
-        :type instance_id_list: List[str] (optional)
-
-        :param node_status: node_status attribute
-        :type node_status: str (optional)
-
-        :param node_type: BBC/BCC/AIHC/HPAS
-        :type node_type: str (optional)
-
-        :param mount_status: mount_status attribute
-        :type mount_status: str (optional)
-
-        :param passwd: 节点密码
-        :type passwd: str (optional)
-
         :param mt_name: 挂载服务名称
         :type mt_name: str (optional)
 
@@ -71,6 +56,21 @@ class NodeInfo(AbstractModel):
 
         :param mt_path: 节点的挂载路径
         :type mt_path: str (optional)
+
+        :param node_type: BBC/BCC/AIHC/HPAS
+        :type node_type: str (optional)
+
+        :param instance_id_list: 节点挂载后端集群list
+        :type instance_id_list: List[str] (optional)
+
+        :param node_status: node_status attribute
+        :type node_status: str (optional)
+
+        :param mount_status: mount_status attribute
+        :type mount_status: str (optional)
+
+        :param passwd: 节点密码
+        :type passwd: str (optional)
         """
         super().__init__()
         self.node_id = node_id
@@ -79,14 +79,14 @@ class NodeInfo(AbstractModel):
         self.zone_name = zone_name
         self.vpc_id = vpc_id
         self.vpc_name = vpc_name
-        self.instance_id_list = instance_id_list
-        self.node_status = node_status
-        self.node_type = node_type
-        self.mount_status = mount_status
-        self.passwd = passwd
         self.mt_name = mt_name
         self.mt_id = mt_id
         self.mt_path = mt_path
+        self.node_type = node_type
+        self.instance_id_list = instance_id_list
+        self.node_status = node_status
+        self.mount_status = mount_status
+        self.passwd = passwd
 
     def to_dict(self):
         """
@@ -113,22 +113,22 @@ class NodeInfo(AbstractModel):
             result['vpcId'] = self.vpc_id
         if self.vpc_name is not None:
             result['vpcName'] = self.vpc_name
-        if self.instance_id_list is not None:
-            result['instanceIdList'] = self.instance_id_list
-        if self.node_status is not None:
-            result['nodeStatus'] = self.node_status
-        if self.node_type is not None:
-            result['nodeType'] = self.node_type
-        if self.mount_status is not None:
-            result['mountStatus'] = self.mount_status
-        if self.passwd is not None:
-            result['passwd'] = self.passwd
         if self.mt_name is not None:
             result['mtName'] = self.mt_name
         if self.mt_id is not None:
             result['mtId'] = self.mt_id
         if self.mt_path is not None:
             result['mtPath'] = self.mt_path
+        if self.node_type is not None:
+            result['nodeType'] = self.node_type
+        if self.instance_id_list is not None:
+            result['instanceIdList'] = self.instance_id_list
+        if self.node_status is not None:
+            result['nodeStatus'] = self.node_status
+        if self.mount_status is not None:
+            result['mountStatus'] = self.mount_status
+        if self.passwd is not None:
+            result['passwd'] = self.passwd
         return result
 
     def from_dict(self, m):
@@ -159,20 +159,20 @@ class NodeInfo(AbstractModel):
             self.vpc_id = m.get('vpcId')
         if m.get('vpcName') is not None:
             self.vpc_name = m.get('vpcName')
-        if m.get('instanceIdList') is not None:
-            self.instance_id_list = m.get('instanceIdList')
-        if m.get('nodeStatus') is not None:
-            self.node_status = m.get('nodeStatus')
-        if m.get('nodeType') is not None:
-            self.node_type = m.get('nodeType')
-        if m.get('mountStatus') is not None:
-            self.mount_status = m.get('mountStatus')
-        if m.get('passwd') is not None:
-            self.passwd = m.get('passwd')
         if m.get('mtName') is not None:
             self.mt_name = m.get('mtName')
         if m.get('mtId') is not None:
             self.mt_id = m.get('mtId')
         if m.get('mtPath') is not None:
             self.mt_path = m.get('mtPath')
+        if m.get('nodeType') is not None:
+            self.node_type = m.get('nodeType')
+        if m.get('instanceIdList') is not None:
+            self.instance_id_list = m.get('instanceIdList')
+        if m.get('nodeStatus') is not None:
+            self.node_status = m.get('nodeStatus')
+        if m.get('mountStatus') is not None:
+            self.mount_status = m.get('mountStatus')
+        if m.get('passwd') is not None:
+            self.passwd = m.get('passwd')
         return self

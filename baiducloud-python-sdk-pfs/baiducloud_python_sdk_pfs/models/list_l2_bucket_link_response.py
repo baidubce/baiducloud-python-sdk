@@ -1,20 +1,19 @@
 """
-MountTargetListClientsResponse information
+Request entity for ListL2BucketLinkResponse information.
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
+from baiducloud_python_sdk_pfs.models.bucket_link_info import BucketLinkInfo
 
-from baiducloud_python_sdk_pfs.models.node_info import NodeInfo
 
-
-class MountTargetListClientsResponse(BceResponse):
+class ListL2BucketLinkResponse(BceResponse):
     """
-    MountTargetListClientsResponse
+    ListL2BucketLinkResponse
     """
 
     def __init__(self, request_id=None, is_truncated=None, marker=None, max_keys=None, next_marker=None, result=None):
         """
-        Initialize MountTargetListClientsResponse instance.
+        Initialize ListL2BucketLinkResponse response.
 
         :param request_id: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         :type request_id: str (optional)
@@ -25,14 +24,14 @@ class MountTargetListClientsResponse(BceResponse):
         :param marker: 本轮list的marker
         :type marker: str (optional)
 
-        :param max_keys: 本轮返回的node的数量
+        :param max_keys: 本轮返回的数据流动的数量
         :type max_keys: int (optional)
 
-        :param next_marker: 下一轮node的marker
+        :param next_marker: 下一轮数据流动的marker
         :type next_marker: str (optional)
 
-        :param result: 返回的node具体列表
-        :type result: List[NodeInfo] (optional)
+        :param result: 返回的数据流动具体列表
+        :type result: List[BucketLinkInfo] (optional)
         """
         super().__init__()
         self.request_id = request_id
@@ -44,13 +43,12 @@ class MountTargetListClientsResponse(BceResponse):
 
     def to_dict(self):
         """
-        Convert the model instance to a dictionary representation.
-
-        Nested model objects are recursively converted to dictionaries.
+        Convert the response instance to a dictionary representation.
 
         Includes metadata from the parent BceResponse class.
+        Nested model objects are recursively converted to dictionaries.
 
-        :return: Dictionary representation of the model
+        :return: Dictionary representation of the response
         :rtype: dict
         """
         _map = super().to_dict()
@@ -75,17 +73,17 @@ class MountTargetListClientsResponse(BceResponse):
 
     def from_dict(self, m):
         """
-        Populate the model instance from a dictionary.
+        Populate the response instance from a dictionary.
 
         Nested dictionaries are recursively converted to model objects.
 
-        :param m: Dictionary containing model data
+        :param m: Dictionary containing response data
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: MountTargetListClientsResponse
+        :rtype: ListL2BucketLinkResponse
 
-        :raises TypeError: If input is not a dictionary type
+        :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
@@ -100,5 +98,5 @@ class MountTargetListClientsResponse(BceResponse):
         if m.get('nextMarker') is not None:
             self.next_marker = m.get('nextMarker')
         if m.get('result') is not None:
-            self.result = [NodeInfo().from_dict(i) for i in m.get('result')]
+            self.result = [BucketLinkInfo().from_dict(i) for i in m.get('result')]
         return self

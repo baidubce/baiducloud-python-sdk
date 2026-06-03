@@ -1,18 +1,18 @@
 """
-DeleteFilesetResponse information
+DeleteL2BucketLinkResponse information
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
 
 
-class DeleteFilesetResponse(BceResponse):
+class DeleteL2BucketLinkResponse(BceResponse):
     """
-    DeleteFilesetResponse
+    DeleteL2BucketLinkResponse
     """
 
     def __init__(self, request_id=None):
         """
-        Initialize DeleteFilesetResponse instance.
+        Initialize DeleteL2BucketLinkResponse instance.
 
         :param request_id: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         :type request_id: str (optional)
@@ -51,7 +51,7 @@ class DeleteFilesetResponse(BceResponse):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: DeleteFilesetResponse
+        :rtype: DeleteL2BucketLinkResponse
 
         :raises TypeError: If input is not a dictionary type
         :raises ValueError: If nested model conversion fails
