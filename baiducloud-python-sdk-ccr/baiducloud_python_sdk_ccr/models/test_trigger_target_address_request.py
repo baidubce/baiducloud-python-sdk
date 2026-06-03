@@ -23,7 +23,7 @@ class TestTriggerTargetAddressRequest(AbstractModel):
         :type address: str (required)
 
         :param headers: header key仅支持“Authorization”
-        :type headers: object (optional)
+        :type headers: Dict[str, str] (optional)
         """
         super().__init__()
         self.instance_id = instance_id
