@@ -1,0 +1,46 @@
+"""
+Example for rapidfs create_instance method.
+"""
+
+from baiducloud_python_sdk_core import exception
+from baiducloud_python_sdk_core.auth.bce_credentials import BceCredentials
+from baiducloud_python_sdk_core.bce_client_configuration import BceClientConfiguration
+from baiducloud_python_sdk_rapidfs.api.rapidfs_client import RapidfsClient
+from baiducloud_python_sdk_rapidfs import models as rapidfs_models
+
+if __name__ == '__main__':
+    try:
+        # 设置Client的Access Key ID和Secret Access Key，获取AKSK详见:https://cloud.baidu.com/doc/Reference/s/9jwvz2egb
+        access_key_id = ""
+        secret_access_key = ""
+        endpoint = ""
+        config = BceClientConfiguration(
+            credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
+        )
+        client = RapidfsClient(config)
+        request = rapidfs_models.CreateInstanceRequest(
+            instance_name="",
+            zone="",
+            vpc_id="",
+            subnet_id="",
+            client_token="",
+            description="",
+            managed_mode="",
+            meta_spec="",
+            data_spec="",
+            type="",
+            capacity_ti_b=0,
+            cce_cluster_id="",
+            aihc_resource_pool_id="",
+            k8s_controller_id="",
+            k8s_controller_token="",
+            token_refresh_interval_minutes=0,
+            tags=[],
+        )
+        res = client.create_instance(request)
+        print(res.to_json_string())
+    except exception.BceHttpClientError as e:
+        # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。
+        print(e.last_error)
+        print(e.request_id)
+        print(e.code)
