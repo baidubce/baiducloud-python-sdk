@@ -16,7 +16,7 @@ class DescribePriceRequest(AbstractModel):
         """
         Initialize DescribePriceRequest request entity.
 
-        :param currency: 货币单位，枚举值：* CNY：人民币，默认；* USD：美元。
+        :param currency: 货币单位，枚举值：<br> • CNY：人民币，默认；<br> • USD：美元。
         :type currency: str (optional)
 
         :param managed_mode: managed_mode parameter

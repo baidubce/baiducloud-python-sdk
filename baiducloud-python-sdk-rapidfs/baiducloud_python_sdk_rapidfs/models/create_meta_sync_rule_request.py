@@ -40,7 +40,7 @@ class CreateMetaSyncRuleRequest(AbstractModel):
         :param meta_sync_rule_name: 元数据同步规则名称
         :type meta_sync_rule_name: str (required)
 
-        :param type: 元数据同步规则类型，枚举值：* MANUAL：单次同步，手动执行；* PERIODIC：周期同步，自动执行
+        :param type: type parameter
         :type type: str (required)
 
         :param directory: RapidFS 目录前缀，默认值为 /
