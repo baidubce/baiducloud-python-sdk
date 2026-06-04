@@ -1,30 +1,34 @@
 """
-Request entity for EnableRecordRequest information.
+Request entity for GetDnsResolverRuleListRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class EnableRecordRequest(AbstractModel):
+class GetDnsResolverRuleListRequest(AbstractModel):
     """
-    Request entity for EnableRecordRequest operation.
+    Request entity for GetDnsResolverRuleListRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, record_id, client_token=None):
+    def __init__(self, marker=None, max_keys=None, status=None):
         """
-        Initialize EnableRecordRequest request entity.
+        Initialize GetDnsResolverRuleListRequest request entity.
 
-        :param record_id: record_id parameter
-        :type record_id: str (required)
+        :param marker: marker parameter
+        :type marker: str (optional)
 
-        :param client_token: client_token parameter
-        :type client_token: str (optional)
+        :param max_keys: max_keys parameter
+        :type max_keys: str (optional)
+
+        :param status: status parameter
+        :type status: str (optional)
         """
         super().__init__()
-        self.record_id = record_id
-        self.client_token = client_token
+        self.marker = marker
+        self.max_keys = max_keys
+        self.status = status
 
     def to_dict(self):
         """
@@ -51,14 +55,16 @@ class EnableRecordRequest(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: EnableRecordRequest
+        :rtype: GetDnsResolverRuleListRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('recordId') is not None:
-            self.record_id = m.get('recordId')
-        if m.get('clientToken') is not None:
-            self.client_token = m.get('clientToken')
+        if m.get('marker') is not None:
+            self.marker = m.get('marker')
+        if m.get('maxKeys') is not None:
+            self.max_keys = m.get('maxKeys')
+        if m.get('status') is not None:
+            self.status = m.get('status')
         return self

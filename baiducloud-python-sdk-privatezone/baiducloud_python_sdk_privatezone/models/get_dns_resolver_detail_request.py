@@ -1,30 +1,26 @@
 """
-Request entity for EnableRecordRequest information.
+Request entity for GetDnsResolverDetailRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class EnableRecordRequest(AbstractModel):
+class GetDnsResolverDetailRequest(AbstractModel):
     """
-    Request entity for EnableRecordRequest operation.
+    Request entity for GetDnsResolverDetailRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, record_id, client_token=None):
+    def __init__(self, resolver_id):
         """
-        Initialize EnableRecordRequest request entity.
+        Initialize GetDnsResolverDetailRequest request entity.
 
-        :param record_id: record_id parameter
-        :type record_id: str (required)
-
-        :param client_token: client_token parameter
-        :type client_token: str (optional)
+        :param resolver_id: resolver_id parameter
+        :type resolver_id: str (required)
         """
         super().__init__()
-        self.record_id = record_id
-        self.client_token = client_token
+        self.resolver_id = resolver_id
 
     def to_dict(self):
         """
@@ -51,14 +47,12 @@ class EnableRecordRequest(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: EnableRecordRequest
+        :rtype: GetDnsResolverDetailRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('recordId') is not None:
-            self.record_id = m.get('recordId')
-        if m.get('clientToken') is not None:
-            self.client_token = m.get('clientToken')
+        if m.get('resolverId') is not None:
+            self.resolver_id = m.get('resolverId')
         return self

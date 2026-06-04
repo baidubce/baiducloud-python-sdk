@@ -1,38 +1,30 @@
 """
-Request entity for UnbindVpcRequest information.
+Request entity for DeleteResolverRuleRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class UnbindVpcRequest(AbstractModel):
+class DeleteResolverRuleRequest(AbstractModel):
     """
-    Request entity for UnbindVpcRequest operation.
+    Request entity for DeleteResolverRuleRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, zone_id, region, vpc_ids, client_token=None):
+    def __init__(self, rule_id, client_token=None):
         """
-        Initialize UnbindVpcRequest request entity.
+        Initialize DeleteResolverRuleRequest request entity.
 
-        :param zone_id: zone_id parameter
-        :type zone_id: str (required)
+        :param rule_id: rule_id parameter
+        :type rule_id: str (required)
 
         :param client_token: client_token parameter
         :type client_token: str (optional)
-
-        :param region: 关联或者解关联的VPC所属的区域
-        :type region: str (required)
-
-        :param vpc_ids: 想要关联或者解关联的VPC的ID列表
-        :type vpc_ids: List[str] (required)
         """
         super().__init__()
-        self.zone_id = zone_id
+        self.rule_id = rule_id
         self.client_token = client_token
-        self.region = region
-        self.vpc_ids = vpc_ids
 
     def to_dict(self):
         """
@@ -47,10 +39,6 @@ class UnbindVpcRequest(AbstractModel):
         if _map is not None:
             return _map
         result = dict()
-        if self.region is not None:
-            result['region'] = self.region
-        if self.vpc_ids is not None:
-            result['vpcIds'] = self.vpc_ids
         return result
 
     def from_dict(self, m):
@@ -63,18 +51,14 @@ class UnbindVpcRequest(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: UnbindVpcRequest
+        :rtype: DeleteResolverRuleRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('zoneId') is not None:
-            self.zone_id = m.get('zoneId')
+        if m.get('ruleId') is not None:
+            self.rule_id = m.get('ruleId')
         if m.get('clientToken') is not None:
             self.client_token = m.get('clientToken')
-        if m.get('region') is not None:
-            self.region = m.get('region')
-        if m.get('vpcIds') is not None:
-            self.vpc_ids = m.get('vpcIds')
         return self

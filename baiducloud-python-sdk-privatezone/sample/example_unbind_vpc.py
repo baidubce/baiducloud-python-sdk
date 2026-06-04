@@ -18,7 +18,7 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = PrivatezoneClient(config)
-        request = privatezone_models.UnbindVpcRequest(zone_id="", action="", region="", vpc_ids=[], client_token="")
+        request = privatezone_models.UnbindVpcRequest(zone_id="", region="", vpc_ids=[], client_token="")
         res = client.unbind_vpc(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

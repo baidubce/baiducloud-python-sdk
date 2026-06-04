@@ -1,38 +1,38 @@
 """
-Request entity for UnbindVpcRequest information.
+Request entity for UpdateDnsParserRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class UnbindVpcRequest(AbstractModel):
+class UpdateDnsParserRequest(AbstractModel):
     """
-    Request entity for UnbindVpcRequest operation.
+    Request entity for UpdateDnsParserRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, zone_id, region, vpc_ids, client_token=None):
+    def __init__(self, resolver_id, client_token=None, name=None, description=None):
         """
-        Initialize UnbindVpcRequest request entity.
+        Initialize UpdateDnsParserRequest request entity.
 
-        :param zone_id: zone_id parameter
-        :type zone_id: str (required)
+        :param resolver_id: resolver_id parameter
+        :type resolver_id: str (required)
 
         :param client_token: client_token parameter
         :type client_token: str (optional)
 
-        :param region: 关联或者解关联的VPC所属的区域
-        :type region: str (required)
+        :param name: 解析器的名称，允许大小写字母、数字、中文以及 `-_/.` 特殊字符，必须以字母或者中文开头，长度1-65
+        :type name: str (optional)
 
-        :param vpc_ids: 想要关联或者解关联的VPC的ID列表
-        :type vpc_ids: List[str] (required)
+        :param description: 解析器描述，不超过200字符，与name不能同时为空
+        :type description: str (optional)
         """
         super().__init__()
-        self.zone_id = zone_id
+        self.resolver_id = resolver_id
         self.client_token = client_token
-        self.region = region
-        self.vpc_ids = vpc_ids
+        self.name = name
+        self.description = description
 
     def to_dict(self):
         """
@@ -47,10 +47,10 @@ class UnbindVpcRequest(AbstractModel):
         if _map is not None:
             return _map
         result = dict()
-        if self.region is not None:
-            result['region'] = self.region
-        if self.vpc_ids is not None:
-            result['vpcIds'] = self.vpc_ids
+        if self.name is not None:
+            result['name'] = self.name
+        if self.description is not None:
+            result['description'] = self.description
         return result
 
     def from_dict(self, m):
@@ -63,18 +63,18 @@ class UnbindVpcRequest(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: UnbindVpcRequest
+        :rtype: UpdateDnsParserRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('zoneId') is not None:
-            self.zone_id = m.get('zoneId')
+        if m.get('resolverId') is not None:
+            self.resolver_id = m.get('resolverId')
         if m.get('clientToken') is not None:
             self.client_token = m.get('clientToken')
-        if m.get('region') is not None:
-            self.region = m.get('region')
-        if m.get('vpcIds') is not None:
-            self.vpc_ids = m.get('vpcIds')
+        if m.get('name') is not None:
+            self.name = m.get('name')
+        if m.get('description') is not None:
+            self.description = m.get('description')
         return self
