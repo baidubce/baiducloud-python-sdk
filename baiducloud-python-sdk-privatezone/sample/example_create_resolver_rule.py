@@ -17,9 +17,13 @@ if __name__ == '__main__':
         config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
+        dns_server_config = privatezone_models.DnsServerConfig(
+            ip="",
+            port=53
+        )
         client = PrivatezoneClient(config)
         request = privatezone_models.CreateResolverRuleRequest(
-            name="", zone="", resolver_id="", dns_server_configs=[], client_token="", description=""
+            name="", zone="", resolver_id="", dns_server_configs=[dns_server_config], client_token="", description=""
         )
         res = client.create_resolver_rule(request)
         print(res.to_json_string())

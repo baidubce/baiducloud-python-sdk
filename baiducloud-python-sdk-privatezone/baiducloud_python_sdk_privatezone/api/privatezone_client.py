@@ -142,8 +142,8 @@ class PrivatezoneClient(BceBaseClient):
         )
         headers = None
         params = {}
-        if request.clien_token is not None:
-            params['clienToken'] = request.clien_token
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
@@ -670,8 +670,8 @@ class PrivatezoneClient(BceBaseClient):
         )
         headers = None
         params = {}
-        if request.clien_token is not None:
-            params['clienToken'] = request.clien_token
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config

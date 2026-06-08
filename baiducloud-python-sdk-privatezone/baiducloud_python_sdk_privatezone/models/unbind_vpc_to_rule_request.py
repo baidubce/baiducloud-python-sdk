@@ -13,22 +13,22 @@ class UnbindVpcToRuleRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, rule_id, vpc_regions, clien_token=None):
+    def __init__(self, rule_id, vpc_regions, client_token=None):
         """
         Initialize UnbindVpcToRuleRequest request entity.
 
         :param rule_id: rule_id parameter
         :type rule_id: str (required)
 
-        :param clien_token: clien_token parameter
-        :type clien_token: str (optional)
+        :param client_token: client_token parameter
+        :type client_token: str (optional)
 
         :param vpc_regions: 要解绑的vpc信息
         :type vpc_regions: List[VpcRegion] (required)
         """
         super().__init__()
         self.rule_id = rule_id
-        self.clien_token = clien_token
+        self.client_token = client_token
         self.vpc_regions = vpc_regions
 
     def to_dict(self):
@@ -66,8 +66,8 @@ class UnbindVpcToRuleRequest(AbstractModel):
         m = m or dict()
         if m.get('ruleId') is not None:
             self.rule_id = m.get('ruleId')
-        if m.get('clienToken') is not None:
-            self.clien_token = m.get('clienToken')
+        if m.get('clientToken') is not None:
+            self.client_token = m.get('clientToken')
         if m.get('vpcRegions') is not None:
             self.vpc_regions = [VpcRegion().from_dict(i) for i in m.get('vpcRegions')]
         return self

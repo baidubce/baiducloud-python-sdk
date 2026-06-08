@@ -18,9 +18,18 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = PrivatezoneClient(config)
-        request = privatezone_models.CreateResolverRequest(
-            name="", vpc_id="", vpc_region="", ip_models=[], type="", client_token="", description=""
+        ip_model1 = privatezone_models.IpModel(
+            subnet_id="",
+            ip_address=""
         )
+
+        ip_model2 = privatezone_models.IpModel(
+            subnet_id="",
+            ip_address=""
+        )
+        request = privatezone_models.CreateResolverRequest(
+            name="test", vpc_id="", vpc_region="", ip_models=[ip_model1, ip_model2],
+            type="", client_token="", description="")
         res = client.create_resolver(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
