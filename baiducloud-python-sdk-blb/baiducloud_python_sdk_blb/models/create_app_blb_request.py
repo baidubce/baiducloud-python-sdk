@@ -44,7 +44,7 @@ class CreateAppBlbRequest(AbstractModel):
         :param name: name parameter
         :type name: str (optional)
 
-        :param type: LoaBalancer的类型，此处取值\"application\"(默认)
+        :param type: 指定负载均衡实例的类型，不传默认为应用型，传\"ipv6Application\"代表创建ipv6类型的应用型BLB。
         :type type: str (optional)
 
         :param desc: LoadBalancer实例的描述，便于用户添加更详细的描述信息。长度0~450个字节，支持中文。默认为空

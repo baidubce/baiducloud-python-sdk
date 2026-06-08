@@ -1790,6 +1790,8 @@ class BlbClient(BceBaseClient):
             params['marker'] = request.marker
         if request.max_keys is not None:
             params['maxKeys'] = request.max_keys
+        if request.type is not None:
+            params['type'] = request.type
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.GET, path=path, params=params, config=merged_config, model=DescribeAppBlbsResponse

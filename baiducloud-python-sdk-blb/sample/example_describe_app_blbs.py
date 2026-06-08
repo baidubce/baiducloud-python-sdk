@@ -19,7 +19,7 @@ if __name__ == '__main__':
         )
         client = BlbClient(config)
         request = blb_models.DescribeAppBlbsRequest(
-            address="", name="", blb_id="", bcc_id="", exactly_match=False, marker="", max_keys=0
+            address="", name="", blb_id="", bcc_id="", exactly_match=False, marker="", max_keys=0, type=""
         )
         res = client.describe_app_blbs(request)
         print(res.to_json_string())

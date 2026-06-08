@@ -1,3 +1,7 @@
+2026-06-08 Version: 0.0.15
+- 涉及产品: BLB，createAppBlb创建实例接口变更
+- 涉及产品: BLB，describeAppBlbs查询实例新增query.type字段
+
 2026-06-02 Version: 0.0.14
 - 涉及产品: BLB，支持集群的创建、升级与续费
 - 涉及产品: BLB，支持查询集群列表及集群详情

@@ -13,7 +13,15 @@ class DescribeAppBlbsRequest(AbstractModel):
     """
 
     def __init__(
-        self, address=None, name=None, blb_id=None, bcc_id=None, exactly_match=None, marker=None, max_keys=None
+        self,
+        address=None,
+        name=None,
+        blb_id=None,
+        bcc_id=None,
+        exactly_match=None,
+        marker=None,
+        max_keys=None,
+        type=None,
     ):
         """
         Initialize DescribeAppBlbsRequest request entity.
@@ -38,6 +46,9 @@ class DescribeAppBlbsRequest(AbstractModel):
 
         :param max_keys: max_keys parameter
         :type max_keys: int (optional)
+
+        :param type: type parameter
+        :type type: str (optional)
         """
         super().__init__()
         self.address = address
@@ -47,6 +58,7 @@ class DescribeAppBlbsRequest(AbstractModel):
         self.exactly_match = exactly_match
         self.marker = marker
         self.max_keys = max_keys
+        self.type = type
 
     def to_dict(self):
         """
@@ -93,4 +105,6 @@ class DescribeAppBlbsRequest(AbstractModel):
             self.marker = m.get('marker')
         if m.get('maxKeys') is not None:
             self.max_keys = m.get('maxKeys')
+        if m.get('type') is not None:
+            self.type = m.get('type')
         return self
