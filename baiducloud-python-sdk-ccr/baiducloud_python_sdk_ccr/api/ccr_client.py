@@ -11,6 +11,7 @@ from baiducloud_python_sdk_core.bce_base_client import BceBaseClient
 from baiducloud_python_sdk_core.http import bce_http_client
 from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import http_methods
+from baiducloud_python_sdk_ccr.models.create_project_response import CreateProjectResponse
 from baiducloud_python_sdk_ccr.models.create_robot_account_response import CreateRobotAccountResponse
 from baiducloud_python_sdk_ccr.models.create_temporary_password_response import CreateTemporaryPasswordResponse
 from baiducloud_python_sdk_ccr.models.get_accelerator_filter_detail_response import GetAcceleratorFilterDetailResponse
@@ -25,6 +26,7 @@ from baiducloud_python_sdk_ccr.models.get_instance_sync_detail_response import G
 from baiducloud_python_sdk_ccr.models.get_instance_sync_execution_detail_response import (
     GetInstanceSyncExecutionDetailResponse,
 )
+from baiducloud_python_sdk_ccr.models.get_project_detail_response import GetProjectDetailResponse
 from baiducloud_python_sdk_ccr.models.get_public_network_config_response import GetPublicNetworkConfigResponse
 from baiducloud_python_sdk_ccr.models.get_repository_response import GetRepositoryResponse
 from baiducloud_python_sdk_ccr.models.get_tag_build_history_response import GetTagBuildHistoryResponse
@@ -56,6 +58,7 @@ from baiducloud_python_sdk_ccr.models.list_vpc_links_response import ListVpcLink
 from baiducloud_python_sdk_ccr.models.refresh_robot_account_key_response import RefreshRobotAccountKeyResponse
 from baiducloud_python_sdk_ccr.models.test_accelerator_filter_response import TestAcceleratorFilterResponse
 from baiducloud_python_sdk_ccr.models.update_instance_name_response import UpdateInstanceNameResponse
+from baiducloud_python_sdk_ccr.models.update_project_response import UpdateProjectResponse
 from baiducloud_python_sdk_ccr.models.update_repository_response import UpdateRepositoryResponse
 
 _logger = logging.getLogger(__name__)
@@ -72,6 +75,8 @@ class CcrClient(BceBaseClient):
 
     CONSTANT_CREDENTIAL = b'credential'
 
+    CONSTANT_PROJECTS = b'projects'
+
     CONSTANT_ACCELERATORS = b'accelerators'
 
     CONSTANT_POLICIES = b'policies'
@@ -79,8 +84,6 @@ class CcrClient(BceBaseClient):
     CONSTANT_FILTERS = b'filters'
 
     CONSTANT_SYNCS = b'syncs'
-
-    CONSTANT_PROJECTS = b'projects'
 
     CONSTANT_REPOSITORIES = b'repositories'
 
@@ -266,6 +269,34 @@ class CcrClient(BceBaseClient):
         headers = None
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+
+    def create_project(self, request, config=None):
+        """
+        create_project
+
+        :param request: Request entity containing all parameters
+        :type request: CcrClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing CreateProjectResponse data
+        :rtype: CreateProjectResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            b'/', CcrClient.CONSTANT_V1, CcrClient.CONSTANT_INSTANCES, request.instance_id, CcrClient.CONSTANT_PROJECTS
+        )
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=CreateProjectResponse,
+        )
 
     def create_robot_account(self, request, config=None):
         """
@@ -1190,6 +1221,33 @@ class CcrClient(BceBaseClient):
         headers = None
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.GET, path=path, config=merged_config)
+
+    def get_project_detail(self, request, config=None):
+        """
+        get_project_detail
+
+        :param request: Request entity containing all parameters
+        :type request: CcrClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing GetProjectDetailResponse data
+        :rtype: GetProjectDetailResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            b'/',
+            CcrClient.CONSTANT_V1,
+            CcrClient.CONSTANT_INSTANCES,
+            request.instance_id,
+            CcrClient.CONSTANT_PROJECTS,
+            request.project_name,
+        )
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.GET, path=path, config=merged_config, model=GetProjectDetailResponse)
 
     def get_public_network_config(self, request, config=None):
         """
@@ -2424,6 +2482,39 @@ class CcrClient(BceBaseClient):
         headers = None
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.PUT, path=path, body=request.to_json_string(), config=merged_config)
+
+    def update_project(self, request, config=None):
+        """
+        update_project
+
+        :param request: Request entity containing all parameters
+        :type request: CcrClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing UpdateProjectResponse data
+        :rtype: UpdateProjectResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            b'/',
+            CcrClient.CONSTANT_V1,
+            CcrClient.CONSTANT_INSTANCES,
+            request.instance_id,
+            CcrClient.CONSTANT_PROJECTS,
+            request.project_name,
+        )
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.PUT,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=UpdateProjectResponse,
+        )
 
     def update_public_network(self, request, config=None):
         """

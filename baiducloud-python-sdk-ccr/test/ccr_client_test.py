@@ -40,6 +40,9 @@ class CcrClientTest(unittest.TestCase):
     def test_create_instance_sync(self):
         self.client.create_instance_sync(ccr_models.CreateInstanceSyncRequest())
 
+    def test_create_project(self):
+        self.client.create_project(ccr_models.CreateProjectRequest())
+
     def test_create_robot_account(self):
         self.client.create_robot_account(ccr_models.CreateRobotAccountRequest())
 
@@ -140,6 +143,9 @@ class CcrClientTest(unittest.TestCase):
 
     def test_get_instance_sync_task_logs(self):
         self.client.get_instance_sync_task_logs(ccr_models.GetInstanceSyncTaskLogsRequest())
+
+    def test_get_project_detail(self):
+        self.client.get_project_detail(ccr_models.GetProjectDetailRequest())
 
     def test_get_public_network_config(self):
         self.client.get_public_network_config(ccr_models.GetPublicNetworkConfigRequest())
@@ -258,6 +264,9 @@ class CcrClientTest(unittest.TestCase):
     def test_update_instance_tags(self):
         self.client.update_instance_tags(ccr_models.UpdateInstanceTagsRequest())
 
+    def test_update_project(self):
+        self.client.update_project(ccr_models.UpdateProjectRequest())
+
     def test_update_public_network(self):
         self.client.update_public_network(ccr_models.UpdatePublicNetworkRequest())
 
@@ -278,6 +287,7 @@ if __name__ == '__main__':
     suite.addTest(CcrClientTest("test_create_accelerator_filter"))
     suite.addTest(CcrClientTest("test_create_image_migration_rule"))
     suite.addTest(CcrClientTest("test_create_instance_sync"))
+    suite.addTest(CcrClientTest("test_create_project"))
     suite.addTest(CcrClientTest("test_create_robot_account"))
     suite.addTest(CcrClientTest("test_create_temporary_password"))
     suite.addTest(CcrClientTest("test_create_trigger"))
@@ -311,6 +321,7 @@ if __name__ == '__main__':
     suite.addTest(CcrClientTest("test_get_instance_sync_detail"))
     suite.addTest(CcrClientTest("test_get_instance_sync_execution_detail"))
     suite.addTest(CcrClientTest("test_get_instance_sync_task_logs"))
+    suite.addTest(CcrClientTest("test_get_project_detail"))
     suite.addTest(CcrClientTest("test_get_public_network_config"))
     suite.addTest(CcrClientTest("test_get_repository"))
     suite.addTest(CcrClientTest("test_get_tag_build_history"))
@@ -350,6 +361,7 @@ if __name__ == '__main__':
     suite.addTest(CcrClientTest("test_update_instance_name"))
     suite.addTest(CcrClientTest("test_update_instance_sync"))
     suite.addTest(CcrClientTest("test_update_instance_tags"))
+    suite.addTest(CcrClientTest("test_update_project"))
     suite.addTest(CcrClientTest("test_update_public_network"))
     suite.addTest(CcrClientTest("test_update_repository"))
     suite.addTest(CcrClientTest("test_update_robot_account"))

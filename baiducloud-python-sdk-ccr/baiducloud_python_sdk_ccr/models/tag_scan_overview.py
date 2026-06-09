@@ -43,7 +43,7 @@ class TagScanOverview(AbstractModel):
         :type start_time: str (optional)
 
         :param summary: 不同严重程度的漏洞数量
-        :type summary: object (optional)
+        :type summary: Dict[str, int] (optional)
 
         :param total: 发现的漏洞总数
         :type total: int (optional)

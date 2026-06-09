@@ -11,6 +11,8 @@ from .build_history import BuildHistory
 from .create_accelerator_filter_request import CreateAcceleratorFilterRequest
 from .create_image_migration_rule_request import CreateImageMigrationRuleRequest
 from .create_instance_sync_request import CreateInstanceSyncRequest
+from .create_project_request import CreateProjectRequest
+from .create_project_response import CreateProjectResponse
 from .create_robot_account_request import CreateRobotAccountRequest
 from .create_robot_account_response import CreateRobotAccountResponse
 from .create_temporary_password_request import CreateTemporaryPasswordRequest
@@ -34,6 +36,7 @@ from .get_image_migration_rule_detail_response import GetImageMigrationRuleDetai
 from .get_instance_detail_response import GetInstanceDetailResponse
 from .get_instance_sync_detail_response import GetInstanceSyncDetailResponse
 from .get_instance_sync_execution_detail_response import GetInstanceSyncExecutionDetailResponse
+from .get_project_detail_response import GetProjectDetailResponse
 from .get_public_network_config_response import GetPublicNetworkConfigResponse
 from .get_repository_response import GetRepositoryResponse
 from .get_tag_build_history_response import GetTagBuildHistoryResponse
@@ -101,6 +104,8 @@ from .update_instance_name_request import UpdateInstanceNameRequest
 from .update_instance_name_response import UpdateInstanceNameResponse
 from .update_instance_sync_request import UpdateInstanceSyncRequest
 from .update_instance_tags_request import UpdateInstanceTagsRequest
+from .update_project_request import UpdateProjectRequest
+from .update_project_response import UpdateProjectResponse
 from .update_public_network_request import UpdatePublicNetworkRequest
 from .update_repository_request import UpdateRepositoryRequest
 from .update_repository_response import UpdateRepositoryResponse
@@ -108,6 +113,8 @@ from .update_robot_account_request import UpdateRobotAccountRequest
 from .update_trigger_request import UpdateTriggerRequest
 from .whitelist import Whitelist
 from .get_instance_detail_request import GetInstanceDetailRequest
+from .get_project_detail_request import GetProjectDetailRequest
+from .delete_project_request import DeleteProjectRequest
 from .list_accelerator_filters_request import ListAcceleratorFiltersRequest
 from .get_instance_sync_detail_request import GetInstanceSyncDetailRequest
 from .delete_instance_sync_request import DeleteInstanceSyncRequest
@@ -131,7 +138,6 @@ from .trigger_tag_scan_request import TriggerTagScanRequest
 from .list_vpc_links_request import ListVpcLinksRequest
 from .get_instance_sync_execution_detail_request import GetInstanceSyncExecutionDetailRequest
 from .stop_instance_sync_request import StopInstanceSyncRequest
-from .delete_project_request import DeleteProjectRequest
 from .get_instance_sync_task_logs_request import GetInstanceSyncTaskLogsRequest
 from .list_instance_syncs_request import ListInstanceSyncsRequest
 from .list_triggers_request import ListTriggersRequest

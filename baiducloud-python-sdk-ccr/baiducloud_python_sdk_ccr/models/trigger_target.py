@@ -18,7 +18,7 @@ class TriggerTarget(AbstractModel):
         :type address: str (optional)
 
         :param headers: 自定义 Header 信息<br>Header Key 仅支持 `Authorization`
-        :type headers: object (optional)
+        :type headers: Dict[str, str] (optional)
         """
         super().__init__()
         self.address = address
