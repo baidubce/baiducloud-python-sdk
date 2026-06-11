@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(
+        bce_client_config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = BccClient(config)
+        client = BccClient(bce_client_config)
         request = bcc_models.ModifyCdsAttributeRequest(
             volume_id="", cds_name="", desc="", delete_with_instance=False, delete_auto_snapshot=False
         )

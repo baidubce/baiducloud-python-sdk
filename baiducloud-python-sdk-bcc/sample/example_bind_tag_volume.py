@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(
+        bce_client_config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = BccClient(config)
+        client = BccClient(bce_client_config)
         request = bcc_models.BindTagVolumeRequest(volume_id="", change_tags=[])
         res = client.bind_tag_volume(request)
         print(res.to_json_string())

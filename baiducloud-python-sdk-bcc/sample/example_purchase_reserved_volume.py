@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(
+        bce_client_config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = BccClient(config)
+        client = BccClient(bce_client_config)
 
         reservation = bcc_models.Reservation(reservation_length=0, reservation_time_unit="")
         billing = bcc_models.Billing(payment_timing="", reservation=reservation)

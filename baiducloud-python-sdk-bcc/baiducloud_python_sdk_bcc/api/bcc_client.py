@@ -12,13 +12,21 @@ from baiducloud_python_sdk_core.http import bce_http_client
 from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import http_methods
 from baiducloud_python_sdk_bcc.models.attach_volume_response import AttachVolumeResponse
+from baiducloud_python_sdk_bcc.models.create_image_response import CreateImageResponse
 from baiducloud_python_sdk_bcc.models.create_volume_response import CreateVolumeResponse
+from baiducloud_python_sdk_bcc.models.get_available_images_by_spec_response import GetAvailableImagesBySpecResponse
 from baiducloud_python_sdk_bcc.models.get_cds_price_response import GetCdsPriceResponse
 from baiducloud_python_sdk_bcc.models.get_disk_quota_response import GetDiskQuotaResponse
+from baiducloud_python_sdk_bcc.models.get_image_response import GetImageResponse
 from baiducloud_python_sdk_bcc.models.get_volume_response import GetVolumeResponse
 from baiducloud_python_sdk_bcc.models.get_volume_resize_progress_response import GetVolumeResizeProgressResponse
+from baiducloud_python_sdk_bcc.models.import_image_response import ImportImageResponse
+from baiducloud_python_sdk_bcc.models.list_images_response import ListImagesResponse
+from baiducloud_python_sdk_bcc.models.list_os_response import ListOsResponse
+from baiducloud_python_sdk_bcc.models.list_shared_user_response import ListSharedUserResponse
 from baiducloud_python_sdk_bcc.models.list_volumes_response import ListVolumesResponse
 from baiducloud_python_sdk_bcc.models.purchase_reserved_volume_response import PurchaseReservedVolumeResponse
+from baiducloud_python_sdk_bcc.models.remote_copy_image_response import RemoteCopyImageResponse
 from baiducloud_python_sdk_bcc.models.resize_volume_response import ResizeVolumeResponse
 
 _logger = logging.getLogger(__name__)
@@ -31,9 +39,11 @@ class BccClient(BceBaseClient):
 
     VERSION_V2 = b'/v2'
 
-    CONSTANT_VOLUME = b'volume'
+    CONSTANT_IMAGE = b'image'
 
     CONSTANT_TAG = b'tag'
+
+    CONSTANT_VOLUME = b'volume'
 
     CONSTANT_PROGRESS = b'progress'
 
@@ -42,6 +52,16 @@ class BccClient(BceBaseClient):
     CONSTANT_QUOTA = b'quota'
 
     CONSTANT_GET_PRICE = b'getPrice'
+
+    CONSTANT_GET_AVAILABLE_IMAGES_BY_SPEC = b'getAvailableImagesBySpec'
+
+    CONSTANT_RENAME = b'rename'
+
+    CONSTANT_IMPORT = b'import'
+
+    CONSTANT_OS = b'os'
+
+    CONSTANT_SHARED_USERS = b'sharedUsers'
 
     def __init__(self, config=None):
         """
@@ -81,6 +101,32 @@ class BccClient(BceBaseClient):
             model=AttachVolumeResponse,
         )
 
+    def bind_tag_image(self, request, config=None):
+        """
+        bind_tag_image
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            BccClient.VERSION_V2, BccClient.CONSTANT_IMAGE, request.image_id, BccClient.CONSTANT_TAG
+        )
+        headers = None
+        params = {}
+        params['bind'] = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
     def bind_tag_volume(self, request, config=None):
         """
         bind_tag_volume
@@ -105,6 +151,54 @@ class BccClient(BceBaseClient):
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
+    def cancel_remote_copy_image(self, request, config=None):
+        """
+        cancel_remote_copy_image
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(BccClient.VERSION_V2, BccClient.CONSTANT_IMAGE, request.image_id)
+        headers = None
+        params = {}
+        params['cancelRemoteCopy'] = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.POST, path=path, params=params, config=merged_config)
+
+    def create_image(self, request, config=None):
+        """
+        create_image
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing CreateImageResponse data
+        :rtype: CreateImageResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(BccClient.VERSION_V2, BccClient.CONSTANT_IMAGE)
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=CreateImageResponse,
         )
 
     def create_volume(self, request, config=None):
@@ -133,6 +227,26 @@ class BccClient(BceBaseClient):
             model=CreateVolumeResponse,
         )
 
+    def delete_image(self, request, config=None):
+        """
+        delete_image
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(BccClient.VERSION_V2, BccClient.CONSTANT_IMAGE, request.image_id)
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.DELETE, path=path, config=merged_config)
+
     def detach_volume(self, request, config=None):
         """
         detach_volume
@@ -155,6 +269,39 @@ class BccClient(BceBaseClient):
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
+    def get_available_images_by_spec(self, request, config=None):
+        """
+        get_available_images_by_spec
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing GetAvailableImagesBySpecResponse data
+        :rtype: GetAvailableImagesBySpecResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            BccClient.VERSION_V2, BccClient.CONSTANT_IMAGE, BccClient.CONSTANT_GET_AVAILABLE_IMAGES_BY_SPEC
+        )
+        headers = None
+        params = {}
+        if request.spec is not None:
+            params['spec'] = request.spec
+        if request.marker is not None:
+            params['marker'] = request.marker
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
+        if request.os_name is not None:
+            params['osName'] = request.os_name
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.GET, path=path, params=params, config=merged_config, model=GetAvailableImagesBySpecResponse
         )
 
     def get_cds_price(self, request, config=None):
@@ -210,6 +357,26 @@ class BccClient(BceBaseClient):
             http_methods.GET, path=path, params=params, config=merged_config, model=GetDiskQuotaResponse
         )
 
+    def get_image(self, request, config=None):
+        """
+        get_image
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing GetImageResponse data
+        :rtype: GetImageResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(BccClient.VERSION_V2, BccClient.CONSTANT_IMAGE, request.image_id)
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.GET, path=path, config=merged_config, model=GetImageResponse)
+
     def get_volume(self, request, config=None):
         """
         get_volume
@@ -253,6 +420,107 @@ class BccClient(BceBaseClient):
         return self._send_request(
             http_methods.GET, path=path, config=merged_config, model=GetVolumeResizeProgressResponse
         )
+
+    def import_image(self, request, config=None):
+        """
+        import_image
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing ImportImageResponse data
+        :rtype: ImportImageResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(BccClient.VERSION_V2, BccClient.CONSTANT_IMAGE, BccClient.CONSTANT_IMPORT)
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=ImportImageResponse,
+        )
+
+    def list_images(self, request, config=None):
+        """
+        list_images
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing ListImagesResponse data
+        :rtype: ListImagesResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(BccClient.VERSION_V2, BccClient.CONSTANT_IMAGE)
+        headers = None
+        params = {}
+        if request.marker is not None:
+            params['marker'] = request.marker
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
+        if request.image_type is not None:
+            params['imageType'] = request.image_type
+        if request.image_name is not None:
+            params['imageName'] = request.image_name
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.GET, path=path, params=params, config=merged_config, model=ListImagesResponse
+        )
+
+    def list_os(self, request, config=None):
+        """
+        list_os
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing ListOsResponse data
+        :rtype: ListOsResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(BccClient.VERSION_V2, BccClient.CONSTANT_IMAGE, BccClient.CONSTANT_OS)
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST, path=path, body=request.to_json_string(), config=merged_config, model=ListOsResponse
+        )
+
+    def list_shared_user(self, request, config=None):
+        """
+        list_shared_user
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing ListSharedUserResponse data
+        :rtype: ListSharedUserResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            BccClient.VERSION_V2, BccClient.CONSTANT_IMAGE, request.image_id, BccClient.CONSTANT_SHARED_USERS
+        )
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.GET, path=path, config=merged_config, model=ListSharedUserResponse)
 
     def list_volumes(self, request, config=None):
         """
@@ -392,6 +660,55 @@ class BccClient(BceBaseClient):
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
 
+    def remote_copy_image(self, request, config=None):
+        """
+        remote_copy_image
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing RemoteCopyImageResponse data
+        :rtype: RemoteCopyImageResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(BccClient.VERSION_V2, BccClient.CONSTANT_IMAGE, request.image_id)
+        headers = None
+        params = {}
+        params['remoteCopy'] = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=RemoteCopyImageResponse,
+        )
+
+    def rename_image(self, request, config=None):
+        """
+        rename_image
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(BccClient.VERSION_V2, BccClient.CONSTANT_IMAGE, BccClient.CONSTANT_RENAME)
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.PUT, path=path, body=request.to_json_string(), config=merged_config)
+
     def rename_volume(self, request, config=None):
         """
         rename_volume
@@ -464,6 +781,80 @@ class BccClient(BceBaseClient):
         headers = None
         params = {}
         params['rollback'] = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
+    def share_image(self, request, config=None):
+        """
+        share_image
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(BccClient.VERSION_V2, BccClient.CONSTANT_IMAGE, request.image_id)
+        headers = None
+        params = {}
+        params['share'] = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
+    def un_share_image(self, request, config=None):
+        """
+        un_share_image
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(BccClient.VERSION_V2, BccClient.CONSTANT_IMAGE, request.image_id)
+        headers = None
+        params = {}
+        params['unshare'] = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
+    def unbind_tag_image(self, request, config=None):
+        """
+        unbind_tag_image
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            BccClient.VERSION_V2, BccClient.CONSTANT_IMAGE, request.image_id, BccClient.CONSTANT_TAG
+        )
+        headers = None
+        params = {}
+        params['unbind'] = None
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
