@@ -1,17 +1,16 @@
 """
-Dataset information
+Request entity for DescribeDatasetResponse information.
 """
 
-from baiducloud_python_sdk_core.abstract_model import AbstractModel
-
+from baiducloud_python_sdk_core.bce_response import BceResponse
 from baiducloud_python_sdk_aihc.models.permission_entry import PermissionEntry
-
 from baiducloud_python_sdk_aihc.models.permission_entry import PermissionEntry
+from baiducloud_python_sdk_aihc.models.dataset_version_entry import DatasetVersionEntry
 
 
-class Dataset(AbstractModel):
+class DescribeDatasetResponse(BceResponse):
     """
-    Dataset
+    DescribeDatasetResponse
     """
 
     def __init__(
@@ -30,13 +29,14 @@ class Dataset(AbstractModel):
         permission=None,
         latest_version_id=None,
         latest_version=None,
+        latest_version_entry=None,
         created_at=None,
         updated_at=None,
     ):
         """
-        Initialize Dataset instance.
+        Initialize DescribeDatasetResponse response.
 
-        :param id: 数据集ID。新建数据集时，无需指定ID。
+        :param id: 数据集ID
         :type id: str (optional)
 
         :param name: 数据集名称
@@ -63,10 +63,10 @@ class Dataset(AbstractModel):
         :param visibility_scope: 可见范围ALL_PEOPLE：所有人可见ONLY_OWNER：仅所有者可读写USER_GROUP：指定范围可用
         :type visibility_scope: str (optional)
 
-        :param visibility_user: visibility_user attribute
+        :param visibility_user: visibility_user field
         :type visibility_user: List[PermissionEntry] (optional)
 
-        :param visibility_group: visibility_group attribute
+        :param visibility_group: visibility_group field
         :type visibility_group: List[PermissionEntry] (optional)
 
         :param permission: 当前用户拥有的读写权限：r：只读rw：读写
@@ -77,6 +77,9 @@ class Dataset(AbstractModel):
 
         :param latest_version: 最新版本号
         :type latest_version: str (optional)
+
+        :param latest_version_entry: latest_version_entry field
+        :type latest_version_entry: DatasetVersionEntry (optional)
 
         :param created_at: 创建时间
         :type created_at: str (optional)
@@ -99,22 +102,26 @@ class Dataset(AbstractModel):
         self.permission = permission
         self.latest_version_id = latest_version_id
         self.latest_version = latest_version
+        self.latest_version_entry = latest_version_entry
         self.created_at = created_at
         self.updated_at = updated_at
 
     def to_dict(self):
         """
-        Convert the model instance to a dictionary representation.
+        Convert the response instance to a dictionary representation.
 
+        Includes metadata from the parent BceResponse class.
         Nested model objects are recursively converted to dictionaries.
 
-        :return: Dictionary representation of the model
+        :return: Dictionary representation of the response
         :rtype: dict
         """
         _map = super().to_dict()
         if _map is not None:
             return _map
         result = dict()
+        if self.metadata is not None:
+            result['metadata'] = dict(self.metadata)
         if self.id is not None:
             result['id'] = self.id
         if self.name is not None:
@@ -143,6 +150,8 @@ class Dataset(AbstractModel):
             result['latestVersionId'] = self.latest_version_id
         if self.latest_version is not None:
             result['latestVersion'] = self.latest_version
+        if self.latest_version_entry is not None:
+            result['latestVersionEntry'] = self.latest_version_entry.to_dict()
         if self.created_at is not None:
             result['createdAt'] = self.created_at
         if self.updated_at is not None:
@@ -151,17 +160,17 @@ class Dataset(AbstractModel):
 
     def from_dict(self, m):
         """
-        Populate the model instance from a dictionary.
+        Populate the response instance from a dictionary.
 
         Nested dictionaries are recursively converted to model objects.
 
-        :param m: Dictionary containing model data
+        :param m: Dictionary containing response data
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: Dataset
+        :rtype: DescribeDatasetResponse
 
-        :raises TypeError: If input is not a dictionary type
+        :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
@@ -193,6 +202,8 @@ class Dataset(AbstractModel):
             self.latest_version_id = m.get('latestVersionId')
         if m.get('latestVersion') is not None:
             self.latest_version = m.get('latestVersion')
+        if m.get('latestVersionEntry') is not None:
+            self.latest_version_entry = DatasetVersionEntry().from_dict(m.get('latestVersionEntry'))
         if m.get('createdAt') is not None:
             self.created_at = m.get('createdAt')
         if m.get('updatedAt') is not None:

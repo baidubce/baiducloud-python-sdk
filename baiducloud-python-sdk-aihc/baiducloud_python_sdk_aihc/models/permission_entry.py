@@ -14,13 +14,13 @@ class PermissionEntry(AbstractModel):
         """
         Initialize PermissionEntry instance.
 
-        :param id: 是
+        :param id: 用户或用户组ID
         :type id: str (optional)
 
-        :param name: 是
+        :param name: 用户或用户组名
         :type name: str (optional)
 
-        :param permission: 是
+        :param permission: 权限，枚举值：r：只读rw：读写
         :type permission: str (optional)
         """
         super().__init__()

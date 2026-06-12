@@ -11,24 +11,18 @@ from baiducloud_python_sdk_core.bce_base_client import BceBaseClient
 from baiducloud_python_sdk_core.http import bce_http_client
 from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import http_methods
-from baiducloud_python_sdk_aihc.models.create_a_dataset_v2_response import CreateADatasetV2Response
-from baiducloud_python_sdk_aihc.models.create_a_model_v2_response import CreateAModelV2Response
-from baiducloud_python_sdk_aihc.models.create_dataset_version_v2_response import CreateDatasetVersionV2Response
-from baiducloud_python_sdk_aihc.models.get_a_list_of_model_versions_v2_response import (
-    GetAListOfModelVersionsV2Response,
-)
-from baiducloud_python_sdk_aihc.models.get_dataset_details_v2_response import GetDatasetDetailsV2Response
-from baiducloud_python_sdk_aihc.models.get_dataset_version_details_v2_response import (
-    GetDatasetVersionDetailsV2Response,
-)
-from baiducloud_python_sdk_aihc.models.get_model_details_v2_response import GetModelDetailsV2Response
-from baiducloud_python_sdk_aihc.models.get_model_list_v2_response import GetModelListV2Response
-from baiducloud_python_sdk_aihc.models.get_model_version_details_v2_response import GetModelVersionDetailsV2Response
-from baiducloud_python_sdk_aihc.models.new_model_version_v2_response import NewModelVersionV2Response
-from baiducloud_python_sdk_aihc.models.retrieve_the_dataset_list_v2_response import RetrieveTheDatasetListV2Response
-from baiducloud_python_sdk_aihc.models.retrieve_the_dataset_version_list_v2_response import (
-    RetrieveTheDatasetVersionListV2Response,
-)
+from baiducloud_python_sdk_aihc.models.create_dataset_response import CreateDatasetResponse
+from baiducloud_python_sdk_aihc.models.create_dataset_version_response import CreateDatasetVersionResponse
+from baiducloud_python_sdk_aihc.models.create_model_response import CreateModelResponse
+from baiducloud_python_sdk_aihc.models.create_model_version_response import CreateModelVersionResponse
+from baiducloud_python_sdk_aihc.models.describe_dataset_response import DescribeDatasetResponse
+from baiducloud_python_sdk_aihc.models.describe_dataset_version_response import DescribeDatasetVersionResponse
+from baiducloud_python_sdk_aihc.models.describe_dataset_versions_response import DescribeDatasetVersionsResponse
+from baiducloud_python_sdk_aihc.models.describe_datasets_response import DescribeDatasetsResponse
+from baiducloud_python_sdk_aihc.models.describe_model_response import DescribeModelResponse
+from baiducloud_python_sdk_aihc.models.describe_model_version_response import DescribeModelVersionResponse
+from baiducloud_python_sdk_aihc.models.describe_model_versions_response import DescribeModelVersionsResponse
+from baiducloud_python_sdk_aihc.models.describe_models_response import DescribeModelsResponse
 
 _logger = logging.getLogger(__name__)
 
@@ -47,23 +41,24 @@ class AihcClient(BceBaseClient):
         """
         bce_base_client.BceBaseClient.__init__(self, config)
 
-    def create_a_dataset_v2(self, request, config=None):
+    def create_dataset(self, request, config=None):
         """
-        create_a_dataset_v2
+        create_dataset
 
         :param request: Request entity containing all parameters
         :type request: AihcClientRequest
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response containing CreateADatasetV2Response data
-        :rtype: CreateADatasetV2Response
+        :return: API response containing CreateDatasetResponse data
+        :rtype: CreateDatasetResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = b'/'
-        headers = None
+        headers = {}
+        headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'CreateDataset'
         merged_config = self._create_request_with_host(request, config)
@@ -71,57 +66,30 @@ class AihcClient(BceBaseClient):
             http_methods.POST,
             path=path,
             body=request.to_json_string(),
+            headers=headers,
             params=params,
             config=merged_config,
-            model=CreateADatasetV2Response,
+            model=CreateDatasetResponse,
         )
 
-    def create_a_model_v2(self, request, config=None):
+    def create_dataset_version(self, request, config=None):
         """
-        create_a_model_v2
+        create_dataset_version
 
         :param request: Request entity containing all parameters
         :type request: AihcClientRequest
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response containing CreateAModelV2Response data
-        :rtype: CreateAModelV2Response
+        :return: API response containing CreateDatasetVersionResponse data
+        :rtype: CreateDatasetVersionResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = b'/'
-        headers = None
-        params = {}
-        params['action'] = 'CreateModel'
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(
-            http_methods.POST,
-            path=path,
-            body=request.to_json_string(),
-            params=params,
-            config=merged_config,
-            model=CreateAModelV2Response,
-        )
-
-    def create_dataset_version_v2(self, request, config=None):
-        """
-        create_dataset_version_v2
-
-        :param request: Request entity containing all parameters
-        :type request: AihcClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response containing CreateDatasetVersionV2Response data
-        :rtype: CreateDatasetVersionV2Response
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = b'/'
-        headers = None
+        headers = {}
+        headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'CreateDatasetVersion'
         params['datasetId'] = 'xxx'
@@ -132,366 +100,61 @@ class AihcClient(BceBaseClient):
             http_methods.POST,
             path=path,
             body=request.to_json_string(),
+            headers=headers,
             params=params,
             config=merged_config,
-            model=CreateDatasetVersionV2Response,
+            model=CreateDatasetVersionResponse,
         )
 
-    def delete_dataset_v2(self, request, config=None):
+    def create_model(self, request, config=None):
         """
-        delete_dataset_v2
+        create_model
 
         :param request: Request entity containing all parameters
         :type request: AihcClientRequest
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing CreateModelResponse data
+        :rtype: CreateModelResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = b'/'
-        headers = None
+        headers = {}
+        headers[b'Version'] = b'v2'
         params = {}
-        params['action'] = 'DeleteDataset'
-        params['datasetId'] = 'xxx'
-        if request.dataset_id is not None:
-            params['datasetId'] = request.dataset_id
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, params=params, config=merged_config)
-
-    def delete_dataset_version_v2(self, request, config=None):
-        """
-        delete_dataset_version_v2
-
-        :param request: Request entity containing all parameters
-        :type request: AihcClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = b'/'
-        headers = None
-        params = {}
-        params['action'] = 'DeleteDatasetVersion'
-        params['datasetId'] = 'xxx'
-        params['versionId'] = 'xxx'
-        if request.dataset_id is not None:
-            params['datasetId'] = request.dataset_id
-        if request.version_id is not None:
-            params['versionId'] = request.version_id
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, params=params, config=merged_config)
-
-    def delete_model_v2(self, request, config=None):
-        """
-        delete_model_v2
-
-        :param request: Request entity containing all parameters
-        :type request: AihcClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = b'/'
-        headers = None
-        params = {}
-        params['action'] = 'DeleteModel'
-        params['modelId'] = 'xxx'
-        if request.model_id is not None:
-            params['modelId'] = request.model_id
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, params=params, config=merged_config)
-
-    def delete_model_version_v2(self, request, config=None):
-        """
-        delete_model_version_v2
-
-        :param request: Request entity containing all parameters
-        :type request: AihcClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = b'/'
-        headers = None
-        params = {}
-        params['action'] = 'DeleteModelVersion'
-        params['modelId'] = 'xxx'
-        params['versionId'] = 'xxx'
-        if request.model_id is not None:
-            params['modelId'] = request.model_id
-        if request.version_id is not None:
-            params['versionId'] = request.version_id
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, params=params, config=merged_config)
-
-    def get_a_list_of_model_versions_v2(self, request, config=None):
-        """
-        get_a_list_of_model_versions_v2
-
-        :param request: Request entity containing all parameters
-        :type request: AihcClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response containing GetAListOfModelVersionsV2Response data
-        :rtype: GetAListOfModelVersionsV2Response
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = b'/'
-        headers = None
-        params = {}
-        params['action'] = 'DescribeModelVersions'
-        params['modelId'] = 'xxx'
-        params['pageNumber'] = 'xxx'
-        params['pageSize'] = 'xxx'
-        if request.model_id is not None:
-            params['modelId'] = request.model_id
-        if request.page_number is not None:
-            params['pageNumber'] = request.page_number
-        if request.page_size is not None:
-            params['pageSize'] = request.page_size
+        params['action'] = 'CreateModel'
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.GET, path=path, params=params, config=merged_config, model=GetAListOfModelVersionsV2Response
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            headers=headers,
+            params=params,
+            config=merged_config,
+            model=CreateModelResponse,
         )
 
-    def get_dataset_details_v2(self, request, config=None):
+    def create_model_version(self, request, config=None):
         """
-        get_dataset_details_v2
+        create_model_version
 
         :param request: Request entity containing all parameters
         :type request: AihcClientRequest
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response containing GetDatasetDetailsV2Response data
-        :rtype: GetDatasetDetailsV2Response
+        :return: API response containing CreateModelVersionResponse data
+        :rtype: CreateModelVersionResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = b'/'
-        headers = None
-        params = {}
-        params['action'] = 'DescribeDataset'
-        params['datasetId'] = 'xxx'
-        if request.dataset_id is not None:
-            params['datasetId'] = request.dataset_id
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(
-            http_methods.GET, path=path, params=params, config=merged_config, model=GetDatasetDetailsV2Response
-        )
-
-    def get_dataset_version_details_v2(self, request, config=None):
-        """
-        get_dataset_version_details_v2
-
-        :param request: Request entity containing all parameters
-        :type request: AihcClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response containing GetDatasetVersionDetailsV2Response data
-        :rtype: GetDatasetVersionDetailsV2Response
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = b'/'
-        headers = None
-        params = {}
-        params['action'] = 'DescribeDatasetVersion'
-        params['datasetId'] = 'xxx'
-        params['versionId'] = 'xxx'
-        if request.dataset_id is not None:
-            params['datasetId'] = request.dataset_id
-        if request.version_id is not None:
-            params['versionId'] = request.version_id
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(
-            http_methods.GET, path=path, params=params, config=merged_config, model=GetDatasetVersionDetailsV2Response
-        )
-
-    def get_model_details_v2(self, request, config=None):
-        """
-        get_model_details_v2
-
-        :param request: Request entity containing all parameters
-        :type request: AihcClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response containing GetModelDetailsV2Response data
-        :rtype: GetModelDetailsV2Response
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = b'/'
-        headers = None
-        params = {}
-        params['action'] = 'DescribeModel'
-        params['modelId'] = 'xxx'
-        if request.model_id is not None:
-            params['modelId'] = request.model_id
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(
-            http_methods.GET, path=path, params=params, config=merged_config, model=GetModelDetailsV2Response
-        )
-
-    def get_model_list_v2(self, request, config=None):
-        """
-        get_model_list_v2
-
-        :param request: Request entity containing all parameters
-        :type request: AihcClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response containing GetModelListV2Response data
-        :rtype: GetModelListV2Response
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = b'/'
-        headers = None
-        params = {}
-        params['action'] = 'DescribeModels'
-        params['keyword'] = 'xxx'
-        params['pageNumber'] = 'xxx'
-        params['pageSize'] = 'xxx'
-        if request.page_number is not None:
-            params['pageNumber'] = request.page_number
-        if request.page_size is not None:
-            params['pageSize'] = request.page_size
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(
-            http_methods.GET, path=path, params=params, config=merged_config, model=GetModelListV2Response
-        )
-
-    def get_model_version_details_v2(self, request, config=None):
-        """
-        get_model_version_details_v2
-
-        :param request: Request entity containing all parameters
-        :type request: AihcClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response containing GetModelVersionDetailsV2Response data
-        :rtype: GetModelVersionDetailsV2Response
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = b'/'
-        headers = None
-        params = {}
-        params['action'] = 'DescribeModelVersion'
-        params['modelId'] = 'xxx'
-        params['versionId'] = 'xxx'
-        if request.model_id is not None:
-            params['modelId'] = request.model_id
-        if request.version_id is not None:
-            params['versionId'] = request.version_id
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(
-            http_methods.GET, path=path, params=params, config=merged_config, model=GetModelVersionDetailsV2Response
-        )
-
-    def modify_dataset_v2(self, request, config=None):
-        """
-        modify_dataset_v2
-
-        :param request: Request entity containing all parameters
-        :type request: AihcClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = b'/'
-        headers = None
-        params = {}
-        params['action'] = 'ModifyDataset'
-        params['datasetId'] = 'xxx'
-        if request.dataset_id is not None:
-            params['datasetId'] = request.dataset_id
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(
-            http_methods.POST, path=path, body=request.to_json_string(), params=params, config=merged_config
-        )
-
-    def modify_the_model_v2(self, request, config=None):
-        """
-        modify_the_model_v2
-
-        :param request: Request entity containing all parameters
-        :type request: AihcClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = b'/'
-        headers = None
-        params = {}
-        params['action'] = 'ModifyModel'
-        params['modelId'] = 'xxx'
-        if request.model_id is not None:
-            params['modelId'] = request.model_id
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(
-            http_methods.POST, path=path, body=request.to_json_string(), params=params, config=merged_config
-        )
-
-    def new_model_version_v2(self, request, config=None):
-        """
-        new_model_version_v2
-
-        :param request: Request entity containing all parameters
-        :type request: AihcClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response containing NewModelVersionV2Response data
-        :rtype: NewModelVersionV2Response
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = b'/'
-        headers = None
+        headers = {}
+        headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'CreateModelVersion'
         params['modelId'] = 'xxx'
@@ -502,28 +165,248 @@ class AihcClient(BceBaseClient):
             http_methods.POST,
             path=path,
             body=request.to_json_string(),
+            headers=headers,
             params=params,
             config=merged_config,
-            model=NewModelVersionV2Response,
+            model=CreateModelVersionResponse,
         )
 
-    def retrieve_the_dataset_list_v2(self, request, config=None):
+    def delete_dataset(self, request, config=None):
         """
-        retrieve_the_dataset_list_v2
+        delete_dataset
 
         :param request: Request entity containing all parameters
         :type request: AihcClientRequest
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response containing RetrieveTheDatasetListV2Response data
-        :rtype: RetrieveTheDatasetListV2Response
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = b'/'
-        headers = None
+        headers = {}
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'DeleteDataset'
+        params['datasetId'] = 'xxx'
+        if request.dataset_id is not None:
+            params['datasetId'] = request.dataset_id
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.POST, path=path, headers=headers, params=params, config=merged_config)
+
+    def delete_dataset_version(self, request, config=None):
+        """
+        delete_dataset_version
+
+        :param request: Request entity containing all parameters
+        :type request: AihcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = {}
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'DeleteDatasetVersion'
+        params['datasetId'] = 'xxx'
+        params['versionId'] = 'xxx'
+        if request.dataset_id is not None:
+            params['datasetId'] = request.dataset_id
+        if request.version_id is not None:
+            params['versionId'] = request.version_id
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.POST, path=path, headers=headers, params=params, config=merged_config)
+
+    def delete_model(self, request, config=None):
+        """
+        delete_model
+
+        :param request: Request entity containing all parameters
+        :type request: AihcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = {}
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'DeleteModel'
+        params['modelId'] = 'xxx'
+        if request.model_id is not None:
+            params['modelId'] = request.model_id
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.POST, path=path, headers=headers, params=params, config=merged_config)
+
+    def delete_model_version(self, request, config=None):
+        """
+        delete_model_version
+
+        :param request: Request entity containing all parameters
+        :type request: AihcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = {}
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'DeleteModelVersion'
+        params['modelId'] = 'xxx'
+        params['versionId'] = 'xxx'
+        if request.model_id is not None:
+            params['modelId'] = request.model_id
+        if request.version_id is not None:
+            params['versionId'] = request.version_id
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.POST, path=path, headers=headers, params=params, config=merged_config)
+
+    def describe_dataset(self, request, config=None):
+        """
+        describe_dataset
+
+        :param request: Request entity containing all parameters
+        :type request: AihcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DescribeDatasetResponse data
+        :rtype: DescribeDatasetResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = {}
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'DescribeDataset'
+        params['datasetId'] = 'xxx'
+        if request.dataset_id is not None:
+            params['datasetId'] = request.dataset_id
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.GET,
+            path=path,
+            headers=headers,
+            params=params,
+            config=merged_config,
+            model=DescribeDatasetResponse,
+        )
+
+    def describe_dataset_version(self, request, config=None):
+        """
+        describe_dataset_version
+
+        :param request: Request entity containing all parameters
+        :type request: AihcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DescribeDatasetVersionResponse data
+        :rtype: DescribeDatasetVersionResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = {}
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'DescribeDatasetVersion'
+        params['datasetId'] = 'xxx'
+        params['versionId'] = 'xxx'
+        if request.dataset_id is not None:
+            params['datasetId'] = request.dataset_id
+        if request.version_id is not None:
+            params['versionId'] = request.version_id
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.GET,
+            path=path,
+            headers=headers,
+            params=params,
+            config=merged_config,
+            model=DescribeDatasetVersionResponse,
+        )
+
+    def describe_dataset_versions(self, request, config=None):
+        """
+        describe_dataset_versions
+
+        :param request: Request entity containing all parameters
+        :type request: AihcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DescribeDatasetVersionsResponse data
+        :rtype: DescribeDatasetVersionsResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = {}
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'DescribeDatasetVersions'
+        params['datasetId'] = 'xxx'
+        params['pageNumber'] = 'xxx'
+        params['pageSize'] = 'xxx'
+        if request.dataset_id is not None:
+            params['datasetId'] = request.dataset_id
+        if request.page_number is not None:
+            params['pageNumber'] = request.page_number
+        if request.page_size is not None:
+            params['pageSize'] = request.page_size
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.GET,
+            path=path,
+            headers=headers,
+            params=params,
+            config=merged_config,
+            model=DescribeDatasetVersionsResponse,
+        )
+
+    def describe_datasets(self, request, config=None):
+        """
+        describe_datasets
+
+        :param request: Request entity containing all parameters
+        :type request: AihcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DescribeDatasetsResponse data
+        :rtype: DescribeDatasetsResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = {}
+        headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'DescribeDatasets'
         params['keyword'] = 'xxx'
@@ -544,33 +427,108 @@ class AihcClient(BceBaseClient):
             params['pageSize'] = request.page_size
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.GET, path=path, params=params, config=merged_config, model=RetrieveTheDatasetListV2Response
+            http_methods.GET,
+            path=path,
+            headers=headers,
+            params=params,
+            config=merged_config,
+            model=DescribeDatasetsResponse,
         )
 
-    def retrieve_the_dataset_version_list_v2(self, request, config=None):
+    def describe_model(self, request, config=None):
         """
-        retrieve_the_dataset_version_list_v2
+        describe_model
 
         :param request: Request entity containing all parameters
         :type request: AihcClientRequest
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response containing RetrieveTheDatasetVersionListV2Response data
-        :rtype: RetrieveTheDatasetVersionListV2Response
+        :return: API response containing DescribeModelResponse data
+        :rtype: DescribeModelResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = b'/'
-        headers = None
+        headers = {}
+        headers[b'Version'] = b'v2'
         params = {}
-        params['action'] = 'DescribeDatasetVersions'
-        params['datasetId'] = 'xxx'
+        params['action'] = 'DescribeModel'
+        params['modelId'] = 'xxx'
+        if request.model_id is not None:
+            params['modelId'] = request.model_id
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.GET,
+            path=path,
+            headers=headers,
+            params=params,
+            config=merged_config,
+            model=DescribeModelResponse,
+        )
+
+    def describe_model_version(self, request, config=None):
+        """
+        describe_model_version
+
+        :param request: Request entity containing all parameters
+        :type request: AihcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DescribeModelVersionResponse data
+        :rtype: DescribeModelVersionResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = {}
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'DescribeModelVersion'
+        params['modelId'] = 'xxx'
+        params['versionId'] = 'xxx'
+        if request.model_id is not None:
+            params['modelId'] = request.model_id
+        if request.version_id is not None:
+            params['versionId'] = request.version_id
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.GET,
+            path=path,
+            headers=headers,
+            params=params,
+            config=merged_config,
+            model=DescribeModelVersionResponse,
+        )
+
+    def describe_model_versions(self, request, config=None):
+        """
+        describe_model_versions
+
+        :param request: Request entity containing all parameters
+        :type request: AihcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DescribeModelVersionsResponse data
+        :rtype: DescribeModelVersionsResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = {}
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'DescribeModelVersions'
+        params['modelId'] = 'xxx'
         params['pageNumber'] = 'xxx'
         params['pageSize'] = 'xxx'
-        if request.dataset_id is not None:
-            params['datasetId'] = request.dataset_id
+        if request.model_id is not None:
+            params['modelId'] = request.model_id
         if request.page_number is not None:
             params['pageNumber'] = request.page_number
         if request.page_size is not None:
@@ -579,9 +537,113 @@ class AihcClient(BceBaseClient):
         return self._send_request(
             http_methods.GET,
             path=path,
+            headers=headers,
             params=params,
             config=merged_config,
-            model=RetrieveTheDatasetVersionListV2Response,
+            model=DescribeModelVersionsResponse,
+        )
+
+    def describe_models(self, request, config=None):
+        """
+        describe_models
+
+        :param request: Request entity containing all parameters
+        :type request: AihcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DescribeModelsResponse data
+        :rtype: DescribeModelsResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = {}
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'DescribeModels'
+        params['keyword'] = 'xxx'
+        params['pageNumber'] = 'xxx'
+        params['pageSize'] = 'xxx'
+        if request.page_number is not None:
+            params['pageNumber'] = request.page_number
+        if request.page_size is not None:
+            params['pageSize'] = request.page_size
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.GET,
+            path=path,
+            headers=headers,
+            params=params,
+            config=merged_config,
+            model=DescribeModelsResponse,
+        )
+
+    def modify_dataset(self, request, config=None):
+        """
+        modify_dataset
+
+        :param request: Request entity containing all parameters
+        :type request: AihcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = {}
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'ModifyDataset'
+        params['datasetId'] = 'xxx'
+        if request.dataset_id is not None:
+            params['datasetId'] = request.dataset_id
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            headers=headers,
+            params=params,
+            config=merged_config,
+        )
+
+    def modify_model(self, request, config=None):
+        """
+        modify_model
+
+        :param request: Request entity containing all parameters
+        :type request: AihcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = {}
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'ModifyModel'
+        params['modelId'] = 'xxx'
+        if request.model_id is not None:
+            params['modelId'] = request.model_id
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            headers=headers,
+            params=params,
+            config=merged_config,
         )
 
     def _merge_config(self, config=None):

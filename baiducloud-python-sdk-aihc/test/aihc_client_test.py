@@ -25,80 +25,80 @@ class AihcClientTest(unittest.TestCase):
         """
         self.the_client = None
 
-    def test_create_a_dataset_v2(self):
-        self.client.create_a_dataset_v2(aihc_models.CreateADatasetV2Request())
+    def test_create_dataset(self):
+        self.client.create_dataset(aihc_models.CreateDatasetRequest())
 
-    def test_create_a_model_v2(self):
-        self.client.create_a_model_v2(aihc_models.CreateAModelV2Request())
+    def test_create_dataset_version(self):
+        self.client.create_dataset_version(aihc_models.CreateDatasetVersionRequest())
 
-    def test_create_dataset_version_v2(self):
-        self.client.create_dataset_version_v2(aihc_models.CreateDatasetVersionV2Request())
+    def test_create_model(self):
+        self.client.create_model(aihc_models.CreateModelRequest())
 
-    def test_delete_dataset_v2(self):
-        self.client.delete_dataset_v2(aihc_models.DeleteDatasetV2Request())
+    def test_create_model_version(self):
+        self.client.create_model_version(aihc_models.CreateModelVersionRequest())
 
-    def test_delete_dataset_version_v2(self):
-        self.client.delete_dataset_version_v2(aihc_models.DeleteDatasetVersionV2Request())
+    def test_delete_dataset(self):
+        self.client.delete_dataset(aihc_models.DeleteDatasetRequest())
 
-    def test_delete_model_v2(self):
-        self.client.delete_model_v2(aihc_models.DeleteModelV2Request())
+    def test_delete_dataset_version(self):
+        self.client.delete_dataset_version(aihc_models.DeleteDatasetVersionRequest())
 
-    def test_delete_model_version_v2(self):
-        self.client.delete_model_version_v2(aihc_models.DeleteModelVersionV2Request())
+    def test_delete_model(self):
+        self.client.delete_model(aihc_models.DeleteModelRequest())
 
-    def test_get_a_list_of_model_versions_v2(self):
-        self.client.get_a_list_of_model_versions_v2(aihc_models.GetAListOfModelVersionsV2Request())
+    def test_delete_model_version(self):
+        self.client.delete_model_version(aihc_models.DeleteModelVersionRequest())
 
-    def test_get_dataset_details_v2(self):
-        self.client.get_dataset_details_v2(aihc_models.GetDatasetDetailsV2Request())
+    def test_describe_dataset(self):
+        self.client.describe_dataset(aihc_models.DescribeDatasetRequest())
 
-    def test_get_dataset_version_details_v2(self):
-        self.client.get_dataset_version_details_v2(aihc_models.GetDatasetVersionDetailsV2Request())
+    def test_describe_dataset_version(self):
+        self.client.describe_dataset_version(aihc_models.DescribeDatasetVersionRequest())
 
-    def test_get_model_details_v2(self):
-        self.client.get_model_details_v2(aihc_models.GetModelDetailsV2Request())
+    def test_describe_dataset_versions(self):
+        self.client.describe_dataset_versions(aihc_models.DescribeDatasetVersionsRequest())
 
-    def test_get_model_list_v2(self):
-        self.client.get_model_list_v2(aihc_models.GetModelListV2Request())
+    def test_describe_datasets(self):
+        self.client.describe_datasets(aihc_models.DescribeDatasetsRequest())
 
-    def test_get_model_version_details_v2(self):
-        self.client.get_model_version_details_v2(aihc_models.GetModelVersionDetailsV2Request())
+    def test_describe_model(self):
+        self.client.describe_model(aihc_models.DescribeModelRequest())
 
-    def test_modify_dataset_v2(self):
-        self.client.modify_dataset_v2(aihc_models.ModifyDatasetV2Request())
+    def test_describe_model_version(self):
+        self.client.describe_model_version(aihc_models.DescribeModelVersionRequest())
 
-    def test_modify_the_model_v2(self):
-        self.client.modify_the_model_v2(aihc_models.ModifyTheModelV2Request())
+    def test_describe_model_versions(self):
+        self.client.describe_model_versions(aihc_models.DescribeModelVersionsRequest())
 
-    def test_new_model_version_v2(self):
-        self.client.new_model_version_v2(aihc_models.NewModelVersionV2Request())
+    def test_describe_models(self):
+        self.client.describe_models(aihc_models.DescribeModelsRequest())
 
-    def test_retrieve_the_dataset_list_v2(self):
-        self.client.retrieve_the_dataset_list_v2(aihc_models.RetrieveTheDatasetListV2Request())
+    def test_modify_dataset(self):
+        self.client.modify_dataset(aihc_models.ModifyDatasetRequest())
 
-    def test_retrieve_the_dataset_version_list_v2(self):
-        self.client.retrieve_the_dataset_version_list_v2(aihc_models.RetrieveTheDatasetVersionListV2Request())
+    def test_modify_model(self):
+        self.client.modify_model(aihc_models.ModifyModelRequest())
 
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()
-    suite.addTest(AihcClientTest("test_create_a_dataset_v2"))
-    suite.addTest(AihcClientTest("test_create_a_model_v2"))
-    suite.addTest(AihcClientTest("test_create_dataset_version_v2"))
-    suite.addTest(AihcClientTest("test_delete_dataset_v2"))
-    suite.addTest(AihcClientTest("test_delete_dataset_version_v2"))
-    suite.addTest(AihcClientTest("test_delete_model_v2"))
-    suite.addTest(AihcClientTest("test_delete_model_version_v2"))
-    suite.addTest(AihcClientTest("test_get_a_list_of_model_versions_v2"))
-    suite.addTest(AihcClientTest("test_get_dataset_details_v2"))
-    suite.addTest(AihcClientTest("test_get_dataset_version_details_v2"))
-    suite.addTest(AihcClientTest("test_get_model_details_v2"))
-    suite.addTest(AihcClientTest("test_get_model_list_v2"))
-    suite.addTest(AihcClientTest("test_get_model_version_details_v2"))
-    suite.addTest(AihcClientTest("test_modify_dataset_v2"))
-    suite.addTest(AihcClientTest("test_modify_the_model_v2"))
-    suite.addTest(AihcClientTest("test_new_model_version_v2"))
-    suite.addTest(AihcClientTest("test_retrieve_the_dataset_list_v2"))
-    suite.addTest(AihcClientTest("test_retrieve_the_dataset_version_list_v2"))
+    suite.addTest(AihcClientTest("test_create_dataset"))
+    suite.addTest(AihcClientTest("test_create_dataset_version"))
+    suite.addTest(AihcClientTest("test_create_model"))
+    suite.addTest(AihcClientTest("test_create_model_version"))
+    suite.addTest(AihcClientTest("test_delete_dataset"))
+    suite.addTest(AihcClientTest("test_delete_dataset_version"))
+    suite.addTest(AihcClientTest("test_delete_model"))
+    suite.addTest(AihcClientTest("test_delete_model_version"))
+    suite.addTest(AihcClientTest("test_describe_dataset"))
+    suite.addTest(AihcClientTest("test_describe_dataset_version"))
+    suite.addTest(AihcClientTest("test_describe_dataset_versions"))
+    suite.addTest(AihcClientTest("test_describe_datasets"))
+    suite.addTest(AihcClientTest("test_describe_model"))
+    suite.addTest(AihcClientTest("test_describe_model_version"))
+    suite.addTest(AihcClientTest("test_describe_model_versions"))
+    suite.addTest(AihcClientTest("test_describe_models"))
+    suite.addTest(AihcClientTest("test_modify_dataset"))
+    suite.addTest(AihcClientTest("test_modify_model"))
     runner = unittest.TextTestRunner()
     runner.run(suite)

@@ -23,25 +23,25 @@ class ModelVersionEntry(AbstractModel):
         """
         Initialize ModelVersionEntry instance.
 
-        :param id: 否
+        :param id: 模型版本ID。新建版本时，无需指定ID。
         :type id: str (optional)
 
-        :param version: 否
+        :param version: 版本号。新建版本时，无需指定版本号。
         :type version: str (optional)
 
-        :param source: 是
+        :param source: 该版本模型的来源UserUpload：用户上传
         :type source: str (optional)
 
-        :param storage_bucket: 是
+        :param storage_bucket: 模型存储的BOS桶
         :type storage_bucket: str (optional)
 
-        :param storage_path: 是
+        :param storage_path: BOS桶中的存储路径
         :type storage_path: str (optional)
 
-        :param model_metrics: 否
+        :param model_metrics: model_metrics attribute
         :type model_metrics: str (optional)
 
-        :param description: 否
+        :param description: 版本描述
         :type description: str (optional)
         """
         super().__init__()
