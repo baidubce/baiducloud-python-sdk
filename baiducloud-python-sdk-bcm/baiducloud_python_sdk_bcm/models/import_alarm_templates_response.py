@@ -1,42 +1,46 @@
 """
-DeleteAlarmPolicyActionsResponse information
+Request entity for ImportAlarmTemplatesResponse information.
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
+from baiducloud_python_sdk_bcm.models.err_template import ErrTemplate
 
 
-class DeleteAlarmPolicyActionsResponse(BceResponse):
+class ImportAlarmTemplatesResponse(BceResponse):
     """
-    DeleteAlarmPolicyActionsResponse
+    ImportAlarmTemplatesResponse
     """
 
-    def __init__(self, success=None, code=None, message=None):
+    def __init__(self, success=None, code=None, message=None, err_templates=None):
         """
-        Initialize DeleteAlarmPolicyActionsResponse instance.
+        Initialize ImportAlarmTemplatesResponse response.
 
         :param success: 请求是否成功
         :type success: bool (optional)
 
-        :param code: 响应码
+        :param code: 响应码，内容错误时为InvalidParameter
         :type code: str (optional)
 
         :param message: 错误信息
         :type message: str (optional)
+
+        :param err_templates: 内容错误的模板列表
+        :type err_templates: List[ErrTemplate] (optional)
         """
         super().__init__()
         self.success = success
         self.code = code
         self.message = message
+        self.err_templates = err_templates
 
     def to_dict(self):
         """
-        Convert the model instance to a dictionary representation.
-
-        Nested model objects are recursively converted to dictionaries.
+        Convert the response instance to a dictionary representation.
 
         Includes metadata from the parent BceResponse class.
+        Nested model objects are recursively converted to dictionaries.
 
-        :return: Dictionary representation of the model
+        :return: Dictionary representation of the response
         :rtype: dict
         """
         _map = super().to_dict()
@@ -51,21 +55,23 @@ class DeleteAlarmPolicyActionsResponse(BceResponse):
             result['code'] = self.code
         if self.message is not None:
             result['message'] = self.message
+        if self.err_templates is not None:
+            result['errTemplates'] = [i.to_dict() for i in self.err_templates]
         return result
 
     def from_dict(self, m):
         """
-        Populate the model instance from a dictionary.
+        Populate the response instance from a dictionary.
 
         Nested dictionaries are recursively converted to model objects.
 
-        :param m: Dictionary containing model data
+        :param m: Dictionary containing response data
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: DeleteAlarmPolicyActionsResponse
+        :rtype: ImportAlarmTemplatesResponse
 
-        :raises TypeError: If input is not a dictionary type
+        :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
@@ -75,4 +81,6 @@ class DeleteAlarmPolicyActionsResponse(BceResponse):
             self.code = m.get('code')
         if m.get('message') is not None:
             self.message = m.get('message')
+        if m.get('errTemplates') is not None:
+            self.err_templates = [ErrTemplate().from_dict(i) for i in m.get('errTemplates')]
         return self

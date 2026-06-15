@@ -1,18 +1,18 @@
 """
-DeleteAlarmPolicyActionsResponse information
+Request entity for UpdateInstanceGroupResponse information.
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
 
 
-class DeleteAlarmPolicyActionsResponse(BceResponse):
+class UpdateInstanceGroupResponse(BceResponse):
     """
-    DeleteAlarmPolicyActionsResponse
+    UpdateInstanceGroupResponse
     """
 
     def __init__(self, success=None, code=None, message=None):
         """
-        Initialize DeleteAlarmPolicyActionsResponse instance.
+        Initialize UpdateInstanceGroupResponse response.
 
         :param success: 请求是否成功
         :type success: bool (optional)
@@ -30,13 +30,12 @@ class DeleteAlarmPolicyActionsResponse(BceResponse):
 
     def to_dict(self):
         """
-        Convert the model instance to a dictionary representation.
-
-        Nested model objects are recursively converted to dictionaries.
+        Convert the response instance to a dictionary representation.
 
         Includes metadata from the parent BceResponse class.
+        Nested model objects are recursively converted to dictionaries.
 
-        :return: Dictionary representation of the model
+        :return: Dictionary representation of the response
         :rtype: dict
         """
         _map = super().to_dict()
@@ -55,17 +54,17 @@ class DeleteAlarmPolicyActionsResponse(BceResponse):
 
     def from_dict(self, m):
         """
-        Populate the model instance from a dictionary.
+        Populate the response instance from a dictionary.
 
         Nested dictionaries are recursively converted to model objects.
 
-        :param m: Dictionary containing model data
+        :param m: Dictionary containing response data
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: DeleteAlarmPolicyActionsResponse
+        :rtype: UpdateInstanceGroupResponse
 
-        :raises TypeError: If input is not a dictionary type
+        :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()

@@ -1,18 +1,18 @@
 """
-DeleteAlarmPolicyActionsResponse information
+DeleteInstanceGroupInstancesResponse information
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
 
 
-class DeleteAlarmPolicyActionsResponse(BceResponse):
+class DeleteInstanceGroupInstancesResponse(BceResponse):
     """
-    DeleteAlarmPolicyActionsResponse
+    DeleteInstanceGroupInstancesResponse
     """
 
     def __init__(self, success=None, code=None, message=None):
         """
-        Initialize DeleteAlarmPolicyActionsResponse instance.
+        Initialize DeleteInstanceGroupInstancesResponse instance.
 
         :param success: 请求是否成功
         :type success: bool (optional)
@@ -63,7 +63,7 @@ class DeleteAlarmPolicyActionsResponse(BceResponse):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: DeleteAlarmPolicyActionsResponse
+        :rtype: DeleteInstanceGroupInstancesResponse
 
         :raises TypeError: If input is not a dictionary type
         :raises ValueError: If nested model conversion fails

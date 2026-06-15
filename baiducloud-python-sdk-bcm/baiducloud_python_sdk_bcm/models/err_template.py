@@ -1,31 +1,33 @@
 """
-DeleteAlarmPolicyActionsResponse information
+ErrTemplate information
 """
 
-from baiducloud_python_sdk_core.bce_response import BceResponse
+from baiducloud_python_sdk_core.abstract_model import AbstractModel
+
+from baiducloud_python_sdk_bcm.models.template import Template
 
 
-class DeleteAlarmPolicyActionsResponse(BceResponse):
+class ErrTemplate(AbstractModel):
     """
-    DeleteAlarmPolicyActionsResponse
+    ErrTemplate
     """
 
-    def __init__(self, success=None, code=None, message=None):
+    def __init__(self, index=None, template=None, message=None):
         """
-        Initialize DeleteAlarmPolicyActionsResponse instance.
+        Initialize ErrTemplate instance.
 
-        :param success: 请求是否成功
-        :type success: bool (optional)
+        :param index: 标识第几条模板，从0开始计数
+        :type index: int (optional)
 
-        :param code: 响应码
-        :type code: str (optional)
+        :param template: template attribute
+        :type template: Template (optional)
 
-        :param message: 错误信息
+        :param message: 错误详情
         :type message: str (optional)
         """
         super().__init__()
-        self.success = success
-        self.code = code
+        self.index = index
+        self.template = template
         self.message = message
 
     def to_dict(self):
@@ -34,8 +36,6 @@ class DeleteAlarmPolicyActionsResponse(BceResponse):
 
         Nested model objects are recursively converted to dictionaries.
 
-        Includes metadata from the parent BceResponse class.
-
         :return: Dictionary representation of the model
         :rtype: dict
         """
@@ -43,12 +43,10 @@ class DeleteAlarmPolicyActionsResponse(BceResponse):
         if _map is not None:
             return _map
         result = dict()
-        if self.metadata is not None:
-            result['metadata'] = dict(self.metadata)
-        if self.success is not None:
-            result['success'] = self.success
-        if self.code is not None:
-            result['code'] = self.code
+        if self.index is not None:
+            result['index'] = self.index
+        if self.template is not None:
+            result['template'] = self.template.to_dict()
         if self.message is not None:
             result['message'] = self.message
         return result
@@ -63,16 +61,16 @@ class DeleteAlarmPolicyActionsResponse(BceResponse):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: DeleteAlarmPolicyActionsResponse
+        :rtype: ErrTemplate
 
         :raises TypeError: If input is not a dictionary type
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('success') is not None:
-            self.success = m.get('success')
-        if m.get('code') is not None:
-            self.code = m.get('code')
+        if m.get('index') is not None:
+            self.index = m.get('index')
+        if m.get('template') is not None:
+            self.template = Template().from_dict(m.get('template'))
         if m.get('message') is not None:
             self.message = m.get('message')
         return self
