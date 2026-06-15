@@ -14,10 +14,10 @@ from .bcc_instance_info import BccInstanceInfo
 from .bsm_agent_status import BsmAgentStatus
 from .cce_cache_node_info import CCECacheNodeInfo
 from .cache_deploy_group_info import CacheDeployGroupInfo
+from .cache_job_info import CacheJobInfo
 from .cache_node_info import CacheNodeInfo
 from .cache_node_quota_info import CacheNodeQuotaInfo
 from .cache_rule_info import CacheRuleInfo
-from .cache_rule_job_info import CacheRuleJobInfo
 from .cancel_cache_rule_job_request import CancelCacheRuleJobRequest
 from .cancel_meta_sync_job_request import CancelMetaSyncJobRequest
 from .cce_cluster_info import CceClusterInfo

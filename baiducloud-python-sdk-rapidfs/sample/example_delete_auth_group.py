@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(
+        bce_client_config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = RapidfsClient(config)
+        client = RapidfsClient(bce_client_config)
         request = rapidfs_models.DeleteAuthGroupRequest(instance_id="", auth_group_id="", client_token="")
         res = client.delete_auth_group(request)
         print(res.to_json_string())

@@ -52,10 +52,10 @@ class InstanceInfo(AbstractModel):
         :param status: RapidFS 实例状态， 见 InstanceStatus
         :type status: str (optional)
 
-        :param region: 地域缩写，bd，bj ……
+        :param region: 地域缩写，例如 bd，bj ……
         :type region: str (optional)
 
-        :param zone: 可用区，ZoneA，ZoneB ……
+        :param zone: 可用区，例如 ZoneA，ZoneB ……
         :type zone: str (optional)
 
         :param capacity_mi_b: 缓存总容量，单位 MiB
@@ -85,7 +85,7 @@ class InstanceInfo(AbstractModel):
         :param type: type attribute
         :type type: str (optional)
 
-        :param resize_status: RapidFS实例扩缩容状态，见 ResizeStatus：状态非 Normal 时需要用户发起二次确认
+        :param resize_status: RapidFS实例扩缩容状态，见 ResizeStatus
         :type resize_status: str (optional)
 
         :param allocated_quota_mi_b: 实例内所有数据源已分配 Quota 的容量之和
@@ -103,7 +103,7 @@ class InstanceInfo(AbstractModel):
         :param tags: 标签列表
         :type tags: List[Tag] (optional)
 
-        :param create_time: RapidFS 实例创建时间，例如 2026-06-01T23:00:10Z\"
+        :param create_time: RapidFS 实例创建时间，例如 2026-06-01T23:00:10Z
         :type create_time: str (optional)
         """
         super().__init__()

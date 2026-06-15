@@ -3,7 +3,7 @@ Request entity for DescribeCacheRuleJobsResponse information.
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
-from baiducloud_python_sdk_rapidfs.models.cache_rule_job_info import CacheRuleJobInfo
+from baiducloud_python_sdk_rapidfs.models.cache_job_info import CacheJobInfo
 
 
 class DescribeCacheRuleJobsResponse(BceResponse):
@@ -11,12 +11,12 @@ class DescribeCacheRuleJobsResponse(BceResponse):
     DescribeCacheRuleJobsResponse
     """
 
-    def __init__(self, cache_rule_job_infos=None, marker=None, is_truncated=None, next_marker=None, max_keys=None):
+    def __init__(self, cache_job_infos=None, marker=None, is_truncated=None, next_marker=None, max_keys=None):
         """
         Initialize DescribeCacheRuleJobsResponse response.
 
-        :param cache_rule_job_infos: 缓存管理任务信息列表，见附录 CacheRuleJobInfo
-        :type cache_rule_job_infos: List[CacheRuleJobInfo] (optional)
+        :param cache_job_infos: 缓存管理任务信息列表，见附录 CacheJobInfo
+        :type cache_job_infos: List[CacheJobInfo] (optional)
 
         :param marker: 当前查询起始位置
         :type marker: str (optional)
@@ -31,7 +31,7 @@ class DescribeCacheRuleJobsResponse(BceResponse):
         :type max_keys: int (optional)
         """
         super().__init__()
-        self.cache_rule_job_infos = cache_rule_job_infos
+        self.cache_job_infos = cache_job_infos
         self.marker = marker
         self.is_truncated = is_truncated
         self.next_marker = next_marker
@@ -53,8 +53,8 @@ class DescribeCacheRuleJobsResponse(BceResponse):
         result = dict()
         if self.metadata is not None:
             result['metadata'] = dict(self.metadata)
-        if self.cache_rule_job_infos is not None:
-            result['cacheRuleJobInfos'] = [i.to_dict() for i in self.cache_rule_job_infos]
+        if self.cache_job_infos is not None:
+            result['cacheJobInfos'] = [i.to_dict() for i in self.cache_job_infos]
         if self.marker is not None:
             result['marker'] = self.marker
         if self.is_truncated is not None:
@@ -81,8 +81,8 @@ class DescribeCacheRuleJobsResponse(BceResponse):
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('cacheRuleJobInfos') is not None:
-            self.cache_rule_job_infos = [CacheRuleJobInfo().from_dict(i) for i in m.get('cacheRuleJobInfos')]
+        if m.get('cacheJobInfos') is not None:
+            self.cache_job_infos = [CacheJobInfo().from_dict(i) for i in m.get('cacheJobInfos')]
         if m.get('marker') is not None:
             self.marker = m.get('marker')
         if m.get('isTruncated') is not None:

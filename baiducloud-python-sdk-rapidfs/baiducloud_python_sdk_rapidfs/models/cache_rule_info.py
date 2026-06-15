@@ -58,22 +58,22 @@ class CacheRuleInfo(AbstractModel):
         :param status: 缓存管理规则状态，见 CacheRuleStatus
         :type status: str (optional)
 
-        :param create_time: 创建时间，例如 2026-06-01T23:00:10Z\"
+        :param create_time: 创建时间，例如 2026-06-01T23:00:10Z
         :type create_time: str (optional)
 
         :param description: 描述信息
         :type description: str (optional)
 
-        :param last_job_status: 最近一次任务状态，见 CachePRuleJobStatus
+        :param last_job_status: 最近一次任务状态，见 CacheJobStatus
         :type last_job_status: str (optional)
 
         :param last_job_size: 最近一次任务已完成数据量大小，单位 Bytes
         :type last_job_size: int (optional)
 
-        :param last_job_start_time: 最近一次任务开始时间，例如 2026-06-01T23:00:10Z\"
+        :param last_job_start_time: 最近一次任务开始时间，例如 2026-06-01T23:00:10Z
         :type last_job_start_time: str (optional)
 
-        :param last_job_end_time: 最近一次任务结束时间，例如 2026-06-01T23:00:10Z\"
+        :param last_job_end_time: 最近一次任务结束时间，例如 2026-06-01T23:00:10Z
         :type last_job_end_time: str (optional)
         """
         super().__init__()
