@@ -6,15 +6,15 @@ from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 from baiducloud_python_sdk_bcc.models.tag_model import TagModel
 
-from baiducloud_python_sdk_bcc.models.volume_attachment_model import VolumeAttachmentModel
-
-from baiducloud_python_sdk_bcc.models.volume_multi_attach_info import VolumeMultiAttachInfo
-
 from baiducloud_python_sdk_bcc.models.group_info import GroupInfo
 
 from baiducloud_python_sdk_bcc.models.auto_snapshot_policy_model import AutoSnapshotPolicyModel
 
 from baiducloud_python_sdk_bcc.models.auto_snapshot_policy_info import AutoSnapshotPolicyInfo
+
+from baiducloud_python_sdk_bcc.models.volume_attachment_model import VolumeAttachmentModel
+
+from baiducloud_python_sdk_bcc.models.volume_multi_attach_info import VolumeMultiAttachInfo
 
 
 class VolumeModel(AbstractModel):
@@ -44,23 +44,23 @@ class VolumeModel(AbstractModel):
         storage_type=None,
         is_system_volume=None,
         description=None,
+        desc=None,
         payment_timing=None,
         zone_name=None,
-        cluster_id=None,
-        encrypted=None,
-        delete_with_instance=None,
-        delete_auto_snapshot=None,
-        attachments=None,
-        multi_attach_infos=None,
-        desc=None,
         region_id=None,
         source_snapshot_id=None,
         snapshot_num=None,
+        cluster_id=None,
         res_group_infos=None,
         auto_snapshot_policy=None,
         auto_snapshot_policy_infos=None,
         encrypt_key=None,
         encrypt_key_spec=None,
+        encrypted=None,
+        delete_with_instance=None,
+        delete_auto_snapshot=None,
+        attachments=None,
+        multi_attach_infos=None,
         multi_attach=None,
         volume_id=None,
     ):
@@ -127,32 +127,14 @@ class VolumeModel(AbstractModel):
         :param description: 描述信息（查询磁盘列表返回）
         :type description: str (optional)
 
+        :param desc: 描述信息（查询磁盘详情返回）
+        :type desc: str (optional)
+
         :param payment_timing: 付费方式，包括Postpaid(按量付费)，Prepaid(包年包月)两种。（查询磁盘列表、查询磁盘详情返回）
         :type payment_timing: str (optional)
 
         :param zone_name: 可用区信息（查询磁盘列表、查询磁盘详情返回）
         :type zone_name: str (optional)
-
-        :param cluster_id: CDS专属集群ID（查询磁盘列表、查询磁盘详情返回）
-        :type cluster_id: str (optional)
-
-        :param encrypted: 是否加密（查询磁盘列表、查询磁盘详情返回）
-        :type encrypted: bool (optional)
-
-        :param delete_with_instance: 磁盘随实例删除，仅后付费类型的数据盘返回（查询磁盘列表、查询磁盘详情返回）
-        :type delete_with_instance: bool (optional)
-
-        :param delete_auto_snapshot: 自动快照随磁盘删除，任何类型的磁盘都会返回（查询磁盘列表、查询磁盘详情返回）
-        :type delete_auto_snapshot: bool (optional)
-
-        :param attachments: 挂载设备信息列表，磁盘未挂载时该值为空。（查询磁盘列表、查询磁盘详情返回）
-        :type attachments: List[VolumeAttachmentModel] (optional)
-
-        :param multi_attach_infos: 多挂载信息列表（查询磁盘列表、查询磁盘详情返回）
-        :type multi_attach_infos: List[VolumeMultiAttachInfo] (optional)
-
-        :param desc: 描述信息（查询磁盘详情返回）
-        :type desc: str (optional)
 
         :param region_id: 所在region（查询磁盘详情返回）
         :type region_id: str (optional)
@@ -162,6 +144,9 @@ class VolumeModel(AbstractModel):
 
         :param snapshot_num: 磁盘当前具有的快照数量（查询磁盘详情返回）
         :type snapshot_num: str (optional)
+
+        :param cluster_id: CDS专属集群ID（查询磁盘列表、查询磁盘详情返回）
+        :type cluster_id: str (optional)
 
         :param res_group_infos: 磁盘当前绑定的资源组（查询磁盘详情返回）
         :type res_group_infos: List[GroupInfo] (optional)
@@ -177,6 +162,21 @@ class VolumeModel(AbstractModel):
 
         :param encrypt_key_spec: 加密密钥规格（查询磁盘详情返回）
         :type encrypt_key_spec: str (optional)
+
+        :param encrypted: 是否加密（查询磁盘列表、查询磁盘详情返回）
+        :type encrypted: bool (optional)
+
+        :param delete_with_instance: 磁盘随实例删除，仅后付费类型的数据盘返回（查询磁盘列表、查询磁盘详情返回）
+        :type delete_with_instance: bool (optional)
+
+        :param delete_auto_snapshot: 自动快照随磁盘删除，任何类型的磁盘都会返回（查询磁盘列表、查询磁盘详情返回）
+        :type delete_auto_snapshot: bool (optional)
+
+        :param attachments: 挂载设备信息列表，磁盘未挂载时该值为空。（查询磁盘列表、查询磁盘详情返回）
+        :type attachments: List[VolumeAttachmentModel] (optional)
+
+        :param multi_attach_infos: 多挂载信息列表（查询磁盘列表、查询磁盘详情返回）
+        :type multi_attach_infos: List[VolumeMultiAttachInfo] (optional)
 
         :param multi_attach: 是否支持多挂载（查询指定实例详情）
         :type multi_attach: bool (optional)
@@ -205,23 +205,23 @@ class VolumeModel(AbstractModel):
         self.storage_type = storage_type
         self.is_system_volume = is_system_volume
         self.description = description
+        self.desc = desc
         self.payment_timing = payment_timing
         self.zone_name = zone_name
-        self.cluster_id = cluster_id
-        self.encrypted = encrypted
-        self.delete_with_instance = delete_with_instance
-        self.delete_auto_snapshot = delete_auto_snapshot
-        self.attachments = attachments
-        self.multi_attach_infos = multi_attach_infos
-        self.desc = desc
         self.region_id = region_id
         self.source_snapshot_id = source_snapshot_id
         self.snapshot_num = snapshot_num
+        self.cluster_id = cluster_id
         self.res_group_infos = res_group_infos
         self.auto_snapshot_policy = auto_snapshot_policy
         self.auto_snapshot_policy_infos = auto_snapshot_policy_infos
         self.encrypt_key = encrypt_key
         self.encrypt_key_spec = encrypt_key_spec
+        self.encrypted = encrypted
+        self.delete_with_instance = delete_with_instance
+        self.delete_auto_snapshot = delete_auto_snapshot
+        self.attachments = attachments
+        self.multi_attach_infos = multi_attach_infos
         self.multi_attach = multi_attach
         self.volume_id = volume_id
 
@@ -278,30 +278,20 @@ class VolumeModel(AbstractModel):
             result['isSystemVolume'] = self.is_system_volume
         if self.description is not None:
             result['description'] = self.description
+        if self.desc is not None:
+            result['desc'] = self.desc
         if self.payment_timing is not None:
             result['paymentTiming'] = self.payment_timing
         if self.zone_name is not None:
             result['zoneName'] = self.zone_name
-        if self.cluster_id is not None:
-            result['clusterId'] = self.cluster_id
-        if self.encrypted is not None:
-            result['encrypted'] = self.encrypted
-        if self.delete_with_instance is not None:
-            result['deleteWithInstance'] = self.delete_with_instance
-        if self.delete_auto_snapshot is not None:
-            result['deleteAutoSnapshot'] = self.delete_auto_snapshot
-        if self.attachments is not None:
-            result['attachments'] = [i.to_dict() for i in self.attachments]
-        if self.multi_attach_infos is not None:
-            result['multiAttachInfos'] = [i.to_dict() for i in self.multi_attach_infos]
-        if self.desc is not None:
-            result['desc'] = self.desc
         if self.region_id is not None:
             result['regionId'] = self.region_id
         if self.source_snapshot_id is not None:
             result['sourceSnapshotId'] = self.source_snapshot_id
         if self.snapshot_num is not None:
             result['snapshotNum'] = self.snapshot_num
+        if self.cluster_id is not None:
+            result['clusterId'] = self.cluster_id
         if self.res_group_infos is not None:
             result['resGroupInfos'] = [i.to_dict() for i in self.res_group_infos]
         if self.auto_snapshot_policy is not None:
@@ -312,6 +302,16 @@ class VolumeModel(AbstractModel):
             result['encryptKey'] = self.encrypt_key
         if self.encrypt_key_spec is not None:
             result['encryptKeySpec'] = self.encrypt_key_spec
+        if self.encrypted is not None:
+            result['encrypted'] = self.encrypted
+        if self.delete_with_instance is not None:
+            result['deleteWithInstance'] = self.delete_with_instance
+        if self.delete_auto_snapshot is not None:
+            result['deleteAutoSnapshot'] = self.delete_auto_snapshot
+        if self.attachments is not None:
+            result['attachments'] = [i.to_dict() for i in self.attachments]
+        if self.multi_attach_infos is not None:
+            result['multiAttachInfos'] = [i.to_dict() for i in self.multi_attach_infos]
         if self.multi_attach is not None:
             result['multiAttach'] = self.multi_attach
         if self.volume_id is not None:
@@ -374,30 +374,20 @@ class VolumeModel(AbstractModel):
             self.is_system_volume = m.get('isSystemVolume')
         if m.get('description') is not None:
             self.description = m.get('description')
+        if m.get('desc') is not None:
+            self.desc = m.get('desc')
         if m.get('paymentTiming') is not None:
             self.payment_timing = m.get('paymentTiming')
         if m.get('zoneName') is not None:
             self.zone_name = m.get('zoneName')
-        if m.get('clusterId') is not None:
-            self.cluster_id = m.get('clusterId')
-        if m.get('encrypted') is not None:
-            self.encrypted = m.get('encrypted')
-        if m.get('deleteWithInstance') is not None:
-            self.delete_with_instance = m.get('deleteWithInstance')
-        if m.get('deleteAutoSnapshot') is not None:
-            self.delete_auto_snapshot = m.get('deleteAutoSnapshot')
-        if m.get('attachments') is not None:
-            self.attachments = [VolumeAttachmentModel().from_dict(i) for i in m.get('attachments')]
-        if m.get('multiAttachInfos') is not None:
-            self.multi_attach_infos = [VolumeMultiAttachInfo().from_dict(i) for i in m.get('multiAttachInfos')]
-        if m.get('desc') is not None:
-            self.desc = m.get('desc')
         if m.get('regionId') is not None:
             self.region_id = m.get('regionId')
         if m.get('sourceSnapshotId') is not None:
             self.source_snapshot_id = m.get('sourceSnapshotId')
         if m.get('snapshotNum') is not None:
             self.snapshot_num = m.get('snapshotNum')
+        if m.get('clusterId') is not None:
+            self.cluster_id = m.get('clusterId')
         if m.get('resGroupInfos') is not None:
             self.res_group_infos = [GroupInfo().from_dict(i) for i in m.get('resGroupInfos')]
         if m.get('autoSnapshotPolicy') is not None:
@@ -410,6 +400,16 @@ class VolumeModel(AbstractModel):
             self.encrypt_key = m.get('encryptKey')
         if m.get('encryptKeySpec') is not None:
             self.encrypt_key_spec = m.get('encryptKeySpec')
+        if m.get('encrypted') is not None:
+            self.encrypted = m.get('encrypted')
+        if m.get('deleteWithInstance') is not None:
+            self.delete_with_instance = m.get('deleteWithInstance')
+        if m.get('deleteAutoSnapshot') is not None:
+            self.delete_auto_snapshot = m.get('deleteAutoSnapshot')
+        if m.get('attachments') is not None:
+            self.attachments = [VolumeAttachmentModel().from_dict(i) for i in m.get('attachments')]
+        if m.get('multiAttachInfos') is not None:
+            self.multi_attach_infos = [VolumeMultiAttachInfo().from_dict(i) for i in m.get('multiAttachInfos')]
         if m.get('multiAttach') is not None:
             self.multi_attach = m.get('multiAttach')
         if m.get('volumeId') is not None:
