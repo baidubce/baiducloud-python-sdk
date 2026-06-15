@@ -1,5 +1,5 @@
 """
-Example for et enable_dedicated_channel_ipv6 method.
+Example for et delete_physical_dedicated_line method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -18,15 +18,8 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = EtClient(bce_client_config)
-        request = et_models.EnableDedicatedChannelIpv6Request(
-            et_id="",
-            et_channel_id="",
-            baidu_ipv6_address="",
-            customer_ipv6_address="",
-            client_token="",
-            ipv6_networks=[],
-        )
-        res = client.enable_dedicated_channel_ipv6(request)
+        request = et_models.DeletePhysicalDedicatedLineRequest(dcphy_id="", client_token="")
+        res = client.delete_physical_dedicated_line(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。
