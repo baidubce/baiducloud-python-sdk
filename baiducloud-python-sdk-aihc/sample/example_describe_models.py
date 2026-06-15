@@ -18,7 +18,7 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = AihcClient(bce_client_config)
-        request = aihc_models.DescribeModelsRequest(page_number=0, page_size=0)
+        request = aihc_models.DescribeModelsRequest(keyword="", page_number=0, page_size=0)
         res = client.describe_models(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

@@ -19,7 +19,7 @@ if __name__ == '__main__':
         )
         client = AihcClient(bce_client_config)
         request = aihc_models.DescribeDatasetsRequest(
-            storage_type="", storage_instances="", import_format="", page_number=0, page_size=0
+            keyword="", storage_type="", storage_instances="", import_format="", page_number=0, page_size=0
         )
         res = client.describe_datasets(request)
         print(res.to_json_string())

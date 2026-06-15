@@ -13,10 +13,19 @@ class DescribeDatasetsRequest(AbstractModel):
     """
 
     def __init__(
-        self, storage_type=None, storage_instances=None, import_format=None, page_number=None, page_size=None
+        self,
+        keyword=None,
+        storage_type=None,
+        storage_instances=None,
+        import_format=None,
+        page_number=None,
+        page_size=None,
     ):
         """
         Initialize DescribeDatasetsRequest request entity.
+
+        :param keyword: keyword parameter
+        :type keyword: str (optional)
 
         :param storage_type: storage_type parameter
         :type storage_type: str (optional)
@@ -34,6 +43,7 @@ class DescribeDatasetsRequest(AbstractModel):
         :type page_size: int (optional)
         """
         super().__init__()
+        self.keyword = keyword
         self.storage_type = storage_type
         self.storage_instances = storage_instances
         self.import_format = import_format
@@ -71,6 +81,8 @@ class DescribeDatasetsRequest(AbstractModel):
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
+        if m.get('keyword') is not None:
+            self.keyword = m.get('keyword')
         if m.get('storageType') is not None:
             self.storage_type = m.get('storageType')
         if m.get('storageInstances') is not None:

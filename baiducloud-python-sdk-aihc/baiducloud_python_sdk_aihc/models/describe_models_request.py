@@ -12,9 +12,12 @@ class DescribeModelsRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, page_number=None, page_size=None):
+    def __init__(self, keyword=None, page_number=None, page_size=None):
         """
         Initialize DescribeModelsRequest request entity.
+
+        :param keyword: keyword parameter
+        :type keyword: str (optional)
 
         :param page_number: page_number parameter
         :type page_number: int (optional)
@@ -23,6 +26,7 @@ class DescribeModelsRequest(AbstractModel):
         :type page_size: int (optional)
         """
         super().__init__()
+        self.keyword = keyword
         self.page_number = page_number
         self.page_size = page_size
 
@@ -57,6 +61,8 @@ class DescribeModelsRequest(AbstractModel):
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
+        if m.get('keyword') is not None:
+            self.keyword = m.get('keyword')
         if m.get('pageNumber') is not None:
             self.page_number = m.get('pageNumber')
         if m.get('pageSize') is not None:

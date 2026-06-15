@@ -92,7 +92,6 @@ class AihcClient(BceBaseClient):
         headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'CreateDatasetVersion'
-        params['datasetId'] = 'xxx'
         if request.dataset_id is not None:
             params['datasetId'] = request.dataset_id
         merged_config = self._create_request_with_host(request, config)
@@ -157,7 +156,6 @@ class AihcClient(BceBaseClient):
         headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'CreateModelVersion'
-        params['modelId'] = 'xxx'
         if request.model_id is not None:
             params['modelId'] = request.model_id
         merged_config = self._create_request_with_host(request, config)
@@ -191,7 +189,6 @@ class AihcClient(BceBaseClient):
         headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'DeleteDataset'
-        params['datasetId'] = 'xxx'
         if request.dataset_id is not None:
             params['datasetId'] = request.dataset_id
         merged_config = self._create_request_with_host(request, config)
@@ -217,8 +214,6 @@ class AihcClient(BceBaseClient):
         headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'DeleteDatasetVersion'
-        params['datasetId'] = 'xxx'
-        params['versionId'] = 'xxx'
         if request.dataset_id is not None:
             params['datasetId'] = request.dataset_id
         if request.version_id is not None:
@@ -246,7 +241,6 @@ class AihcClient(BceBaseClient):
         headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'DeleteModel'
-        params['modelId'] = 'xxx'
         if request.model_id is not None:
             params['modelId'] = request.model_id
         merged_config = self._create_request_with_host(request, config)
@@ -272,8 +266,6 @@ class AihcClient(BceBaseClient):
         headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'DeleteModelVersion'
-        params['modelId'] = 'xxx'
-        params['versionId'] = 'xxx'
         if request.model_id is not None:
             params['modelId'] = request.model_id
         if request.version_id is not None:
@@ -301,7 +293,6 @@ class AihcClient(BceBaseClient):
         headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'DescribeDataset'
-        params['datasetId'] = 'xxx'
         if request.dataset_id is not None:
             params['datasetId'] = request.dataset_id
         merged_config = self._create_request_with_host(request, config)
@@ -334,8 +325,6 @@ class AihcClient(BceBaseClient):
         headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'DescribeDatasetVersion'
-        params['datasetId'] = 'xxx'
-        params['versionId'] = 'xxx'
         if request.dataset_id is not None:
             params['datasetId'] = request.dataset_id
         if request.version_id is not None:
@@ -370,9 +359,6 @@ class AihcClient(BceBaseClient):
         headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'DescribeDatasetVersions'
-        params['datasetId'] = 'xxx'
-        params['pageNumber'] = 'xxx'
-        params['pageSize'] = 'xxx'
         if request.dataset_id is not None:
             params['datasetId'] = request.dataset_id
         if request.page_number is not None:
@@ -409,12 +395,8 @@ class AihcClient(BceBaseClient):
         headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'DescribeDatasets'
-        params['keyword'] = 'xxx'
-        params['storageType'] = 'xxx'
-        params['storageInstances'] = 'xxx'
-        params['importFormat'] = 'xxx'
-        params['pageNumber'] = 'xxx'
-        params['pageSize'] = 'xxx'
+        if request.keyword is not None:
+            params['keyword'] = request.keyword
         if request.storage_type is not None:
             params['storageType'] = request.storage_type
         if request.storage_instances is not None:
@@ -455,7 +437,6 @@ class AihcClient(BceBaseClient):
         headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'DescribeModel'
-        params['modelId'] = 'xxx'
         if request.model_id is not None:
             params['modelId'] = request.model_id
         merged_config = self._create_request_with_host(request, config)
@@ -488,8 +469,6 @@ class AihcClient(BceBaseClient):
         headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'DescribeModelVersion'
-        params['modelId'] = 'xxx'
-        params['versionId'] = 'xxx'
         if request.model_id is not None:
             params['modelId'] = request.model_id
         if request.version_id is not None:
@@ -524,9 +503,6 @@ class AihcClient(BceBaseClient):
         headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'DescribeModelVersions'
-        params['modelId'] = 'xxx'
-        params['pageNumber'] = 'xxx'
-        params['pageSize'] = 'xxx'
         if request.model_id is not None:
             params['modelId'] = request.model_id
         if request.page_number is not None:
@@ -563,9 +539,8 @@ class AihcClient(BceBaseClient):
         headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'DescribeModels'
-        params['keyword'] = 'xxx'
-        params['pageNumber'] = 'xxx'
-        params['pageSize'] = 'xxx'
+        if request.keyword is not None:
+            params['keyword'] = request.keyword
         if request.page_number is not None:
             params['pageNumber'] = request.page_number
         if request.page_size is not None:
@@ -600,7 +575,6 @@ class AihcClient(BceBaseClient):
         headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'ModifyDataset'
-        params['datasetId'] = 'xxx'
         if request.dataset_id is not None:
             params['datasetId'] = request.dataset_id
         merged_config = self._create_request_with_host(request, config)
@@ -633,7 +607,6 @@ class AihcClient(BceBaseClient):
         headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'ModifyModel'
-        params['modelId'] = 'xxx'
         if request.model_id is not None:
             params['modelId'] = request.model_id
         merged_config = self._create_request_with_host(request, config)
