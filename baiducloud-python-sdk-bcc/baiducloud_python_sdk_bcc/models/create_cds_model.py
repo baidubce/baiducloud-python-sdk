@@ -26,7 +26,7 @@ class CreateCdsModel(AbstractModel):
         """
         Initialize CreateCdsModel instance.
 
-        :param storage_type: storage_type attribute
+        :param storage_type: CDS磁盘存储类型，默认是hp1(高性能云磁盘)。（创建实例、创建抢占实例、查询抢占实例市场价）
         :type storage_type: str (optional)
 
         :param cds_size_in_gb: CDS磁盘容量，必须为大于0的整数，单位为GB，大小为0~5120G（创建实例、创建抢占实例、查询抢占实例市场价）

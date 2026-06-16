@@ -28,8 +28,17 @@ class BccClientTest(unittest.TestCase):
     def test_add_ipv6(self):
         self.client.add_ipv6(bcc_models.AddIpv6Request())
 
+    def test_attach_asp(self):
+        self.client.attach_asp(bcc_models.AttachAspRequest())
+
+    def test_attach_keypair(self):
+        self.client.attach_keypair(bcc_models.AttachKeypairRequest())
+
     def test_attach_volume(self):
         self.client.attach_volume(bcc_models.AttachVolumeRequest())
+
+    def test_authorize_security_group_rule(self):
+        self.client.authorize_security_group_rule(bcc_models.AuthorizeSecurityGroupRuleRequest())
 
     def test_auto_release_instance(self):
         self.client.auto_release_instance(bcc_models.AutoReleaseInstanceRequest())
@@ -55,6 +64,9 @@ class BccClientTest(unittest.TestCase):
     def test_batch_stop_instance(self):
         self.client.batch_stop_instance(bcc_models.BatchStopInstanceRequest())
 
+    def test_bind_instance_security_group(self):
+        self.client.bind_instance_security_group(bcc_models.BindInstanceSecurityGroupRequest())
+
     def test_bind_instance_to_security_group(self):
         self.client.bind_instance_to_security_group(bcc_models.BindInstanceToSecurityGroupRequest())
 
@@ -67,11 +79,20 @@ class BccClientTest(unittest.TestCase):
     def test_bind_tag_image(self):
         self.client.bind_tag_image(bcc_models.BindTagImageRequest())
 
+    def test_bind_tag_snapchain(self):
+        self.client.bind_tag_snapchain(bcc_models.BindTagSnapchainRequest())
+
     def test_bind_tag_volume(self):
         self.client.bind_tag_volume(bcc_models.BindTagVolumeRequest())
 
+    def test_cancel_bid_order(self):
+        self.client.cancel_bid_order(bcc_models.CancelBidOrderRequest())
+
     def test_cancel_remote_copy_image(self):
         self.client.cancel_remote_copy_image(bcc_models.CancelRemoteCopyImageRequest())
+
+    def test_cancel_snapshot_share(self):
+        self.client.cancel_snapshot_share(bcc_models.CancelSnapshotShareRequest())
 
     def test_change_to_prepaid(self):
         self.client.change_to_prepaid(bcc_models.ChangeToPrepaidRequest())
@@ -79,8 +100,17 @@ class BccClientTest(unittest.TestCase):
     def test_change_vpc(self):
         self.client.change_vpc(bcc_models.ChangeVpcRequest())
 
+    def test_create_asp(self):
+        self.client.create_asp(bcc_models.CreateAspRequest())
+
     def test_create_auto_renew_rule(self):
         self.client.create_auto_renew_rule(bcc_models.CreateAutoRenewRuleRequest())
+
+    def test_create_bid_instance(self):
+        self.client.create_bid_instance(bcc_models.CreateBidInstanceRequest())
+
+    def test_create_deploy_set(self):
+        self.client.create_deploy_set(bcc_models.CreateDeploySetRequest())
 
     def test_create_image(self):
         self.client.create_image(bcc_models.CreateImageRequest())
@@ -88,14 +118,32 @@ class BccClientTest(unittest.TestCase):
     def test_create_instance_by_spec(self):
         self.client.create_instance_by_spec(bcc_models.CreateInstanceBySpecRequest())
 
+    def test_create_keypair(self):
+        self.client.create_keypair(bcc_models.CreateKeypairRequest())
+
+    def test_create_security_group(self):
+        self.client.create_security_group(bcc_models.CreateSecurityGroupRequest())
+
+    def test_create_snapshot(self):
+        self.client.create_snapshot(bcc_models.CreateSnapshotRequest())
+
+    def test_create_snapshot_share(self):
+        self.client.create_snapshot_share(bcc_models.CreateSnapshotShareRequest())
+
     def test_create_volume(self):
         self.client.create_volume(bcc_models.CreateVolumeRequest())
 
     def test_del_ipv6(self):
         self.client.del_ipv6(bcc_models.DelIpv6Request())
 
+    def test_delete_asp(self):
+        self.client.delete_asp(bcc_models.DeleteAspRequest())
+
     def test_delete_auto_renew_rule(self):
         self.client.delete_auto_renew_rule(bcc_models.DeleteAutoRenewRuleRequest())
+
+    def test_delete_deploy_set(self):
+        self.client.delete_deploy_set(bcc_models.DeleteDeploySetRequest())
 
     def test_delete_image(self):
         self.client.delete_image(bcc_models.DeleteImageRequest())
@@ -103,11 +151,32 @@ class BccClientTest(unittest.TestCase):
     def test_delete_instance_deploy_set(self):
         self.client.delete_instance_deploy_set(bcc_models.DeleteInstanceDeploySetRequest())
 
+    def test_delete_keypair(self):
+        self.client.delete_keypair(bcc_models.DeleteKeypairRequest())
+
     def test_delete_prepay_instance(self):
         self.client.delete_prepay_instance(bcc_models.DeletePrepayInstanceRequest())
 
     def test_delete_recycled_instance(self):
         self.client.delete_recycled_instance(bcc_models.DeleteRecycledInstanceRequest())
+
+    def test_delete_security_group(self):
+        self.client.delete_security_group(bcc_models.DeleteSecurityGroupRequest())
+
+    def test_delete_security_group_rule(self):
+        self.client.delete_security_group_rule(bcc_models.DeleteSecurityGroupRuleRequest())
+
+    def test_delete_snapshot(self):
+        self.client.delete_snapshot(bcc_models.DeleteSnapshotRequest())
+
+    def test_deletes_instance_deploy_set(self):
+        self.client.deletes_instance_deploy_set(bcc_models.DeletesInstanceDeploySetRequest())
+
+    def test_detach_asp(self):
+        self.client.detach_asp(bcc_models.DetachAspRequest())
+
+    def test_detach_keypair(self):
+        self.client.detach_keypair(bcc_models.DetachKeypairRequest())
 
     def test_detach_volume(self):
         self.client.detach_volume(bcc_models.DetachVolumeRequest())
@@ -118,11 +187,20 @@ class BccClientTest(unittest.TestCase):
     def test_exit_rescue_mode(self):
         self.client.exit_rescue_mode(bcc_models.ExitRescueModeRequest())
 
+    def test_get_asp(self):
+        self.client.get_asp(bcc_models.GetAspRequest())
+
     def test_get_available_images_by_spec(self):
         self.client.get_available_images_by_spec(bcc_models.GetAvailableImagesBySpecRequest())
 
+    def test_get_bid_instance_price(self):
+        self.client.get_bid_instance_price(bcc_models.GetBidInstancePriceRequest())
+
     def test_get_cds_price(self):
         self.client.get_cds_price(bcc_models.GetCdsPriceRequest())
+
+    def test_get_deploy_set(self):
+        self.client.get_deploy_set(bcc_models.GetDeploySetRequest())
 
     def test_get_disk_quota(self):
         self.client.get_disk_quota(bcc_models.GetDiskQuotaRequest())
@@ -145,6 +223,9 @@ class BccClientTest(unittest.TestCase):
     def test_get_role_list(self):
         self.client.get_role_list()
 
+    def test_get_snapshot(self):
+        self.client.get_snapshot(bcc_models.GetSnapshotRequest())
+
     def test_get_volume(self):
         self.client.get_volume(bcc_models.GetVolumeRequest())
 
@@ -153,6 +234,9 @@ class BccClientTest(unittest.TestCase):
 
     def test_import_image(self):
         self.client.import_image(bcc_models.ImportImageRequest())
+
+    def test_import_keypair(self):
+        self.client.import_keypair(bcc_models.ImportKeypairRequest())
 
     def test_instance_batch_resize_by_spec(self):
         self.client.instance_batch_resize_by_spec(bcc_models.InstanceBatchResizeBySpecRequest())
@@ -163,8 +247,20 @@ class BccClientTest(unittest.TestCase):
     def test_instance_recovery(self):
         self.client.instance_recovery(bcc_models.InstanceRecoveryRequest())
 
+    def test_keypair_detail(self):
+        self.client.keypair_detail(bcc_models.KeypairDetailRequest())
+
+    def test_list_asps(self):
+        self.client.list_asps(bcc_models.ListAspsRequest())
+
     def test_list_available_resize_spec(self):
         self.client.list_available_resize_spec(bcc_models.ListAvailableResizeSpecRequest())
+
+    def test_list_bid_flavor(self):
+        self.client.list_bid_flavor()
+
+    def test_list_deploy_set(self):
+        self.client.list_deploy_set()
 
     def test_list_images(self):
         self.client.list_images(bcc_models.ListImagesRequest())
@@ -178,14 +274,29 @@ class BccClientTest(unittest.TestCase):
     def test_list_instances(self):
         self.client.list_instances(bcc_models.ListInstancesRequest())
 
+    def test_list_keypair(self):
+        self.client.list_keypair(bcc_models.ListKeypairRequest())
+
     def test_list_os(self):
         self.client.list_os(bcc_models.ListOsRequest())
 
     def test_list_recycle_instance(self):
         self.client.list_recycle_instance(bcc_models.ListRecycleInstanceRequest())
 
+    def test_list_security_groups(self):
+        self.client.list_security_groups(bcc_models.ListSecurityGroupsRequest())
+
     def test_list_shared_user(self):
         self.client.list_shared_user(bcc_models.ListSharedUserRequest())
+
+    def test_list_snapchain(self):
+        self.client.list_snapchain(bcc_models.ListSnapchainRequest())
+
+    def test_list_snapshot_share(self):
+        self.client.list_snapshot_share(bcc_models.ListSnapshotShareRequest())
+
+    def test_list_snapshots(self):
+        self.client.list_snapshots(bcc_models.ListSnapshotsRequest())
 
     def test_list_volumes(self):
         self.client.list_volumes(bcc_models.ListVolumesRequest())
@@ -238,17 +349,29 @@ class BccClientTest(unittest.TestCase):
     def test_remote_copy_image(self):
         self.client.remote_copy_image(bcc_models.RemoteCopyImageRequest())
 
+    def test_remote_copy_snapshot(self):
+        self.client.remote_copy_snapshot(bcc_models.RemoteCopySnapshotRequest())
+
     def test_rename_image(self):
         self.client.rename_image(bcc_models.RenameImageRequest())
 
+    def test_rename_keypair(self):
+        self.client.rename_keypair(bcc_models.RenameKeypairRequest())
+
     def test_rename_volume(self):
         self.client.rename_volume(bcc_models.RenameVolumeRequest())
+
+    def test_replace_instance_security_group(self):
+        self.client.replace_instance_security_group(bcc_models.ReplaceInstanceSecurityGroupRequest())
 
     def test_resize_instance_by_spec(self):
         self.client.resize_instance_by_spec(bcc_models.ResizeInstanceBySpecRequest())
 
     def test_resize_volume(self):
         self.client.resize_volume(bcc_models.ResizeVolumeRequest())
+
+    def test_revoke_security_group_rule(self):
+        self.client.revoke_security_group_rule(bcc_models.RevokeSecurityGroupRuleRequest())
 
     def test_rollback_volume(self):
         self.client.rollback_volume(bcc_models.RollbackVolumeRequest())
@@ -271,23 +394,47 @@ class BccClientTest(unittest.TestCase):
     def test_unbind_instance_from_tags(self):
         self.client.unbind_instance_from_tags(bcc_models.UnbindInstanceFromTagsRequest())
 
+    def test_unbind_instance_security_group(self):
+        self.client.unbind_instance_security_group(bcc_models.UnbindInstanceSecurityGroupRequest())
+
     def test_unbind_role(self):
         self.client.unbind_role(bcc_models.UnbindRoleRequest())
 
     def test_unbind_tag_image(self):
         self.client.unbind_tag_image(bcc_models.UnbindTagImageRequest())
 
+    def test_unbind_tag_snapchain(self):
+        self.client.unbind_tag_snapchain(bcc_models.UnbindTagSnapchainRequest())
+
     def test_unbind_tag_volume(self):
         self.client.unbind_tag_volume(bcc_models.UnbindTagVolumeRequest())
 
+    def test_update_asp(self):
+        self.client.update_asp(bcc_models.UpdateAspRequest())
+
+    def test_update_deploy_set(self):
+        self.client.update_deploy_set(bcc_models.UpdateDeploySetRequest())
+
+    def test_update_deploy_set_relation(self):
+        self.client.update_deploy_set_relation(bcc_models.UpdateDeploySetRelationRequest())
+
     def test_update_instance_subnet(self):
         self.client.update_instance_subnet(bcc_models.UpdateInstanceSubnetRequest())
+
+    def test_update_keypair_description(self):
+        self.client.update_keypair_description(bcc_models.UpdateKeypairDescriptionRequest())
+
+    def test_update_security_group_rule(self):
+        self.client.update_security_group_rule(bcc_models.UpdateSecurityGroupRuleRequest())
 
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()
     suite.addTest(BccClientTest("test_add_ipv6"))
+    suite.addTest(BccClientTest("test_attach_asp"))
+    suite.addTest(BccClientTest("test_attach_keypair"))
     suite.addTest(BccClientTest("test_attach_volume"))
+    suite.addTest(BccClientTest("test_authorize_security_group_rule"))
     suite.addTest(BccClientTest("test_auto_release_instance"))
     suite.addTest(BccClientTest("test_batch_add_ip"))
     suite.addTest(BccClientTest("test_batch_change_to_postpaid"))
@@ -296,29 +443,52 @@ if __name__ == '__main__':
     suite.addTest(BccClientTest("test_batch_refund_resource"))
     suite.addTest(BccClientTest("test_batch_start_instance"))
     suite.addTest(BccClientTest("test_batch_stop_instance"))
+    suite.addTest(BccClientTest("test_bind_instance_security_group"))
     suite.addTest(BccClientTest("test_bind_instance_to_security_group"))
     suite.addTest(BccClientTest("test_bind_instance_to_tags"))
     suite.addTest(BccClientTest("test_bind_role"))
     suite.addTest(BccClientTest("test_bind_tag_image"))
+    suite.addTest(BccClientTest("test_bind_tag_snapchain"))
     suite.addTest(BccClientTest("test_bind_tag_volume"))
+    suite.addTest(BccClientTest("test_cancel_bid_order"))
     suite.addTest(BccClientTest("test_cancel_remote_copy_image"))
+    suite.addTest(BccClientTest("test_cancel_snapshot_share"))
     suite.addTest(BccClientTest("test_change_to_prepaid"))
     suite.addTest(BccClientTest("test_change_vpc"))
+    suite.addTest(BccClientTest("test_create_asp"))
     suite.addTest(BccClientTest("test_create_auto_renew_rule"))
+    suite.addTest(BccClientTest("test_create_bid_instance"))
+    suite.addTest(BccClientTest("test_create_deploy_set"))
     suite.addTest(BccClientTest("test_create_image"))
     suite.addTest(BccClientTest("test_create_instance_by_spec"))
+    suite.addTest(BccClientTest("test_create_keypair"))
+    suite.addTest(BccClientTest("test_create_security_group"))
+    suite.addTest(BccClientTest("test_create_snapshot"))
+    suite.addTest(BccClientTest("test_create_snapshot_share"))
     suite.addTest(BccClientTest("test_create_volume"))
     suite.addTest(BccClientTest("test_del_ipv6"))
+    suite.addTest(BccClientTest("test_delete_asp"))
     suite.addTest(BccClientTest("test_delete_auto_renew_rule"))
+    suite.addTest(BccClientTest("test_delete_deploy_set"))
     suite.addTest(BccClientTest("test_delete_image"))
     suite.addTest(BccClientTest("test_delete_instance_deploy_set"))
+    suite.addTest(BccClientTest("test_delete_keypair"))
     suite.addTest(BccClientTest("test_delete_prepay_instance"))
     suite.addTest(BccClientTest("test_delete_recycled_instance"))
+    suite.addTest(BccClientTest("test_delete_security_group"))
+    suite.addTest(BccClientTest("test_delete_security_group_rule"))
+    suite.addTest(BccClientTest("test_delete_snapshot"))
+    suite.addTest(BccClientTest("test_deletes_instance_deploy_set"))
+    suite.addTest(BccClientTest("test_detach_asp"))
+    suite.addTest(BccClientTest("test_detach_keypair"))
     suite.addTest(BccClientTest("test_detach_volume"))
     suite.addTest(BccClientTest("test_enter_rescue_mode"))
     suite.addTest(BccClientTest("test_exit_rescue_mode"))
+    suite.addTest(BccClientTest("test_get_asp"))
     suite.addTest(BccClientTest("test_get_available_images_by_spec"))
+    suite.addTest(BccClientTest("test_get_bid_instance_price"))
     suite.addTest(BccClientTest("test_get_cds_price"))
+    suite.addTest(BccClientTest("test_get_deploy_set"))
     suite.addTest(BccClientTest("test_get_disk_quota"))
     suite.addTest(BccClientTest("test_get_image"))
     suite.addTest(BccClientTest("test_get_instance"))
@@ -326,20 +496,31 @@ if __name__ == '__main__':
     suite.addTest(BccClientTest("test_get_instance_user_data_info"))
     suite.addTest(BccClientTest("test_get_instance_vnc"))
     suite.addTest(BccClientTest("test_get_role_list"))
+    suite.addTest(BccClientTest("test_get_snapshot"))
     suite.addTest(BccClientTest("test_get_volume"))
     suite.addTest(BccClientTest("test_get_volume_resize_progress"))
     suite.addTest(BccClientTest("test_import_image"))
+    suite.addTest(BccClientTest("test_import_keypair"))
     suite.addTest(BccClientTest("test_instance_batch_resize_by_spec"))
     suite.addTest(BccClientTest("test_instance_deletion_protection"))
     suite.addTest(BccClientTest("test_instance_recovery"))
+    suite.addTest(BccClientTest("test_keypair_detail"))
+    suite.addTest(BccClientTest("test_list_asps"))
     suite.addTest(BccClientTest("test_list_available_resize_spec"))
+    suite.addTest(BccClientTest("test_list_bid_flavor"))
+    suite.addTest(BccClientTest("test_list_deploy_set"))
     suite.addTest(BccClientTest("test_list_images"))
     suite.addTest(BccClientTest("test_list_instance_by_ids"))
     suite.addTest(BccClientTest("test_list_instance_enis"))
     suite.addTest(BccClientTest("test_list_instances"))
+    suite.addTest(BccClientTest("test_list_keypair"))
     suite.addTest(BccClientTest("test_list_os"))
     suite.addTest(BccClientTest("test_list_recycle_instance"))
+    suite.addTest(BccClientTest("test_list_security_groups"))
     suite.addTest(BccClientTest("test_list_shared_user"))
+    suite.addTest(BccClientTest("test_list_snapchain"))
+    suite.addTest(BccClientTest("test_list_snapshot_share"))
+    suite.addTest(BccClientTest("test_list_snapshots"))
     suite.addTest(BccClientTest("test_list_volumes"))
     suite.addTest(BccClientTest("test_modify_cds_attribute"))
     suite.addTest(BccClientTest("test_modify_instance_attributes"))
@@ -357,10 +538,14 @@ if __name__ == '__main__':
     suite.addTest(BccClientTest("test_release_multiple_instance_by_post"))
     suite.addTest(BccClientTest("test_release_volume"))
     suite.addTest(BccClientTest("test_remote_copy_image"))
+    suite.addTest(BccClientTest("test_remote_copy_snapshot"))
     suite.addTest(BccClientTest("test_rename_image"))
+    suite.addTest(BccClientTest("test_rename_keypair"))
     suite.addTest(BccClientTest("test_rename_volume"))
+    suite.addTest(BccClientTest("test_replace_instance_security_group"))
     suite.addTest(BccClientTest("test_resize_instance_by_spec"))
     suite.addTest(BccClientTest("test_resize_volume"))
+    suite.addTest(BccClientTest("test_revoke_security_group_rule"))
     suite.addTest(BccClientTest("test_rollback_volume"))
     suite.addTest(BccClientTest("test_share_image"))
     suite.addTest(BccClientTest("test_start_instance"))
@@ -368,9 +553,16 @@ if __name__ == '__main__':
     suite.addTest(BccClientTest("test_un_share_image"))
     suite.addTest(BccClientTest("test_unbind_instance_from_security_group"))
     suite.addTest(BccClientTest("test_unbind_instance_from_tags"))
+    suite.addTest(BccClientTest("test_unbind_instance_security_group"))
     suite.addTest(BccClientTest("test_unbind_role"))
     suite.addTest(BccClientTest("test_unbind_tag_image"))
+    suite.addTest(BccClientTest("test_unbind_tag_snapchain"))
     suite.addTest(BccClientTest("test_unbind_tag_volume"))
+    suite.addTest(BccClientTest("test_update_asp"))
+    suite.addTest(BccClientTest("test_update_deploy_set"))
+    suite.addTest(BccClientTest("test_update_deploy_set_relation"))
     suite.addTest(BccClientTest("test_update_instance_subnet"))
+    suite.addTest(BccClientTest("test_update_keypair_description"))
+    suite.addTest(BccClientTest("test_update_security_group_rule"))
     runner = unittest.TextTestRunner()
     runner.run(suite)
