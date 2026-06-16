@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(
+        bce_client_config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = BlbClient(config)
+        client = BlbClient(bce_client_config)
         request = blb_models.DescribeAppBlbsRequest(
             address="", name="", blb_id="", bcc_id="", exactly_match=False, marker="", max_keys=0, type=""
         )
