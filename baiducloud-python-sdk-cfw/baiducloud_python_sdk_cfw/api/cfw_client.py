@@ -12,9 +12,12 @@ from baiducloud_python_sdk_core.http import bce_http_client
 from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import http_methods
 from baiducloud_python_sdk_cfw.models.create_cfw_response import CreateCfwResponse
+from baiducloud_python_sdk_cfw.models.create_stateless_cfw_response import CreateStatelessCfwResponse
 from baiducloud_python_sdk_cfw.models.get_cfw_response import GetCfwResponse
+from baiducloud_python_sdk_cfw.models.get_stateless_cfw_response import GetStatelessCfwResponse
 from baiducloud_python_sdk_cfw.models.list_cfw_response import ListCfwResponse
 from baiducloud_python_sdk_cfw.models.list_protect_instances_response import ListProtectInstancesResponse
+from baiducloud_python_sdk_cfw.models.list_stateless_cfw_response import ListStatelessCfwResponse
 
 _logger = logging.getLogger(__name__)
 
@@ -27,6 +30,8 @@ class CfwClient(BceBaseClient):
     VERSION_V1 = b'/v1'
 
     CONSTANT_CFW = b'cfw'
+
+    CONSTANT_STATELESS = b'stateless'
 
     CONSTANT_RULE = b'rule'
 
@@ -108,6 +113,32 @@ class CfwClient(BceBaseClient):
         headers = None
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+
+    def create_stateless_cfw(self, request, config=None):
+        """
+        create_stateless_cfw
+
+        :param request: Request entity containing all parameters
+        :type request: CfwClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing CreateStatelessCfwResponse data
+        :rtype: CreateStatelessCfwResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(CfwClient.VERSION_V1, CfwClient.CONSTANT_CFW, CfwClient.CONSTANT_STATELESS)
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=CreateStatelessCfwResponse,
+        )
 
     def delete_cfw(self, request, config=None):
         """
@@ -223,6 +254,28 @@ class CfwClient(BceBaseClient):
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.GET, path=path, config=merged_config, model=GetCfwResponse)
 
+    def get_stateless_cfw(self, request, config=None):
+        """
+        get_stateless_cfw
+
+        :param request: Request entity containing all parameters
+        :type request: CfwClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing GetStatelessCfwResponse data
+        :rtype: GetStatelessCfwResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            CfwClient.VERSION_V1, CfwClient.CONSTANT_CFW, CfwClient.CONSTANT_STATELESS, request.cfw_id
+        )
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.GET, path=path, config=merged_config, model=GetStatelessCfwResponse)
+
     def list_cfw(self, request, config=None):
         """
         list_cfw
@@ -281,6 +334,33 @@ class CfwClient(BceBaseClient):
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.GET, path=path, params=params, config=merged_config, model=ListProtectInstancesResponse
+        )
+
+    def list_stateless_cfw(self, request, config=None):
+        """
+        list_stateless_cfw
+
+        :param request: Request entity containing all parameters
+        :type request: CfwClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing ListStatelessCfwResponse data
+        :rtype: ListStatelessCfwResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(CfwClient.VERSION_V1, CfwClient.CONSTANT_CFW, CfwClient.CONSTANT_STATELESS)
+        headers = None
+        params = {}
+        params['marker'] = 'cfw-egx34bzjj43k'
+        params['maxKeys'] = '1'
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.GET, path=path, params=params, config=merged_config, model=ListStatelessCfwResponse
         )
 
     def unbind_cfw(self, request, config=None):
@@ -344,6 +424,28 @@ class CfwClient(BceBaseClient):
         """
         path = utils.append_uri(
             CfwClient.VERSION_V1, CfwClient.CONSTANT_CFW, request.cfw_id, CfwClient.CONSTANT_RULE, request.cfw_rule_id
+        )
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.PUT, path=path, body=request.to_json_string(), config=merged_config)
+
+    def update_stateless_cfw(self, request, config=None):
+        """
+        update_stateless_cfw
+
+        :param request: Request entity containing all parameters
+        :type request: CfwClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            CfwClient.VERSION_V1, CfwClient.CONSTANT_CFW, CfwClient.CONSTANT_STATELESS, request.cfw_id
         )
         headers = None
         merged_config = self._create_request_with_host(request, config)

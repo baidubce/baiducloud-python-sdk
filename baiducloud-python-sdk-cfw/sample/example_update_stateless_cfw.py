@@ -1,5 +1,5 @@
 """
-Example for cfw list_protect_instances method.
+Example for cfw update_stateless_cfw method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -18,8 +18,8 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = CfwClient(bce_client_config)
-        request = cfw_models.ListProtectInstancesRequest(instance_type="", marker="", max_keys=0, status="", region="")
-        res = client.list_protect_instances(request)
+        request = cfw_models.UpdateStatelessCfwRequest(cfw_id="", name="", description="", protocol="", ip_list=[])
+        res = client.update_stateless_cfw(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。
