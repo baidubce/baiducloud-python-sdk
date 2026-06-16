@@ -14,11 +14,11 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(
+        bce_client_config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = BlsClient(config)
-        request = bls_models.UpdateProjectRequest(uuid="", description=False)
+        client = BlsClient(bce_client_config)
+        request = bls_models.UpdateProjectRequest(uuid="", description="", top=False)
         res = client.update_project(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

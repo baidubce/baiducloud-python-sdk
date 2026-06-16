@@ -25,14 +25,29 @@ class BlsClientTest(unittest.TestCase):
         """
         self.the_client = None
 
+    def test_create_download_task(self):
+        self.client.create_download_task(bls_models.CreateDownloadTaskRequest())
+
     def test_create_project(self):
         self.client.create_project(bls_models.CreateProjectRequest())
+
+    def test_delete_download_task(self):
+        self.client.delete_download_task(bls_models.DeleteDownloadTaskRequest())
 
     def test_delete_project(self):
         self.client.delete_project(bls_models.DeleteProjectRequest())
 
+    def test_describe_download_task(self):
+        self.client.describe_download_task(bls_models.DescribeDownloadTaskRequest())
+
     def test_describe_project(self):
         self.client.describe_project(bls_models.DescribeProjectRequest())
+
+    def test_get_download_task_link(self):
+        self.client.get_download_task_link(bls_models.GetDownloadTaskLinkRequest())
+
+    def test_list_download_task(self):
+        self.client.list_download_task(bls_models.ListDownloadTaskRequest())
 
     def test_list_project(self):
         self.client.list_project(bls_models.ListProjectRequest())
@@ -55,9 +70,14 @@ class BlsClientTest(unittest.TestCase):
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()
+    suite.addTest(BlsClientTest("test_create_download_task"))
     suite.addTest(BlsClientTest("test_create_project"))
+    suite.addTest(BlsClientTest("test_delete_download_task"))
     suite.addTest(BlsClientTest("test_delete_project"))
+    suite.addTest(BlsClientTest("test_describe_download_task"))
     suite.addTest(BlsClientTest("test_describe_project"))
+    suite.addTest(BlsClientTest("test_get_download_task_link"))
+    suite.addTest(BlsClientTest("test_list_download_task"))
     suite.addTest(BlsClientTest("test_list_project"))
     suite.addTest(BlsClientTest("test_pull_log_record"))
     suite.addTest(BlsClientTest("test_push_log_record"))

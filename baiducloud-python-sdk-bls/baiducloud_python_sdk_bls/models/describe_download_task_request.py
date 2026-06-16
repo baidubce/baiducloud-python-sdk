@@ -1,34 +1,26 @@
 """
-Request entity for UpdateProjectRequest information.
+Request entity for DescribeDownloadTaskRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class UpdateProjectRequest(AbstractModel):
+class DescribeDownloadTaskRequest(AbstractModel):
     """
-    Request entity for UpdateProjectRequest operation.
+    Request entity for DescribeDownloadTaskRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, uuid, description=None, top=None):
+    def __init__(self, uuid):
         """
-        Initialize UpdateProjectRequest request entity.
+        Initialize DescribeDownloadTaskRequest request entity.
 
-        :param uuid: 日志组UUID
+        :param uuid: uuid parameter
         :type uuid: str (required)
-
-        :param description: 日志组描述
-        :type description: str (optional)
-
-        :param top: 日志组是否置顶
-        :type top: bool (optional)
         """
         super().__init__()
         self.uuid = uuid
-        self.description = description
-        self.top = top
 
     def to_dict(self):
         """
@@ -43,12 +35,6 @@ class UpdateProjectRequest(AbstractModel):
         if _map is not None:
             return _map
         result = dict()
-        if self.uuid is not None:
-            result['uuid'] = self.uuid
-        if self.description is not None:
-            result['description'] = self.description
-        if self.top is not None:
-            result['top'] = self.top
         return result
 
     def from_dict(self, m):
@@ -61,7 +47,7 @@ class UpdateProjectRequest(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: UpdateProjectRequest
+        :rtype: DescribeDownloadTaskRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
@@ -69,8 +55,4 @@ class UpdateProjectRequest(AbstractModel):
         m = m or dict()
         if m.get('uuid') is not None:
             self.uuid = m.get('uuid')
-        if m.get('description') is not None:
-            self.description = m.get('description')
-        if m.get('top') is not None:
-            self.top = m.get('top')
         return self

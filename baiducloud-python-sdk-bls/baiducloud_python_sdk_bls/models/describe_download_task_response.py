@@ -1,18 +1,19 @@
 """
-UpdateProjectResponse information
+Request entity for DescribeDownloadTaskResponse information.
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
+from baiducloud_python_sdk_bls.models.download_task_result import DownloadTaskResult
 
 
-class UpdateProjectResponse(BceResponse):
+class DescribeDownloadTaskResponse(BceResponse):
     """
-    UpdateProjectResponse
+    DescribeDownloadTaskResponse
     """
 
-    def __init__(self, success=None, code=None, message=None):
+    def __init__(self, success=None, code=None, message=None, result=None):
         """
-        Initialize UpdateProjectResponse instance.
+        Initialize DescribeDownloadTaskResponse response.
 
         :param success: 请求是否成功
         :type success: bool (optional)
@@ -22,21 +23,24 @@ class UpdateProjectResponse(BceResponse):
 
         :param message: 请求成功为空，失败为具体的错误信息
         :type message: str (optional)
+
+        :param result: result field
+        :type result: DownloadTaskResult (optional)
         """
         super().__init__()
         self.success = success
         self.code = code
         self.message = message
+        self.result = result
 
     def to_dict(self):
         """
-        Convert the model instance to a dictionary representation.
-
-        Nested model objects are recursively converted to dictionaries.
+        Convert the response instance to a dictionary representation.
 
         Includes metadata from the parent BceResponse class.
+        Nested model objects are recursively converted to dictionaries.
 
-        :return: Dictionary representation of the model
+        :return: Dictionary representation of the response
         :rtype: dict
         """
         _map = super().to_dict()
@@ -51,21 +55,23 @@ class UpdateProjectResponse(BceResponse):
             result['code'] = self.code
         if self.message is not None:
             result['message'] = self.message
+        if self.result is not None:
+            result['result'] = self.result.to_dict()
         return result
 
     def from_dict(self, m):
         """
-        Populate the model instance from a dictionary.
+        Populate the response instance from a dictionary.
 
         Nested dictionaries are recursively converted to model objects.
 
-        :param m: Dictionary containing model data
+        :param m: Dictionary containing response data
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: UpdateProjectResponse
+        :rtype: DescribeDownloadTaskResponse
 
-        :raises TypeError: If input is not a dictionary type
+        :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
@@ -75,4 +81,6 @@ class UpdateProjectResponse(BceResponse):
             self.code = m.get('code')
         if m.get('message') is not None:
             self.message = m.get('message')
+        if m.get('result') is not None:
+            self.result = DownloadTaskResult().from_dict(m.get('result'))
         return self

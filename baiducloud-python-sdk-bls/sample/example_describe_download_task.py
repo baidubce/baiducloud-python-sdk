@@ -1,5 +1,5 @@
 """
-Example for bls create_project method.
+Example for bls describe_download_task method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -18,8 +18,8 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = BlsClient(bce_client_config)
-        request = bls_models.CreateProjectRequest(name="", description="")
-        res = client.create_project(request)
+        request = bls_models.DescribeDownloadTaskRequest(uuid="")
+        res = client.describe_download_task(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。

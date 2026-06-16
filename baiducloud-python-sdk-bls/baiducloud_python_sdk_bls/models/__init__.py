@@ -3,11 +3,22 @@ Models for bls SDK.
 """
 
 from .bucket import Bucket
+from .create_download_result import CreateDownloadResult
+from .create_download_task_request import CreateDownloadTaskRequest
+from .create_download_task_response import CreateDownloadTaskResponse
 from .create_project_request import CreateProjectRequest
 from .create_project_response import CreateProjectResponse
 from .dataset_scan_info import DatasetScanInfo
+from .delete_download_task_response import DeleteDownloadTaskResponse
 from .delete_project_response import DeleteProjectResponse
+from .describe_download_task_response import DescribeDownloadTaskResponse
 from .describe_project_response import DescribeProjectResponse
+from .download_link_result import DownloadLinkResult
+from .download_task_list_result import DownloadTaskListResult
+from .download_task_result import DownloadTaskResult
+from .get_download_task_link_response import GetDownloadTaskLinkResponse
+from .list_download_task_request import ListDownloadTaskRequest
+from .list_download_task_response import ListDownloadTaskResponse
 from .list_project_request import ListProjectRequest
 from .list_project_response import ListProjectResponse
 from .log_record import LogRecord
@@ -24,10 +35,14 @@ from .result_set import ResultSet
 from .search_info import SearchInfo
 from .search_statistic import SearchStatistic
 from .statistics import Statistics
+from .task import Task
 from .update_project_request import UpdateProjectRequest
 from .update_project_response import UpdateProjectResponse
 from .describe_project_request import DescribeProjectRequest
 from .delete_project_request import DeleteProjectRequest
 from .query_log_record_request import QueryLogRecordRequest
+from .describe_download_task_request import DescribeDownloadTaskRequest
+from .delete_download_task_request import DeleteDownloadTaskRequest
 from .query_log_histogram_request import QueryLogHistogramRequest
 from .pull_log_record_request import PullLogRecordRequest
+from .get_download_task_link_request import GetDownloadTaskLinkRequest

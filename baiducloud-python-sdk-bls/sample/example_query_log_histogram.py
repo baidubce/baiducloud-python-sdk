@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(
+        bce_client_config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = BlsClient(config)
+        client = BlsClient(bce_client_config)
         request = bls_models.QueryLogHistogramRequest(
             log_store_name="", query="", start_date_time="", end_date_time="", project="", log_stream_name=""
         )
