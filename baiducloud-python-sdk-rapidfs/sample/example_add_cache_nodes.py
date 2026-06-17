@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        bce_client_config = BceClientConfiguration(
+        config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = RapidfsClient(bce_client_config)
+        client = RapidfsClient(config)
         request = rapidfs_models.AddCacheNodesRequest(instance_id="", cache_nodes=[], client_token="", type="")
         res = client.add_cache_nodes(request)
         print(res.to_json_string())

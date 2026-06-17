@@ -11,18 +11,18 @@ class CheckBeforeAddCacheNodesResponse(BceResponse):
     CheckBeforeAddCacheNodesResponse
     """
 
-    def __init__(self, rapidfs_pass=None, err_infos=None):
+    def __init__(self, var_pass=None, err_infos=None):
         """
         Initialize CheckBeforeAddCacheNodesResponse response.
 
-        :param rapidfs_pass: 检查是否通过
-        :type rapidfs_pass: bool (optional)
+        :param var_pass: 检查是否通过
+        :type var_pass: bool (optional)
 
         :param err_infos: 错误列表，见附录 ErrInfo，pass 为 false 时返回
         :type err_infos: List[ErrInfo] (optional)
         """
         super().__init__()
-        self.rapidfs_pass = rapidfs_pass
+        self.var_pass = var_pass
         self.err_infos = err_infos
 
     def to_dict(self):
@@ -41,8 +41,8 @@ class CheckBeforeAddCacheNodesResponse(BceResponse):
         result = dict()
         if self.metadata is not None:
             result['metadata'] = dict(self.metadata)
-        if self.rapidfs_pass is not None:
-            result['pass'] = self.rapidfs_pass
+        if self.var_pass is not None:
+            result['pass'] = self.var_pass
         if self.err_infos is not None:
             result['errInfos'] = [i.to_dict() for i in self.err_infos]
         return result
@@ -64,7 +64,7 @@ class CheckBeforeAddCacheNodesResponse(BceResponse):
         """
         m = m or dict()
         if m.get('pass') is not None:
-            self.rapidfs_pass = m.get('pass')
+            self.var_pass = m.get('pass')
         if m.get('errInfos') is not None:
             self.err_infos = [ErrInfo().from_dict(i) for i in m.get('errInfos')]
         return self

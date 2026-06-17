@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        bce_client_config = BceClientConfiguration(
+        config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = EtClient(bce_client_config)
+        client = EtClient(config)
         request = et_models.CreateDedicatedChannelRouteParametersRequest(
             et_id="", et_channel_id="", route_type="", client_token="", networks=[], ipv6_networks=[]
         )

@@ -34,13 +34,13 @@ class InstanceSpecInfo(AbstractModel):
         :param data_spec: data_spec attribute
         :type data_spec: str (optional)
 
-        :param min_capacity_ti_b: 全托管部署模式下，某个数据规格的最小缓存容量，单位 TiB
+        :param min_capacity_ti_b: 全部署模式下，某个数据规格的最小缓存容量，单位 TiB
         :type min_capacity_ti_b: int (optional)
 
-        :param step_capacity_ti_b: 全托管部署模式下，某个数据规格的缓存步长容量，单位 TiB
+        :param step_capacity_ti_b: 全部署模式下，某个数据规格的缓存步长容量，单位 TiB
         :type step_capacity_ti_b: int (optional)
 
-        :param max_capacity_ti_b: 全托管部署模式下，某个数据规格的最大缓存容量，单位 TiB
+        :param max_capacity_ti_b: 全部署模式下，某个数据规格的最大缓存容量，单位 TiB
         :type max_capacity_ti_b: int (optional)
 
         :param stock_infos: 可购容量信息，见StockInfo

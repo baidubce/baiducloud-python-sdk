@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        bce_client_config = BceClientConfiguration(
+        config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = RapidfsClient(bce_client_config)
+        client = RapidfsClient(config)
         request = rapidfs_models.CreateAndAssignTagRequest(tag_resources=[], client_token="")
         res = client.create_and_assign_tag(request)
         print(res.to_json_string())

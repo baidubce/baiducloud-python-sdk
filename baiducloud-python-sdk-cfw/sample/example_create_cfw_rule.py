@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        bce_client_config = BceClientConfiguration(
+        config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = CfwClient(bce_client_config)
+        client = CfwClient(config)
         request = cfw_models.CreateCfwRuleRequest(cfw_id="", cfw_rules=[])
         res = client.create_cfw_rule(request)
         print(res.to_json_string())

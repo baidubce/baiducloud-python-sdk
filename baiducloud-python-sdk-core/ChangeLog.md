@@ -1,3 +1,6 @@
+2026-06-17 Version: 0.0.5
+- 兼容返回异常，有Code、Message、RequestId首字母大写场景
+
 2026-05-25 Version: 0.0.4
 - install_requires增加requests
 

@@ -69,16 +69,16 @@ class CacheNodeInfo(AbstractModel):
         :param description: 描述信息
         :type description: str (optional)
 
-        :param create_time: 创建时间，例如 2026-06-01T23:00:10Z
+        :param create_time: 创建时间，例如 2026-06-01T23:00:10Z\"
         :type create_time: str (optional)
 
-        :param report_time: 缓存节点最近一次心跳上报时间，例如 2026-06-01T23:00:10Z
+        :param report_time: 缓存节点最近一次心跳上报时间，例如 2026-06-01T23:00:10Z\"
         :type report_time: str (optional)
 
-        :param capacity_mi_b: 总容量，单位 MiB
+        :param capacity_mi_b: 总容量（MiB）
         :type capacity_mi_b: int (optional)
 
-        :param capacity_used_mi_b: 已使用容量，单位 MiB
+        :param capacity_used_mi_b: 已使用容量（MiB）
         :type capacity_used_mi_b: int (optional)
 
         :param capacity_used_percentage: 容量使用百分比
@@ -90,7 +90,7 @@ class CacheNodeInfo(AbstractModel):
         :param disk_infos: 磁盘信息列表
         :type disk_infos: List[DiskInfo] (optional)
 
-        :param deploy_path: 缓存节点服务部署路径
+        :param deploy_path: 部署路径
         :type deploy_path: str (optional)
 
         :param bcc_info: bcc_info attribute

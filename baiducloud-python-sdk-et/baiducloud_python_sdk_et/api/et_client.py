@@ -355,29 +355,6 @@ class EtClient(BceBaseClient):
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
 
-    def delete_physical_dedicated_line(self, request, config=None):
-        """
-        delete_physical_dedicated_line
-
-        :param request: Request entity containing all parameters
-        :type request: EtClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = utils.append_uri(EtClient.VERSION_V1, EtClient.CONSTANT_ET, request.dcphy_id)
-        headers = None
-        params = {}
-        if request.client_token is not None:
-            params['clientToken'] = request.client_token
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
-
     def disable_dedicated_channel_ipv6(self, request, config=None):
         """
         disable_dedicated_channel_ipv6

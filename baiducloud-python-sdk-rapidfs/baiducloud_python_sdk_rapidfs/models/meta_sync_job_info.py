@@ -20,10 +20,10 @@ class MetaSyncJobInfo(AbstractModel):
         :param status: 任务状态，见 MetaSyncJobStatus
         :type status: str (optional)
 
-        :param start_time: 任务开始时间，例如 2026-06-01T23:00:10Z
+        :param start_time: 任务开始时间，例如 2026-06-01T23:00:10Z\"
         :type start_time: str (optional)
 
-        :param end_time: 任务结束时间，例如 2026-06-01T23:00:10Z
+        :param end_time: 任务结束时间，例如 2026-06-01T23:00:10Z\"
         :type end_time: str (optional)
         """
         super().__init__()

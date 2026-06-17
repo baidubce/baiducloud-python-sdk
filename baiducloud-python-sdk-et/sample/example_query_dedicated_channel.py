@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        bce_client_config = BceClientConfiguration(
+        config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = EtClient(bce_client_config)
+        client = EtClient(config)
         request = et_models.QueryDedicatedChannelRequest(et_id="", client_token="", et_channel_id="")
         res = client.query_dedicated_channel(request)
         print(res.to_json_string())

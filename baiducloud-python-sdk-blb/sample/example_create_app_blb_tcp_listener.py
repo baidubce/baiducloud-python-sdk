@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        bce_client_config = BceClientConfiguration(
+        config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = BlbClient(bce_client_config)
+        client = BlbClient(config)
         request = blb_models.CreateAppBlbTcpListenerRequest(
             blb_id="", listener_port=0, scheduler="", client_token="", tcp_session_timeout=0, description=""
         )

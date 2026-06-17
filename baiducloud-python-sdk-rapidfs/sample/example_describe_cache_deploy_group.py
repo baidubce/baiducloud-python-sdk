@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        bce_client_config = BceClientConfiguration(
+        config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = RapidfsClient(bce_client_config)
+        client = RapidfsClient(config)
         request = rapidfs_models.DescribeCacheDeployGroupRequest(
             instance_id="", cache_deploy_group_name="", cache_deploy_group_ns=""
         )

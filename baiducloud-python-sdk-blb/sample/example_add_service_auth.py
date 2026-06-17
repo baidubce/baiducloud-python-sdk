@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        bce_client_config = BceClientConfiguration(
+        config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = BlbClient(bce_client_config)
+        client = BlbClient(config)
         request = blb_models.AddServiceAuthRequest(service="", auth_list=[], client_token="")
         res = client.add_service_auth(request)
         print(res.to_json_string())

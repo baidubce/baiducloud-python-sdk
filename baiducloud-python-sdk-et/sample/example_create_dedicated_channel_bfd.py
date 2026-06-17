@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        bce_client_config = BceClientConfiguration(
+        config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = EtClient(bce_client_config)
+        client = EtClient(config)
         request = et_models.CreateDedicatedChannelBfdRequest(
             et_id="", et_channel_id="", send_interval=0, receiv_interval=0, detect_multiplier=0, client_token=""
         )

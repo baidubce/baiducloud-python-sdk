@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        bce_client_config = BceClientConfiguration(
+        config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = BlsClient(bce_client_config)
+        client = BlsClient(config)
         request = bls_models.PullLogRecordRequest(
             log_store_name="", log_stream_name="", start_date_time="", end_date_time="", project="", limit=0, marker=""
         )

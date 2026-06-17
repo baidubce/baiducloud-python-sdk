@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        bce_client_config = BceClientConfiguration(
+        config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = BlbClient(bce_client_config)
+        client = BlbClient(config)
         request = blb_models.UpdateAppBlbServerGroupRequest(blb_id="", sg_id="", client_token="", name="", desc="")
         res = client.update_app_blb_server_group(request)
         print(res.to_json_string())

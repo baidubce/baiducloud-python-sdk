@@ -13,10 +13,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        bce_client_config = BceClientConfiguration(
+        config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = RapidfsClient(bce_client_config)
+        client = RapidfsClient(config)
         res = client.describe_zones()
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

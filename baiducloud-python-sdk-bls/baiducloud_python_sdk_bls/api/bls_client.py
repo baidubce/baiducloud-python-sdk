@@ -11,14 +11,9 @@ from baiducloud_python_sdk_core.bce_base_client import BceBaseClient
 from baiducloud_python_sdk_core.http import bce_http_client
 from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import http_methods
-from baiducloud_python_sdk_bls.models.create_download_task_response import CreateDownloadTaskResponse
 from baiducloud_python_sdk_bls.models.create_project_response import CreateProjectResponse
-from baiducloud_python_sdk_bls.models.delete_download_task_response import DeleteDownloadTaskResponse
 from baiducloud_python_sdk_bls.models.delete_project_response import DeleteProjectResponse
-from baiducloud_python_sdk_bls.models.describe_download_task_response import DescribeDownloadTaskResponse
 from baiducloud_python_sdk_bls.models.describe_project_response import DescribeProjectResponse
-from baiducloud_python_sdk_bls.models.get_download_task_link_response import GetDownloadTaskLinkResponse
-from baiducloud_python_sdk_bls.models.list_download_task_response import ListDownloadTaskResponse
 from baiducloud_python_sdk_bls.models.list_project_response import ListProjectResponse
 from baiducloud_python_sdk_bls.models.pull_log_record_response import PullLogRecordResponse
 from baiducloud_python_sdk_bls.models.push_log_record_response import PushLogRecordResponse
@@ -44,13 +39,9 @@ class BlsClient(BceBaseClient):
 
     CONSTANT_LOGRECORD = b'logrecord'
 
-    CONSTANT_DOWNLOAD = b'download'
-
     CONSTANT_LIST = b'list'
 
     CONSTANT_LOGHISTOGRAM = b'loghistogram'
-
-    CONSTANT_LINK = b'link'
 
     def __init__(self, config=None):
         """
@@ -60,32 +51,6 @@ class BlsClient(BceBaseClient):
         :type config: baidubce.BceClientConfiguration
         """
         bce_base_client.BceBaseClient.__init__(self, config)
-
-    def create_download_task(self, request, config=None):
-        """
-        create_download_task
-
-        :param request: Request entity containing all parameters
-        :type request: BlsClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response containing CreateDownloadTaskResponse data
-        :rtype: CreateDownloadTaskResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = utils.append_uri(BlsClient.VERSION_V2, BlsClient.CONSTANT_LOGSTORE, BlsClient.CONSTANT_DOWNLOAD)
-        headers = None
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(
-            http_methods.POST,
-            path=path,
-            body=request.to_json_string(),
-            config=merged_config,
-            model=CreateDownloadTaskResponse,
-        )
 
     def create_project(self, request, config=None):
         """
@@ -113,30 +78,6 @@ class BlsClient(BceBaseClient):
             model=CreateProjectResponse,
         )
 
-    def delete_download_task(self, request, config=None):
-        """
-        delete_download_task
-
-        :param request: Request entity containing all parameters
-        :type request: BlsClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response containing DeleteDownloadTaskResponse data
-        :rtype: DeleteDownloadTaskResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = utils.append_uri(
-            BlsClient.VERSION_V2, BlsClient.CONSTANT_LOGSTORE, BlsClient.CONSTANT_DOWNLOAD, request.uuid
-        )
-        headers = None
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(
-            http_methods.DELETE, path=path, config=merged_config, model=DeleteDownloadTaskResponse
-        )
-
     def delete_project(self, request, config=None):
         """
         delete_project
@@ -157,30 +98,6 @@ class BlsClient(BceBaseClient):
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.DELETE, path=path, config=merged_config, model=DeleteProjectResponse)
 
-    def describe_download_task(self, request, config=None):
-        """
-        describe_download_task
-
-        :param request: Request entity containing all parameters
-        :type request: BlsClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response containing DescribeDownloadTaskResponse data
-        :rtype: DescribeDownloadTaskResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = utils.append_uri(
-            BlsClient.VERSION_V2, BlsClient.CONSTANT_LOGSTORE, BlsClient.CONSTANT_DOWNLOAD, request.uuid
-        )
-        headers = None
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(
-            http_methods.GET, path=path, config=merged_config, model=DescribeDownloadTaskResponse
-        )
-
     def describe_project(self, request, config=None):
         """
         describe_project
@@ -200,60 +117,6 @@ class BlsClient(BceBaseClient):
         headers = None
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.GET, path=path, config=merged_config, model=DescribeProjectResponse)
-
-    def get_download_task_link(self, request, config=None):
-        """
-        get_download_task_link
-
-        :param request: Request entity containing all parameters
-        :type request: BlsClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response containing GetDownloadTaskLinkResponse data
-        :rtype: GetDownloadTaskLinkResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = utils.append_uri(
-            BlsClient.VERSION_V2,
-            BlsClient.CONSTANT_LOGSTORE,
-            BlsClient.CONSTANT_DOWNLOAD,
-            BlsClient.CONSTANT_LINK,
-            request.uuid,
-        )
-        headers = None
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.GET, path=path, config=merged_config, model=GetDownloadTaskLinkResponse)
-
-    def list_download_task(self, request, config=None):
-        """
-        list_download_task
-
-        :param request: Request entity containing all parameters
-        :type request: BlsClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response containing ListDownloadTaskResponse data
-        :rtype: ListDownloadTaskResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = utils.append_uri(
-            BlsClient.VERSION_V2, BlsClient.CONSTANT_LOGSTORE, BlsClient.CONSTANT_DOWNLOAD, BlsClient.CONSTANT_LIST
-        )
-        headers = None
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(
-            http_methods.POST,
-            path=path,
-            body=request.to_json_string(),
-            config=merged_config,
-            model=ListDownloadTaskResponse,
-        )
 
     def list_project(self, request, config=None):
         """

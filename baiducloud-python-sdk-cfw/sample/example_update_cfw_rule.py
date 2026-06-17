@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        bce_client_config = BceClientConfiguration(
+        config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = CfwClient(bce_client_config)
+        client = CfwClient(config)
         request = cfw_models.UpdateCfwRuleRequest(
             cfw_id="",
             cfw_rule_id="",

@@ -61,7 +61,7 @@ class MetaSyncRuleInfo(AbstractModel):
         :param status: 元数据同步状态，见 MetaSyncRuleStatus
         :type status: str (optional)
 
-        :param create_time: 创建时间，例如 2026-06-01T23:00:10Z
+        :param create_time: 创建时间，例如 2026-06-01T23:00:10Z\"
         :type create_time: str (optional)
 
         :param description: 描述信息
@@ -70,10 +70,10 @@ class MetaSyncRuleInfo(AbstractModel):
         :param last_job_status: 最近一次任务状态，见 MetaSyncJobStatus
         :type last_job_status: str (optional)
 
-        :param last_job_start_time: 最近一次任务开始时间，例如 2026-06-01T23:00:10Z
+        :param last_job_start_time: 最近一次任务开始时间，例如 2026-06-01T23:00:10Z\"
         :type last_job_start_time: str (optional)
 
-        :param last_job_end_time: 最近一次任务结束时间，例如 2026-06-01T23:00:10Z
+        :param last_job_end_time: 最近一次任务结束时间，例如 2026-06-01T23:00:10Z\"
         :type last_job_end_time: str (optional)
         """
         super().__init__()
@@ -123,7 +123,7 @@ class MetaSyncRuleInfo(AbstractModel):
         if self.directory is not None:
             result['directory'] = self.directory
         if self.interval_minutes is not None:
-            result['intervalMinutes'] = self.interval_minutes
+            result['IntervalMinutes'] = self.interval_minutes
         if self.status is not None:
             result['status'] = self.status
         if self.create_time is not None:
@@ -170,8 +170,8 @@ class MetaSyncRuleInfo(AbstractModel):
             self.type = m.get('type')
         if m.get('directory') is not None:
             self.directory = m.get('directory')
-        if m.get('intervalMinutes') is not None:
-            self.interval_minutes = m.get('intervalMinutes')
+        if m.get('IntervalMinutes') is not None:
+            self.interval_minutes = m.get('IntervalMinutes')
         if m.get('status') is not None:
             self.status = m.get('status')
         if m.get('createTime') is not None:

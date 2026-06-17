@@ -23,10 +23,10 @@ class DiskInfo(AbstractModel):
         :param disk_quota_gi_b: 磁盘配额，单位 GiB
         :type disk_quota_gi_b: int (optional)
 
-        :param format: 是否格式化，枚举值：* true：添加节点时格式化 dev 设备；* false：添加节点时未格式化设备
+        :param format: 是否格式化：format=true 时必须给出 dev；format=false 时必须给出 diskQuotaGiB
         :type format: bool (optional)
 
-        :param disk_type: 磁盘类型
+        :param disk_type: 磁盘类型（可选）
         :type disk_type: str (optional)
         """
         super().__init__()

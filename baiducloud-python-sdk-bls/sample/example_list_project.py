@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        bce_client_config = BceClientConfiguration(
+        config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = BlsClient(bce_client_config)
+        client = BlsClient(config)
         request = bls_models.ListProjectRequest(name="", description="", order_by="", order="", page_no=0, page_size=0)
         res = client.list_project(request)
         print(res.to_json_string())

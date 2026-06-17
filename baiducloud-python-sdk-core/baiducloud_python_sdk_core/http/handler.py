@@ -100,6 +100,16 @@ def parse_json(http_response, response):
     return True
 
 
+def _get_dict_value_ignore_case(d, key):
+    if key in d:
+        return d[key]
+    lower_key = key.lower()
+    for k, v in d.items():
+        if k.lower() == lower_key:
+            return v
+    raise KeyError(key)
+
+
 def parse_error(http_response, response):
     """If the body is not empty, convert it to a python object and set as the value of
     response.body. http_response is always closed if no error occurs.
@@ -122,7 +132,10 @@ def parse_error(http_response, response):
     body = http_response.read()
     if body:
         d = json.loads(compat.convert_to_string(body))
-        bse = BceServerError(d['message'], code=d['code'], request_id=d['requestId'])
+        bse = BceServerError(
+                _get_dict_value_ignore_case(d, 'message'),
+                code=_get_dict_value_ignore_case(d, 'code'),
+                request_id=_get_dict_value_ignore_case(d, 'requestId'))
     else:
         request_id = response.metadata.get('x-bce-request-id')
         bse = BceServerError(http_response.reason, request_id=request_id)

@@ -28,7 +28,7 @@ class DescribeCacheRuleJobsRequest(AbstractModel):
         :param max_keys: 返回列表长度，有效范围 [1, 1000]，默认 100
         :type max_keys: int (optional)
 
-        :param marker: 批量获取列表的查询的起始位置，返回列表按 cacheJobId 字典序排序，取值为上一次返回的 nextMarker
+        :param marker: marker parameter
         :type marker: str (optional)
         """
         super().__init__()

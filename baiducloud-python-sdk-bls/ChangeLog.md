@@ -1,8 +1,3 @@
-2026-06-16 Version: 0.0.3
-BLS新增下载任务相关接口并更新日志组字段
-- 涉及产品: BLS，新增创建、查询、列表、删除、获取链接五个下载任务接口
-- 涉及产品: BLS，updateProject接口description字段类型改为string并新增top字段
-
 2026-05-29 Version: 0.0.2
 - 涉及产品: BLS，SDK版本更新
 

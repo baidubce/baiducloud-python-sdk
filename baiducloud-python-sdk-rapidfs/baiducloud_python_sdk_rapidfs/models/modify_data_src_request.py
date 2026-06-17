@@ -34,7 +34,7 @@ class ModifyDataSrcRequest(AbstractModel):
         :param instance_id: 所属 RapidFS 实例唯一 ID
         :type instance_id: str (required)
 
-        :param keep_symlink: 是否保留 BOS 软链，保留软链会降低数据源导入效率，以及后续增量元数据同步效率
+        :param keep_symlink: 是否保留 BOS 软链，保留软链会降低创建数据源导入效率，以及后续增量元数据同步效率
         :type keep_symlink: bool (optional)
 
         :param auth_group_id: 权限组Id
