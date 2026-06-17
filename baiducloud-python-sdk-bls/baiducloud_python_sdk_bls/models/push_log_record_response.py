@@ -1,5 +1,5 @@
 """
-Request entity for PushLogRecordResponse information.
+PushLogRecordResponse information
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
@@ -12,7 +12,7 @@ class PushLogRecordResponse(BceResponse):
 
     def __init__(self, success=None, code=None):
         """
-        Initialize PushLogRecordResponse response.
+        Initialize PushLogRecordResponse instance.
 
         :param success: 请求是否成功
         :type success: bool (optional)
@@ -26,12 +26,13 @@ class PushLogRecordResponse(BceResponse):
 
     def to_dict(self):
         """
-        Convert the response instance to a dictionary representation.
+        Convert the model instance to a dictionary representation.
 
-        Includes metadata from the parent BceResponse class.
         Nested model objects are recursively converted to dictionaries.
 
-        :return: Dictionary representation of the response
+        Includes metadata from the parent BceResponse class.
+
+        :return: Dictionary representation of the model
         :rtype: dict
         """
         _map = super().to_dict()
@@ -48,17 +49,17 @@ class PushLogRecordResponse(BceResponse):
 
     def from_dict(self, m):
         """
-        Populate the response instance from a dictionary.
+        Populate the model instance from a dictionary.
 
         Nested dictionaries are recursively converted to model objects.
 
-        :param m: Dictionary containing response data
+        :param m: Dictionary containing model data
         :type m: dict
 
         :return: Self reference for method chaining
         :rtype: PushLogRecordResponse
 
-        :raises TypeError: If input is not a dictionary or field type mismatch
+        :raises TypeError: If input is not a dictionary type
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
