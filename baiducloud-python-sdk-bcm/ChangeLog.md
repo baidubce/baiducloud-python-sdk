@@ -1,3 +1,6 @@
+2026-06-17 Version: 0.0.3
+- 涉及产品: BCM，修复describeMetricDataLatest等3个接口中timestmap字段拼写错误，更正为timestamp
+
 2026-06-15 Version: 0.0.2
 - 涉及产品: BCM，新增报警模版的创建、查询、更新、删除、导入导出接口
 - 涉及产品: BCM，新增实例组的创建、查询、更新、删除及实例管理接口

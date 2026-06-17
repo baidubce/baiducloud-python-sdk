@@ -10,12 +10,12 @@ class DataPoint(AbstractModel):
     DataPoint
     """
 
-    def __init__(self, timestmap=None, avg=None, max=None, min=None, sum=None, count=None):
+    def __init__(self, timestamp=None, avg=None, max=None, min=None, sum=None, count=None):
         """
         Initialize DataPoint instance.
 
-        :param timestmap: 时间戳，单位：毫秒
-        :type timestmap: int (optional)
+        :param timestamp: 时间戳，单位：毫秒
+        :type timestamp: int (optional)
 
         :param avg: 若aggregationOverTime包含avg，返回平均值
         :type avg: float (optional)
@@ -33,7 +33,7 @@ class DataPoint(AbstractModel):
         :type count: int (optional)
         """
         super().__init__()
-        self.timestmap = timestmap
+        self.timestamp = timestamp
         self.avg = avg
         self.max = max
         self.min = min
@@ -53,8 +53,8 @@ class DataPoint(AbstractModel):
         if _map is not None:
             return _map
         result = dict()
-        if self.timestmap is not None:
-            result['timestmap'] = self.timestmap
+        if self.timestamp is not None:
+            result['timestamp'] = self.timestamp
         if self.avg is not None:
             result['avg'] = self.avg
         if self.max is not None:
@@ -83,8 +83,8 @@ class DataPoint(AbstractModel):
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('timestmap') is not None:
-            self.timestmap = m.get('timestmap')
+        if m.get('timestamp') is not None:
+            self.timestamp = m.get('timestamp')
         if m.get('avg') is not None:
             self.avg = m.get('avg')
         if m.get('max') is not None:
