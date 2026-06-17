@@ -55,6 +55,9 @@ class EtClientTest(unittest.TestCase):
     def test_delete_dedicated_channel_route_rules(self):
         self.client.delete_dedicated_channel_route_rules(et_models.DeleteDedicatedChannelRouteRulesRequest())
 
+    def test_delete_physical_dedicated_line(self):
+        self.client.delete_physical_dedicated_line(et_models.DeletePhysicalDedicatedLineRequest())
+
     def test_disable_dedicated_channel_ipv6(self):
         self.client.disable_dedicated_channel_ipv6(et_models.DisableDedicatedChannelIpv6Request())
 
@@ -110,6 +113,7 @@ if __name__ == '__main__':
     suite.addTest(EtClientTest("test_delete_dedicated_channel"))
     suite.addTest(EtClientTest("test_delete_dedicated_channel_bfd"))
     suite.addTest(EtClientTest("test_delete_dedicated_channel_route_rules"))
+    suite.addTest(EtClientTest("test_delete_physical_dedicated_line"))
     suite.addTest(EtClientTest("test_disable_dedicated_channel_ipv6"))
     suite.addTest(EtClientTest("test_enable_dedicated_channel_ipv6"))
     suite.addTest(EtClientTest("test_query_dedicated_channel"))

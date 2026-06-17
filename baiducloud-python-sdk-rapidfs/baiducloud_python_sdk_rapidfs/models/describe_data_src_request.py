@@ -19,7 +19,7 @@ class DescribeDataSrcRequest(AbstractModel):
         :param instance_id: RapidFS 实例ID
         :type instance_id: str (required)
 
-        :param data_src_id: 待修改的数据源 ID
+        :param data_src_id: 待查询的数据源 ID
         :type data_src_id: str (required)
         """
         super().__init__()

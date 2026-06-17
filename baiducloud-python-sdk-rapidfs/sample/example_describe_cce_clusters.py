@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(
+        bce_client_config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = RapidfsClient(config)
+        client = RapidfsClient(bce_client_config)
         request = rapidfs_models.DescribeCceClustersRequest(vpc_id="", max_keys=0, marker="")
         res = client.describe_cce_clusters(request)
         print(res.to_json_string())

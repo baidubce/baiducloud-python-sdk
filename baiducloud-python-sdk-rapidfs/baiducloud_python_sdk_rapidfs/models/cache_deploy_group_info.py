@@ -59,16 +59,16 @@ class CacheDeployGroupInfo(AbstractModel):
         :param capacity_used_percentage: 容量使用百分比
         :type capacity_used_percentage: float (optional)
 
-        :param deploy_path: 部署路径
+        :param deploy_path: 缓存节点服务部署路径
         :type deploy_path: str (optional)
 
         :param config: config attribute
         :type config: str (optional)
 
-        :param create_time: 创建时间，例如 2026-06-01T23:00:10Z\"
+        :param create_time: 创建时间，例如 2026-06-01T23:00:10Z
         :type create_time: str (optional)
 
-        :param modify_time: 修改时间，例如 2026-06-01T23:00:10Z\"
+        :param modify_time: 修改时间，例如 2026-06-01T23:00:10Z
         :type modify_time: str (optional)
 
         :param disk_infos: 磁盘信息列表

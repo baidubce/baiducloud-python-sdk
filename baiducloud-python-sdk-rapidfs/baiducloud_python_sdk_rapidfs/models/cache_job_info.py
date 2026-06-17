@@ -1,36 +1,36 @@
 """
-CacheRuleJobInfo information
+CacheJobInfo information
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class CacheRuleJobInfo(AbstractModel):
+class CacheJobInfo(AbstractModel):
     """
-    CacheRuleJobInfo
+    CacheJobInfo
     """
 
-    def __init__(self, cache_rule_job_id=None, status=None, size=None, start_time=None, end_time=None):
+    def __init__(self, cache_job_id=None, status=None, size=None, start_time=None, end_time=None):
         """
-        Initialize CacheRuleJobInfo instance.
+        Initialize CacheJobInfo instance.
 
-        :param cache_rule_job_id: 缓存管理任务 ID
-        :type cache_rule_job_id: str (optional)
+        :param cache_job_id: 缓存管理任务 ID
+        :type cache_job_id: str (optional)
 
-        :param status: 任务状态，见 CacheRuleJobStatus
+        :param status: 任务状态，见 CacheJobStatus
         :type status: str (optional)
 
         :param size: 任务已完成数据量，单位 Bytes
         :type size: int (optional)
 
-        :param start_time: 任务开始时间，例如 2026-06-01T23:00:10Z\"
+        :param start_time: 任务开始时间，例如 2026-06-01T23:00:10Z
         :type start_time: str (optional)
 
-        :param end_time: 任务结束时间，例如 2026-06-01T23:00:10Z\"
+        :param end_time: 任务结束时间，例如 2026-06-01T23:00:10Z
         :type end_time: str (optional)
         """
         super().__init__()
-        self.cache_rule_job_id = cache_rule_job_id
+        self.cache_job_id = cache_job_id
         self.status = status
         self.size = size
         self.start_time = start_time
@@ -49,8 +49,8 @@ class CacheRuleJobInfo(AbstractModel):
         if _map is not None:
             return _map
         result = dict()
-        if self.cache_rule_job_id is not None:
-            result['cacheRuleJobId'] = self.cache_rule_job_id
+        if self.cache_job_id is not None:
+            result['cacheJobId'] = self.cache_job_id
         if self.status is not None:
             result['status'] = self.status
         if self.size is not None:
@@ -71,14 +71,14 @@ class CacheRuleJobInfo(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: CacheRuleJobInfo
+        :rtype: CacheJobInfo
 
         :raises TypeError: If input is not a dictionary type
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('cacheRuleJobId') is not None:
-            self.cache_rule_job_id = m.get('cacheRuleJobId')
+        if m.get('cacheJobId') is not None:
+            self.cache_job_id = m.get('cacheJobId')
         if m.get('status') is not None:
             self.status = m.get('status')
         if m.get('size') is not None:

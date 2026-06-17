@@ -12,19 +12,23 @@ class UpdateProjectRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, uuid, description=None):
+    def __init__(self, uuid, description=None, top=None):
         """
         Initialize UpdateProjectRequest request entity.
 
         :param uuid: 日志组UUID
         :type uuid: str (required)
 
-        :param description: 日志组是否置顶
-        :type description: bool (optional)
+        :param description: 日志组描述
+        :type description: str (optional)
+
+        :param top: 日志组是否置顶
+        :type top: bool (optional)
         """
         super().__init__()
         self.uuid = uuid
         self.description = description
+        self.top = top
 
     def to_dict(self):
         """
@@ -43,6 +47,8 @@ class UpdateProjectRequest(AbstractModel):
             result['uuid'] = self.uuid
         if self.description is not None:
             result['description'] = self.description
+        if self.top is not None:
+            result['top'] = self.top
         return result
 
     def from_dict(self, m):
@@ -65,4 +71,6 @@ class UpdateProjectRequest(AbstractModel):
             self.uuid = m.get('uuid')
         if m.get('description') is not None:
             self.description = m.get('description')
+        if m.get('top') is not None:
+            self.top = m.get('top')
         return self

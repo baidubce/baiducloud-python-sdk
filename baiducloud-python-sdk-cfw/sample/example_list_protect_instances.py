@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(
+        bce_client_config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = CfwClient(config)
+        client = CfwClient(bce_client_config)
         request = cfw_models.ListProtectInstancesRequest(instance_type="", marker="", max_keys=0, status="", region="")
         res = client.list_protect_instances(request)
         print(res.to_json_string())

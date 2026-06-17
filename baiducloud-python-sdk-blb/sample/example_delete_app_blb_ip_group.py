@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(
+        bce_client_config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = BlbClient(config)
+        client = BlbClient(bce_client_config)
         request = blb_models.DeleteAppBlbIpGroupRequest(blb_id="", ip_group_id="", client_token="")
         res = client.delete_app_blb_ip_group(request)
         print(res.to_json_string())

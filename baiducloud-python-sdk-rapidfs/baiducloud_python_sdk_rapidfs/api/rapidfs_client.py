@@ -155,7 +155,7 @@ class RapidfsClient(BceBaseClient):
         path = utils.append_uri(RapidfsClient.VERSION_V2, RapidfsClient.CONSTANT_CACHERULE)
         headers = None
         params = {}
-        params['action'] = 'CancelCacheRuleJob'
+        params['action'] = 'CancelCacheJob'
         if request.client_token is not None:
             params['clientToken'] = request.client_token
         merged_config = self._create_request_with_host(request, config)
@@ -843,7 +843,7 @@ class RapidfsClient(BceBaseClient):
         path = utils.append_uri(RapidfsClient.VERSION_V2, RapidfsClient.CONSTANT_CACHERULE)
         headers = None
         params = {}
-        params['action'] = 'DescribeCacheRuleJobs'
+        params['action'] = 'DescribeCacheJobs'
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.POST,
@@ -1321,7 +1321,7 @@ class RapidfsClient(BceBaseClient):
         path = utils.append_uri(RapidfsClient.VERSION_V2, RapidfsClient.CONSTANT_CACHERULE)
         headers = None
         params = {}
-        params['action'] = 'ExecuteCacheRuleJob'
+        params['action'] = 'ExecuteCacheJob'
         if request.client_token is not None:
             params['clientToken'] = request.client_token
         merged_config = self._create_request_with_host(request, config)

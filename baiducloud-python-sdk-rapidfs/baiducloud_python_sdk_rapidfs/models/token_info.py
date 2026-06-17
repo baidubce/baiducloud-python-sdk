@@ -30,7 +30,7 @@ class TokenInfo(AbstractModel):
         :param token_value: Token，仅在 DescribeToken 接口中返回
         :type token_value: str (optional)
 
-        :param token_refresh_interval_minutes: Token更新周期，单位分钟，0 表示永不更新，最大值 43200 分钟
+        :param token_refresh_interval_minutes: Token更新周期，单位分钟，0 表示永不更新，取值范围：[0，43200]
         :type token_refresh_interval_minutes: int (optional)
 
         :param token_expire_time: Token失效时刻

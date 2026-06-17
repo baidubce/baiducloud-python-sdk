@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(
+        bce_client_config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = RapidfsClient(config)
+        client = RapidfsClient(bce_client_config)
         request = rapidfs_models.ModifyTokenRequest(
             instance_id="", token_id="", token_refresh_interval_minutes=0, client_token=""
         )

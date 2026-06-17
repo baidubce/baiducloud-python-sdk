@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(
+        bce_client_config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = BlbClient(config)
+        client = BlbClient(bce_client_config)
         request = blb_models.DeleteAppBlbPolicyRequest(blb_id="", port=0, policy_id_list=[], client_token="", type="")
         res = client.delete_app_blb_policy(request)
         print(res.to_json_string())

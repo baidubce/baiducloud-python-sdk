@@ -43,7 +43,7 @@ class ImportDataSrcRequest(AbstractModel):
         :param bucket: 数据源的 BOS Bucket（当前只支持同地域的存储桶）
         :type bucket: str (required)
 
-        :param other_account: 是否为其他资源账号的 bucket，若为true则需要提供导入 Bucket 带读写权限的AK/SK，默认 false
+        :param other_account: 是否为其他账号的 bucket，若为true则需要提供导入 Bucket 带读写权限的AK/SK，默认 false
         :type other_account: bool (optional)
 
         :param bucket_ak: otherAccount 为 true 时必填，无需加密
@@ -58,7 +58,7 @@ class ImportDataSrcRequest(AbstractModel):
         :param dir_prefix: dir_prefix parameter
         :type dir_prefix: str (optional)
 
-        :param keep_symlink: 是否保留 BOS 软链，保留软链会降低创建数据源导入效率，以及后续增量元数据同步效率，默认 false
+        :param keep_symlink: 是否保留 BOS 软链，保留软链会降低数据源导入效率，以及后续增量元数据同步效率，默认 false
         :type keep_symlink: bool (optional)
 
         :param auth_group_id: 权限组ID，默认权限组 ID 为 AG-RAPIDFS_DEFAULT_AUTHGROUP_ID
