@@ -1,3 +1,8 @@
+2026-06-17 Version: 0.0.17
+- 涉及产品: BLB，创建服务器组删除privateIp、portList等8个字段
+- 涉及产品: BLB，修改后端服务器删除privateIp、status等9个字段
+- 涉及产品: BLB，添加后端服务器删除privateIp、policyId等9个字段
+
 2026-06-16 Version: 0.0.16
 - 涉及产品: BLB，SDK版本更新
 

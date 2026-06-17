@@ -3,7 +3,7 @@ Request entity for CreateAppBlbServerGroupRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
-from baiducloud_python_sdk_blb.models.app_backend_server import AppBackendServer
+from baiducloud_python_sdk_blb.models.app_backend_server_for_create import AppBackendServerForCreate
 
 
 class CreateAppBlbServerGroupRequest(AbstractModel):
@@ -30,7 +30,7 @@ class CreateAppBlbServerGroupRequest(AbstractModel):
         :type desc: str (optional)
 
         :param backend_server_list: 服务器组绑定的后端服务器列表
-        :type backend_server_list: List[AppBackendServer] (optional)
+        :type backend_server_list: List[AppBackendServerForCreate] (optional)
         """
         super().__init__()
         self.blb_id = blb_id
@@ -85,5 +85,5 @@ class CreateAppBlbServerGroupRequest(AbstractModel):
         if m.get('desc') is not None:
             self.desc = m.get('desc')
         if m.get('backendServerList') is not None:
-            self.backend_server_list = [AppBackendServer().from_dict(i) for i in m.get('backendServerList')]
+            self.backend_server_list = [AppBackendServerForCreate().from_dict(i) for i in m.get('backendServerList')]
         return self

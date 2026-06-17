@@ -3,7 +3,7 @@ Request entity for UpdateAppBlbServerGroupRsRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
-from baiducloud_python_sdk_blb.models.app_backend_server import AppBackendServer
+from baiducloud_python_sdk_blb.models.app_backend_server_for_create import AppBackendServerForCreate
 
 
 class UpdateAppBlbServerGroupRsRequest(AbstractModel):
@@ -27,7 +27,7 @@ class UpdateAppBlbServerGroupRsRequest(AbstractModel):
         :type sg_id: str (required)
 
         :param backend_server_list: 后端服务器列表
-        :type backend_server_list: List[AppBackendServer] (required)
+        :type backend_server_list: List[AppBackendServerForCreate] (required)
         """
         super().__init__()
         self.blb_id = blb_id
@@ -77,5 +77,5 @@ class UpdateAppBlbServerGroupRsRequest(AbstractModel):
         if m.get('sgId') is not None:
             self.sg_id = m.get('sgId')
         if m.get('backendServerList') is not None:
-            self.backend_server_list = [AppBackendServer().from_dict(i) for i in m.get('backendServerList')]
+            self.backend_server_list = [AppBackendServerForCreate().from_dict(i) for i in m.get('backendServerList')]
         return self
