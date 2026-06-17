@@ -18,7 +18,7 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = BlsClient(bce_client_config)
-        request = bls_models.EnableAlarmPolicyRequest(name=[])
+        request = bls_models.EnableAlarmPolicyRequest(names=[])
         res = client.enable_alarm_policy(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

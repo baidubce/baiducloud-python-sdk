@@ -15,7 +15,7 @@ class CreateTaskRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, name, config, hosts, tags=None):
+    def __init__(self, name, config, hosts=None, tags=None):
         """
         Initialize CreateTaskRequest request entity.
 
@@ -26,7 +26,7 @@ class CreateTaskRequest(AbstractModel):
         :type config: TaskConfig (required)
 
         :param hosts: 运行任务的主机列表
-        :type hosts: List[Host] (required)
+        :type hosts: List[Host] (optional)
 
         :param tags: 待创建的标签列表，具体参数格式参见下述
         :type tags: List[Tag] (optional)

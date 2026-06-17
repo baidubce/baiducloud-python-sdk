@@ -12,15 +12,15 @@ class DeleteAlarmPolicyRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, name):
+    def __init__(self, names):
         """
         Initialize DeleteAlarmPolicyRequest request entity.
 
-        :param name: 报警策略名称
-        :type name: List[str] (required)
+        :param names: 报警策略名称
+        :type names: List[str] (required)
         """
         super().__init__()
-        self.name = name
+        self.names = names
 
     def to_dict(self):
         """
@@ -35,8 +35,8 @@ class DeleteAlarmPolicyRequest(AbstractModel):
         if _map is not None:
             return _map
         result = dict()
-        if self.name is not None:
-            result['name'] = self.name
+        if self.names is not None:
+            result['names'] = self.names
         return result
 
     def from_dict(self, m):
@@ -55,6 +55,6 @@ class DeleteAlarmPolicyRequest(AbstractModel):
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('name') is not None:
-            self.name = m.get('name')
+        if m.get('names') is not None:
+            self.names = m.get('names')
         return self

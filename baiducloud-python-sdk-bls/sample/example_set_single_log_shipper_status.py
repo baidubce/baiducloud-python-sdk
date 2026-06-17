@@ -18,7 +18,7 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = BlsClient(bce_client_config)
-        request = bls_models.SetSingleLogShipperStatusRequest(log_shipper_id="", desired_status="")
+        request = bls_models.SetSingleLogShipperStatusRequest(log_shipper_id="", status="")
         res = client.set_single_log_shipper_status(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

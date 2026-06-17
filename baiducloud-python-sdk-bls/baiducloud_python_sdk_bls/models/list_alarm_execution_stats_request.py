@@ -20,7 +20,6 @@ class ListAlarmExecutionStatsRequest(AbstractModel):
         policy_name=None,
         log_store_name=None,
         states=None,
-        notice_states=None,
         start_date_time=None,
         end_date_time=None,
         order_by=None,
@@ -40,9 +39,6 @@ class ListAlarmExecutionStatsRequest(AbstractModel):
 
         :param states: 按报警状态过滤，取值：OK: 已恢复, ALERT: 报警中, CLOSED: 已关闭
         :type states: List[str] (optional)
-
-        :param notice_states: notice_states parameter
-        :type notice_states: List[str] (optional)
 
         :param start_date_time: 查询开始时间，UTC时间，默认值：30天前
         :type start_date_time: str (optional)
@@ -67,7 +63,6 @@ class ListAlarmExecutionStatsRequest(AbstractModel):
         self.policy_name = policy_name
         self.log_store_name = log_store_name
         self.states = states
-        self.notice_states = notice_states
         self.start_date_time = start_date_time
         self.end_date_time = end_date_time
         self.order_by = order_by
@@ -96,8 +91,6 @@ class ListAlarmExecutionStatsRequest(AbstractModel):
             result['logStoreName'] = self.log_store_name
         if self.states is not None:
             result['states'] = self.states
-        if self.notice_states is not None:
-            result['noticeStates'] = self.notice_states
         if self.start_date_time is not None:
             result['startDateTime'] = self.start_date_time
         if self.end_date_time is not None:
@@ -136,8 +129,6 @@ class ListAlarmExecutionStatsRequest(AbstractModel):
             self.log_store_name = m.get('logStoreName')
         if m.get('states') is not None:
             self.states = m.get('states')
-        if m.get('noticeStates') is not None:
-            self.notice_states = m.get('noticeStates')
         if m.get('startDateTime') is not None:
             self.start_date_time = m.get('startDateTime')
         if m.get('endDateTime') is not None:

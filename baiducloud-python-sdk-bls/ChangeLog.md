@@ -1,3 +1,9 @@
+2026-06-17 Version: 0.0.5
+- 涉及产品: BLS，日志投递任务状态字段由desiredStatus改为status
+- 涉及产品: BLS，报警策略/历史详情接口参数从path移至query
+- 涉及产品: BLS，启用/禁用/删除报警策略支持批量操作，字段name改为names
+- 涉及产品: BLS，日志集模版接口移除createdTimestamp和updatedTimestamp字段
+
 2026-06-17 Version: 0.0.4
 - 涉及产品: BLS，新增日志集、日志流、索引的创建/查询/更新/删除接口
 - 涉及产品: BLS，新增日志投递任务管理及批量操作接口

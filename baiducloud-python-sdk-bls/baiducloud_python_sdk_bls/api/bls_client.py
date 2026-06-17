@@ -129,6 +129,8 @@ class BlsClient(BceBaseClient):
 
     CONSTANT_LOGRECORD = b'logrecord'
 
+    CONSTANT_STATS = b'stats'
+
     CONSTANT_ENABLE = b'enable'
 
     CONSTANT_LINK = b'link'
@@ -762,8 +764,13 @@ class BlsClient(BceBaseClient):
         """
         path = utils.append_uri(BlsClient.VERSION_V1, BlsClient.CONSTANT_ALARM, BlsClient.CONSTANT_POLICY)
         headers = None
+        params = {}
+        if request.policy_name is not None:
+            params['PolicyName'] = request.policy_name
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.GET, path=path, config=merged_config, model=DescribeAlarmPolicyResponse)
+        return self._send_request(
+            http_methods.GET, path=path, params=params, config=merged_config, model=DescribeAlarmPolicyResponse
+        )
 
     def describe_alarm_record(self, request, config=None):
         """
@@ -782,8 +789,13 @@ class BlsClient(BceBaseClient):
         """
         path = utils.append_uri(BlsClient.VERSION_V1, BlsClient.CONSTANT_ALARM, BlsClient.CONSTANT_RECORD)
         headers = None
+        params = {}
+        if request.alarm_id is not None:
+            params['alarmId'] = request.alarm_id
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.GET, path=path, config=merged_config, model=DescribeAlarmRecordResponse)
+        return self._send_request(
+            http_methods.GET, path=path, params=params, config=merged_config, model=DescribeAlarmRecordResponse
+        )
 
     def describe_download_task(self, request, config=None):
         """
@@ -1128,7 +1140,7 @@ class BlsClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(
-            BlsClient.VERSION_V1, BlsClient.CONSTANT_ALARM, BlsClient.CONSTANT_EXECUTION, BlsClient.CONSTANT_LIST
+            BlsClient.VERSION_V1, BlsClient.CONSTANT_ALARM, BlsClient.CONSTANT_EXECUTION, BlsClient.CONSTANT_STATS
         )
         headers = None
         merged_config = self._create_request_with_host(request, config)

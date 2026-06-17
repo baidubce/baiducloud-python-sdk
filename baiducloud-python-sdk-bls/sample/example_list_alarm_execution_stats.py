@@ -25,7 +25,6 @@ if __name__ == '__main__':
             policy_name="",
             log_store_name="",
             states=[],
-            notice_states=[],
             start_date_time="",
             end_date_time="",
             order_by="",

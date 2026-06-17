@@ -12,19 +12,19 @@ class SetSingleLogShipperStatusRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, log_shipper_id, desired_status):
+    def __init__(self, log_shipper_id, status):
         """
         Initialize SetSingleLogShipperStatusRequest request entity.
 
         :param log_shipper_id: log_shipper_id parameter
         :type log_shipper_id: str (required)
 
-        :param desired_status: 期望的状态，可选Running或Paused
-        :type desired_status: str (required)
+        :param status: 期望的状态，可选Running或Paused
+        :type status: str (required)
         """
         super().__init__()
         self.log_shipper_id = log_shipper_id
-        self.desired_status = desired_status
+        self.status = status
 
     def to_dict(self):
         """
@@ -39,8 +39,8 @@ class SetSingleLogShipperStatusRequest(AbstractModel):
         if _map is not None:
             return _map
         result = dict()
-        if self.desired_status is not None:
-            result['desiredStatus'] = self.desired_status
+        if self.status is not None:
+            result['status'] = self.status
         return result
 
     def from_dict(self, m):
@@ -61,6 +61,6 @@ class SetSingleLogShipperStatusRequest(AbstractModel):
         m = m or dict()
         if m.get('logShipperID') is not None:
             self.log_shipper_id = m.get('logShipperID')
-        if m.get('desiredStatus') is not None:
-            self.desired_status = m.get('desiredStatus')
+        if m.get('status') is not None:
+            self.status = m.get('status')
         return self
