@@ -13,6 +13,7 @@ from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import http_methods
 from baiducloud_python_sdk_bcc.models.add_ipv6_response import AddIpv6Response
 from baiducloud_python_sdk_bcc.models.attach_volume_response import AttachVolumeResponse
+from baiducloud_python_sdk_bcc.models.authorize_server_event_response import AuthorizeServerEventResponse
 from baiducloud_python_sdk_bcc.models.auto_renew_reserved_instance_response import AutoRenewReservedInstanceResponse
 from baiducloud_python_sdk_bcc.models.batch_change_to_postpaid_response import BatchChangeToPostpaidResponse
 from baiducloud_python_sdk_bcc.models.batch_change_to_prepaid_response import BatchChangeToPrepaidResponse
@@ -25,7 +26,9 @@ from baiducloud_python_sdk_bcc.models.cancel_auto_renew_reserved_instance_respon
 from baiducloud_python_sdk_bcc.models.cancel_bid_order_response import CancelBidOrderResponse
 from baiducloud_python_sdk_bcc.models.cancel_snapshot_share_response import CancelSnapshotShareResponse
 from baiducloud_python_sdk_bcc.models.change_to_prepaid_response import ChangeToPrepaidResponse
+from baiducloud_python_sdk_bcc.models.check_server_event_response import CheckServerEventResponse
 from baiducloud_python_sdk_bcc.models.create_asp_response import CreateAspResponse
+from baiducloud_python_sdk_bcc.models.create_authorization_rule_response import CreateAuthorizationRuleResponse
 from baiducloud_python_sdk_bcc.models.create_bid_instance_response import CreateBidInstanceResponse
 from baiducloud_python_sdk_bcc.models.create_deploy_set_response import CreateDeploySetResponse
 from baiducloud_python_sdk_bcc.models.create_ehc_cluster_response import CreateEhcClusterResponse
@@ -38,8 +41,20 @@ from baiducloud_python_sdk_bcc.models.create_snapshot_response import CreateSnap
 from baiducloud_python_sdk_bcc.models.create_snapshot_share_response import CreateSnapshotShareResponse
 from baiducloud_python_sdk_bcc.models.create_volume_response import CreateVolumeResponse
 from baiducloud_python_sdk_bcc.models.create_volume_cluster_response import CreateVolumeClusterResponse
+from baiducloud_python_sdk_bcc.models.delete_inst_user_op_authorize_rule_response import (
+    DeleteInstUserOpAuthorizeRuleResponse,
+)
 from baiducloud_python_sdk_bcc.models.delete_prepay_instance_response import DeletePrepayInstanceResponse
+from baiducloud_python_sdk_bcc.models.describe_authorize_rules_response import DescribeAuthorizeRulesResponse
+from baiducloud_python_sdk_bcc.models.describe_planned_event_records_response import (
+    DescribePlannedEventRecordsResponse,
+)
+from baiducloud_python_sdk_bcc.models.describe_planned_events_response import DescribePlannedEventsResponse
 from baiducloud_python_sdk_bcc.models.describe_regions_response import DescribeRegionsResponse
+from baiducloud_python_sdk_bcc.models.describe_unplanned_event_records_response import (
+    DescribeUnplannedEventRecordsResponse,
+)
+from baiducloud_python_sdk_bcc.models.describe_unplanned_events_response import DescribeUnplannedEventsResponse
 from baiducloud_python_sdk_bcc.models.ehc_cluster_list_response import EhcClusterListResponse
 from baiducloud_python_sdk_bcc.models.enter_rescue_mode_response import EnterRescueModeResponse
 from baiducloud_python_sdk_bcc.models.exit_rescue_mode_response import ExitRescueModeResponse
@@ -95,6 +110,9 @@ from baiducloud_python_sdk_bcc.models.list_task_response import ListTaskResponse
 from baiducloud_python_sdk_bcc.models.list_volume_clusters_response import ListVolumeClustersResponse
 from baiducloud_python_sdk_bcc.models.list_volumes_response import ListVolumesResponse
 from baiducloud_python_sdk_bcc.models.list_zones_response import ListZonesResponse
+from baiducloud_python_sdk_bcc.models.modify_inst_user_op_authorize_rule_attribute_response import (
+    ModifyInstUserOpAuthorizeRuleAttributeResponse,
+)
 from baiducloud_python_sdk_bcc.models.modify_reserved_instances_response import ModifyReservedInstancesResponse
 from baiducloud_python_sdk_bcc.models.purchase_reserved_instance_response import PurchaseReservedInstanceResponse
 from baiducloud_python_sdk_bcc.models.purchase_reserved_volume_response import PurchaseReservedVolumeResponse
@@ -471,6 +489,36 @@ class BccClient(BceBaseClient):
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
+    def authorize_server_event(self, request, config=None):
+        """
+        authorize_server_event
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing AuthorizeServerEventResponse data
+        :rtype: AuthorizeServerEventResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = None
+        params = {}
+        if request.action is not None:
+            params['action'] = request.action
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=AuthorizeServerEventResponse,
         )
 
     def auto_release_instance(self, request, config=None):
@@ -1150,6 +1198,36 @@ class BccClient(BceBaseClient):
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.PUT, path=path, body=request.to_json_string(), config=merged_config)
 
+    def check_server_event(self, request, config=None):
+        """
+        check_server_event
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing CheckServerEventResponse data
+        :rtype: CheckServerEventResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = None
+        params = {}
+        if request.action is not None:
+            params['action'] = request.action
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=CheckServerEventResponse,
+        )
+
     def create_asp(self, request, config=None):
         """
         create_asp
@@ -1170,6 +1248,36 @@ class BccClient(BceBaseClient):
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.POST, path=path, body=request.to_json_string(), config=merged_config, model=CreateAspResponse
+        )
+
+    def create_authorization_rule(self, request, config=None):
+        """
+        create_authorization_rule
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing CreateAuthorizationRuleResponse data
+        :rtype: CreateAuthorizationRuleResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = None
+        params = {}
+        if request.action is not None:
+            params['action'] = request.action
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=CreateAuthorizationRuleResponse,
         )
 
     def create_auto_renew_rule(self, request, config=None):
@@ -1672,6 +1780,36 @@ class BccClient(BceBaseClient):
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.DELETE, path=path, config=merged_config)
 
+    def delete_inst_user_op_authorize_rule(self, request, config=None):
+        """
+        delete_inst_user_op_authorize_rule
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DeleteInstUserOpAuthorizeRuleResponse data
+        :rtype: DeleteInstUserOpAuthorizeRuleResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = None
+        params = {}
+        if request.action is not None:
+            params['action'] = request.action
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=DeleteInstUserOpAuthorizeRuleResponse,
+        )
+
     def delete_instance_deploy_set(self, request, config=None):
         """
         delete_instance_deploy_set
@@ -1862,6 +2000,96 @@ class BccClient(BceBaseClient):
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
 
+    def describe_authorize_rules(self, request, config=None):
+        """
+        describe_authorize_rules
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DescribeAuthorizeRulesResponse data
+        :rtype: DescribeAuthorizeRulesResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = None
+        params = {}
+        if request.action is not None:
+            params['action'] = request.action
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=DescribeAuthorizeRulesResponse,
+        )
+
+    def describe_planned_event_records(self, request, config=None):
+        """
+        describe_planned_event_records
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DescribePlannedEventRecordsResponse data
+        :rtype: DescribePlannedEventRecordsResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = None
+        params = {}
+        if request.action is not None:
+            params['action'] = request.action
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=DescribePlannedEventRecordsResponse,
+        )
+
+    def describe_planned_events(self, request, config=None):
+        """
+        describe_planned_events
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DescribePlannedEventsResponse data
+        :rtype: DescribePlannedEventsResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = None
+        params = {}
+        if request.action is not None:
+            params['action'] = request.action
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=DescribePlannedEventsResponse,
+        )
+
     def describe_regions(self, request, config=None):
         """
         describe_regions
@@ -1886,6 +2114,66 @@ class BccClient(BceBaseClient):
             body=request.to_json_string(),
             config=merged_config,
             model=DescribeRegionsResponse,
+        )
+
+    def describe_unplanned_event_records(self, request, config=None):
+        """
+        describe_unplanned_event_records
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DescribeUnplannedEventRecordsResponse data
+        :rtype: DescribeUnplannedEventRecordsResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = None
+        params = {}
+        if request.action is not None:
+            params['action'] = request.action
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=DescribeUnplannedEventRecordsResponse,
+        )
+
+    def describe_unplanned_events(self, request, config=None):
+        """
+        describe_unplanned_events
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DescribeUnplannedEventsResponse data
+        :rtype: DescribeUnplannedEventsResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = None
+        params = {}
+        if request.action is not None:
+            params['action'] = request.action
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=DescribeUnplannedEventsResponse,
         )
 
     def detach_asp(self, request, config=None):
@@ -3457,6 +3745,36 @@ class BccClient(BceBaseClient):
         headers = None
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+
+    def modify_inst_user_op_authorize_rule_attribute(self, request, config=None):
+        """
+        modify_inst_user_op_authorize_rule_attribute
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing ModifyInstUserOpAuthorizeRuleAttributeResponse data
+        :rtype: ModifyInstUserOpAuthorizeRuleAttributeResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = None
+        params = {}
+        if request.action is not None:
+            params['action'] = request.action
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=ModifyInstUserOpAuthorizeRuleAttributeResponse,
+        )
 
     def modify_instance_attributes(self, request, config=None):
         """

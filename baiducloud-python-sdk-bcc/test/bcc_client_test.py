@@ -43,6 +43,9 @@ class BccClientTest(unittest.TestCase):
     def test_authorize_security_group_rule(self):
         self.client.authorize_security_group_rule(bcc_models.AuthorizeSecurityGroupRuleRequest())
 
+    def test_authorize_server_event(self):
+        self.client.authorize_server_event(bcc_models.AuthorizeServerEventRequest())
+
     def test_auto_release_instance(self):
         self.client.auto_release_instance(bcc_models.AutoReleaseInstanceRequest())
 
@@ -121,8 +124,14 @@ class BccClientTest(unittest.TestCase):
     def test_change_vpc(self):
         self.client.change_vpc(bcc_models.ChangeVpcRequest())
 
+    def test_check_server_event(self):
+        self.client.check_server_event(bcc_models.CheckServerEventRequest())
+
     def test_create_asp(self):
         self.client.create_asp(bcc_models.CreateAspRequest())
+
+    def test_create_authorization_rule(self):
+        self.client.create_authorization_rule(bcc_models.CreateAuthorizationRuleRequest())
 
     def test_create_auto_renew_rule(self):
         self.client.create_auto_renew_rule(bcc_models.CreateAutoRenewRuleRequest())
@@ -184,6 +193,9 @@ class BccClientTest(unittest.TestCase):
     def test_delete_image(self):
         self.client.delete_image(bcc_models.DeleteImageRequest())
 
+    def test_delete_inst_user_op_authorize_rule(self):
+        self.client.delete_inst_user_op_authorize_rule(bcc_models.DeleteInstUserOpAuthorizeRuleRequest())
+
     def test_delete_instance_deploy_set(self):
         self.client.delete_instance_deploy_set(bcc_models.DeleteInstanceDeploySetRequest())
 
@@ -208,8 +220,23 @@ class BccClientTest(unittest.TestCase):
     def test_deletes_instance_deploy_set(self):
         self.client.deletes_instance_deploy_set(bcc_models.DeletesInstanceDeploySetRequest())
 
+    def test_describe_authorize_rules(self):
+        self.client.describe_authorize_rules(bcc_models.DescribeAuthorizeRulesRequest())
+
+    def test_describe_planned_event_records(self):
+        self.client.describe_planned_event_records(bcc_models.DescribePlannedEventRecordsRequest())
+
+    def test_describe_planned_events(self):
+        self.client.describe_planned_events(bcc_models.DescribePlannedEventsRequest())
+
     def test_describe_regions(self):
         self.client.describe_regions(bcc_models.DescribeRegionsRequest())
+
+    def test_describe_unplanned_event_records(self):
+        self.client.describe_unplanned_event_records(bcc_models.DescribeUnplannedEventRecordsRequest())
+
+    def test_describe_unplanned_events(self):
+        self.client.describe_unplanned_events(bcc_models.DescribeUnplannedEventsRequest())
 
     def test_detach_asp(self):
         self.client.detach_asp(bcc_models.DetachAspRequest())
@@ -385,6 +412,11 @@ class BccClientTest(unittest.TestCase):
     def test_modify_ehc_cluster(self):
         self.client.modify_ehc_cluster(bcc_models.ModifyEhcClusterRequest())
 
+    def test_modify_inst_user_op_authorize_rule_attribute(self):
+        self.client.modify_inst_user_op_authorize_rule_attribute(
+            bcc_models.ModifyInstUserOpAuthorizeRuleAttributeRequest()
+        )
+
     def test_modify_instance_attributes(self):
         self.client.modify_instance_attributes(bcc_models.ModifyInstanceAttributesRequest())
 
@@ -541,6 +573,7 @@ if __name__ == '__main__':
     suite.addTest(BccClientTest("test_attach_keypair"))
     suite.addTest(BccClientTest("test_attach_volume"))
     suite.addTest(BccClientTest("test_authorize_security_group_rule"))
+    suite.addTest(BccClientTest("test_authorize_server_event"))
     suite.addTest(BccClientTest("test_auto_release_instance"))
     suite.addTest(BccClientTest("test_auto_renew_reserved_instance"))
     suite.addTest(BccClientTest("test_auto_renew_volume_cluster"))
@@ -567,7 +600,9 @@ if __name__ == '__main__':
     suite.addTest(BccClientTest("test_cancel_snapshot_share"))
     suite.addTest(BccClientTest("test_change_to_prepaid"))
     suite.addTest(BccClientTest("test_change_vpc"))
+    suite.addTest(BccClientTest("test_check_server_event"))
     suite.addTest(BccClientTest("test_create_asp"))
+    suite.addTest(BccClientTest("test_create_authorization_rule"))
     suite.addTest(BccClientTest("test_create_auto_renew_rule"))
     suite.addTest(BccClientTest("test_create_bid_instance"))
     suite.addTest(BccClientTest("test_create_deploy_set"))
@@ -588,6 +623,7 @@ if __name__ == '__main__':
     suite.addTest(BccClientTest("test_delete_deploy_set"))
     suite.addTest(BccClientTest("test_delete_ehc_cluster"))
     suite.addTest(BccClientTest("test_delete_image"))
+    suite.addTest(BccClientTest("test_delete_inst_user_op_authorize_rule"))
     suite.addTest(BccClientTest("test_delete_instance_deploy_set"))
     suite.addTest(BccClientTest("test_delete_keypair"))
     suite.addTest(BccClientTest("test_delete_prepay_instance"))
@@ -596,7 +632,12 @@ if __name__ == '__main__':
     suite.addTest(BccClientTest("test_delete_security_group_rule"))
     suite.addTest(BccClientTest("test_delete_snapshot"))
     suite.addTest(BccClientTest("test_deletes_instance_deploy_set"))
+    suite.addTest(BccClientTest("test_describe_authorize_rules"))
+    suite.addTest(BccClientTest("test_describe_planned_event_records"))
+    suite.addTest(BccClientTest("test_describe_planned_events"))
     suite.addTest(BccClientTest("test_describe_regions"))
+    suite.addTest(BccClientTest("test_describe_unplanned_event_records"))
+    suite.addTest(BccClientTest("test_describe_unplanned_events"))
     suite.addTest(BccClientTest("test_detach_asp"))
     suite.addTest(BccClientTest("test_detach_keypair"))
     suite.addTest(BccClientTest("test_detach_volume"))
@@ -655,6 +696,7 @@ if __name__ == '__main__':
     suite.addTest(BccClientTest("test_list_zones"))
     suite.addTest(BccClientTest("test_modify_cds_attribute"))
     suite.addTest(BccClientTest("test_modify_ehc_cluster"))
+    suite.addTest(BccClientTest("test_modify_inst_user_op_authorize_rule_attribute"))
     suite.addTest(BccClientTest("test_modify_instance_attributes"))
     suite.addTest(BccClientTest("test_modify_instance_desc"))
     suite.addTest(BccClientTest("test_modify_instance_hostname"))
