@@ -438,6 +438,9 @@ class BccClientTest(unittest.TestCase):
     def test_modify_volume_charge_type(self):
         self.client.modify_volume_charge_type(bcc_models.ModifyVolumeChargeTypeRequest())
 
+    def test_modify_volume_delete_protection_v2(self):
+        self.client.modify_volume_delete_protection_v2(bcc_models.ModifyVolumeDeleteProtectionV2Request())
+
     def test_purchase_reserved_instance(self):
         self.client.purchase_reserved_instance(bcc_models.PurchaseReservedInstanceRequest())
 
@@ -704,6 +707,7 @@ if __name__ == '__main__':
     suite.addTest(BccClientTest("test_modify_related_delete_policy"))
     suite.addTest(BccClientTest("test_modify_reserved_instances"))
     suite.addTest(BccClientTest("test_modify_volume_charge_type"))
+    suite.addTest(BccClientTest("test_modify_volume_delete_protection_v2"))
     suite.addTest(BccClientTest("test_purchase_reserved_instance"))
     suite.addTest(BccClientTest("test_purchase_reserved_volume"))
     suite.addTest(BccClientTest("test_purchase_reserved_volume_cluster"))

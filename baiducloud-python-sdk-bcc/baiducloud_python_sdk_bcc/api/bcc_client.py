@@ -181,6 +181,10 @@ class BccClient(BceBaseClient):
 
     CONSTANT_ROLE = b'role'
 
+    CONSTANT_MODIFY = b'modify'
+
+    CONSTANT_DELETE_PROTECTION = b'deleteProtection'
+
     CONSTANT_BCC = b'bcc'
 
     CONSTANT_SECURITY_GROUP = b'securityGroup'
@@ -222,8 +226,6 @@ class BccClient(BceBaseClient):
     CONSTANT_INSTANCE_BATCH_BY_SPEC = b'instanceBatchBySpec'
 
     CONSTANT_MODIFY_RELATED_DELETE_POLICY = b'modifyRelatedDeletePolicy'
-
-    CONSTANT_MODIFY = b'modify'
 
     CONSTANT_DEL_RELATION = b'delRelation'
 
@@ -3948,6 +3950,31 @@ class BccClient(BceBaseClient):
         return self._send_request(
             http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
         )
+
+    def modify_volume_delete_protection_v2(self, request, config=None):
+        """
+        modify_volume_delete_protection_v2
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            BccClient.VERSION_V2,
+            BccClient.CONSTANT_VOLUME,
+            BccClient.CONSTANT_MODIFY,
+            BccClient.CONSTANT_DELETE_PROTECTION,
+        )
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
 
     def purchase_reserved_instance(self, request, config=None):
         """

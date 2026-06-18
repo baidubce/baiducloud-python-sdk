@@ -232,6 +232,7 @@ from .modify_reserved_instance_order import ModifyReservedInstanceOrder
 from .modify_reserved_instances_request import ModifyReservedInstancesRequest
 from .modify_reserved_instances_response import ModifyReservedInstancesResponse
 from .modify_volume_charge_type_request import ModifyVolumeChargeTypeRequest
+from .modify_volume_delete_protection_v2_request import ModifyVolumeDeleteProtectionV2Request
 from .nic_info import NicInfo
 from .operation_progress_set import OperationProgressSet
 from .operation_record_response import OperationRecordResponse
