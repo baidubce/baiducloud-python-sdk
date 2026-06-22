@@ -12,7 +12,16 @@ class CreateFastQueryRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, fast_query_name, query, log_store_name, description=None, project=None, log_stream_name=None):
+    def __init__(
+        self,
+        fast_query_name,
+        query,
+        log_store_name,
+        log_store_type,
+        description=None,
+        project=None,
+        log_stream_name=None,
+    ):
         """
         Initialize CreateFastQueryRequest request entity.
 
@@ -33,6 +42,9 @@ class CreateFastQueryRequest(AbstractModel):
 
         :param log_stream_name: 日志流名称
         :type log_stream_name: str (optional)
+
+        :param log_store_type: 日志集类型，LOGSTORE或者LOGSTORE_VIEW
+        :type log_store_type: str (required)
         """
         super().__init__()
         self.fast_query_name = fast_query_name
@@ -41,6 +53,7 @@ class CreateFastQueryRequest(AbstractModel):
         self.project = project
         self.log_store_name = log_store_name
         self.log_stream_name = log_stream_name
+        self.log_store_type = log_store_type
 
     def to_dict(self):
         """
@@ -67,6 +80,8 @@ class CreateFastQueryRequest(AbstractModel):
             result['logStoreName'] = self.log_store_name
         if self.log_stream_name is not None:
             result['logStreamName'] = self.log_stream_name
+        if self.log_store_type is not None:
+            result['logStoreType'] = self.log_store_type
         return result
 
     def from_dict(self, m):
@@ -97,4 +112,6 @@ class CreateFastQueryRequest(AbstractModel):
             self.log_store_name = m.get('logStoreName')
         if m.get('logStreamName') is not None:
             self.log_stream_name = m.get('logStreamName')
+        if m.get('logStoreType') is not None:
+            self.log_store_type = m.get('logStoreType')
         return self

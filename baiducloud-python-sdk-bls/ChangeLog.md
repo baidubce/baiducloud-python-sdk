@@ -1,3 +1,6 @@
+2026-06-22 Version: 0.0.6
+- 涉及产品: BLS，快速查询创建/详情/列表接口新增logStoreType字段
+
 2026-06-17 Version: 0.0.5
 - 涉及产品: BLS，日志投递任务状态字段由desiredStatus改为status
 - 涉及产品: BLS，报警策略/历史详情接口参数从path移至query

@@ -17,6 +17,7 @@ class ListFastQueryRequest(AbstractModel):
         project=None,
         log_store_name=None,
         name_pattern=None,
+        log_store_type=None,
         order=None,
         order_by=None,
         page_no=None,
@@ -34,6 +35,9 @@ class ListFastQueryRequest(AbstractModel):
         :param name_pattern: name_pattern parameter
         :type name_pattern: str (optional)
 
+        :param log_store_type: log_store_type parameter
+        :type log_store_type: str (optional)
+
         :param order: order parameter
         :type order: str (optional)
 
@@ -50,6 +54,7 @@ class ListFastQueryRequest(AbstractModel):
         self.project = project
         self.log_store_name = log_store_name
         self.name_pattern = name_pattern
+        self.log_store_type = log_store_type
         self.order = order
         self.order_by = order_by
         self.page_no = page_no
@@ -92,6 +97,8 @@ class ListFastQueryRequest(AbstractModel):
             self.log_store_name = m.get('logStoreName')
         if m.get('namePattern') is not None:
             self.name_pattern = m.get('namePattern')
+        if m.get('logStoreType') is not None:
+            self.log_store_type = m.get('logStoreType')
         if m.get('order') is not None:
             self.order = m.get('order')
         if m.get('orderBy') is not None:

@@ -1288,6 +1288,8 @@ class BlsClient(BceBaseClient):
             params['logStoreName'] = request.log_store_name
         if request.name_pattern is not None:
             params['namePattern'] = request.name_pattern
+        if request.log_store_type is not None:
+            params['logStoreType'] = request.log_store_type
         if request.order is not None:
             params['order'] = request.order
         if request.order_by is not None:

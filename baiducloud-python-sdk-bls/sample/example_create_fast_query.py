@@ -19,7 +19,13 @@ if __name__ == '__main__':
         )
         client = BlsClient(bce_client_config)
         request = bls_models.CreateFastQueryRequest(
-            fast_query_name="", query="", log_store_name="", description="", project="", log_stream_name=""
+            fast_query_name="",
+            query="",
+            log_store_name="",
+            log_store_type="",
+            description="",
+            project="",
+            log_stream_name="",
         )
         res = client.create_fast_query(request)
         print(res.to_json_string())

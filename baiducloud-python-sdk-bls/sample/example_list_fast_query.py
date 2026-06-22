@@ -19,7 +19,14 @@ if __name__ == '__main__':
         )
         client = BlsClient(bce_client_config)
         request = bls_models.ListFastQueryRequest(
-            project="", log_store_name="", name_pattern="", order="", order_by="", page_no=0, page_size=0
+            project="",
+            log_store_name="",
+            name_pattern="",
+            log_store_type="",
+            order="",
+            order_by="",
+            page_no=0,
+            page_size=0,
         )
         res = client.list_fast_query(request)
         print(res.to_json_string())

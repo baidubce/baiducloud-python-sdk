@@ -20,6 +20,7 @@ class DescribeFastQueryResponse(BceResponse):
         project=None,
         log_store_name=None,
         log_stream_name=None,
+        log_store_type=None,
     ):
         """
         Initialize DescribeFastQueryResponse response.
@@ -47,6 +48,9 @@ class DescribeFastQueryResponse(BceResponse):
 
         :param log_stream_name: 日志流名称
         :type log_stream_name: str (optional)
+
+        :param log_store_type: 日志集类型，LOGSTORE或者LOGSTORE_VIEW
+        :type log_store_type: str (optional)
         """
         super().__init__()
         self.creation_date_time = creation_date_time
@@ -57,6 +61,7 @@ class DescribeFastQueryResponse(BceResponse):
         self.project = project
         self.log_store_name = log_store_name
         self.log_stream_name = log_stream_name
+        self.log_store_type = log_store_type
 
     def to_dict(self):
         """
@@ -90,6 +95,8 @@ class DescribeFastQueryResponse(BceResponse):
             result['logStoreName'] = self.log_store_name
         if self.log_stream_name is not None:
             result['logStreamName'] = self.log_stream_name
+        if self.log_store_type is not None:
+            result['logStoreType'] = self.log_store_type
         return result
 
     def from_dict(self, m):
@@ -124,4 +131,6 @@ class DescribeFastQueryResponse(BceResponse):
             self.log_store_name = m.get('logStoreName')
         if m.get('logStreamName') is not None:
             self.log_stream_name = m.get('logStreamName')
+        if m.get('logStoreType') is not None:
+            self.log_store_type = m.get('logStoreType')
         return self
