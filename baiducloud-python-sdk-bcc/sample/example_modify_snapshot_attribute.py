@@ -1,5 +1,5 @@
 """
-Example for bcc get_reserved_instance_price method.
+Example for bcc modify_snapshot_attribute method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -18,18 +18,10 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = BccClient(bce_client_config)
-        request = bcc_models.GetReservedInstancePriceRequest(
-            spec_id="",
-            spec="",
-            offering_type="",
-            zone_name="",
-            reserved_instance_time=0,
-            scope="",
-            reserved_instance_count=0,
-            price_time_unit="",
-            purchase_num=0,
+        request = bcc_models.ModifySnapshotAttributeRequest(
+            snapshot_id="", snapshot_name="", retention_in_days=0, desc=""
         )
-        res = client.get_reserved_instance_price(request)
+        res = client.modify_snapshot_attribute(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。

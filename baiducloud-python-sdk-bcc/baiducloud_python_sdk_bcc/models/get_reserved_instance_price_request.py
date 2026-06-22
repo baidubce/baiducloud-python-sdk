@@ -18,10 +18,10 @@ class GetReservedInstancePriceRequest(AbstractModel):
         spec,
         offering_type,
         zone_name,
+        reserved_instance_time,
         scope=None,
         reserved_instance_count=None,
         price_time_unit=None,
-        reserved_instance_time=None,
         purchase_num=None,
     ):
         """
@@ -49,7 +49,7 @@ class GetReservedInstancePriceRequest(AbstractModel):
         :type price_time_unit: str (optional)
 
         :param reserved_instance_time: 实例券购买时长，[1,2,3,4,5,6,7,8,9,12,24,36]，单位：月。
-        :type reserved_instance_time: int (optional)
+        :type reserved_instance_time: int (required)
 
         :param purchase_num: 预留实例券购买数量
         :type purchase_num: int (optional)

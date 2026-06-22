@@ -3,6 +3,8 @@ Request entity for GetReservedInstancePriceResponse information.
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
+from baiducloud_python_sdk_bcc.models.catagory_price import CatagoryPrice
+from baiducloud_python_sdk_bcc.models.trade_price import TradePrice
 
 
 class GetReservedInstancePriceResponse(BceResponse):
@@ -20,11 +22,11 @@ class GetReservedInstancePriceResponse(BceResponse):
         :param spec: 实例券规格。
         :type spec: str (optional)
 
-        :param category_price: 实例券目录价格。
-        :type category_price: object (optional)
+        :param category_price: category_price field
+        :type category_price: CatagoryPrice (optional)
 
-        :param trade_price: 实例券最终价，即优惠后订单实付价格。
-        :type trade_price: object (optional)
+        :param trade_price: trade_price field
+        :type trade_price: TradePrice (optional)
         """
         super().__init__()
         self.request_id = request_id
@@ -53,9 +55,9 @@ class GetReservedInstancePriceResponse(BceResponse):
         if self.spec is not None:
             result['spec'] = self.spec
         if self.category_price is not None:
-            result['categoryPrice'] = self.category_price
+            result['categoryPrice'] = self.category_price.to_dict()
         if self.trade_price is not None:
-            result['tradePrice'] = self.trade_price
+            result['tradePrice'] = self.trade_price.to_dict()
         return result
 
     def from_dict(self, m):
@@ -79,7 +81,7 @@ class GetReservedInstancePriceResponse(BceResponse):
         if m.get('spec') is not None:
             self.spec = m.get('spec')
         if m.get('categoryPrice') is not None:
-            self.category_price = m.get('categoryPrice')
+            self.category_price = CatagoryPrice().from_dict(m.get('categoryPrice'))
         if m.get('tradePrice') is not None:
-            self.trade_price = m.get('tradePrice')
+            self.trade_price = TradePrice().from_dict(m.get('tradePrice'))
         return self

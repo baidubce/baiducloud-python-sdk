@@ -51,6 +51,7 @@ from baiducloud_python_sdk_bcc.models.describe_planned_event_records_response im
 )
 from baiducloud_python_sdk_bcc.models.describe_planned_events_response import DescribePlannedEventsResponse
 from baiducloud_python_sdk_bcc.models.describe_regions_response import DescribeRegionsResponse
+from baiducloud_python_sdk_bcc.models.describe_snapshots_usage_response import DescribeSnapshotsUsageResponse
 from baiducloud_python_sdk_bcc.models.describe_unplanned_event_records_response import (
     DescribeUnplannedEventRecordsResponse,
 )
@@ -2118,6 +2119,28 @@ class BccClient(BceBaseClient):
             model=DescribeRegionsResponse,
         )
 
+    def describe_snapshots_usage(self, request, config=None):
+        """
+        describe_snapshots_usage
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DescribeSnapshotsUsageResponse data
+        :rtype: DescribeSnapshotsUsageResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(BccClient.VERSION_V2, BccClient.CONSTANT_SNAPSHOT, request.action)
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST, path=path, config=merged_config, model=DescribeSnapshotsUsageResponse
+        )
+
     def describe_unplanned_event_records(self, request, config=None):
         """
         describe_unplanned_event_records
@@ -3925,6 +3948,30 @@ class BccClient(BceBaseClient):
             body=request.to_json_string(),
             config=merged_config,
             model=ModifyReservedInstancesResponse,
+        )
+
+    def modify_snapshot_attribute(self, request, config=None):
+        """
+        modify_snapshot_attribute
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(BccClient.VERSION_V2, BccClient.CONSTANT_SNAPSHOT, request.snapshot_id)
+        headers = None
+        params = {}
+        params['modifyAttribute'] = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
         )
 
     def modify_volume_charge_type(self, request, config=None):

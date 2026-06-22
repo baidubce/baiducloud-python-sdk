@@ -232,6 +232,9 @@ class BccClientTest(unittest.TestCase):
     def test_describe_regions(self):
         self.client.describe_regions(bcc_models.DescribeRegionsRequest())
 
+    def test_describe_snapshots_usage(self):
+        self.client.describe_snapshots_usage(bcc_models.DescribeSnapshotsUsageRequest())
+
     def test_describe_unplanned_event_records(self):
         self.client.describe_unplanned_event_records(bcc_models.DescribeUnplannedEventRecordsRequest())
 
@@ -434,6 +437,9 @@ class BccClientTest(unittest.TestCase):
 
     def test_modify_reserved_instances(self):
         self.client.modify_reserved_instances(bcc_models.ModifyReservedInstancesRequest())
+
+    def test_modify_snapshot_attribute(self):
+        self.client.modify_snapshot_attribute(bcc_models.ModifySnapshotAttributeRequest())
 
     def test_modify_volume_charge_type(self):
         self.client.modify_volume_charge_type(bcc_models.ModifyVolumeChargeTypeRequest())
@@ -639,6 +645,7 @@ if __name__ == '__main__':
     suite.addTest(BccClientTest("test_describe_planned_event_records"))
     suite.addTest(BccClientTest("test_describe_planned_events"))
     suite.addTest(BccClientTest("test_describe_regions"))
+    suite.addTest(BccClientTest("test_describe_snapshots_usage"))
     suite.addTest(BccClientTest("test_describe_unplanned_event_records"))
     suite.addTest(BccClientTest("test_describe_unplanned_events"))
     suite.addTest(BccClientTest("test_detach_asp"))
@@ -706,6 +713,7 @@ if __name__ == '__main__':
     suite.addTest(BccClientTest("test_modify_instance_password"))
     suite.addTest(BccClientTest("test_modify_related_delete_policy"))
     suite.addTest(BccClientTest("test_modify_reserved_instances"))
+    suite.addTest(BccClientTest("test_modify_snapshot_attribute"))
     suite.addTest(BccClientTest("test_modify_volume_charge_type"))
     suite.addTest(BccClientTest("test_modify_volume_delete_protection_v2"))
     suite.addTest(BccClientTest("test_purchase_reserved_instance"))

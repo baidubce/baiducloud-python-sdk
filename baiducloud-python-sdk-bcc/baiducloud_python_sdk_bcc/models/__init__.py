@@ -56,6 +56,7 @@ from .cancel_bid_order_request import CancelBidOrderRequest
 from .cancel_bid_order_response import CancelBidOrderResponse
 from .cancel_snapshot_share_request import CancelSnapshotShareRequest
 from .cancel_snapshot_share_response import CancelSnapshotShareResponse
+from .catagory_price import CatagoryPrice
 from .cds_custom_period import CdsCustomPeriod
 from .cds_prices import CdsPrices
 from .change_to_prepaid_request import ChangeToPrepaidRequest
@@ -113,6 +114,7 @@ from .describe_planned_events_request import DescribePlannedEventsRequest
 from .describe_planned_events_response import DescribePlannedEventsResponse
 from .describe_regions_request import DescribeRegionsRequest
 from .describe_regions_response import DescribeRegionsResponse
+from .describe_snapshots_usage_response import DescribeSnapshotsUsageResponse
 from .describe_unplanned_event_records_request import DescribeUnplannedEventRecordsRequest
 from .describe_unplanned_event_records_response import DescribeUnplannedEventRecordsResponse
 from .describe_unplanned_events_request import DescribeUnplannedEventsRequest
@@ -231,6 +233,7 @@ from .modify_related_delete_policy_request import ModifyRelatedDeletePolicyReque
 from .modify_reserved_instance_order import ModifyReservedInstanceOrder
 from .modify_reserved_instances_request import ModifyReservedInstancesRequest
 from .modify_reserved_instances_response import ModifyReservedInstancesResponse
+from .modify_snapshot_attribute_request import ModifySnapshotAttributeRequest
 from .modify_volume_charge_type_request import ModifyVolumeChargeTypeRequest
 from .modify_volume_delete_protection_v2_request import ModifyVolumeDeleteProtectionV2Request
 from .nic_info import NicInfo
@@ -299,6 +302,7 @@ from .system_image_model import SystemImageModel
 from .tag import Tag
 from .tag_model import TagModel
 from .task_detail import TaskDetail
+from .trade_price import TradePrice
 from .transfer_in_record import TransferInRecord
 from .transfer_out_record import TransferOutRecord
 from .un_share_image_request import UnShareImageRequest
@@ -366,3 +370,4 @@ from .list_instance_enis_request import ListInstanceEnisRequest
 from .list_instances_request import ListInstancesRequest
 from .delete_security_group_rule_request import DeleteSecurityGroupRuleRequest
 from .list_images_request import ListImagesRequest
+from .describe_snapshots_usage_request import DescribeSnapshotsUsageRequest
