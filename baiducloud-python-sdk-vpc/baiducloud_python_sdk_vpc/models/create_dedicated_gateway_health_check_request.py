@@ -21,7 +21,6 @@ class CreateDedicatedGatewayHealthCheckRequest(AbstractModel):
         client_token=None,
         health_check_source_ip=None,
         health_check_type=None,
-        health_check_port=None,
         auto_generate_route_rule=None,
     ):
         """
@@ -38,9 +37,6 @@ class CreateDedicatedGatewayHealthCheckRequest(AbstractModel):
 
         :param health_check_type: 参数可取值为\"ICMP\"，默认为\"ICMP\"
         :type health_check_type: str (optional)
-
-        :param health_check_port: 健康检查的端口
-        :type health_check_port: int (optional)
 
         :param health_check_interval: 健康检查的间隔，1-60之间的整数，单位s
         :type health_check_interval: int (required)
@@ -59,7 +55,6 @@ class CreateDedicatedGatewayHealthCheckRequest(AbstractModel):
         self.client_token = client_token
         self.health_check_source_ip = health_check_source_ip
         self.health_check_type = health_check_type
-        self.health_check_port = health_check_port
         self.health_check_interval = health_check_interval
         self.health_threshold = health_threshold
         self.unhealth_threshold = unhealth_threshold
@@ -82,8 +77,6 @@ class CreateDedicatedGatewayHealthCheckRequest(AbstractModel):
             result['healthCheckSourceIp'] = self.health_check_source_ip
         if self.health_check_type is not None:
             result['healthCheckType'] = self.health_check_type
-        if self.health_check_port is not None:
-            result['healthCheckPort'] = self.health_check_port
         if self.health_check_interval is not None:
             result['healthCheckInterval'] = self.health_check_interval
         if self.health_threshold is not None:
@@ -118,8 +111,6 @@ class CreateDedicatedGatewayHealthCheckRequest(AbstractModel):
             self.health_check_source_ip = m.get('healthCheckSourceIp')
         if m.get('healthCheckType') is not None:
             self.health_check_type = m.get('healthCheckType')
-        if m.get('healthCheckPort') is not None:
-            self.health_check_port = m.get('healthCheckPort')
         if m.get('healthCheckInterval') is not None:
             self.health_check_interval = m.get('healthCheckInterval')
         if m.get('healthThreshold') is not None:

@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(
+        bce_client_config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = VpcClient(config)
+        client = VpcClient(bce_client_config)
         request = vpc_models.QueryTheListOfDedicatedLineGatewaysRequest(
             vpc_id="", et_gateway_id="", name="", status="", marker="", max_keys=0
         )

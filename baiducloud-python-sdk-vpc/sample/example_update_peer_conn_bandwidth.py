@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(
+        bce_client_config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = VpcClient(config)
+        client = VpcClient(bce_client_config)
         request = vpc_models.UpdatePeerConnBandwidthRequest(peer_conn_id="", new_bandwidth_in_mbps=0, client_token="")
         res = client.update_peer_conn_bandwidth(request)
         print(res.to_json_string())

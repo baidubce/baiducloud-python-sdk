@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(
+        bce_client_config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = VpcClient(config)
+        client = VpcClient(bce_client_config)
         request = vpc_models.UpdatePeerConnDeleteProtectRequest(peer_conn_id="", delete_protect=False, client_token="")
         res = client.update_peer_conn_delete_protect(request)
         print(res.to_json_string())

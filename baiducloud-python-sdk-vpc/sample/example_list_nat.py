@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(
+        bce_client_config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = VpcClient(config)
+        client = VpcClient(bce_client_config)
         request = vpc_models.ListNatRequest(vpc_id="", nat_id="", name="", ip="", marker="", max_keys=0)
         res = client.list_nat(request)
         print(res.to_json_string())

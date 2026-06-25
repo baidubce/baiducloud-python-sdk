@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(
+        bce_client_config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = VpcClient(config)
+        client = VpcClient(bce_client_config)
         ike_config = vpc_models.IkeConfig(
             ike_version="", ike_mode="", ike_enc_alg="", ike_auth_alg="", ike_pfs="", ike_life_time=""
         )
