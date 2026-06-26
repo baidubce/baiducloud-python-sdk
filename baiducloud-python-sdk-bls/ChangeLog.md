@@ -1,3 +1,6 @@
+2026-06-26 Version: 0.0.7
+- 涉及产品: BLS，pullLogRecord/queryLogRecord/queryLogHistogram新增logStoreType字段
+
 2026-06-22 Version: 0.0.6
 - 涉及产品: BLS，快速查询创建/详情/列表接口新增logStoreType字段
 

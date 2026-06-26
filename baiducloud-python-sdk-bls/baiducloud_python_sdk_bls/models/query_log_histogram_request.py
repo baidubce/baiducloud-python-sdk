@@ -12,7 +12,16 @@ class QueryLogHistogramRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, log_store_name, query, start_date_time, end_date_time, project=None, log_stream_name=None):
+    def __init__(
+        self,
+        log_store_name,
+        query,
+        start_date_time,
+        end_date_time,
+        project=None,
+        log_stream_name=None,
+        log_store_type=None,
+    ):
         """
         Initialize QueryLogHistogramRequest request entity.
 
@@ -24,6 +33,9 @@ class QueryLogHistogramRequest(AbstractModel):
 
         :param log_stream_name: log_stream_name parameter
         :type log_stream_name: str (optional)
+
+        :param log_store_type: log_store_type parameter
+        :type log_store_type: str (optional)
 
         :param query: query parameter
         :type query: str (required)
@@ -38,6 +50,7 @@ class QueryLogHistogramRequest(AbstractModel):
         self.log_store_name = log_store_name
         self.project = project
         self.log_stream_name = log_stream_name
+        self.log_store_type = log_store_type
         self.query = query
         self.start_date_time = start_date_time
         self.end_date_time = end_date_time
@@ -79,6 +92,8 @@ class QueryLogHistogramRequest(AbstractModel):
             self.project = m.get('project')
         if m.get('logStreamName') is not None:
             self.log_stream_name = m.get('logStreamName')
+        if m.get('logStoreType') is not None:
+            self.log_store_type = m.get('logStoreType')
         if m.get('query') is not None:
             self.query = m.get('query')
         if m.get('startDateTime') is not None:

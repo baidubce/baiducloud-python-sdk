@@ -20,6 +20,7 @@ class QueryLogRecordRequest(AbstractModel):
         end_date_time,
         project=None,
         log_stream_name=None,
+        log_store_type=None,
         marker=None,
         limit=None,
         sort=None,
@@ -37,6 +38,9 @@ class QueryLogRecordRequest(AbstractModel):
 
         :param log_stream_name: log_stream_name parameter
         :type log_stream_name: str (optional)
+
+        :param log_store_type: log_store_type parameter
+        :type log_store_type: str (optional)
 
         :param query: query parameter
         :type query: str (required)
@@ -66,6 +70,7 @@ class QueryLogRecordRequest(AbstractModel):
         self.log_store_name = log_store_name
         self.project = project
         self.log_stream_name = log_stream_name
+        self.log_store_type = log_store_type
         self.query = query
         self.start_date_time = start_date_time
         self.end_date_time = end_date_time
@@ -112,6 +117,8 @@ class QueryLogRecordRequest(AbstractModel):
             self.project = m.get('project')
         if m.get('logStreamName') is not None:
             self.log_stream_name = m.get('logStreamName')
+        if m.get('logStoreType') is not None:
+            self.log_store_type = m.get('logStoreType')
         if m.get('query') is not None:
             self.query = m.get('query')
         if m.get('startDateTime') is not None:

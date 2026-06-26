@@ -13,7 +13,15 @@ class PullLogRecordRequest(AbstractModel):
     """
 
     def __init__(
-        self, log_store_name, log_stream_name, start_date_time, end_date_time, project=None, limit=None, marker=None
+        self,
+        log_store_name,
+        log_stream_name,
+        start_date_time,
+        end_date_time,
+        project=None,
+        log_store_type=None,
+        limit=None,
+        marker=None,
     ):
         """
         Initialize PullLogRecordRequest request entity.
@@ -26,6 +34,9 @@ class PullLogRecordRequest(AbstractModel):
 
         :param log_stream_name: log_stream_name parameter
         :type log_stream_name: str (required)
+
+        :param log_store_type: log_store_type parameter
+        :type log_store_type: str (optional)
 
         :param start_date_time: start_date_time parameter
         :type start_date_time: datetime (required)
@@ -43,6 +54,7 @@ class PullLogRecordRequest(AbstractModel):
         self.log_store_name = log_store_name
         self.project = project
         self.log_stream_name = log_stream_name
+        self.log_store_type = log_store_type
         self.start_date_time = start_date_time
         self.end_date_time = end_date_time
         self.limit = limit
@@ -85,6 +97,8 @@ class PullLogRecordRequest(AbstractModel):
             self.project = m.get('project')
         if m.get('logStreamName') is not None:
             self.log_stream_name = m.get('logStreamName')
+        if m.get('logStoreType') is not None:
+            self.log_store_type = m.get('logStoreType')
         if m.get('startDateTime') is not None:
             self.start_date_time = m.get('startDateTime')
         if m.get('endDateTime') is not None:

@@ -19,7 +19,14 @@ if __name__ == '__main__':
         )
         client = BlsClient(bce_client_config)
         request = bls_models.PullLogRecordRequest(
-            log_store_name="", log_stream_name="", start_date_time="", end_date_time="", project="", limit=0, marker=""
+            log_store_name="",
+            log_stream_name="",
+            start_date_time="",
+            end_date_time="",
+            project="",
+            log_store_type="",
+            limit=0,
+            marker="",
         )
         res = client.pull_log_record(request)
         print(res.to_json_string())

@@ -25,6 +25,7 @@ if __name__ == '__main__':
             end_date_time="",
             project="",
             log_stream_name="",
+            log_store_type="",
             marker="",
             limit=0,
             sort="",

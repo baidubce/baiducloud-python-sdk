@@ -1529,6 +1529,8 @@ class BlsClient(BceBaseClient):
             params['endDateTime'] = request.end_date_time
         if request.project is not None:
             params['project'] = request.project
+        if request.log_store_type is not None:
+            params['logStoreType'] = request.log_store_type
         if request.limit is not None:
             params['limit'] = request.limit
         if request.marker is not None:
@@ -1600,6 +1602,8 @@ class BlsClient(BceBaseClient):
             params['project'] = request.project
         if request.log_stream_name is not None:
             params['logStreamName'] = request.log_stream_name
+        if request.log_store_type is not None:
+            params['logStoreType'] = request.log_store_type
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.GET, path=path, params=params, config=merged_config, model=QueryLogHistogramResponse
@@ -1635,6 +1639,8 @@ class BlsClient(BceBaseClient):
             params['project'] = request.project
         if request.log_stream_name is not None:
             params['logStreamName'] = request.log_stream_name
+        if request.log_store_type is not None:
+            params['logStoreType'] = request.log_store_type
         if request.marker is not None:
             params['marker'] = request.marker
         if request.limit is not None:
