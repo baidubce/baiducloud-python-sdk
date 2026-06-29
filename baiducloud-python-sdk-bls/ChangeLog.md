@@ -1,3 +1,6 @@
+2026-06-29 Version: 0.0.8
+- 涉及产品: BLS，SDK版本更新
+
 2026-06-26 Version: 0.0.7
 - 涉及产品: BLS，pullLogRecord/queryLogRecord/queryLogHistogram新增logStoreType字段
 

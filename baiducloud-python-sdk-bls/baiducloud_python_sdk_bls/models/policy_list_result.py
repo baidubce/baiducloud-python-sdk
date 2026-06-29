@@ -25,8 +25,8 @@ class PolicyListResult(AbstractModel):
         :param total_count: 总数
         :type total_count: int (optional)
 
-        :param policies: policies attribute
-        :type policies: Policy (optional)
+        :param policies: 报警策略详情
+        :type policies: List[Policy] (optional)
         """
         super().__init__()
         self.page_no = page_no
@@ -54,7 +54,7 @@ class PolicyListResult(AbstractModel):
         if self.total_count is not None:
             result['totalCount'] = self.total_count
         if self.policies is not None:
-            result['policies'] = self.policies.to_dict()
+            result['policies'] = [i.to_dict() for i in self.policies]
         return result
 
     def from_dict(self, m):
@@ -80,5 +80,5 @@ class PolicyListResult(AbstractModel):
         if m.get('totalCount') is not None:
             self.total_count = m.get('totalCount')
         if m.get('policies') is not None:
-            self.policies = Policy().from_dict(m.get('policies'))
+            self.policies = [Policy().from_dict(i) for i in m.get('policies')]
         return self
