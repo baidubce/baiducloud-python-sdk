@@ -1,0 +1,58 @@
+"""
+Request entity for QueryTheLastUsageTimeOfAccesskeyRequest information.
+"""
+
+from baiducloud_python_sdk_core.abstract_model import AbstractModel
+
+
+class QueryTheLastUsageTimeOfAccesskeyRequest(AbstractModel):
+    """
+    Request entity for QueryTheLastUsageTimeOfAccesskeyRequest operation.
+
+    This class encapsulates all parameters for the API request.
+    """
+
+    def __init__(self, access_key_id):
+        """
+        Initialize QueryTheLastUsageTimeOfAccesskeyRequest request entity.
+
+        :param access_key_id: access_key_id parameter
+        :type access_key_id: str (required)
+        """
+        super().__init__()
+        self.access_key_id = access_key_id
+
+    def to_dict(self):
+        """
+        Convert the request entity to a dictionary representation.
+
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the request
+        :rtype: dict
+        """
+        _map = super().to_dict()
+        if _map is not None:
+            return _map
+        result = dict()
+        return result
+
+    def from_dict(self, m):
+        """
+        Populate the request entity from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing request data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: QueryTheLastUsageTimeOfAccesskeyRequest
+
+        :raises TypeError: If input is not a dictionary or field type mismatch
+        :raises ValueError: If nested model conversion fails
+        """
+        m = m or dict()
+        if m.get('accessKeyId') is not None:
+            self.access_key_id = m.get('accessKeyId')
+        return self
