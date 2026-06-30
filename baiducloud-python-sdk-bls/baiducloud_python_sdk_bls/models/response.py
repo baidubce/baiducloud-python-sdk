@@ -1,18 +1,19 @@
 """
 Response information
 """
+
 from baiducloud_python_sdk_core.bce_response import BceResponse
 
 from baiducloud_python_sdk_bls.models.shard import Shard
 
-from baiducloud_python_sdk_bls.models. import Hit
-
+from baiducloud_python_sdk_bls.models.hit import Hit
 
 
 class Response(BceResponse):
     """
     Response
     """
+
     def __init__(self, took=None, timed_out=None, shards=None, hits=None, aggregations=None):
         """
         Initialize Response instance.
@@ -39,7 +40,6 @@ class Response(BceResponse):
         self.hits = hits
         self.aggregations = aggregations
 
-
     def to_dict(self):
         """
         Convert the model instance to a dictionary representation.
@@ -64,11 +64,9 @@ class Response(BceResponse):
         if self.shards is not None:
             result['_shards'] = self.shards.to_dict()
         if self.hits is not None:
-            
             result['hits'] = {k: [i.to_dict() for i in v] for k, v in self.hits.items()}
-            
+
         if self.aggregations is not None:
-            
             result['aggregations'] = self.aggregations
         return result
 
@@ -95,10 +93,8 @@ class Response(BceResponse):
         if m.get('_shards') is not None:
             self.shards = Shard().from_dict(m.get('_shards'))
         if m.get('hits') is not None:
-            
             self.hits = {k: [Hit().from_dict(i) for i in v] for k, v in m.get('hits').items()}
-            
+
         if m.get('aggregations') is not None:
-            
             self.aggregations = m.get('aggregations')
         return self
