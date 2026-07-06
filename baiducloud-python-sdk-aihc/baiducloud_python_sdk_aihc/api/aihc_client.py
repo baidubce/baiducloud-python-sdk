@@ -11,18 +11,31 @@ from baiducloud_python_sdk_core.bce_base_client import BceBaseClient
 from baiducloud_python_sdk_core.http import bce_http_client
 from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import http_methods
+from baiducloud_python_sdk_aihc.models.batch_stop_training_tasks_v2_response import BatchStopTrainingTasksV2Response
 from baiducloud_python_sdk_aihc.models.create_dataset_response import CreateDatasetResponse
 from baiducloud_python_sdk_aihc.models.create_dataset_version_response import CreateDatasetVersionResponse
+from baiducloud_python_sdk_aihc.models.create_job_response import CreateJobResponse
 from baiducloud_python_sdk_aihc.models.create_model_response import CreateModelResponse
 from baiducloud_python_sdk_aihc.models.create_model_version_response import CreateModelVersionResponse
+from baiducloud_python_sdk_aihc.models.delete_job_response import DeleteJobResponse
 from baiducloud_python_sdk_aihc.models.describe_dataset_response import DescribeDatasetResponse
 from baiducloud_python_sdk_aihc.models.describe_dataset_version_response import DescribeDatasetVersionResponse
 from baiducloud_python_sdk_aihc.models.describe_dataset_versions_response import DescribeDatasetVersionsResponse
 from baiducloud_python_sdk_aihc.models.describe_datasets_response import DescribeDatasetsResponse
+from baiducloud_python_sdk_aihc.models.describe_job_response import DescribeJobResponse
+from baiducloud_python_sdk_aihc.models.describe_job_events_response import DescribeJobEventsResponse
+from baiducloud_python_sdk_aihc.models.describe_job_logs_response import DescribeJobLogsResponse
+from baiducloud_python_sdk_aihc.models.describe_job_metrics_response import DescribeJobMetricsResponse
+from baiducloud_python_sdk_aihc.models.describe_job_nodes_response import DescribeJobNodesResponse
+from baiducloud_python_sdk_aihc.models.describe_job_webterminal_response import DescribeJobWebterminalResponse
+from baiducloud_python_sdk_aihc.models.describe_jobs_response import DescribeJobsResponse
 from baiducloud_python_sdk_aihc.models.describe_model_response import DescribeModelResponse
 from baiducloud_python_sdk_aihc.models.describe_model_version_response import DescribeModelVersionResponse
 from baiducloud_python_sdk_aihc.models.describe_model_versions_response import DescribeModelVersionsResponse
 from baiducloud_python_sdk_aihc.models.describe_models_response import DescribeModelsResponse
+from baiducloud_python_sdk_aihc.models.describe_pod_events_response import DescribePodEventsResponse
+from baiducloud_python_sdk_aihc.models.modify_job_response import ModifyJobResponse
+from baiducloud_python_sdk_aihc.models.stop_job_response import StopJobResponse
 
 _logger = logging.getLogger(__name__)
 
@@ -40,6 +53,41 @@ class AihcClient(BceBaseClient):
         :type config: baidubce.BceClientConfiguration
         """
         bce_base_client.BceBaseClient.__init__(self, config)
+
+    def batch_stop_training_tasks_v2(self, request, config=None):
+        """
+        batch_stop_training_tasks_v2
+
+        :param request: Request entity containing all parameters
+        :type request: AihcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing BatchStopTrainingTasksV2Response data
+        :rtype: BatchStopTrainingTasksV2Response
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = None
+        params = {}
+        params['action'] = 'BatchStopJobs'
+        params['resourcePoolId'] = 'xxxx'
+        params['queueID'] = 'xxxx'
+        if request.queue_id is not None:
+            params['queueID'] = request.queue_id
+        if request.resource_pool_id is not None:
+            params['resourcePoolId'] = request.resource_pool_id
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=BatchStopTrainingTasksV2Response,
+        )
 
     def create_dataset(self, request, config=None):
         """
@@ -103,6 +151,41 @@ class AihcClient(BceBaseClient):
             params=params,
             config=merged_config,
             model=CreateDatasetVersionResponse,
+        )
+
+    def create_job(self, request, config=None):
+        """
+        create_job
+
+        :param request: Request entity containing all parameters
+        :type request: AihcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing CreateJobResponse data
+        :rtype: CreateJobResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = None
+        params = {}
+        params['action'] = 'CreateJob'
+        params['resourcePoolId'] = 'xxxx'
+        params['queueID'] = 'xxxx'
+        if request.resource_pool_id is not None:
+            params['resourcePoolId'] = request.resource_pool_id
+        if request.queue_id is not None:
+            params['queueID'] = request.queue_id
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=CreateJobResponse,
         )
 
     def create_model(self, request, config=None):
@@ -220,6 +303,41 @@ class AihcClient(BceBaseClient):
             params['versionId'] = request.version_id
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.POST, path=path, headers=headers, params=params, config=merged_config)
+
+    def delete_job(self, request, config=None):
+        """
+        delete_job
+
+        :param request: Request entity containing all parameters
+        :type request: AihcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DeleteJobResponse data
+        :rtype: DeleteJobResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = None
+        params = {}
+        params['action'] = 'DeleteJob'
+        params['resourcePoolId'] = 'xxxx'
+        params['queueID'] = 'xxxx'
+        if request.resource_pool_id is not None:
+            params['resourcePoolId'] = request.resource_pool_id
+        if request.queue_id is not None:
+            params['queueID'] = request.queue_id
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=DeleteJobResponse,
+        )
 
     def delete_model(self, request, config=None):
         """
@@ -417,6 +535,250 @@ class AihcClient(BceBaseClient):
             model=DescribeDatasetsResponse,
         )
 
+    def describe_job(self, request, config=None):
+        """
+        describe_job
+
+        :param request: Request entity containing all parameters
+        :type request: AihcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DescribeJobResponse data
+        :rtype: DescribeJobResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = None
+        params = {}
+        params['action'] = 'DescribeJob'
+        params['resourcePoolId'] = 'xxxx'
+        params['queueID'] = 'xxx'
+        if request.resource_pool_id is not None:
+            params['resourcePoolId'] = request.resource_pool_id
+        if request.queue_id is not None:
+            params['queueID'] = request.queue_id
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=DescribeJobResponse,
+        )
+
+    def describe_job_events(self, request, config=None):
+        """
+        describe_job_events
+
+        :param request: Request entity containing all parameters
+        :type request: AihcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DescribeJobEventsResponse data
+        :rtype: DescribeJobEventsResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = None
+        params = {}
+        params['action'] = 'DescribeJobEvents'
+        params['resourcePoolId'] = 'xxxx'
+        params['queueID'] = 'xxxx'
+        if request.resource_pool_id is not None:
+            params['resourcePoolId'] = request.resource_pool_id
+        if request.queue_id is not None:
+            params['queueID'] = request.queue_id
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=DescribeJobEventsResponse,
+        )
+
+    def describe_job_logs(self, request, config=None):
+        """
+        describe_job_logs
+
+        :param request: Request entity containing all parameters
+        :type request: AihcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DescribeJobLogsResponse data
+        :rtype: DescribeJobLogsResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = None
+        params = {}
+        params['action'] = 'DescribeJobLogs'
+        params['resourcePoolId'] = 'xxxx'
+        params['queueID'] = 'xxxx'
+        if request.resource_pool_id is not None:
+            params['resourcePoolId'] = request.resource_pool_id
+        if request.queue_id is not None:
+            params['queueID'] = request.queue_id
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=DescribeJobLogsResponse,
+        )
+
+    def describe_job_metrics(self, request, config=None):
+        """
+        describe_job_metrics
+
+        :param request: Request entity containing all parameters
+        :type request: AihcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DescribeJobMetricsResponse data
+        :rtype: DescribeJobMetricsResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = None
+        params = {}
+        params['action'] = 'DescribeJobMetrics'
+        params['resourcePoolId'] = 'xxxx'
+        params['queueID'] = 'xxxx'
+        if request.resource_pool_id is not None:
+            params['resourcePoolId'] = request.resource_pool_id
+        if request.queue_id is not None:
+            params['queueID'] = request.queue_id
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=DescribeJobMetricsResponse,
+        )
+
+    def describe_job_nodes(self, request, config=None):
+        """
+        describe_job_nodes
+
+        :param request: Request entity containing all parameters
+        :type request: AihcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DescribeJobNodesResponse data
+        :rtype: DescribeJobNodesResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = None
+        params = {}
+        params['action'] = 'DescribeJobNodes'
+        params['resourcePoolId'] = 'xxxx'
+        params['queueID'] = 'xxxx'
+        if request.resource_pool_id is not None:
+            params['resourcePoolId'] = request.resource_pool_id
+        if request.queue_id is not None:
+            params['queueID'] = request.queue_id
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=DescribeJobNodesResponse,
+        )
+
+    def describe_job_webterminal(self, request, config=None):
+        """
+        describe_job_webterminal
+
+        :param request: Request entity containing all parameters
+        :type request: AihcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DescribeJobWebterminalResponse data
+        :rtype: DescribeJobWebterminalResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = None
+        params = {}
+        params['action'] = 'DescribeJobWebterminal'
+        params['resourcePoolId'] = 'xxxx'
+        params['queueID'] = 'xxxx'
+        if request.resource_pool_id is not None:
+            params['resourcePoolId'] = request.resource_pool_id
+        if request.queue_id is not None:
+            params['queueID'] = request.queue_id
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=DescribeJobWebterminalResponse,
+        )
+
+    def describe_jobs(self, request, config=None):
+        """
+        describe_jobs
+
+        :param request: Request entity containing all parameters
+        :type request: AihcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DescribeJobsResponse data
+        :rtype: DescribeJobsResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = None
+        params = {}
+        params['action'] = 'DescribeJobs'
+        params['resourcePoolId'] = 'xxxx'
+        if request.resource_pool_id is not None:
+            params['resourcePoolId'] = request.resource_pool_id
+        if request.queue_id is not None:
+            params['queueID'] = request.queue_id
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=DescribeJobsResponse,
+        )
+
     def describe_model(self, request, config=None):
         """
         describe_model
@@ -555,6 +917,41 @@ class AihcClient(BceBaseClient):
             model=DescribeModelsResponse,
         )
 
+    def describe_pod_events(self, request, config=None):
+        """
+        describe_pod_events
+
+        :param request: Request entity containing all parameters
+        :type request: AihcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DescribePodEventsResponse data
+        :rtype: DescribePodEventsResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = None
+        params = {}
+        params['action'] = 'DescribePodEvents'
+        params['resourcePoolId'] = 'xxxx'
+        params['queueID'] = 'xxxx'
+        if request.resource_pool_id is not None:
+            params['resourcePoolId'] = request.resource_pool_id
+        if request.queue_id is not None:
+            params['queueID'] = request.queue_id
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=DescribePodEventsResponse,
+        )
+
     def modify_dataset(self, request, config=None):
         """
         modify_dataset
@@ -587,6 +984,41 @@ class AihcClient(BceBaseClient):
             config=merged_config,
         )
 
+    def modify_job(self, request, config=None):
+        """
+        modify_job
+
+        :param request: Request entity containing all parameters
+        :type request: AihcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing ModifyJobResponse data
+        :rtype: ModifyJobResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = None
+        params = {}
+        params['action'] = 'ModifyJob'
+        params['resourcePoolId'] = 'xxxx'
+        params['queueID'] = 'xxxx'
+        if request.resource_pool_id is not None:
+            params['resourcePoolId'] = request.resource_pool_id
+        if request.queue_id is not None:
+            params['queueID'] = request.queue_id
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=ModifyJobResponse,
+        )
+
     def modify_model(self, request, config=None):
         """
         modify_model
@@ -617,6 +1049,41 @@ class AihcClient(BceBaseClient):
             headers=headers,
             params=params,
             config=merged_config,
+        )
+
+    def stop_job(self, request, config=None):
+        """
+        stop_job
+
+        :param request: Request entity containing all parameters
+        :type request: AihcClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing StopJobResponse data
+        :rtype: StopJobResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = None
+        params = {}
+        params['action'] = 'StopJob'
+        params['resourcePoolId'] = 'xxxx'
+        params['queueID'] = 'xxxx'
+        if request.resource_pool_id is not None:
+            params['resourcePoolId'] = request.resource_pool_id
+        if request.queue_id is not None:
+            params['queueID'] = request.queue_id
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=StopJobResponse,
         )
 
     def _merge_config(self, config=None):
