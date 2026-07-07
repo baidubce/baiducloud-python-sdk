@@ -29,9 +29,9 @@ class BciClient(BceBaseClient):
 
     CONSTANT_INSTANCE = b'instance'
 
-    CONSTANT_IMAGE_CACHE = b'imageCache'
-
     CONSTANT_BATCH_DEL = b'batchDel'
+
+    CONSTANT_IMAGE_CACHE = b'imageCache'
 
     def __init__(self, config=None):
         """

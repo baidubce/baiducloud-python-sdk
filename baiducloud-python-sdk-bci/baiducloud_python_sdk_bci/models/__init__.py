@@ -1,6 +1,7 @@
 """
 Models for bci SDK.
 """
+
 from .batch_delete_image_caches_request import BatchDeleteImageCachesRequest
 from .batch_delete_instances_request import BatchDeleteInstancesRequest
 from .capabilities import Capabilities
@@ -38,3 +39,7 @@ from .tag import Tag
 from .volume import Volume
 from .volume_mount import VolumeMount
 from .vpc_model import VpcModel
+from .list_instances_request import ListInstancesRequest
+from .delete_instance_request import DeleteInstanceRequest
+from .list_image_caches_request import ListImageCachesRequest
+from .get_instance_request import GetInstanceRequest
