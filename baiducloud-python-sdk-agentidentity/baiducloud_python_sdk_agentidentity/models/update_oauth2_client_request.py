@@ -1,0 +1,135 @@
+"""
+Request entity for UpdateOauth2ClientRequest information.
+"""
+
+from baiducloud_python_sdk_core.abstract_model import AbstractModel
+
+
+class UpdateOauth2ClientRequest(AbstractModel):
+    """
+    Request entity for UpdateOauth2ClientRequest operation.
+
+    This class encapsulates all parameters for the API request.
+    """
+
+    def __init__(
+        self,
+        user_pool_id,
+        id,
+        name=None,
+        description=None,
+        redirect_uris=None,
+        grant_types=None,
+        scopes=None,
+        access_token_ttl=None,
+        refresh_token_ttl=None,
+    ):
+        """
+        Initialize UpdateOauth2ClientRequest request entity.
+
+        :param user_pool_id: 用户池 ID
+        :type user_pool_id: str (required)
+
+        :param id: 客户端记录 ID
+        :type id: str (required)
+
+        :param name: 新的名称
+        :type name: str (optional)
+
+        :param description: 新的描述
+        :type description: str (optional)
+
+        :param redirect_uris: 新的回调地址白名单（最多20个）
+        :type redirect_uris: List[str] (optional)
+
+        :param grant_types: 新的授权类型
+        :type grant_types: List[str] (optional)
+
+        :param scopes: 新的 scope
+        :type scopes: List[str] (optional)
+
+        :param access_token_ttl: 新的 access_token 有效期
+        :type access_token_ttl: int (optional)
+
+        :param refresh_token_ttl: 新的 refresh_token 有效期
+        :type refresh_token_ttl: int (optional)
+        """
+        super().__init__()
+        self.user_pool_id = user_pool_id
+        self.id = id
+        self.name = name
+        self.description = description
+        self.redirect_uris = redirect_uris
+        self.grant_types = grant_types
+        self.scopes = scopes
+        self.access_token_ttl = access_token_ttl
+        self.refresh_token_ttl = refresh_token_ttl
+
+    def to_dict(self):
+        """
+        Convert the request entity to a dictionary representation.
+
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the request
+        :rtype: dict
+        """
+        _map = super().to_dict()
+        if _map is not None:
+            return _map
+        result = dict()
+        if self.user_pool_id is not None:
+            result['userPoolId'] = self.user_pool_id
+        if self.id is not None:
+            result['id'] = self.id
+        if self.name is not None:
+            result['name'] = self.name
+        if self.description is not None:
+            result['description'] = self.description
+        if self.redirect_uris is not None:
+            result['redirectUris'] = self.redirect_uris
+        if self.grant_types is not None:
+            result['grantTypes'] = self.grant_types
+        if self.scopes is not None:
+            result['scopes'] = self.scopes
+        if self.access_token_ttl is not None:
+            result['accessTokenTtl'] = self.access_token_ttl
+        if self.refresh_token_ttl is not None:
+            result['refreshTokenTtl'] = self.refresh_token_ttl
+        return result
+
+    def from_dict(self, m):
+        """
+        Populate the request entity from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing request data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: UpdateOauth2ClientRequest
+
+        :raises TypeError: If input is not a dictionary or field type mismatch
+        :raises ValueError: If nested model conversion fails
+        """
+        m = m or dict()
+        if m.get('userPoolId') is not None:
+            self.user_pool_id = m.get('userPoolId')
+        if m.get('id') is not None:
+            self.id = m.get('id')
+        if m.get('name') is not None:
+            self.name = m.get('name')
+        if m.get('description') is not None:
+            self.description = m.get('description')
+        if m.get('redirectUris') is not None:
+            self.redirect_uris = m.get('redirectUris')
+        if m.get('grantTypes') is not None:
+            self.grant_types = m.get('grantTypes')
+        if m.get('scopes') is not None:
+            self.scopes = m.get('scopes')
+        if m.get('accessTokenTtl') is not None:
+            self.access_token_ttl = m.get('accessTokenTtl')
+        if m.get('refreshTokenTtl') is not None:
+            self.refresh_token_ttl = m.get('refreshTokenTtl')
+        return self
