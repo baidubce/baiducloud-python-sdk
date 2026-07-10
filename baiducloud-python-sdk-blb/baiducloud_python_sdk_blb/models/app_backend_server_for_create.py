@@ -10,7 +10,7 @@ class AppBackendServerForCreate(AbstractModel):
     AppBackendServerForCreate
     """
 
-    def __init__(self, instance_id=None, weight=None):
+    def __init__(self, instance_id=None, weight=None, desc=None):
         """
         Initialize AppBackendServerForCreate instance.
 
@@ -19,10 +19,14 @@ class AppBackendServerForCreate(AbstractModel):
 
         :param weight: 后端服务器权重，取值范围0-100
         :type weight: int (optional)
+
+        :param desc: 描述
+        :type desc: str (optional)
         """
         super().__init__()
         self.instance_id = instance_id
         self.weight = weight
+        self.desc = desc
 
     def to_dict(self):
         """
@@ -41,6 +45,8 @@ class AppBackendServerForCreate(AbstractModel):
             result['instanceId'] = self.instance_id
         if self.weight is not None:
             result['weight'] = self.weight
+        if self.desc is not None:
+            result['desc'] = self.desc
         return result
 
     def from_dict(self, m):
@@ -63,4 +69,6 @@ class AppBackendServerForCreate(AbstractModel):
             self.instance_id = m.get('instanceId')
         if m.get('weight') is not None:
             self.weight = m.get('weight')
+        if m.get('desc') is not None:
+            self.desc = m.get('desc')
         return self

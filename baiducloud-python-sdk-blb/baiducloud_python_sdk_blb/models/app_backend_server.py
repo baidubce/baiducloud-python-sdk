@@ -12,7 +12,7 @@ class AppBackendServer(AbstractModel):
     AppBackendServer
     """
 
-    def __init__(self, instance_id=None, weight=None, private_ip=None, port_list=None):
+    def __init__(self, instance_id=None, weight=None, desc=None, private_ip=None, port_list=None):
         """
         Initialize AppBackendServer instance.
 
@@ -21,6 +21,9 @@ class AppBackendServer(AbstractModel):
 
         :param weight: 后端服务器权重，取值范围0-100
         :type weight: int (optional)
+
+        :param desc: 描述
+        :type desc: str (optional)
 
         :param private_ip: 查询时返回值，后端绑定的该服务器ip地址
         :type private_ip: str (optional)
@@ -31,6 +34,7 @@ class AppBackendServer(AbstractModel):
         super().__init__()
         self.instance_id = instance_id
         self.weight = weight
+        self.desc = desc
         self.private_ip = private_ip
         self.port_list = port_list
 
@@ -51,6 +55,8 @@ class AppBackendServer(AbstractModel):
             result['instanceId'] = self.instance_id
         if self.weight is not None:
             result['weight'] = self.weight
+        if self.desc is not None:
+            result['desc'] = self.desc
         if self.private_ip is not None:
             result['privateIp'] = self.private_ip
         if self.port_list is not None:
@@ -77,6 +83,8 @@ class AppBackendServer(AbstractModel):
             self.instance_id = m.get('instanceId')
         if m.get('weight') is not None:
             self.weight = m.get('weight')
+        if m.get('desc') is not None:
+            self.desc = m.get('desc')
         if m.get('privateIp') is not None:
             self.private_ip = m.get('privateIp')
         if m.get('portList') is not None:
