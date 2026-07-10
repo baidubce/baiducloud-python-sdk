@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(
+        bce_client_config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = PfsClient(config)
+        client = PfsClient(bce_client_config)
         request = pfs_models.QryL2PolExecLogRequest(instance_id="", policy_id="", start_time=0, end_time=0)
         res = client.qry_l2_pol_exec_log(request)
         print(res.to_json_string())

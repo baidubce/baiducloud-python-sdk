@@ -14,12 +14,12 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(
+        bce_client_config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = PfsClient(config)
+        client = PfsClient(bce_client_config)
         request = pfs_models.CreatePfsRequest(
-            name="", instance_type="", capacity=0, subnet_id="", description="", tags=[]
+            name="", instance_type="", capacity=0, zone="", subnet_id="", description="", tags=[]
         )
         res = client.create_pfs(request)
         print(res.to_json_string())

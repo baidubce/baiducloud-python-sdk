@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(
+        bce_client_config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = PfsClient(config)
+        client = PfsClient(bce_client_config)
         request = pfs_models.CancelL2BucketLinkRequest(bucket_link_id="", instance_id="")
         res = client.cancel_l2_bucket_link(request)
         print(res.to_json_string())

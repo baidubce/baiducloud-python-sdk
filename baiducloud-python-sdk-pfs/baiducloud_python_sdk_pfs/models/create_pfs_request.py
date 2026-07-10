@@ -13,7 +13,7 @@ class CreatePfsRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, name, instance_type, capacity, subnet_id, description=None, tags=None):
+    def __init__(self, name, instance_type, capacity=None, zone=None, subnet_id=None, description=None, tags=None):
         """
         Initialize CreatePfsRequest request entity.
 
@@ -23,11 +23,14 @@ class CreatePfsRequest(AbstractModel):
         :param instance_type: 可选类型包括：base、basic、baseX、plus、plus2、plusl2X
         :type instance_type: str (required)
 
-        :param capacity: 购买文件系统存储容量大小，详情见容量限制表（单位GB）
-        :type capacity: int (required)
+        :param capacity: capacity parameter
+        :type capacity: int (optional)
 
-        :param subnet_id: 子网短ID
-        :type subnet_id: str (required)
+        :param zone: plusl3_p1类型所在可用区。plusl3_p1类型必传，其他类型不用传。
+        :type zone: str (optional)
+
+        :param subnet_id: 子网短ID。plusl3_p1类型不用传，其他类型必传。
+        :type subnet_id: str (optional)
 
         :param description: 实例描述
         :type description: str (optional)
@@ -39,6 +42,7 @@ class CreatePfsRequest(AbstractModel):
         self.name = name
         self.instance_type = instance_type
         self.capacity = capacity
+        self.zone = zone
         self.subnet_id = subnet_id
         self.description = description
         self.tags = tags
@@ -62,6 +66,8 @@ class CreatePfsRequest(AbstractModel):
             result['instanceType'] = self.instance_type
         if self.capacity is not None:
             result['capacity'] = self.capacity
+        if self.zone is not None:
+            result['zone'] = self.zone
         if self.subnet_id is not None:
             result['subnetId'] = self.subnet_id
         if self.description is not None:
@@ -92,6 +98,8 @@ class CreatePfsRequest(AbstractModel):
             self.instance_type = m.get('instanceType')
         if m.get('capacity') is not None:
             self.capacity = m.get('capacity')
+        if m.get('zone') is not None:
+            self.zone = m.get('zone')
         if m.get('subnetId') is not None:
             self.subnet_id = m.get('subnetId')
         if m.get('description') is not None:

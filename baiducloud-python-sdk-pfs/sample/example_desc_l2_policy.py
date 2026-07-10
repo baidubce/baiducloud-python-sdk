@@ -14,10 +14,10 @@ if __name__ == '__main__':
         access_key_id = ""
         secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(
+        bce_client_config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = PfsClient(config)
+        client = PfsClient(bce_client_config)
         request = pfs_models.DescL2PolicyRequest(instance_id="", policy_id="")
         res = client.desc_l2_policy(request)
         print(res.to_json_string())
