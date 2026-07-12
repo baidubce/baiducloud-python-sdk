@@ -4,6 +4,8 @@ TaskChildrenPage information
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
+from baiducloud_python_sdk_oos.models.task import Task
+
 
 class TaskChildrenPage(AbstractModel):
     """

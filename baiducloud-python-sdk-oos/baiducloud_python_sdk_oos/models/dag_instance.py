@@ -8,13 +8,13 @@ from baiducloud_python_sdk_oos.models.dag_spec import DagSpec
 
 from baiducloud_python_sdk_oos.models.tag_selector import TagSelector
 
-from baiducloud_python_sdk_oos.models.execution_task_summary import ExecutionTaskSummary
-
 from baiducloud_python_sdk_oos.models.dag_action_model import DagActionModel
 
 from baiducloud_python_sdk_oos.models.event_model import EventModel
 
 from baiducloud_python_sdk_oos.models.execution_task_summary import ExecutionTaskSummary
+
+from baiducloud_python_sdk_oos.models.task_operator_summary import TaskOperatorSummary
 
 
 class DagInstance(AbstractModel):
