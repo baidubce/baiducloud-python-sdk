@@ -6,8 +6,6 @@ from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 from baiducloud_python_sdk_oos.models.key_value_pair import KeyValuePair
 
-from baiducloud_python_sdk_oos.models.template import Template
-
 from baiducloud_python_sdk_oos.models.parallelism_control import ParallelismControl
 
 from baiducloud_python_sdk_oos.models.allowed_failure_control import AllowedFailureControl
@@ -243,6 +241,8 @@ class Operator(AbstractModel):
         if m.get('label') is not None:
             self.label = m.get('label')
         if m.get('template') is not None:
+            # 延迟导入，避免与 template 模块形成顶层循环导入
+            from baiducloud_python_sdk_oos.models.template import Template
             self.template = Template().from_dict(m.get('template'))
         if m.get('retries') is not None:
             self.retries = m.get('retries')
