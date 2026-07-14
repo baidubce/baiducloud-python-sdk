@@ -1,3 +1,6 @@
+2026-07-14 Version: 0.0.28
+- 涉及产品: VPC，SDK版本更新
+
 2026-06-25 Version: 0.0.27
 - 涉及产品: VPC，创建专线网关健康检查删除healthCheckPort字段
 

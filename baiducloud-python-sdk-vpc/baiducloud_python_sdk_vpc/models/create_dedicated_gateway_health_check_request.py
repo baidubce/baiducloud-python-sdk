@@ -19,6 +19,9 @@ class CreateDedicatedGatewayHealthCheckRequest(AbstractModel):
         health_threshold,
         unhealth_threshold,
         client_token=None,
+        dcphy_id=None,
+        channel_id=None,
+        subnet_id=None,
         health_check_source_ip=None,
         health_check_type=None,
         auto_generate_route_rule=None,
@@ -31,6 +34,15 @@ class CreateDedicatedGatewayHealthCheckRequest(AbstractModel):
 
         :param client_token: client_token parameter
         :type client_token: str (optional)
+
+        :param dcphy_id: 物理专线ID
+        :type dcphy_id: str (optional)
+
+        :param channel_id: 专线通道ID
+        :type channel_id: str (optional)
+
+        :param subnet_id: 子网ID
+        :type subnet_id: str (optional)
 
         :param health_check_source_ip: 若不传该参数，系统会自动分配一个IP
         :type health_check_source_ip: str (optional)
@@ -53,6 +65,9 @@ class CreateDedicatedGatewayHealthCheckRequest(AbstractModel):
         super().__init__()
         self.et_gateway_id = et_gateway_id
         self.client_token = client_token
+        self.dcphy_id = dcphy_id
+        self.channel_id = channel_id
+        self.subnet_id = subnet_id
         self.health_check_source_ip = health_check_source_ip
         self.health_check_type = health_check_type
         self.health_check_interval = health_check_interval
@@ -73,6 +88,12 @@ class CreateDedicatedGatewayHealthCheckRequest(AbstractModel):
         if _map is not None:
             return _map
         result = dict()
+        if self.dcphy_id is not None:
+            result['dcphyId'] = self.dcphy_id
+        if self.channel_id is not None:
+            result['channelId'] = self.channel_id
+        if self.subnet_id is not None:
+            result['subnetId'] = self.subnet_id
         if self.health_check_source_ip is not None:
             result['healthCheckSourceIp'] = self.health_check_source_ip
         if self.health_check_type is not None:
@@ -107,6 +128,12 @@ class CreateDedicatedGatewayHealthCheckRequest(AbstractModel):
             self.et_gateway_id = m.get('etGatewayId')
         if m.get('clientToken') is not None:
             self.client_token = m.get('clientToken')
+        if m.get('dcphyId') is not None:
+            self.dcphy_id = m.get('dcphyId')
+        if m.get('channelId') is not None:
+            self.channel_id = m.get('channelId')
+        if m.get('subnetId') is not None:
+            self.subnet_id = m.get('subnetId')
         if m.get('healthCheckSourceIp') is not None:
             self.health_check_source_ip = m.get('healthCheckSourceIp')
         if m.get('healthCheckType') is not None:
