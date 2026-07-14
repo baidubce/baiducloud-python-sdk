@@ -11,8 +11,34 @@ from baiducloud_python_sdk_core.bce_base_client import BceBaseClient
 from baiducloud_python_sdk_core.http import bce_http_client
 from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import http_methods
+from baiducloud_python_sdk_agentidentity.models.batch_acquisition_of_users_response import (
+    BatchAcquisitionOfUsersResponse,
+)
 from baiducloud_python_sdk_agentidentity.models.batch_get_resource_api_key_response import (
     BatchGetResourceApiKeyResponse,
+)
+from baiducloud_python_sdk_agentidentity.models.create_agent_response import CreateAgentResponse
+from baiducloud_python_sdk_agentidentity.models.create_credential_provider_response import (
+    CreateCredentialProviderResponse,
+)
+from baiducloud_python_sdk_agentidentity.models.create_idp_configuration_response import CreateIdpConfigurationResponse
+from baiducloud_python_sdk_agentidentity.models.create_oauth2_client_response import CreateOauth2ClientResponse
+from baiducloud_python_sdk_agentidentity.models.create_user_response import CreateUserResponse
+from baiducloud_python_sdk_agentidentity.models.create_user_pool_response import CreateUserPoolResponse
+from baiducloud_python_sdk_agentidentity.models.disable_idp_configuration_response import (
+    DisableIdpConfigurationResponse,
+)
+from baiducloud_python_sdk_agentidentity.models.enable_idp_configuration_response import EnableIdpConfigurationResponse
+from baiducloud_python_sdk_agentidentity.models.get_agent_response import GetAgentResponse
+from baiducloud_python_sdk_agentidentity.models.get_credential_provider_response import GetCredentialProviderResponse
+from baiducloud_python_sdk_agentidentity.models.get_idp_configuration_response import GetIdpConfigurationResponse
+from baiducloud_python_sdk_agentidentity.models.get_oauth2_client_response import GetOauth2ClientResponse
+from baiducloud_python_sdk_agentidentity.models.get_resource_oauth2token_response import GetResourceOauth2tokenResponse
+from baiducloud_python_sdk_agentidentity.models.get_user_response import GetUserResponse
+from baiducloud_python_sdk_agentidentity.models.get_user_pool_response import GetUserPoolResponse
+from baiducloud_python_sdk_agentidentity.models.get_wat_for_user_response import GetWATForUserResponse
+from baiducloud_python_sdk_agentidentity.models.get_workload_access_token_response import (
+    GetWorkloadAccessTokenResponse,
 )
 from baiducloud_python_sdk_agentidentity.models.list_agents_response import ListAgentsResponse
 from baiducloud_python_sdk_agentidentity.models.list_credential_providers_response import (
@@ -22,6 +48,15 @@ from baiducloud_python_sdk_agentidentity.models.list_idp_configurations_response
 from baiducloud_python_sdk_agentidentity.models.list_oauth2_clients_response import ListOauth2ClientsResponse
 from baiducloud_python_sdk_agentidentity.models.list_user_pools_response import ListUserPoolsResponse
 from baiducloud_python_sdk_agentidentity.models.list_users_response import ListUsersResponse
+from baiducloud_python_sdk_agentidentity.models.token_endpoint_response import TokenEndpointResponse
+from baiducloud_python_sdk_agentidentity.models.update_agent_response import UpdateAgentResponse
+from baiducloud_python_sdk_agentidentity.models.update_credential_provider_response import (
+    UpdateCredentialProviderResponse,
+)
+from baiducloud_python_sdk_agentidentity.models.update_idp_configuration_response import UpdateIdpConfigurationResponse
+from baiducloud_python_sdk_agentidentity.models.update_oauth2_client_response import UpdateOauth2ClientResponse
+from baiducloud_python_sdk_agentidentity.models.update_user_response import UpdateUserResponse
+from baiducloud_python_sdk_agentidentity.models.update_user_pool_response import UpdateUserPoolResponse
 from baiducloud_python_sdk_agentidentity.models.userinfo_endpoint_response import UserinfoEndpointResponse
 
 _logger = logging.getLogger(__name__)
@@ -149,8 +184,8 @@ class AgentidentityClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing BatchAcquisitionOfUsersResponse data
+        :rtype: BatchAcquisitionOfUsersResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -164,7 +199,13 @@ class AgentidentityClient(BceBaseClient):
         )
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=BatchAcquisitionOfUsersResponse,
+        )
 
     def batch_get_resource_api_key(self, request, config=None):
         """
@@ -232,8 +273,8 @@ class AgentidentityClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing CreateAgentResponse data
+        :rtype: CreateAgentResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -246,7 +287,13 @@ class AgentidentityClient(BceBaseClient):
         )
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=CreateAgentResponse,
+        )
 
     def create_credential_provider(self, request, config=None):
         """
@@ -257,8 +304,8 @@ class AgentidentityClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing CreateCredentialProviderResponse data
+        :rtype: CreateCredentialProviderResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -271,7 +318,13 @@ class AgentidentityClient(BceBaseClient):
         )
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=CreateCredentialProviderResponse,
+        )
 
     def create_idp_configuration(self, request, config=None):
         """
@@ -282,8 +335,8 @@ class AgentidentityClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing CreateIdpConfigurationResponse data
+        :rtype: CreateIdpConfigurationResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -297,7 +350,13 @@ class AgentidentityClient(BceBaseClient):
         )
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=CreateIdpConfigurationResponse,
+        )
 
     def create_oauth2_client(self, request, config=None):
         """
@@ -308,8 +367,8 @@ class AgentidentityClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing CreateOauth2ClientResponse data
+        :rtype: CreateOauth2ClientResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -323,7 +382,13 @@ class AgentidentityClient(BceBaseClient):
         )
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=CreateOauth2ClientResponse,
+        )
 
     def create_user(self, request, config=None):
         """
@@ -334,8 +399,8 @@ class AgentidentityClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing CreateUserResponse data
+        :rtype: CreateUserResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -349,7 +414,9 @@ class AgentidentityClient(BceBaseClient):
         )
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST, path=path, body=request.to_json_string(), config=merged_config, model=CreateUserResponse
+        )
 
     def create_user_pool(self, request, config=None):
         """
@@ -360,8 +427,8 @@ class AgentidentityClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing CreateUserPoolResponse data
+        :rtype: CreateUserPoolResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -374,7 +441,13 @@ class AgentidentityClient(BceBaseClient):
         )
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=CreateUserPoolResponse,
+        )
 
     def delete_agent(self, request, config=None):
         """
@@ -538,8 +611,8 @@ class AgentidentityClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing DisableIdpConfigurationResponse data
+        :rtype: DisableIdpConfigurationResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -553,7 +626,13 @@ class AgentidentityClient(BceBaseClient):
         )
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=DisableIdpConfigurationResponse,
+        )
 
     def enable_idp_configuration(self, request, config=None):
         """
@@ -564,8 +643,8 @@ class AgentidentityClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing EnableIdpConfigurationResponse data
+        :rtype: EnableIdpConfigurationResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -579,7 +658,13 @@ class AgentidentityClient(BceBaseClient):
         )
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=EnableIdpConfigurationResponse,
+        )
 
     def get_agent(self, request, config=None):
         """
@@ -590,8 +675,8 @@ class AgentidentityClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing GetAgentResponse data
+        :rtype: GetAgentResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -604,7 +689,9 @@ class AgentidentityClient(BceBaseClient):
         )
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST, path=path, body=request.to_json_string(), config=merged_config, model=GetAgentResponse
+        )
 
     def get_credential_provider(self, request, config=None):
         """
@@ -615,8 +702,8 @@ class AgentidentityClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing GetCredentialProviderResponse data
+        :rtype: GetCredentialProviderResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -629,7 +716,13 @@ class AgentidentityClient(BceBaseClient):
         )
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=GetCredentialProviderResponse,
+        )
 
     def get_idp_configuration(self, request, config=None):
         """
@@ -640,8 +733,8 @@ class AgentidentityClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing GetIdpConfigurationResponse data
+        :rtype: GetIdpConfigurationResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -655,7 +748,13 @@ class AgentidentityClient(BceBaseClient):
         )
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=GetIdpConfigurationResponse,
+        )
 
     def get_oauth2_client(self, request, config=None):
         """
@@ -666,8 +765,8 @@ class AgentidentityClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing GetOauth2ClientResponse data
+        :rtype: GetOauth2ClientResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -681,7 +780,13 @@ class AgentidentityClient(BceBaseClient):
         )
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=GetOauth2ClientResponse,
+        )
 
     def get_resource_apikey(self, request, config=None):
         """
@@ -717,8 +822,8 @@ class AgentidentityClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing GetResourceOauth2tokenResponse data
+        :rtype: GetResourceOauth2tokenResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -731,7 +836,13 @@ class AgentidentityClient(BceBaseClient):
         )
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=GetResourceOauth2tokenResponse,
+        )
 
     def get_user(self, request, config=None):
         """
@@ -742,8 +853,8 @@ class AgentidentityClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing GetUserResponse data
+        :rtype: GetUserResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -757,7 +868,9 @@ class AgentidentityClient(BceBaseClient):
         )
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST, path=path, body=request.to_json_string(), config=merged_config, model=GetUserResponse
+        )
 
     def get_user_pool(self, request, config=None):
         """
@@ -768,8 +881,8 @@ class AgentidentityClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing GetUserPoolResponse data
+        :rtype: GetUserPoolResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -782,7 +895,13 @@ class AgentidentityClient(BceBaseClient):
         )
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=GetUserPoolResponse,
+        )
 
     def get_wat_for_user(self, request, config=None):
         """
@@ -793,8 +912,8 @@ class AgentidentityClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing GetWATForUserResponse data
+        :rtype: GetWATForUserResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -806,7 +925,13 @@ class AgentidentityClient(BceBaseClient):
         )
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=GetWATForUserResponse,
+        )
 
     def get_workload_access_token(self, request, config=None):
         """
@@ -817,8 +942,8 @@ class AgentidentityClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing GetWorkloadAccessTokenResponse data
+        :rtype: GetWorkloadAccessTokenResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -830,7 +955,13 @@ class AgentidentityClient(BceBaseClient):
         )
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=GetWorkloadAccessTokenResponse,
+        )
 
     def list_agents(self, request, config=None):
         """
@@ -1106,8 +1237,8 @@ class AgentidentityClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing TokenEndpointResponse data
+        :rtype: TokenEndpointResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -1121,7 +1252,13 @@ class AgentidentityClient(BceBaseClient):
         )
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=TokenEndpointResponse,
+        )
 
     def update_agent(self, request, config=None):
         """
@@ -1132,8 +1269,8 @@ class AgentidentityClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing UpdateAgentResponse data
+        :rtype: UpdateAgentResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -1146,7 +1283,13 @@ class AgentidentityClient(BceBaseClient):
         )
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=UpdateAgentResponse,
+        )
 
     def update_credential_provider(self, request, config=None):
         """
@@ -1157,8 +1300,8 @@ class AgentidentityClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing UpdateCredentialProviderResponse data
+        :rtype: UpdateCredentialProviderResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -1171,7 +1314,13 @@ class AgentidentityClient(BceBaseClient):
         )
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=UpdateCredentialProviderResponse,
+        )
 
     def update_idp_configuration(self, request, config=None):
         """
@@ -1182,8 +1331,8 @@ class AgentidentityClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing UpdateIdpConfigurationResponse data
+        :rtype: UpdateIdpConfigurationResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -1197,7 +1346,13 @@ class AgentidentityClient(BceBaseClient):
         )
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=UpdateIdpConfigurationResponse,
+        )
 
     def update_oauth2_client(self, request, config=None):
         """
@@ -1208,8 +1363,8 @@ class AgentidentityClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing UpdateOauth2ClientResponse data
+        :rtype: UpdateOauth2ClientResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -1223,7 +1378,13 @@ class AgentidentityClient(BceBaseClient):
         )
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=UpdateOauth2ClientResponse,
+        )
 
     def update_user(self, request, config=None):
         """
@@ -1234,8 +1395,8 @@ class AgentidentityClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing UpdateUserResponse data
+        :rtype: UpdateUserResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -1249,7 +1410,9 @@ class AgentidentityClient(BceBaseClient):
         )
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST, path=path, body=request.to_json_string(), config=merged_config, model=UpdateUserResponse
+        )
 
     def update_user_pool(self, request, config=None):
         """
@@ -1260,8 +1423,8 @@ class AgentidentityClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing UpdateUserPoolResponse data
+        :rtype: UpdateUserPoolResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -1274,7 +1437,13 @@ class AgentidentityClient(BceBaseClient):
         )
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=UpdateUserPoolResponse,
+        )
 
     def userinfo_endpoint(self, request, config=None):
         """

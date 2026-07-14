@@ -24,8 +24,8 @@ class ListUserPoolsResponse(BceResponse):
         :param page_size: 每页数量
         :type page_size: int (optional)
 
-        :param result: result field
-        :type result: UserPoolDTO (optional)
+        :param result: 结果列表
+        :type result: List[UserPoolDTO] (optional)
         """
         super().__init__()
         self.total_count = total_count
@@ -56,7 +56,7 @@ class ListUserPoolsResponse(BceResponse):
         if self.page_size is not None:
             result['pageSize'] = self.page_size
         if self.result is not None:
-            result['result'] = self.result.to_dict()
+            result['result'] = [i.to_dict() for i in self.result]
         return result
 
     def from_dict(self, m):
@@ -82,5 +82,5 @@ class ListUserPoolsResponse(BceResponse):
         if m.get('pageSize') is not None:
             self.page_size = m.get('pageSize')
         if m.get('result') is not None:
-            self.result = UserPoolDTO().from_dict(m.get('result'))
+            self.result = [UserPoolDTO().from_dict(i) for i in m.get('result')]
         return self
