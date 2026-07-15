@@ -1,0 +1,101 @@
+"""
+Request entity for ActionRunRequest information.
+"""
+
+from baiducloud_python_sdk_core.abstract_model import AbstractModel
+from baiducloud_python_sdk_cloudassistant.models.target_selector import TargetSelector
+
+
+class ActionRunRequest(AbstractModel):
+    """
+    Request entity for ActionRunRequest operation.
+
+    This class encapsulates all parameters for the API request.
+    """
+
+    def __init__(
+        self, action, locale=None, parameters=None, target_selector_type=None, targets=None, target_selector=None
+    ):
+        """
+        Initialize ActionRunRequest request entity.
+
+        :param locale: locale parameter
+        :type locale: str (optional)
+
+        :param action: 所要执行的命令，仅需填写id
+        :type action: object (required)
+
+        :param parameters: 执行命令时的参数值，仅在命令有参数时需要
+        :type parameters: object (optional)
+
+        :param target_selector_type: target_selector_type parameter
+        :type target_selector_type: str (optional)
+
+        :param targets: 实例ID列表，仅在targetSelectorType为INSTANCES_LIST时需要
+        :type targets: List[object] (optional)
+
+        :param target_selector: target_selector parameter
+        :type target_selector: TargetSelector (optional)
+        """
+        super().__init__()
+        self.locale = locale
+        self.action = action
+        self.parameters = parameters
+        self.target_selector_type = target_selector_type
+        self.targets = targets
+        self.target_selector = target_selector
+
+    def to_dict(self):
+        """
+        Convert the request entity to a dictionary representation.
+
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the request
+        :rtype: dict
+        """
+        _map = super().to_dict()
+        if _map is not None:
+            return _map
+        result = dict()
+        if self.action is not None:
+            result['action'] = self.action
+        if self.parameters is not None:
+            result['parameters'] = self.parameters
+        if self.target_selector_type is not None:
+            result['targetSelectorType'] = self.target_selector_type
+        if self.targets is not None:
+            result['targets'] = self.targets
+        if self.target_selector is not None:
+            result['targetSelector'] = self.target_selector.to_dict()
+        return result
+
+    def from_dict(self, m):
+        """
+        Populate the request entity from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing request data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: ActionRunRequest
+
+        :raises TypeError: If input is not a dictionary or field type mismatch
+        :raises ValueError: If nested model conversion fails
+        """
+        m = m or dict()
+        if m.get('locale') is not None:
+            self.locale = m.get('locale')
+        if m.get('action') is not None:
+            self.action = m.get('action')
+        if m.get('parameters') is not None:
+            self.parameters = m.get('parameters')
+        if m.get('targetSelectorType') is not None:
+            self.target_selector_type = m.get('targetSelectorType')
+        if m.get('targets') is not None:
+            self.targets = m.get('targets')
+        if m.get('targetSelector') is not None:
+            self.target_selector = TargetSelector().from_dict(m.get('targetSelector'))
+        return self
