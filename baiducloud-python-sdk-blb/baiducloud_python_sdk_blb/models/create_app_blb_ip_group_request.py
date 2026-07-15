@@ -3,7 +3,7 @@ Request entity for CreateAppBlbIpGroupRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
-from baiducloud_python_sdk_blb.models.app_ip_group_member import AppIpGroupMember
+from baiducloud_python_sdk_blb.models.app_ip_group_member_for_create import AppIpGroupMemberForCreate
 
 
 class CreateAppBlbIpGroupRequest(AbstractModel):
@@ -30,7 +30,7 @@ class CreateAppBlbIpGroupRequest(AbstractModel):
         :type desc: str (optional)
 
         :param member_list: IP组挂载的IP组成员列表
-        :type member_list: List[AppIpGroupMember] (optional)
+        :type member_list: List[AppIpGroupMemberForCreate] (optional)
         """
         super().__init__()
         self.blb_id = blb_id
@@ -85,5 +85,5 @@ class CreateAppBlbIpGroupRequest(AbstractModel):
         if m.get('desc') is not None:
             self.desc = m.get('desc')
         if m.get('memberList') is not None:
-            self.member_list = [AppIpGroupMember().from_dict(i) for i in m.get('memberList')]
+            self.member_list = [AppIpGroupMemberForCreate().from_dict(i) for i in m.get('memberList')]
         return self

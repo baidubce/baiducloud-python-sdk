@@ -16,6 +16,8 @@ from .app_https_listener_model import AppHTTPSListenerModel
 from .app_ip_group import AppIpGroup
 from .app_ip_group_backend_policy import AppIpGroupBackendPolicy
 from .app_ip_group_member import AppIpGroupMember
+from .app_ip_group_member_for_create import AppIpGroupMemberForCreate
+from .app_ip_group_member_for_update import AppIpGroupMemberForUpdate
 from .app_ip_group_member_port_model import AppIpGroupMemberPortModel
 from .app_listener_model import AppListenerModel
 from .app_policy import AppPolicy

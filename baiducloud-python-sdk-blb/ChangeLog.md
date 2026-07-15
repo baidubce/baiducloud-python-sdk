@@ -1,3 +1,9 @@
+2026-07-15 Version: 0.0.19
+- 涉及产品: BLB，创建IP组删除memberId、portList、healthCheckPortType、status字段
+- 涉及产品: BLB，查询IP组删除healthCheckHost字段
+- 涉及产品: BLB，创建/更新IP组成员删除ip、portList等冗余字段
+- 涉及产品: BLB，新增计费变更及变配接口支持
+
 2026-07-10 Version: 0.0.18
 - 涉及产品: BLB，后端服务器增删改查接口新增desc字段
 

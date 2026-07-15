@@ -3,7 +3,7 @@ Request entity for UpdateAppBlbIpGroupMemberRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
-from baiducloud_python_sdk_blb.models.app_ip_group_member import AppIpGroupMember
+from baiducloud_python_sdk_blb.models.app_ip_group_member_for_update import AppIpGroupMemberForUpdate
 
 
 class UpdateAppBlbIpGroupMemberRequest(AbstractModel):
@@ -27,7 +27,7 @@ class UpdateAppBlbIpGroupMemberRequest(AbstractModel):
         :type ip_group_id: str (required)
 
         :param member_list: IP组成员列表
-        :type member_list: List[AppIpGroupMember] (required)
+        :type member_list: List[AppIpGroupMemberForUpdate] (required)
         """
         super().__init__()
         self.blb_id = blb_id
@@ -77,5 +77,5 @@ class UpdateAppBlbIpGroupMemberRequest(AbstractModel):
         if m.get('ipGroupId') is not None:
             self.ip_group_id = m.get('ipGroupId')
         if m.get('memberList') is not None:
-            self.member_list = [AppIpGroupMember().from_dict(i) for i in m.get('memberList')]
+            self.member_list = [AppIpGroupMemberForUpdate().from_dict(i) for i in m.get('memberList')]
         return self

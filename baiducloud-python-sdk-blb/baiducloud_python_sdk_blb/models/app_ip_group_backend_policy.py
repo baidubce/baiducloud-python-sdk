@@ -16,7 +16,6 @@ class AppIpGroupBackendPolicy(AbstractModel):
         type=None,
         health_check=None,
         health_check_port=None,
-        health_check_host=None,
         health_check_url_path=None,
         health_check_timeout_in_second=None,
         health_check_interval_in_second=None,
@@ -40,9 +39,6 @@ class AppIpGroupBackendPolicy(AbstractModel):
         :param health_check_port: 健康检查端口
         :type health_check_port: int (optional)
 
-        :param health_check_host: health_check_host attribute
-        :type health_check_host: str (optional)
-
         :param health_check_url_path: 健康检查路径，默认/，当健康检查协议为\"HTTP\"时生效
         :type health_check_url_path: str (optional)
 
@@ -61,7 +57,7 @@ class AppIpGroupBackendPolicy(AbstractModel):
         :param health_check_normal_status: health_check_normal_status attribute
         :type health_check_normal_status: str (optional)
 
-        :param udp_health_check_string: udp健康检查字符串，当端口类型为udp是有效
+        :param udp_health_check_string: udp健康检查字符串，当端口类型为udp时有效
         :type udp_health_check_string: str (optional)
         """
         super().__init__()
@@ -69,7 +65,6 @@ class AppIpGroupBackendPolicy(AbstractModel):
         self.type = type
         self.health_check = health_check
         self.health_check_port = health_check_port
-        self.health_check_host = health_check_host
         self.health_check_url_path = health_check_url_path
         self.health_check_timeout_in_second = health_check_timeout_in_second
         self.health_check_interval_in_second = health_check_interval_in_second
@@ -99,8 +94,6 @@ class AppIpGroupBackendPolicy(AbstractModel):
             result['healthCheck'] = self.health_check
         if self.health_check_port is not None:
             result['healthCheckPort'] = self.health_check_port
-        if self.health_check_host is not None:
-            result['healthCheckHost'] = self.health_check_host
         if self.health_check_url_path is not None:
             result['healthCheckUrlPath'] = self.health_check_url_path
         if self.health_check_timeout_in_second is not None:
@@ -141,8 +134,6 @@ class AppIpGroupBackendPolicy(AbstractModel):
             self.health_check = m.get('healthCheck')
         if m.get('healthCheckPort') is not None:
             self.health_check_port = m.get('healthCheckPort')
-        if m.get('healthCheckHost') is not None:
-            self.health_check_host = m.get('healthCheckHost')
         if m.get('healthCheckUrlPath') is not None:
             self.health_check_url_path = m.get('healthCheckUrlPath')
         if m.get('healthCheckTimeoutInSecond') is not None:
