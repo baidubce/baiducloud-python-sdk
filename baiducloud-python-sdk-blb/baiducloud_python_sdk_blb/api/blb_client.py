@@ -2326,8 +2326,11 @@ class BlbClient(BceBaseClient):
         """
         path = utils.append_uri(BlbClient.VERSION_V1, BlbClient.CONSTANT_APPBLB, request.blb_id)
         headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.DELETE, path=path, config=merged_config)
+        return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
 
     def release_blb(self, request, config=None):
         """
@@ -2538,10 +2541,10 @@ class BlbClient(BceBaseClient):
         )
         headers = None
         params = {}
-        if request.client_token is not None:
-            params['clientToken'] = request.client_token
         if request.listener_port is not None:
             params['listenerPort'] = request.listener_port
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
@@ -2567,10 +2570,10 @@ class BlbClient(BceBaseClient):
         )
         headers = None
         params = {}
-        if request.client_token is not None:
-            params['clientToken'] = request.client_token
         if request.listener_port is not None:
             params['listenerPort'] = request.listener_port
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
@@ -2794,10 +2797,10 @@ class BlbClient(BceBaseClient):
         )
         headers = None
         params = {}
-        if request.client_token is not None:
-            params['clientToken'] = request.client_token
         if request.listener_port is not None:
             params['listenerPort'] = request.listener_port
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
@@ -2823,10 +2826,10 @@ class BlbClient(BceBaseClient):
         )
         headers = None
         params = {}
-        if request.client_token is not None:
-            params['clientToken'] = request.client_token
         if request.listener_port is not None:
             params['listenerPort'] = request.listener_port
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
@@ -2852,10 +2855,10 @@ class BlbClient(BceBaseClient):
         )
         headers = None
         params = {}
-        if request.client_token is not None:
-            params['clientToken'] = request.client_token
         if request.listener_port is not None:
             params['listenerPort'] = request.listener_port
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config

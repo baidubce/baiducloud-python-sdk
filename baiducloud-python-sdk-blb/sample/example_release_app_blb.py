@@ -18,7 +18,7 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = BlbClient(bce_client_config)
-        request = blb_models.ReleaseAppBlbRequest(blb_id="")
+        request = blb_models.ReleaseAppBlbRequest(blb_id="", client_token="")
         res = client.release_app_blb(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
