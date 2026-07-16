@@ -16,12 +16,15 @@ from .action_run_list_response import ActionRunListResponse
 from .action_run_page import ActionRunPage
 from .action_run_request import ActionRunRequest
 from .action_run_response import ActionRunResponse
+from .action_type import ActionType
 from .agent import Agent
+from .agent_state import AgentState
 from .batch_get_agent_request import BatchGetAgentRequest
 from .batch_get_agent_response import BatchGetAgentResponse
 from .child_run import ChildRun
 from .command import Command
 from .command_filter import CommandFilter
+from .command_type import CommandType
 from .create_action_request import CreateActionRequest
 from .create_action_response import CreateActionResponse
 from .delete_action_response import DeleteActionResponse
@@ -30,7 +33,6 @@ from .file_upload import FileUpload
 from .get_action_response import GetActionResponse
 from .get_action_run_response import GetActionRunResponse
 from .host import Host
-from .id import Id
 from .instance_type import InstanceType
 from .keyword_type import KeywordType
 from .log import Log
@@ -46,7 +48,6 @@ from .target import Target
 from .target_import import TargetImport
 from .target_selector import TargetSelector
 from .target_selector_type import TargetSelectorType
-from .type import Type
 from .update_action_request import UpdateActionRequest
 from .update_action_response import UpdateActionResponse
 from .get_action_run_request import GetActionRunRequest

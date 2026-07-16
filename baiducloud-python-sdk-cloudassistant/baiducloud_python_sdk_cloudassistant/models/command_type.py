@@ -1,11 +1,11 @@
 """
-Type information
+CommandType information
 """
 
 
-class Type:
+class CommandType:
     """
-    Enum class for Type
+    Enum class for CommandType
     Allowed values: SHELL, POWERSHELL
     """
 

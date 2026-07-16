@@ -1,11 +1,11 @@
 """
-Id information
+ActionType information
 """
 
 
-class Id:
+class ActionType:
     """
-    Enum class for Id
+    Enum class for ActionType
     Allowed values: COMMAND, FILE_UPLOAD
     """
 
