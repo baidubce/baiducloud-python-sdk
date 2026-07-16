@@ -18,6 +18,7 @@ class CreateBlbTcpListenerRequest(AbstractModel):
         listener_port,
         backend_port,
         scheduler,
+        client_token=None,
         tcp_session_timeout=None,
         health_check_type=None,
         health_check_timeout_in_second=None,
@@ -30,6 +31,9 @@ class CreateBlbTcpListenerRequest(AbstractModel):
 
         :param blb_id: blb_id parameter
         :type blb_id: str (required)
+
+        :param client_token: client_token parameter
+        :type client_token: str (optional)
 
         :param listener_port: 监听器的监听端口，需为1-65535间的整数
         :type listener_port: int (required)
@@ -60,6 +64,7 @@ class CreateBlbTcpListenerRequest(AbstractModel):
         """
         super().__init__()
         self.blb_id = blb_id
+        self.client_token = client_token
         self.listener_port = listener_port
         self.backend_port = backend_port
         self.scheduler = scheduler
@@ -121,6 +126,8 @@ class CreateBlbTcpListenerRequest(AbstractModel):
         m = m or dict()
         if m.get('blbId') is not None:
             self.blb_id = m.get('blbId')
+        if m.get('clientToken') is not None:
+            self.client_token = m.get('clientToken')
         if m.get('listenerPort') is not None:
             self.listener_port = m.get('listenerPort')
         if m.get('backendPort') is not None:

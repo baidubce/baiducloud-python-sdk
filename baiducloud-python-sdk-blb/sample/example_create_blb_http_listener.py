@@ -24,6 +24,7 @@ if __name__ == '__main__':
             listener_port=0,
             backend_port=0,
             scheduler="",
+            client_token="",
             keep_session=False,
             keep_session_type="",
             keep_session_duration=0,

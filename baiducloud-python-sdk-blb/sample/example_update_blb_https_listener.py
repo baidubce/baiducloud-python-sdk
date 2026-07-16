@@ -22,6 +22,7 @@ if __name__ == '__main__':
         request = blb_models.UpdateBlbHttpsListenerRequest(
             blb_id="",
             listener_port=0,
+            client_token="",
             backend_port=0,
             scheduler="",
             keep_session=False,

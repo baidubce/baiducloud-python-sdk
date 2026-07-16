@@ -21,6 +21,7 @@ if __name__ == '__main__':
         request = blb_models.UpdateBlbTcpListenerRequest(
             blb_id="",
             listener_port=0,
+            client_token="",
             backend_port=0,
             scheduler="",
             health_check_type="",

@@ -16,6 +16,7 @@ class UpdateBlbTcpListenerRequest(AbstractModel):
         self,
         blb_id,
         listener_port,
+        client_token=None,
         backend_port=None,
         scheduler=None,
         health_check_type=None,
@@ -29,6 +30,9 @@ class UpdateBlbTcpListenerRequest(AbstractModel):
 
         :param blb_id: blb_id parameter
         :type blb_id: str (required)
+
+        :param client_token: client_token parameter
+        :type client_token: str (optional)
 
         :param listener_port: listener_port parameter
         :type listener_port: int (required)
@@ -56,6 +60,7 @@ class UpdateBlbTcpListenerRequest(AbstractModel):
         """
         super().__init__()
         self.blb_id = blb_id
+        self.client_token = client_token
         self.listener_port = listener_port
         self.backend_port = backend_port
         self.scheduler = scheduler
@@ -112,6 +117,8 @@ class UpdateBlbTcpListenerRequest(AbstractModel):
         m = m or dict()
         if m.get('blbId') is not None:
             self.blb_id = m.get('blbId')
+        if m.get('clientToken') is not None:
+            self.client_token = m.get('clientToken')
         if m.get('listenerPort') is not None:
             self.listener_port = m.get('listenerPort')
         if m.get('backendPort') is not None:

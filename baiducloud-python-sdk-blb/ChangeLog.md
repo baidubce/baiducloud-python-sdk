@@ -1,3 +1,7 @@
+2026-07-16 Version: 0.0.20
+- 涉及产品: BLB，TCP/HTTP/UDP/SSL/HTTPS监听器创建与更新接口新增clientToken参数
+- 涉及产品: BLB，添加、更新、释放后端服务器及释放监听器接口同步变更
+
 2026-07-15 Version: 0.0.19
 - 涉及产品: BLB，创建IP组删除memberId、portList、healthCheckPortType、status字段
 - 涉及产品: BLB，查询IP组删除healthCheckHost字段

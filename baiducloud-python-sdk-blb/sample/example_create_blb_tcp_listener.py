@@ -23,6 +23,7 @@ if __name__ == '__main__':
             listener_port=0,
             backend_port=0,
             scheduler="",
+            client_token="",
             tcp_session_timeout=0,
             health_check_type="",
             health_check_timeout_in_second=0,
