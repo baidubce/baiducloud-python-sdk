@@ -10,6 +10,7 @@ from .action_list_response import ActionListResponse
 from .action_log_request import ActionLogRequest
 from .action_log_response import ActionLogResponse
 from .action_page import ActionPage
+from .action_ref import ActionRef
 from .action_run import ActionRun
 from .action_run_list_request import ActionRunListRequest
 from .action_run_list_response import ActionRunListResponse
@@ -30,6 +31,7 @@ from .create_action_response import CreateActionResponse
 from .delete_action_response import DeleteActionResponse
 from .execution import Execution
 from .file_upload import FileUpload
+from .file_upload_filter import FileUploadFilter
 from .get_action_response import GetActionResponse
 from .get_action_run_response import GetActionRunResponse
 from .host import Host

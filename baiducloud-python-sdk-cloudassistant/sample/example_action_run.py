@@ -18,13 +18,14 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = CloudassistantClient(bce_client_config)
+        action = cloudassistant_models.ActionRef(ref="")
 
         import_instances = cloudassistant_models.TargetImport(keyword_type="", instances=[])
         target_selector = cloudassistant_models.TargetSelector(
             instance_type="", tags=[], import_instances=import_instances
         )
         request = cloudassistant_models.ActionRunRequest(
-            action=None,
+            action=action,
             locale="",
             parameters=None,
             target_selector_type="",

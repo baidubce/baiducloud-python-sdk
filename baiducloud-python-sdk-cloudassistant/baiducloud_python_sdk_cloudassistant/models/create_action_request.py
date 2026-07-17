@@ -27,8 +27,8 @@ class CreateActionRequest(AbstractModel):
         :param action: action parameter
         :type action: Action (required)
 
-        :param parameters: 执行命令时的参数值，仅在命令有参数且需要执行时需要
-        :type parameters: object (optional)
+        :param parameters: 执行命令时的参数值，仅在命令有参数时需要
+        :type parameters: Dict[str, str] (optional)
 
         :param target_selector_type: target_selector_type parameter
         :type target_selector_type: str (optional)

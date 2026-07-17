@@ -20,9 +20,9 @@ if __name__ == '__main__':
         client = CloudassistantClient(bce_client_config)
 
         command = cloudassistant_models.CommandFilter(scope="", name="", type="")
-        action = cloudassistant_models.ActionFilter(
-            type="", command=command, instance_type="", id="", name="", file_upload=None
-        )
+
+        file_upload = cloudassistant_models.FileUploadFilter(filename="")
+        action = cloudassistant_models.ActionFilter(id="", name="", type="", command=command, file_upload=file_upload)
         request = cloudassistant_models.ActionListRequest(
             page_no=0, page_size=0, action=action, locale="", sort="", ascending=False
         )
