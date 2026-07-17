@@ -33,7 +33,7 @@ class ActionRun(AbstractModel):
         :param id: 执行ID
         :type id: str (optional)
 
-        :param state: 执行状态
+        :param state: state attribute
         :type state: str (optional)
 
         :param action: action attribute

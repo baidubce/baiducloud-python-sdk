@@ -22,7 +22,7 @@ class LogResult(AbstractModel):
         :param next_cursor: next_cursor attribute
         :type next_cursor: int (optional)
 
-        :param state: 子执行状态。枚举值：FAILED（执行失败），RUNNING（执行中），SUCCESS（执行完成）
+        :param state: state attribute
         :type state: str (optional)
 
         :param child_id: 子执行id

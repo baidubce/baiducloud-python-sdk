@@ -14,7 +14,7 @@ class CommandFilter(AbstractModel):
         """
         Initialize CommandFilter instance.
 
-        :param scope: 按命令可见范围筛选。枚举值：INDIVIDUAL（个人命令），GLOBAL（公共命令）
+        :param scope: 按命令可见范围筛选。枚举值：INDIVIDUAL（我的命令），GLOBAL（公共命令）
         :type scope: str (optional)
 
         :param name: 按命令名称筛选
