@@ -25,6 +25,7 @@ from .create_as_group_v2_response import CreateAsGroupV2Response
 from .create_rule_v2_request import CreateRuleV2Request
 from .create_rule_v2_response import CreateRuleV2Response
 from .dag_model import DagModel
+from .dec_cmd_strategy import DecCmdStrategy
 from .delete_as_group_v2_request import DeleteAsGroupV2Request
 from .detach_node_v2_request import DetachNodeV2Request
 from .detach_node_v2_response import DetachNodeV2Response
@@ -38,12 +39,14 @@ from .ephemeral_disk import EphemeralDisk
 from .exec_cmd_strategy_type import ExecCmdStrategyType
 from .exec_rule_v2_request import ExecRuleV2Request
 from .exec_rule_v2_response import ExecRuleV2Response
+from .expansion_strategy import ExpansionStrategy
 from .expect_action import ExpectAction
 from .get_as_group_v2_response import GetAsGroupV2Response
 from .get_rule_v2_response import GetRuleV2Response
 from .group_config import GroupConfig
 from .health_check_config import HealthCheckConfig
 from .health_check_state import HealthCheckState
+from .inc_cmd_strategy import IncCmdStrategy
 from .list_as_group_v2_response import ListAsGroupV2Response
 from .list_as_node_v2_response import ListAsNodeV2Response
 from .list_rule_v2_response import ListRuleV2Response
@@ -61,6 +64,7 @@ from .scaling_down_v2_request import ScalingDownV2Request
 from .scaling_down_v2_response import ScalingDownV2Response
 from .scaling_up_v2_request import ScalingUpV2Request
 from .scaling_up_v2_response import ScalingUpV2Response
+from .shrinkage_strategy import ShrinkageStrategy
 from .state import State
 from .status import Status
 from .tag_info import TagInfo

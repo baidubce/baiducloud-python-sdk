@@ -38,7 +38,7 @@ class CreateRuleV2Request(AbstractModel):
         :param group_id: 伸缩组id
         :type group_id: str (required)
 
-        :param state: 规则状态。包括：ENABLE(可用),DISABLE(禁用)
+        :param state: 创建后的规则状态。包括：ENABLE(启用),DISABLE(禁用)
         :type state: str (required)
 
         :param type: 规则类型。包括：CRONTAB(定时伸缩),ALARM(报警触发伸缩),PERIOD(周期伸缩)

@@ -44,7 +44,7 @@ class CmdConfig(AbstractModel):
         :param has_increase_cmd: 是否配置扩容脚本
         :type has_increase_cmd: bool (optional)
 
-        :param inc_cmd_strategy: 缩容策略，不可为空，失败暂停缩容、失败继续缩容：Proceed、Pause
+        :param inc_cmd_strategy: 扩容策略，不可为空、失败继续扩容：Proceed、Pause
         :type inc_cmd_strategy: str (optional)
 
         :param inc_cmd_data: 扩容脚本
