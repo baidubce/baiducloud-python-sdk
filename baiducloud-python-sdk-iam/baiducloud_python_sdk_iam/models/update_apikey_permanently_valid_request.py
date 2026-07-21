@@ -3,6 +3,7 @@ Request entity for UpdateApikeyPermanentlyValidRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
+from baiducloud_python_sdk_iam.models.acl import ACL
 
 
 class UpdateApikeyPermanentlyValidRequest(AbstractModel):
@@ -22,8 +23,8 @@ class UpdateApikeyPermanentlyValidRequest(AbstractModel):
         :param id: APIKey ID
         :type id: str (required)
 
-        :param acl: ACL策略
-        :type acl: str (required)
+        :param acl: acl parameter
+        :type acl: ACL (required)
         """
         super().__init__()
         self.user_id = user_id
@@ -48,7 +49,7 @@ class UpdateApikeyPermanentlyValidRequest(AbstractModel):
         if self.id is not None:
             result['id'] = self.id
         if self.acl is not None:
-            result['acl'] = self.acl
+            result['acl'] = self.acl.to_dict()
         return result
 
     def from_dict(self, m):
@@ -72,5 +73,5 @@ class UpdateApikeyPermanentlyValidRequest(AbstractModel):
         if m.get('id') is not None:
             self.id = m.get('id')
         if m.get('acl') is not None:
-            self.acl = m.get('acl')
+            self.acl = ACL().from_dict(m.get('acl'))
         return self

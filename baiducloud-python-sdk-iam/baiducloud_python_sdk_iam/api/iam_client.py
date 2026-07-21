@@ -11,6 +11,16 @@ from baiducloud_python_sdk_core.bce_base_client import BceBaseClient
 from baiducloud_python_sdk_core.http import bce_http_client
 from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import http_methods
+from baiducloud_python_sdk_iam.models.create_apikey_permanently_valid_response import (
+    CreateApikeyPermanentlyValidResponse,
+)
+from baiducloud_python_sdk_iam.models.decoding_apikey_permanently_valid_response import (
+    DecodingApikeyPermanentlyValidResponse,
+)
+from baiducloud_python_sdk_iam.models.delete_apikey_permanently_valid_response import (
+    DeleteApikeyPermanentlyValidResponse,
+)
+from baiducloud_python_sdk_iam.models.get_session_api_key_response import GetSessionApiKeyResponse
 from baiducloud_python_sdk_iam.models.list_access_key_response import ListAccessKeyResponse
 from baiducloud_python_sdk_iam.models.list_all_subjects_granted_permissions_response import (
     ListAllSubjectsGrantedPermissionsResponse,
@@ -29,10 +39,19 @@ from baiducloud_python_sdk_iam.models.list_the_user_s_permissions_response impor
 from baiducloud_python_sdk_iam.models.list_user_response import ListUserResponse
 from baiducloud_python_sdk_iam.models.list_user_groups_response import ListUserGroupsResponse
 from baiducloud_python_sdk_iam.models.list_users_within_the_group_response import ListUsersWithinTheGroupResponse
+from baiducloud_python_sdk_iam.models.obtain_a_list_of_permanently_valid_apikeys_response import (
+    ObtainAListOfPermanentlyValidApikeysResponse,
+)
+from baiducloud_python_sdk_iam.models.query_apikey_details_permanently_valid_response import (
+    QueryApikeyDetailsPermanentlyValidResponse,
+)
 from baiducloud_python_sdk_iam.models.query_sub_user_idp_response import QuerySubUserIdpResponse
 from baiducloud_python_sdk_iam.models.query_summary_of_main_account_response import QuerySummaryOfMainAccountResponse
 from baiducloud_python_sdk_iam.models.query_the_last_usage_time_of_accesskey_response import (
     QueryTheLastUsageTimeOfAccesskeyResponse,
+)
+from baiducloud_python_sdk_iam.models.update_apikey_permanently_valid_response import (
+    UpdateApikeyPermanentlyValidResponse,
 )
 from baiducloud_python_sdk_iam.models.update_sub_user_idp_response import UpdateSubUserIdpResponse
 from baiducloud_python_sdk_iam.models.update_sub_user_idp_status_response import UpdateSubUserIdpStatusResponse
@@ -278,8 +297,8 @@ class IamClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing CreateApikeyPermanentlyValidResponse data
+        :rtype: CreateApikeyPermanentlyValidResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -287,7 +306,13 @@ class IamClient(BceBaseClient):
         path = utils.append_uri(IamClient.VERSION_V1, IamClient.CONSTANT_APIKEY, IamClient.CONSTANT_CREATE)
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=CreateApikeyPermanentlyValidResponse,
+        )
 
     def create_group(self, request, config=None):
         """
@@ -378,8 +403,8 @@ class IamClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing DecodingApikeyPermanentlyValidResponse data
+        :rtype: DecodingApikeyPermanentlyValidResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -387,7 +412,13 @@ class IamClient(BceBaseClient):
         path = utils.append_uri(IamClient.VERSION_V1, IamClient.CONSTANT_APIKEY, IamClient.CONSTANT_DECRYPT)
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=DecodingApikeyPermanentlyValidResponse,
+        )
 
     def delete_access_key(self, request, config=None):
         """
@@ -424,8 +455,8 @@ class IamClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing DeleteApikeyPermanentlyValidResponse data
+        :rtype: DeleteApikeyPermanentlyValidResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -433,7 +464,13 @@ class IamClient(BceBaseClient):
         path = utils.append_uri(IamClient.VERSION_V1, IamClient.CONSTANT_APIKEY, IamClient.CONSTANT_DELETE)
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=DeleteApikeyPermanentlyValidResponse,
+        )
 
     def delete_group(self, request, config=None):
         """
@@ -642,8 +679,8 @@ class IamClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing GetSessionApiKeyResponse data
+        :rtype: GetSessionApiKeyResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -656,7 +693,9 @@ class IamClient(BceBaseClient):
         if request.acl is not None:
             params['acl'] = request.acl
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.GET, path=path, params=params, config=merged_config)
+        return self._send_request(
+            http_methods.GET, path=path, params=params, config=merged_config, model=GetSessionApiKeyResponse
+        )
 
     def get_user(self, request, config=None):
         """
@@ -980,8 +1019,8 @@ class IamClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing ObtainAListOfPermanentlyValidApikeysResponse data
+        :rtype: ObtainAListOfPermanentlyValidApikeysResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -989,7 +1028,13 @@ class IamClient(BceBaseClient):
         path = utils.append_uri(IamClient.VERSION_V1, IamClient.CONSTANT_APIKEY, IamClient.CONSTANT_LIST)
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=ObtainAListOfPermanentlyValidApikeysResponse,
+        )
 
     def query_apikey_details_permanently_valid(self, request, config=None):
         """
@@ -1000,8 +1045,8 @@ class IamClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing QueryApikeyDetailsPermanentlyValidResponse data
+        :rtype: QueryApikeyDetailsPermanentlyValidResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -1009,7 +1054,13 @@ class IamClient(BceBaseClient):
         path = utils.append_uri(IamClient.VERSION_V1, IamClient.CONSTANT_APIKEY, IamClient.CONSTANT_DETAIL)
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=QueryApikeyDetailsPermanentlyValidResponse,
+        )
 
     def query_group(self, request, config=None):
         """
@@ -1280,8 +1331,8 @@ class IamClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing UpdateApikeyPermanentlyValidResponse data
+        :rtype: UpdateApikeyPermanentlyValidResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -1289,7 +1340,13 @@ class IamClient(BceBaseClient):
         path = utils.append_uri(IamClient.VERSION_V1, IamClient.CONSTANT_APIKEY, IamClient.CONSTANT_UPDATE)
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=UpdateApikeyPermanentlyValidResponse,
+        )
 
     def update_group(self, request, config=None):
         """

@@ -3,6 +3,7 @@ Request entity for CreateApikeyPermanentlyValidRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
+from baiducloud_python_sdk_iam.models.acl import ACL
 
 
 class CreateApikeyPermanentlyValidRequest(AbstractModel):
@@ -19,8 +20,8 @@ class CreateApikeyPermanentlyValidRequest(AbstractModel):
         :param user_id: 子用户Id；不传就是当前用户
         :type user_id: str (optional)
 
-        :param acl: ACL策略
-        :type acl: str (required)
+        :param acl: acl parameter
+        :type acl: ACL (required)
 
         :param name: APIKey名称；不传会默认生成
         :type name: str (optional)
@@ -46,7 +47,7 @@ class CreateApikeyPermanentlyValidRequest(AbstractModel):
         if self.user_id is not None:
             result['userId'] = self.user_id
         if self.acl is not None:
-            result['acl'] = self.acl
+            result['acl'] = self.acl.to_dict()
         if self.name is not None:
             result['name'] = self.name
         return result
@@ -70,7 +71,7 @@ class CreateApikeyPermanentlyValidRequest(AbstractModel):
         if m.get('userId') is not None:
             self.user_id = m.get('userId')
         if m.get('acl') is not None:
-            self.acl = m.get('acl')
+            self.acl = ACL().from_dict(m.get('acl'))
         if m.get('name') is not None:
             self.name = m.get('name')
         return self

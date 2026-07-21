@@ -18,7 +18,8 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = IamClient(bce_client_config)
-        request = iam_models.UpdateApikeyPermanentlyValidRequest(id="", acl="", user_id="")
+        acl = iam_models.ACL(id="", version="", access_control_list=[])
+        request = iam_models.UpdateApikeyPermanentlyValidRequest(id="", acl=acl, user_id="")
         res = client.update_apikey_permanently_valid(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
