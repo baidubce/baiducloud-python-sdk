@@ -4,13 +4,13 @@ Models for cloudassistant SDK.
 
 from .action import Action
 from .action_filter import ActionFilter
-from .action_index import ActionIndex
 from .action_list_request import ActionListRequest
 from .action_list_response import ActionListResponse
 from .action_log_request import ActionLogRequest
 from .action_log_response import ActionLogResponse
 from .action_page import ActionPage
 from .action_ref import ActionRef
+from .action_result import ActionResult
 from .action_run import ActionRun
 from .action_run_list_request import ActionRunListRequest
 from .action_run_list_response import ActionRunListResponse

@@ -1,20 +1,20 @@
 """
-ActionIndex information
+ActionResult information
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class ActionIndex(AbstractModel):
+class ActionResult(AbstractModel):
     """
-    ActionIndex
+    ActionResult
     """
 
     def __init__(self, action_id=None, action_name=None, run_id=None):
         """
-        Initialize ActionIndex instance.
+        Initialize ActionResult instance.
 
-        :param action_id: 命令id
+        :param action_id: 命令ID
         :type action_id: str (optional)
 
         :param action_name: 命令名称
@@ -59,7 +59,7 @@ class ActionIndex(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: ActionIndex
+        :rtype: ActionResult
 
         :raises TypeError: If input is not a dictionary type
         :raises ValueError: If nested model conversion fails

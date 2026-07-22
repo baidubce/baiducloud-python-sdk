@@ -3,7 +3,7 @@ Request entity for CreateActionResponse information.
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
-from baiducloud_python_sdk_cloudassistant.models.action_index import ActionIndex
+from baiducloud_python_sdk_cloudassistant.models.action_result import ActionResult
 
 
 class CreateActionResponse(BceResponse):
@@ -28,7 +28,7 @@ class CreateActionResponse(BceResponse):
         :type success: bool (optional)
 
         :param result: result field
-        :type result: ActionIndex (optional)
+        :type result: ActionResult (optional)
         """
         super().__init__()
         self.request_id = request_id
@@ -90,5 +90,5 @@ class CreateActionResponse(BceResponse):
         if m.get('success') is not None:
             self.success = m.get('success')
         if m.get('result') is not None:
-            self.result = ActionIndex().from_dict(m.get('result'))
+            self.result = ActionResult().from_dict(m.get('result'))
         return self

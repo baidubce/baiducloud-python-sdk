@@ -1,3 +1,6 @@
+2026-07-22 Version: 0.0.5
+- 涉及产品: CLOUDASSISTANT，SDK版本更新
+
 2026-07-17 Version: 0.0.4
 执行命令接口新增实例与网络相关字段
 - 涉及产品: CLOUDASSISTANT，执行命令新增实例ID、名称、内外网IP及带宽字段
