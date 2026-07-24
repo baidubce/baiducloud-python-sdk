@@ -11,6 +11,7 @@ from baiducloud_python_sdk_core.bce_base_client import BceBaseClient
 from baiducloud_python_sdk_core.http import bce_http_client
 from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import http_methods
+from baiducloud_python_sdk_core.util import request_body_utils
 from baiducloud_python_sdk_bcc.models.add_ipv6_response import AddIpv6Response
 from baiducloud_python_sdk_bcc.models.attach_volume_response import AttachVolumeResponse
 from baiducloud_python_sdk_bcc.models.authorize_server_event_response import AuthorizeServerEventResponse

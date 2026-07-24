@@ -18,7 +18,7 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = BccClient(bce_client_config)
-        request = bcc_models.RemoteCopySnapshotRequest(snapshot_id="", uuid="", dest_region_infos=[])
+        request = bcc_models.RemoteCopySnapshotRequest(snapshot_id="", dest_region_infos=[])
         res = client.remote_copy_snapshot(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

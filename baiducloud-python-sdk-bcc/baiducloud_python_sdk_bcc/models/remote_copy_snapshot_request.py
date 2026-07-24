@@ -13,22 +13,18 @@ class RemoteCopySnapshotRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, snapshot_id, uuid=None, dest_region_infos=None):
+    def __init__(self, snapshot_id, dest_region_infos=None):
         """
         Initialize RemoteCopySnapshotRequest request entity.
 
         :param snapshot_id: snapshot_id parameter
         :type snapshot_id: str (required)
 
-        :param uuid: 快照uuid
-        :type uuid: str (optional)
-
         :param dest_region_infos: 待复制到目标区域列表
         :type dest_region_infos: List[RemoteCopyRequest] (optional)
         """
         super().__init__()
         self.snapshot_id = snapshot_id
-        self.uuid = uuid
         self.dest_region_infos = dest_region_infos
 
     def to_dict(self):
@@ -44,8 +40,6 @@ class RemoteCopySnapshotRequest(AbstractModel):
         if _map is not None:
             return _map
         result = dict()
-        if self.uuid is not None:
-            result['uuid'] = self.uuid
         if self.dest_region_infos is not None:
             result['destRegionInfos'] = [i.to_dict() for i in self.dest_region_infos]
         return result
@@ -68,8 +62,6 @@ class RemoteCopySnapshotRequest(AbstractModel):
         m = m or dict()
         if m.get('snapshotId') is not None:
             self.snapshot_id = m.get('snapshotId')
-        if m.get('uuid') is not None:
-            self.uuid = m.get('uuid')
         if m.get('destRegionInfos') is not None:
             self.dest_region_infos = [RemoteCopyRequest().from_dict(i) for i in m.get('destRegionInfos')]
         return self

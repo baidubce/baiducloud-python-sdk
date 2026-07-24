@@ -12,17 +12,21 @@ class RenameImageRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, image_ids=None, name=None):
+    def __init__(self, image_id=None, image_ids=None, name=None):
         """
         Initialize RenameImageRequest request entity.
 
-        :param image_ids: 自定义镜像的ID列表
+        :param image_id: 支持传入单个自定义镜像ID，与imageIds二选一
+        :type image_id: str (optional)
+
+        :param image_ids: 支持传入自定义镜像的ID列表（上限100个），与imageId二选一
         :type image_ids: List[str] (optional)
 
         :param name: 待创建的自定义镜像名称，支持大小写字母、数字、中文以及-_ /.特殊字符，必须以字母开头，长度1-65。
         :type name: str (optional)
         """
         super().__init__()
+        self.image_id = image_id
         self.image_ids = image_ids
         self.name = name
 
@@ -39,6 +43,8 @@ class RenameImageRequest(AbstractModel):
         if _map is not None:
             return _map
         result = dict()
+        if self.image_id is not None:
+            result['imageId'] = self.image_id
         if self.image_ids is not None:
             result['imageIds'] = self.image_ids
         if self.name is not None:
@@ -61,6 +67,8 @@ class RenameImageRequest(AbstractModel):
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
+        if m.get('imageId') is not None:
+            self.image_id = m.get('imageId')
         if m.get('imageIds') is not None:
             self.image_ids = m.get('imageIds')
         if m.get('name') is not None:

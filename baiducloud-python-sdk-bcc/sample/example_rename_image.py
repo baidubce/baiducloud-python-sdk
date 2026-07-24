@@ -18,7 +18,7 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = BccClient(bce_client_config)
-        request = bcc_models.RenameImageRequest(image_ids=[], name="")
+        request = bcc_models.RenameImageRequest(image_id="", image_ids=[], name="")
         res = client.rename_image(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

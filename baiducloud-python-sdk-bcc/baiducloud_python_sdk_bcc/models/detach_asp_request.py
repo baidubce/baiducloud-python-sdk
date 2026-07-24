@@ -12,7 +12,7 @@ class DetachAspRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, asp_id, volume_ids, delete_auto_snapshot=None):
+    def __init__(self, asp_id, volume_ids):
         """
         Initialize DetachAspRequest request entity.
 
@@ -21,14 +21,10 @@ class DetachAspRequest(AbstractModel):
 
         :param volume_ids: 需要解绑的磁盘ID列表
         :type volume_ids: List[str] (required)
-
-        :param delete_auto_snapshot: 自动快照随磁盘删除，初始值为false，显式赋值后所有相关磁盘对应属性会被新值替换
-        :type delete_auto_snapshot: bool (optional)
         """
         super().__init__()
         self.asp_id = asp_id
         self.volume_ids = volume_ids
-        self.delete_auto_snapshot = delete_auto_snapshot
 
     def to_dict(self):
         """
@@ -45,8 +41,6 @@ class DetachAspRequest(AbstractModel):
         result = dict()
         if self.volume_ids is not None:
             result['volumeIds'] = self.volume_ids
-        if self.delete_auto_snapshot is not None:
-            result['deleteAutoSnapshot'] = self.delete_auto_snapshot
         return result
 
     def from_dict(self, m):
@@ -69,6 +63,4 @@ class DetachAspRequest(AbstractModel):
             self.asp_id = m.get('aspId')
         if m.get('volumeIds') is not None:
             self.volume_ids = m.get('volumeIds')
-        if m.get('deleteAutoSnapshot') is not None:
-            self.delete_auto_snapshot = m.get('deleteAutoSnapshot')
         return self

@@ -16,10 +16,10 @@ class ListSnapshotShareRequest(AbstractModel):
         """
         Initialize ListSnapshotShareRequest request entity.
 
-        :param marker: 批量获取列表的查询的起始位置，是一个由系统生成的字符串。
+        :param marker: 批量获取列表的查询的起始位置，是一个由系统生成的字符串
         :type marker: str (optional)
 
-        :param max_keys: 每页包含的最大数量
+        :param max_keys: 每页包含的最大数量，最大数量通常不超过100，缺省值为10
         :type max_keys: int (optional)
         """
         super().__init__()
