@@ -17,7 +17,7 @@ class ActionResult(AbstractModel):
         :param action_id: 命令ID
         :type action_id: str (optional)
 
-        :param action_name: 命令名称
+        :param action_name: 命令名称，保存命令的时候返回
         :type action_name: str (optional)
 
         :param run_id: 执行id，仅在命令执行时返回
