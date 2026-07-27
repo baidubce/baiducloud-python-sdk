@@ -3,6 +3,7 @@ Request entity for GetExecutionListV2Request information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
+from baiducloud_python_sdk_oos.models.template_filter import TemplateFilter
 
 
 class GetExecutionListV2Request(AbstractModel):
@@ -17,7 +18,6 @@ class GetExecutionListV2Request(AbstractModel):
         page_no,
         page_size,
         locale=None,
-        namespace=None,
         template=None,
         state=None,
         trigger=None,
@@ -34,11 +34,8 @@ class GetExecutionListV2Request(AbstractModel):
         :param locale: locale parameter
         :type locale: str (optional)
 
-        :param namespace: 名称空间，默认 default
-        :type namespace: str (optional)
-
-        :param template: 模版过滤条件
-        :type template: object (optional)
+        :param template: template parameter
+        :type template: TemplateFilter (optional)
 
         :param state: state parameter
         :type state: str (optional)
@@ -72,7 +69,6 @@ class GetExecutionListV2Request(AbstractModel):
         """
         super().__init__()
         self.locale = locale
-        self.namespace = namespace
         self.template = template
         self.state = state
         self.trigger = trigger
@@ -98,10 +94,8 @@ class GetExecutionListV2Request(AbstractModel):
         if _map is not None:
             return _map
         result = dict()
-        if self.namespace is not None:
-            result['namespace'] = self.namespace
         if self.template is not None:
-            result['template'] = self.template
+            result['template'] = self.template.to_dict()
         if self.state is not None:
             result['state'] = self.state
         if self.trigger is not None:
@@ -142,10 +136,8 @@ class GetExecutionListV2Request(AbstractModel):
         m = m or dict()
         if m.get('locale') is not None:
             self.locale = m.get('locale')
-        if m.get('namespace') is not None:
-            self.namespace = m.get('namespace')
         if m.get('template') is not None:
-            self.template = m.get('template')
+            self.template = TemplateFilter().from_dict(m.get('template'))
         if m.get('state') is not None:
             self.state = m.get('state')
         if m.get('trigger') is not None:

@@ -12,7 +12,7 @@ class GetTaskChildrenListV2Request(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, page_no, page_size, locale=None, execution_id=None, task_id=None, namespace=None, states=None):
+    def __init__(self, page_no, page_size, locale=None, execution_id=None, task_id=None, states=None):
         """
         Initialize GetTaskChildrenListV2Request request entity.
 
@@ -24,9 +24,6 @@ class GetTaskChildrenListV2Request(AbstractModel):
 
         :param task_id: 任务（Task）ID
         :type task_id: str (optional)
-
-        :param namespace: 名称空间，如果用户未使用自定义名称空间，可以不传此字段，默认为“default”，
-        :type namespace: str (optional)
 
         :param states: 按state进行筛选，选填，若未设置，返回所有状态的子执行
         :type states: List[str] (optional)
@@ -41,7 +38,6 @@ class GetTaskChildrenListV2Request(AbstractModel):
         self.locale = locale
         self.execution_id = execution_id
         self.task_id = task_id
-        self.namespace = namespace
         self.states = states
         self.page_no = page_no
         self.page_size = page_size
@@ -63,8 +59,6 @@ class GetTaskChildrenListV2Request(AbstractModel):
             result['executionId'] = self.execution_id
         if self.task_id is not None:
             result['taskId'] = self.task_id
-        if self.namespace is not None:
-            result['namespace'] = self.namespace
         if self.states is not None:
             result['states'] = self.states
         if self.page_no is not None:
@@ -95,8 +89,6 @@ class GetTaskChildrenListV2Request(AbstractModel):
             self.execution_id = m.get('executionId')
         if m.get('taskId') is not None:
             self.task_id = m.get('taskId')
-        if m.get('namespace') is not None:
-            self.namespace = m.get('namespace')
         if m.get('states') is not None:
             self.states = m.get('states')
         if m.get('pageNo') is not None:

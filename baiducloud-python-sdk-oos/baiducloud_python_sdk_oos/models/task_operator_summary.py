@@ -4,6 +4,8 @@ TaskOperatorSummary information
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
+from baiducloud_python_sdk_oos.models.dag_spec import DagSpec
+
 from baiducloud_python_sdk_oos.models.tag_selector import TagSelector
 
 from baiducloud_python_sdk_oos.models.event_model import EventModel
@@ -265,8 +267,6 @@ class TaskOperatorSummary(AbstractModel):
         if m.get('operator') is not None:
             self.operator = m.get('operator')
         if m.get('dagSpec') is not None:
-            # 延迟导入，避免与 dag_spec 模块形成顶层循环导入
-            from baiducloud_python_sdk_oos.models.dag_spec import DagSpec
             self.dag_spec = DagSpec().from_dict(m.get('dagSpec'))
         if m.get('inline') is not None:
             self.inline = m.get('inline')

@@ -49,7 +49,7 @@ class EventExecution(AbstractModel):
         :type template: Template (optional)
 
         :param properties: 全局参数取值集合
-        :type properties: object (optional)
+        :type properties: Dict[str, object] (optional)
 
         :param event: event attribute
         :type event: Event (optional)

@@ -3,6 +3,7 @@ Request entity for GetOperatorListV2Request information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
+from baiducloud_python_sdk_oos.models.operator_filter import OperatorFilter
 
 
 class GetOperatorListV2Request(AbstractModel):
@@ -19,8 +20,8 @@ class GetOperatorListV2Request(AbstractModel):
         :param locale: locale parameter
         :type locale: str (optional)
 
-        :param operator: 系统模板操作符过滤条件
-        :type operator: object (optional)
+        :param operator: operator parameter
+        :type operator: OperatorFilter (optional)
 
         :param sort: 排序字段
         :type sort: str (optional)
@@ -56,7 +57,7 @@ class GetOperatorListV2Request(AbstractModel):
             return _map
         result = dict()
         if self.operator is not None:
-            result['operator'] = self.operator
+            result['operator'] = self.operator.to_dict()
         if self.sort is not None:
             result['sort'] = self.sort
         if self.ascending is not None:
@@ -86,7 +87,7 @@ class GetOperatorListV2Request(AbstractModel):
         if m.get('locale') is not None:
             self.locale = m.get('locale')
         if m.get('operator') is not None:
-            self.operator = m.get('operator')
+            self.operator = OperatorFilter().from_dict(m.get('operator'))
         if m.get('sort') is not None:
             self.sort = m.get('sort')
         if m.get('ascending') is not None:

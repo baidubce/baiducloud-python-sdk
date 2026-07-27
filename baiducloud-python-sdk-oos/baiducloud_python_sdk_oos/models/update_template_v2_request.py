@@ -21,7 +21,6 @@ class UpdateTemplateV2Request(AbstractModel):
         id,
         name,
         operators,
-        namespace=None,
         description=None,
         tags=None,
         linear=None,
@@ -31,9 +30,6 @@ class UpdateTemplateV2Request(AbstractModel):
     ):
         """
         Initialize UpdateTemplateV2Request request entity.
-
-        :param namespace: 名称空间，默认 default
-        :type namespace: str (optional)
 
         :param id: 模板唯一标识，由服务端生成，更新模版需要传递此字段，查询详情和列表时响应此字段
         :type id: str (required)
@@ -63,7 +59,6 @@ class UpdateTemplateV2Request(AbstractModel):
         :type properties: List[ModelProperty] (optional)
         """
         super().__init__()
-        self.namespace = namespace
         self.id = id
         self.name = name
         self.description = description
@@ -87,8 +82,6 @@ class UpdateTemplateV2Request(AbstractModel):
         if _map is not None:
             return _map
         result = dict()
-        if self.namespace is not None:
-            result['namespace'] = self.namespace
         if self.id is not None:
             result['id'] = self.id
         if self.name is not None:
@@ -125,8 +118,6 @@ class UpdateTemplateV2Request(AbstractModel):
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('namespace') is not None:
-            self.namespace = m.get('namespace')
         if m.get('id') is not None:
             self.id = m.get('id')
         if m.get('name') is not None:

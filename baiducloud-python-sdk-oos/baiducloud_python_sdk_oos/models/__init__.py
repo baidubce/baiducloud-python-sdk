@@ -39,6 +39,7 @@ from .log import Log
 from .loop_model import LoopModel
 from .model_property import ModelProperty
 from .operator import Operator
+from .operator_filter import OperatorFilter
 from .operator_page import OperatorPage
 from .operator_spec import OperatorSpec
 from .option import Option
@@ -53,6 +54,7 @@ from .task import Task
 from .task_children_page import TaskChildrenPage
 from .task_operator_summary import TaskOperatorSummary
 from .template import Template
+from .template_filter import TemplateFilter
 from .template_page import TemplatePage
 from .update_template_v2_request import UpdateTemplateV2Request
 from .update_template_v2_response import UpdateTemplateV2Response

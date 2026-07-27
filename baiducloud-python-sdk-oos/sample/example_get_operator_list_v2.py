@@ -18,8 +18,9 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = OosClient(bce_client_config)
+        operator = oos_models.OperatorFilter(name="")
         request = oos_models.GetOperatorListV2Request(
-            page_no=0, page_size=0, locale="", operator=None, sort="", ascending=False
+            page_no=0, page_size=0, locale="", operator=operator, sort="", ascending=False
         )
         res = client.get_operator_list_v2(request)
         print(res.to_json_string())

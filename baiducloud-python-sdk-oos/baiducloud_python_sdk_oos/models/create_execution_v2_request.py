@@ -36,7 +36,7 @@ class CreateExecutionV2Request(AbstractModel):
         :type manually: bool (optional)
 
         :param properties: 全局参数取值集合
-        :type properties: object (optional)
+        :type properties: Dict[str, object] (optional)
 
         :param tags: 执行绑定标签列表
         :type tags: List[Tag] (optional)

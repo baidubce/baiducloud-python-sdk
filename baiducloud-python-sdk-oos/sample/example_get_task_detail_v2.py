@@ -18,7 +18,7 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = OosClient(bce_client_config)
-        request = oos_models.GetTaskDetailV2Request(dag_id="", task_id="", namespace="", ignore_children="", locale="")
+        request = oos_models.GetTaskDetailV2Request(dag_id="", task_id="", ignore_children="", locale="")
         res = client.get_task_detail_v2(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

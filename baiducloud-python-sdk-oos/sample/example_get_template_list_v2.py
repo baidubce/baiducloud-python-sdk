@@ -22,7 +22,6 @@ if __name__ == '__main__':
             page_no=0,
             page_size=0,
             locale="",
-            namespace="",
             name="",
             id="",
             type="",

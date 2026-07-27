@@ -17,7 +17,6 @@ class GetTemplateListV2Request(AbstractModel):
         page_no,
         page_size,
         locale=None,
-        namespace=None,
         name=None,
         id=None,
         type=None,
@@ -30,9 +29,6 @@ class GetTemplateListV2Request(AbstractModel):
 
         :param locale: locale parameter
         :type locale: str (optional)
-
-        :param namespace: 名称空间，默认 default
-        :type namespace: str (optional)
 
         :param name: 模板名称
         :type name: str (optional)
@@ -60,7 +56,6 @@ class GetTemplateListV2Request(AbstractModel):
         """
         super().__init__()
         self.locale = locale
-        self.namespace = namespace
         self.name = name
         self.id = id
         self.type = type
@@ -83,8 +78,6 @@ class GetTemplateListV2Request(AbstractModel):
         if _map is not None:
             return _map
         result = dict()
-        if self.namespace is not None:
-            result['namespace'] = self.namespace
         if self.name is not None:
             result['name'] = self.name
         if self.id is not None:
@@ -121,8 +114,6 @@ class GetTemplateListV2Request(AbstractModel):
         m = m or dict()
         if m.get('locale') is not None:
             self.locale = m.get('locale')
-        if m.get('namespace') is not None:
-            self.namespace = m.get('namespace')
         if m.get('name') is not None:
             self.name = m.get('name')
         if m.get('id') is not None:

@@ -33,7 +33,7 @@ class ModelProperty(AbstractModel):
         :param required: 是否必填
         :type required: bool (optional)
 
-        :param type: 参数类型
+        :param type: type attribute
         :type type: str (optional)
 
         :param label: 参数显示名称

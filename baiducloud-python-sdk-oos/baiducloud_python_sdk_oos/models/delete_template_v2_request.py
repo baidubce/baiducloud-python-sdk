@@ -12,18 +12,14 @@ class DeleteTemplateV2Request(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, id, namespace=None):
+    def __init__(self, id):
         """
         Initialize DeleteTemplateV2Request request entity.
-
-        :param namespace: namespace parameter
-        :type namespace: str (optional)
 
         :param id: id parameter
         :type id: str (required)
         """
         super().__init__()
-        self.namespace = namespace
         self.id = id
 
     def to_dict(self):
@@ -57,8 +53,6 @@ class DeleteTemplateV2Request(AbstractModel):
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('namespace') is not None:
-            self.namespace = m.get('namespace')
         if m.get('id') is not None:
             self.id = m.get('id')
         return self

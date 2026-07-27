@@ -18,12 +18,12 @@ if __name__ == '__main__':
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
         client = OosClient(bce_client_config)
+        template = oos_models.TemplateFilter(name="")
         request = oos_models.GetExecutionListV2Request(
             page_no=0,
             page_size=0,
             locale="",
-            namespace="",
-            template=None,
+            template=template,
             state="",
             trigger="",
             cron_execution_name="",

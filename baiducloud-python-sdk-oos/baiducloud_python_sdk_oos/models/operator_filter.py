@@ -1,28 +1,24 @@
 """
-Option information
+OperatorFilter information
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class Option(AbstractModel):
+class OperatorFilter(AbstractModel):
     """
-    Option
+    OperatorFilter
     """
 
-    def __init__(self, label=None, value=None):
+    def __init__(self, name=None):
         """
-        Initialize Option instance.
+        Initialize OperatorFilter instance.
 
-        :param label: 选项显示名称
-        :type label: str (optional)
-
-        :param value: 选项值
-        :type value: object (optional)
+        :param name: 系统操作符名称过滤关键字
+        :type name: str (optional)
         """
         super().__init__()
-        self.label = label
-        self.value = value
+        self.name = name
 
     def to_dict(self):
         """
@@ -37,10 +33,8 @@ class Option(AbstractModel):
         if _map is not None:
             return _map
         result = dict()
-        if self.label is not None:
-            result['label'] = self.label
-        if self.value is not None:
-            result['value'] = self.value
+        if self.name is not None:
+            result['name'] = self.name
         return result
 
     def from_dict(self, m):
@@ -53,14 +47,12 @@ class Option(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: Option
+        :rtype: OperatorFilter
 
         :raises TypeError: If input is not a dictionary type
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('label') is not None:
-            self.label = m.get('label')
-        if m.get('value') is not None:
-            self.value = m.get('value')
+        if m.get('name') is not None:
+            self.name = m.get('name')
         return self

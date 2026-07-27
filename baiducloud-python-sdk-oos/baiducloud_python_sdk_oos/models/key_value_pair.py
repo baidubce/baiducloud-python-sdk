@@ -18,7 +18,7 @@ class KeyValuePair(AbstractModel):
         :type key: str (optional)
 
         :param value: 值
-        :type value: object (optional)
+        :type value: str (optional)
         """
         super().__init__()
         self.key = key

@@ -19,7 +19,7 @@ if __name__ == '__main__':
         )
         client = OosClient(bce_client_config)
         request = oos_models.GetTaskChildrenListV2Request(
-            page_no=0, page_size=0, locale="", execution_id="", task_id="", namespace="", states=[]
+            page_no=0, page_size=0, locale="", execution_id="", task_id="", states=[]
         )
         res = client.get_task_children_list_v2(request)
         print(res.to_json_string())

@@ -1,3 +1,8 @@
+2026-07-27 Version: 0.0.2
+- 涉及产品: OOS，查询/详情执行接口新增updatedTime、label、parallelismControl等字段
+- 涉及产品: OOS，创建执行接口新增key字段
+- 涉及产品: OOS，删除/更新/查询模板及任务详情接口移除namespace字段
+
 2026-07-12 Version: 0.0.1
 - 涉及产品: OOS，新增模板的创建、更新、删除、校验及查看接口
 - 涉及产品: OOS，新增执行的创建、查询详情及列表接口

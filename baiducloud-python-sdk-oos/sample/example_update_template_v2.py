@@ -19,16 +19,7 @@ if __name__ == '__main__':
         )
         client = OosClient(bce_client_config)
         request = oos_models.UpdateTemplateV2Request(
-            id="",
-            name="",
-            operators=[],
-            namespace="",
-            description="",
-            tags=[],
-            linear=False,
-            parallelism=0,
-            links=[],
-            properties=[],
+            id="", name="", operators=[], description="", tags=[], linear=False, parallelism=0, links=[], properties=[]
         )
         res = client.update_template_v2(request)
         print(res.to_json_string())

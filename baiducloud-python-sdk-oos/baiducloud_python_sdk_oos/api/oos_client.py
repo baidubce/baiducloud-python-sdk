@@ -11,6 +11,7 @@ from baiducloud_python_sdk_core.bce_base_client import BceBaseClient
 from baiducloud_python_sdk_core.http import bce_http_client
 from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import http_methods
+from baiducloud_python_sdk_core.util import request_body_utils
 from baiducloud_python_sdk_oos.models.check_template_v2_response import CheckTemplateV2Response
 from baiducloud_python_sdk_oos.models.create_execution_v2_response import CreateExecutionV2Response
 from baiducloud_python_sdk_oos.models.create_template_v2_response import CreateTemplateV2Response
@@ -159,8 +160,6 @@ class OosClient(BceBaseClient):
         params = {}
         if request.id is not None:
             params['id'] = request.id
-        if request.namespace is not None:
-            params['namespace'] = request.namespace
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.DELETE, path=path, params=params, config=merged_config, model=DeleteTemplateV2Response
@@ -186,8 +185,6 @@ class OosClient(BceBaseClient):
         params = {}
         if request.id is not None:
             params['id'] = request.id
-        if request.namespace is not None:
-            params['namespace'] = request.namespace
         if request.with_log is not None:
             params['withLog'] = request.with_log
         if request.locale is not None:
@@ -311,8 +308,6 @@ class OosClient(BceBaseClient):
             params['dagId'] = request.dag_id
         if request.task_id is not None:
             params['taskId'] = request.task_id
-        if request.namespace is not None:
-            params['namespace'] = request.namespace
         if request.ignore_children is not None:
             params['ignoreChildren'] = request.ignore_children
         if request.locale is not None:
@@ -340,8 +335,6 @@ class OosClient(BceBaseClient):
         path = utils.append_uri(OosClient.VERSION_V2, OosClient.CONSTANT_TEMPLATE)
         headers = None
         params = {}
-        if request.namespace is not None:
-            params['namespace'] = request.namespace
         if request.id is not None:
             params['id'] = request.id
         if request.name is not None:

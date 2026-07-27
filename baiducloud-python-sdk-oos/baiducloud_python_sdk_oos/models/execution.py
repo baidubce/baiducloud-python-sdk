@@ -76,7 +76,7 @@ class Execution(AbstractModel):
         :type state: str (optional)
 
         :param properties: 全局参数取值集合
-        :type properties: object (optional)
+        :type properties: Dict[str, object] (optional)
 
         :param tasks: 执行中的任务列表；执行列表接口响应固定为空数组，仅用于查询详情接口的字段返回
         :type tasks: List[ExecutionTaskSummary] (optional)

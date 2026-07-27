@@ -12,12 +12,9 @@ class GetTaskDetailV2Request(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, dag_id, task_id, namespace=None, ignore_children=None, locale=None):
+    def __init__(self, dag_id, task_id, ignore_children=None, locale=None):
         """
         Initialize GetTaskDetailV2Request request entity.
-
-        :param namespace: namespace parameter
-        :type namespace: str (optional)
 
         :param dag_id: dag_id parameter
         :type dag_id: str (required)
@@ -32,7 +29,6 @@ class GetTaskDetailV2Request(AbstractModel):
         :type locale: str (optional)
         """
         super().__init__()
-        self.namespace = namespace
         self.dag_id = dag_id
         self.task_id = task_id
         self.ignore_children = ignore_children
@@ -69,8 +65,6 @@ class GetTaskDetailV2Request(AbstractModel):
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('namespace') is not None:
-            self.namespace = m.get('namespace')
         if m.get('dagId') is not None:
             self.dag_id = m.get('dagId')
         if m.get('taskId') is not None:

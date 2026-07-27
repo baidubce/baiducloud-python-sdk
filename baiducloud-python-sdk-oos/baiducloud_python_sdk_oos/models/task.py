@@ -80,7 +80,7 @@ class Task(AbstractModel):
         :type state: str (optional)
 
         :param properties: 任务参数
-        :type properties: object (optional)
+        :type properties: Dict[str, object] (optional)
 
         :param tries: 任务尝试次数，从 0 开始
         :type tries: int (optional)

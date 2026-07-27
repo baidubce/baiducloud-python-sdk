@@ -12,12 +12,9 @@ class GetTemplateDetailV2Request(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, namespace=None, id=None, name=None, type=None, locale=None):
+    def __init__(self, id=None, name=None, type=None, locale=None):
         """
         Initialize GetTemplateDetailV2Request request entity.
-
-        :param namespace: namespace parameter
-        :type namespace: str (optional)
 
         :param id: id parameter
         :type id: str (optional)
@@ -32,7 +29,6 @@ class GetTemplateDetailV2Request(AbstractModel):
         :type locale: str (optional)
         """
         super().__init__()
-        self.namespace = namespace
         self.id = id
         self.name = name
         self.type = type
@@ -69,8 +65,6 @@ class GetTemplateDetailV2Request(AbstractModel):
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('namespace') is not None:
-            self.namespace = m.get('namespace')
         if m.get('id') is not None:
             self.id = m.get('id')
         if m.get('name') is not None:

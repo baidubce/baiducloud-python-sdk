@@ -56,7 +56,7 @@ class CronExecution(AbstractModel):
         :type template_deleted: bool (optional)
 
         :param properties: 全局参数取值集合
-        :type properties: object (optional)
+        :type properties: Dict[str, object] (optional)
 
         :param tags: 标签
         :type tags: List[Tag] (optional)
