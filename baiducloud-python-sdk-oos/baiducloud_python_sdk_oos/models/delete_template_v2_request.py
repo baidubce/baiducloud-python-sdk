@@ -35,6 +35,8 @@ class DeleteTemplateV2Request(AbstractModel):
         if _map is not None:
             return _map
         result = dict()
+        if self.id is not None:
+            result['id'] = self.id
         return result
 
     def from_dict(self, m):

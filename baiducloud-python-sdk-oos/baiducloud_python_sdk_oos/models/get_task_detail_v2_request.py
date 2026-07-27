@@ -47,6 +47,14 @@ class GetTaskDetailV2Request(AbstractModel):
         if _map is not None:
             return _map
         result = dict()
+        if self.dag_id is not None:
+            result['dagId'] = self.dag_id
+        if self.task_id is not None:
+            result['taskId'] = self.task_id
+        if self.ignore_children is not None:
+            result['ignoreChildren'] = self.ignore_children
+        if self.locale is not None:
+            result['locale'] = self.locale
         return result
 
     def from_dict(self, m):

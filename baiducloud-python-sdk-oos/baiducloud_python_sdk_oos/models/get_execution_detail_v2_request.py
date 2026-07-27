@@ -43,6 +43,12 @@ class GetExecutionDetailV2Request(AbstractModel):
         if _map is not None:
             return _map
         result = dict()
+        if self.id is not None:
+            result['id'] = self.id
+        if self.with_log is not None:
+            result['withLog'] = self.with_log
+        if self.locale is not None:
+            result['locale'] = self.locale
         return result
 
     def from_dict(self, m):

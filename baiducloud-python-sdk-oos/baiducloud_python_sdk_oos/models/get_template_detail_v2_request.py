@@ -47,6 +47,14 @@ class GetTemplateDetailV2Request(AbstractModel):
         if _map is not None:
             return _map
         result = dict()
+        if self.id is not None:
+            result['id'] = self.id
+        if self.name is not None:
+            result['name'] = self.name
+        if self.type is not None:
+            result['type'] = self.type
+        if self.locale is not None:
+            result['locale'] = self.locale
         return result
 
     def from_dict(self, m):

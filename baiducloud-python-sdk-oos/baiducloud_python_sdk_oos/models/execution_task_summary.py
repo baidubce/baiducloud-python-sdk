@@ -4,8 +4,6 @@ ExecutionTaskSummary information
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
-from baiducloud_python_sdk_oos.models.dag_instance import DagInstance
-
 from baiducloud_python_sdk_oos.models.task_operator_summary import TaskOperatorSummary
 
 from baiducloud_python_sdk_oos.models.log import Log
@@ -188,6 +186,8 @@ class ExecutionTaskSummary(AbstractModel):
         if m.get('namespace') is not None:
             self.namespace = m.get('namespace')
         if m.get('dag') is not None:
+            # 延迟导入，避免与 dag_instance 模块形成顶层循环导入
+            from baiducloud_python_sdk_oos.models.dag_instance import DagInstance
             self.dag = DagInstance().from_dict(m.get('dag'))
         if m.get('revision') is not None:
             self.revision = m.get('revision')
