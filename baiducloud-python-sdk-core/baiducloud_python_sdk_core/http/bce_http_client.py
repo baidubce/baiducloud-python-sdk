@@ -179,8 +179,12 @@ def send_request(
     if port != config.protocol.default_port:
         headers[http_headers.HOST] += b':' + compat.convert_to_bytes(port)
 
-    headers[http_headers.AUTHORIZATION] = sign_function(
+    signature = sign_function(
         config.credentials, http_method, path, headers, params)
+    if signature:
+        headers[http_headers.AUTHORIZATION] = signature
+    else:
+        headers.pop(http_headers.AUTHORIZATION, None)
 
     encoded_params = utils.get_canonical_querystring(params, False)
     if len(encoded_params) > 0:
@@ -198,8 +202,12 @@ def send_request(
             if should_get_new_date is True:
                 headers[http_headers.BCE_DATE] = utils.get_canonical_time()
 
-            headers[http_headers.AUTHORIZATION] = sign_function(
+            signature = sign_function(
                 config.credentials, http_method, path, headers, params)
+            if signature:
+                headers[http_headers.AUTHORIZATION] = signature
+            else:
+                headers.pop(http_headers.AUTHORIZATION, None)
 
             if retries_attempted > 0 and offset is not None:
                 body.seek(offset)

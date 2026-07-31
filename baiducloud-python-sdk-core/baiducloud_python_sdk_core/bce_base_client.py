@@ -19,6 +19,7 @@ from builtins import str, bytes
 
 import baiducloud_python_sdk_core
 from baiducloud_python_sdk_core import bce_client_configuration
+from baiducloud_python_sdk_core import protocol
 from baiducloud_python_sdk_core.auth.api_key_credentials import ApiKeyCredentials
 from baiducloud_python_sdk_core.exception import BceClientError
 from baiducloud_python_sdk_core.auth import bce_v1_signer, api_key_signer
@@ -68,18 +69,30 @@ class BceBaseClient(object):
                 self.service_id,
                 baiducloud_python_sdk_core.DEFAULT_SERVICE_DOMAIN)
 
-    def _send_request(self, http_method, path, headers=None, params=None, body=None, model=None, config=None):
-        effective_config = config if config is not None else self.config
-        credentials = effective_config.credentials
+    def _choose_signer(self, config, params):
+        credentials = config.credentials
         if isinstance(credentials, AccessTokenCredentials):
-            token = credentials.get_access_token()
             params = dict(params or {})
-            params['access_token'] = token
+            params['access_token'] = credentials.get_access_token()
+            self._ensure_https(config)
             sign_fn = access_token_signer.sign
         elif isinstance(credentials, ApiKeyCredentials):
+            self._ensure_https(config)
             sign_fn = api_key_signer.sign
         else:
             sign_fn = bce_v1_signer.sign
+        return sign_fn, params
+
+    def _ensure_https(self, config):
+        endpoint = config.endpoint
+        if isinstance(endpoint, bytes):
+            endpoint = endpoint.decode('utf-8')
+        if not endpoint.startswith('http'):
+            config.protocol = protocol.HTTPS
+
+    def _send_request(self, http_method, path, headers=None, params=None, body=None, model=None, config=None):
+        effective_config = config if config is not None else self.config
+        sign_fn, params = self._choose_signer(effective_config, params)
         return bce_http_client.send_request(
             effective_config, sign_fn, [handler.parse_error, handler.parse_json],
             http_method, path, body, headers, params, model=model)
