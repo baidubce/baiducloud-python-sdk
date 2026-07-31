@@ -19,10 +19,13 @@ from builtins import str, bytes
 
 import baiducloud_python_sdk_core
 from baiducloud_python_sdk_core import bce_client_configuration
+from baiducloud_python_sdk_core.auth.api_key_credentials import ApiKeyCredentials
 from baiducloud_python_sdk_core.exception import BceClientError
-from baiducloud_python_sdk_core.auth import bce_v1_signer
+from baiducloud_python_sdk_core.auth import bce_v1_signer, api_key_signer
 from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import bce_http_client
+from baiducloud_python_sdk_core.auth.access_token_credentials import AccessTokenCredentials
+from baiducloud_python_sdk_core.auth import access_token_signer
 
 class BceBaseClient(object):
     """
@@ -65,9 +68,20 @@ class BceBaseClient(object):
                 self.service_id,
                 baiducloud_python_sdk_core.DEFAULT_SERVICE_DOMAIN)
 
-    def _send_request(self, http_method, path, headers=None, params=None, body=None, model=None):
+    def _send_request(self, http_method, path, headers=None, params=None, body=None, model=None, config=None):
+        effective_config = config if config is not None else self.config
+        credentials = effective_config.credentials
+        if isinstance(credentials, AccessTokenCredentials):
+            token = credentials.get_access_token()
+            params = dict(params or {})
+            params['access_token'] = token
+            sign_fn = access_token_signer.sign
+        elif isinstance(credentials, ApiKeyCredentials):
+            sign_fn = api_key_signer.sign
+        else:
+            sign_fn = bce_v1_signer.sign
         return bce_http_client.send_request(
-            self.config, bce_v1_signer.sign, [handler.parse_error, handler.parse_json],
+            effective_config, sign_fn, [handler.parse_error, handler.parse_json],
             http_method, path, body, headers, params, model=model)
 
     def _get_config(self, apiDict, apiName):

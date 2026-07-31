@@ -1,7 +1,3 @@
-2026-08-05 Version: 0.0.22
-- 涉及产品: BLB，查询/创建/更新IP组新增preserveClientIpEnabled和groupTargetType字段
-- 涉及产品: BLB，创建/查询/更新服务器组新增preserveClientIpEnabled字段
-
 2026-07-16 Version: 0.0.21
 - 涉及产品: BLB，releaseAppBlb释放实例接口query参数新增clientToken字段
 

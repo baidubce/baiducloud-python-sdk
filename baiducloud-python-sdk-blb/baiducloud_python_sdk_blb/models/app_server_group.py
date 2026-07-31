@@ -12,7 +12,7 @@ class AppServerGroup(AbstractModel):
     AppServerGroup
     """
 
-    def __init__(self, id=None, name=None, desc=None, status=None, preserve_client_ip_enabled=None, port_list=None):
+    def __init__(self, id=None, name=None, desc=None, status=None, port_list=None):
         """
         Initialize AppServerGroup instance.
 
@@ -28,9 +28,6 @@ class AppServerGroup(AbstractModel):
         :param status: 服务器组状态，详见[blbStatus](#blbStatus)
         :type status: str (optional)
 
-        :param preserve_client_ip_enabled: 是否开启客户端地址保持功能,仅应用型实例支持，应用型IPv6不支持该功能
-        :type preserve_client_ip_enabled: bool (optional)
-
         :param port_list: 服务器组开放的端口列表
         :type port_list: List[AppServerGroupPort] (optional)
         """
@@ -39,7 +36,6 @@ class AppServerGroup(AbstractModel):
         self.name = name
         self.desc = desc
         self.status = status
-        self.preserve_client_ip_enabled = preserve_client_ip_enabled
         self.port_list = port_list
 
     def to_dict(self):
@@ -63,8 +59,6 @@ class AppServerGroup(AbstractModel):
             result['desc'] = self.desc
         if self.status is not None:
             result['status'] = self.status
-        if self.preserve_client_ip_enabled is not None:
-            result['preserveClientIpEnabled'] = self.preserve_client_ip_enabled
         if self.port_list is not None:
             result['portList'] = [i.to_dict() for i in self.port_list]
         return result
@@ -93,8 +87,6 @@ class AppServerGroup(AbstractModel):
             self.desc = m.get('desc')
         if m.get('status') is not None:
             self.status = m.get('status')
-        if m.get('preserveClientIpEnabled') is not None:
-            self.preserve_client_ip_enabled = m.get('preserveClientIpEnabled')
         if m.get('portList') is not None:
             self.port_list = [AppServerGroupPort().from_dict(i) for i in m.get('portList')]
         return self
