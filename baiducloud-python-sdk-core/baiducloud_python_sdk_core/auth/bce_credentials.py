@@ -16,6 +16,7 @@ secret access key.
 These credentials are used to securely sign requests to BCE services.
 """
 from baiducloud_python_sdk_core import compat
+from baiducloud_python_sdk_core.auth import bce_v1_signer
 
 class BceCredentials(object):
     """
@@ -25,3 +26,7 @@ class BceCredentials(object):
     def __init__(self, access_key_id, secret_access_key):
         self.access_key_id = compat.convert_to_bytes(access_key_id)
         self.secret_access_key = compat.convert_to_bytes(secret_access_key)
+
+    def sign_function(self):
+        """Return the signer function (AK/SK v1) used to authenticate requests for this credential."""
+        return bce_v1_signer.sign

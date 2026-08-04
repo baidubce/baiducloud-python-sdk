@@ -71,16 +71,13 @@ class BceBaseClient(object):
 
     def _choose_signer(self, config, params):
         credentials = config.credentials
+        sign_fn = credentials.sign_function()
         if isinstance(credentials, AccessTokenCredentials):
             params = dict(params or {})
             params['access_token'] = credentials.get_access_token()
             self._ensure_https(config)
-            sign_fn = access_token_signer.sign
         elif isinstance(credentials, ApiKeyCredentials):
             self._ensure_https(config)
-            sign_fn = api_key_signer.sign
-        else:
-            sign_fn = bce_v1_signer.sign
         return sign_fn, params
 
     def _ensure_https(self, config):

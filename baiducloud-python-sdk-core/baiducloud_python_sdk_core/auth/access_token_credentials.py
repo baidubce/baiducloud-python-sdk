@@ -2,8 +2,11 @@
 Provides AccessTokenCredentials for AIP (AI Platform) authentication.
 Uses api_key/secret_key to obtain and cache access_token from OAuth endpoint.
 """
+import json
 import time
-import requests
+from http.client import HTTPSConnection
+from urllib.parse import urlencode
+from baiducloud_python_sdk_core.auth import access_token_signer
 
 
 class AccessTokenCredentials(object):
@@ -12,7 +15,8 @@ class AccessTokenCredentials(object):
     Token is cached and auto-refreshed before expiry.
     """
 
-    TOKEN_URL = "https://aip.baidubce.com/oauth/2.0/token"
+    TOKEN_HOST = "aip.baidubce.com"
+    TOKEN_PATH = "/oauth/2.0/token"
 
     def __init__(self, api_key, secret_key):
         self.api_key = api_key
@@ -26,21 +30,31 @@ class AccessTokenCredentials(object):
             self._refresh_token()
         return self._token
 
+    def sign_function(self):
+        """Return the access-token signer function used to authenticate requests for this credential."""
+        return access_token_signer.sign
+
     def _refresh_token(self):
+        path = self.TOKEN_PATH + '?' + urlencode({
+            'grant_type': 'client_credentials',
+            'client_id': self.api_key,
+            'client_secret': self.secret_key,
+        })
         max_retry = 3
         for attempt in range(max_retry):
-            response = requests.get(
-                self.TOKEN_URL,
-                params={
-                'grant_type': 'client_credentials',
-                'client_id': self.api_key,
-                'client_secret': self.secret_key,
-                }
-            )
-            if response.status_code == 500 and attempt < max_retry - 1:
+            conn = HTTPSConnection(self.TOKEN_HOST, timeout=30)
+            try:
+                conn.request('GET', path)
+                response = conn.getresponse()
+                status = response.status
+                body = response.read()
+            finally:
+                conn.close()
+            if status == 500 and attempt < max_retry - 1:
                 continue
-            response.raise_for_status()
-            data = response.json()
+            if status != 200:
+                raise Exception('Failed to get access token, status code: %d' % status)
+            data = json.loads(body)
             self._token = data['access_token']
             expires_in = int(data.get('expires_in', 2592000))
             self._expire_at = time.time() + expires_in
