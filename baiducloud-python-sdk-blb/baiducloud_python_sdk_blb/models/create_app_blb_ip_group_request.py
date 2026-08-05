@@ -13,7 +13,16 @@ class CreateAppBlbIpGroupRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, blb_id, client_token=None, name=None, desc=None, member_list=None):
+    def __init__(
+        self,
+        blb_id,
+        client_token=None,
+        name=None,
+        desc=None,
+        preserve_client_ip_enabled=None,
+        group_target_type=None,
+        member_list=None,
+    ):
         """
         Initialize CreateAppBlbIpGroupRequest request entity.
 
@@ -29,6 +38,12 @@ class CreateAppBlbIpGroupRequest(AbstractModel):
         :param desc: IP组的描述，最大支持200字符
         :type desc: str (optional)
 
+        :param preserve_client_ip_enabled: preserve_client_ip_enabled parameter
+        :type preserve_client_ip_enabled: bool (optional)
+
+        :param group_target_type: group_target_type parameter
+        :type group_target_type: str (optional)
+
         :param member_list: IP组挂载的IP组成员列表
         :type member_list: List[AppIpGroupMemberForCreate] (optional)
         """
@@ -37,6 +52,8 @@ class CreateAppBlbIpGroupRequest(AbstractModel):
         self.client_token = client_token
         self.name = name
         self.desc = desc
+        self.preserve_client_ip_enabled = preserve_client_ip_enabled
+        self.group_target_type = group_target_type
         self.member_list = member_list
 
     def to_dict(self):
@@ -56,6 +73,10 @@ class CreateAppBlbIpGroupRequest(AbstractModel):
             result['name'] = self.name
         if self.desc is not None:
             result['desc'] = self.desc
+        if self.preserve_client_ip_enabled is not None:
+            result['preserveClientIpEnabled'] = self.preserve_client_ip_enabled
+        if self.group_target_type is not None:
+            result['groupTargetType'] = self.group_target_type
         if self.member_list is not None:
             result['memberList'] = [i.to_dict() for i in self.member_list]
         return result
@@ -84,6 +105,10 @@ class CreateAppBlbIpGroupRequest(AbstractModel):
             self.name = m.get('name')
         if m.get('desc') is not None:
             self.desc = m.get('desc')
+        if m.get('preserveClientIpEnabled') is not None:
+            self.preserve_client_ip_enabled = m.get('preserveClientIpEnabled')
+        if m.get('groupTargetType') is not None:
+            self.group_target_type = m.get('groupTargetType')
         if m.get('memberList') is not None:
             self.member_list = [AppIpGroupMemberForCreate().from_dict(i) for i in m.get('memberList')]
         return self

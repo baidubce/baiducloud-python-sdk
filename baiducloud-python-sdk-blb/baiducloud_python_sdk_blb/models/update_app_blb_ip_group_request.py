@@ -12,7 +12,7 @@ class UpdateAppBlbIpGroupRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, blb_id, ip_group_id, client_token=None, name=None, desc=None):
+    def __init__(self, blb_id, ip_group_id, client_token=None, name=None, desc=None, preserve_client_ip_enabled=None):
         """
         Initialize UpdateAppBlbIpGroupRequest request entity.
 
@@ -30,6 +30,9 @@ class UpdateAppBlbIpGroupRequest(AbstractModel):
 
         :param desc: IP组的描述，最大支持200字符
         :type desc: str (optional)
+
+        :param preserve_client_ip_enabled: preserve_client_ip_enabled parameter
+        :type preserve_client_ip_enabled: bool (optional)
         """
         super().__init__()
         self.blb_id = blb_id
@@ -37,6 +40,7 @@ class UpdateAppBlbIpGroupRequest(AbstractModel):
         self.ip_group_id = ip_group_id
         self.name = name
         self.desc = desc
+        self.preserve_client_ip_enabled = preserve_client_ip_enabled
 
     def to_dict(self):
         """
@@ -57,6 +61,8 @@ class UpdateAppBlbIpGroupRequest(AbstractModel):
             result['name'] = self.name
         if self.desc is not None:
             result['desc'] = self.desc
+        if self.preserve_client_ip_enabled is not None:
+            result['preserveClientIpEnabled'] = self.preserve_client_ip_enabled
         return result
 
     def from_dict(self, m):
@@ -85,4 +91,6 @@ class UpdateAppBlbIpGroupRequest(AbstractModel):
             self.name = m.get('name')
         if m.get('desc') is not None:
             self.desc = m.get('desc')
+        if m.get('preserveClientIpEnabled') is not None:
+            self.preserve_client_ip_enabled = m.get('preserveClientIpEnabled')
         return self
