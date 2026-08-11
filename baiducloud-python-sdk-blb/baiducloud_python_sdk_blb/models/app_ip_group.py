@@ -12,7 +12,15 @@ class AppIpGroup(AbstractModel):
     AppIpGroup
     """
 
-    def __init__(self, id=None, name=None, desc=None, backend_policy_list=None):
+    def __init__(
+        self,
+        id=None,
+        name=None,
+        desc=None,
+        preserve_client_ip_enabled=None,
+        group_target_type=None,
+        backend_policy_list=None,
+    ):
         """
         Initialize AppIpGroup instance.
 
@@ -25,6 +33,12 @@ class AppIpGroup(AbstractModel):
         :param desc: IP组的描述
         :type desc: str (optional)
 
+        :param preserve_client_ip_enabled: preserve_client_ip_enabled attribute
+        :type preserve_client_ip_enabled: bool (optional)
+
+        :param group_target_type: group_target_type attribute
+        :type group_target_type: str (optional)
+
         :param backend_policy_list: 关联的IP组协议列表
         :type backend_policy_list: List[AppIpGroupBackendPolicy] (optional)
         """
@@ -32,6 +46,8 @@ class AppIpGroup(AbstractModel):
         self.id = id
         self.name = name
         self.desc = desc
+        self.preserve_client_ip_enabled = preserve_client_ip_enabled
+        self.group_target_type = group_target_type
         self.backend_policy_list = backend_policy_list
 
     def to_dict(self):
@@ -53,6 +69,10 @@ class AppIpGroup(AbstractModel):
             result['name'] = self.name
         if self.desc is not None:
             result['desc'] = self.desc
+        if self.preserve_client_ip_enabled is not None:
+            result['preserveClientIpEnabled'] = self.preserve_client_ip_enabled
+        if self.group_target_type is not None:
+            result['groupTargetType'] = self.group_target_type
         if self.backend_policy_list is not None:
             result['backendPolicyList'] = [i.to_dict() for i in self.backend_policy_list]
         return result
@@ -79,6 +99,10 @@ class AppIpGroup(AbstractModel):
             self.name = m.get('name')
         if m.get('desc') is not None:
             self.desc = m.get('desc')
+        if m.get('preserveClientIpEnabled') is not None:
+            self.preserve_client_ip_enabled = m.get('preserveClientIpEnabled')
+        if m.get('groupTargetType') is not None:
+            self.group_target_type = m.get('groupTargetType')
         if m.get('backendPolicyList') is not None:
             self.backend_policy_list = [AppIpGroupBackendPolicy().from_dict(i) for i in m.get('backendPolicyList')]
         return self

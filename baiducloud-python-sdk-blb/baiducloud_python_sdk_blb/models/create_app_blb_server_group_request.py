@@ -13,7 +13,15 @@ class CreateAppBlbServerGroupRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, blb_id, client_token=None, name=None, desc=None, backend_server_list=None):
+    def __init__(
+        self,
+        blb_id,
+        client_token=None,
+        name=None,
+        desc=None,
+        preserve_client_ip_enabled=None,
+        backend_server_list=None,
+    ):
         """
         Initialize CreateAppBlbServerGroupRequest request entity.
 
@@ -29,6 +37,9 @@ class CreateAppBlbServerGroupRequest(AbstractModel):
         :param desc: 服务器组的描述，便于用户添加更详细的描述信息。长度0~450个字节，支持中文。默认为空。
         :type desc: str (optional)
 
+        :param preserve_client_ip_enabled: 是否开启客户端地址保持功能，默认为true。注意：仅应用型实例支持，应用型IPv6不支持该功能
+        :type preserve_client_ip_enabled: bool (optional)
+
         :param backend_server_list: 服务器组绑定的后端服务器列表
         :type backend_server_list: List[AppBackendServerForCreate] (optional)
         """
@@ -37,6 +48,7 @@ class CreateAppBlbServerGroupRequest(AbstractModel):
         self.client_token = client_token
         self.name = name
         self.desc = desc
+        self.preserve_client_ip_enabled = preserve_client_ip_enabled
         self.backend_server_list = backend_server_list
 
     def to_dict(self):
@@ -56,6 +68,8 @@ class CreateAppBlbServerGroupRequest(AbstractModel):
             result['name'] = self.name
         if self.desc is not None:
             result['desc'] = self.desc
+        if self.preserve_client_ip_enabled is not None:
+            result['preserveClientIpEnabled'] = self.preserve_client_ip_enabled
         if self.backend_server_list is not None:
             result['backendServerList'] = [i.to_dict() for i in self.backend_server_list]
         return result
@@ -84,6 +98,8 @@ class CreateAppBlbServerGroupRequest(AbstractModel):
             self.name = m.get('name')
         if m.get('desc') is not None:
             self.desc = m.get('desc')
+        if m.get('preserveClientIpEnabled') is not None:
+            self.preserve_client_ip_enabled = m.get('preserveClientIpEnabled')
         if m.get('backendServerList') is not None:
             self.backend_server_list = [AppBackendServerForCreate().from_dict(i) for i in m.get('backendServerList')]
         return self

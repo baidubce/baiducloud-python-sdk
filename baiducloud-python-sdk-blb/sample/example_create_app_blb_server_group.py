@@ -19,7 +19,7 @@ if __name__ == '__main__':
         )
         client = BlbClient(bce_client_config)
         request = blb_models.CreateAppBlbServerGroupRequest(
-            blb_id="", client_token="", name="", desc="", backend_server_list=[]
+            blb_id="", client_token="", name="", desc="", preserve_client_ip_enabled=False, backend_server_list=[]
         )
         res = client.create_app_blb_server_group(request)
         print(res.to_json_string())
