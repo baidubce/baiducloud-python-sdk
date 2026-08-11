@@ -37,6 +37,9 @@ class PfsClientTest(unittest.TestCase):
     def test_create_l2_policy(self):
         self.client.create_l2_policy(pfs_models.CreateL2PolicyRequest())
 
+    def test_create_l3_mount_target(self):
+        self.client.create_l3_mount_target(pfs_models.CreateL3MountTargetRequest())
+
     def test_create_pfs(self):
         self.client.create_pfs(pfs_models.CreatePfsRequest())
 
@@ -48,6 +51,9 @@ class PfsClientTest(unittest.TestCase):
 
     def test_delete_l2_policy(self):
         self.client.delete_l2_policy(pfs_models.DeleteL2PolicyRequest())
+
+    def test_delete_l3_mount_target(self):
+        self.client.delete_l3_mount_target(pfs_models.DeleteL3MountTargetRequest())
 
     def test_delete_pfs(self):
         self.client.delete_pfs(pfs_models.DeletePfsRequest())
@@ -64,6 +70,9 @@ class PfsClientTest(unittest.TestCase):
     def test_desc_pfs(self):
         self.client.desc_pfs(pfs_models.DescPfsRequest())
 
+    def test_describe_l3_mount_target(self):
+        self.client.describe_l3_mount_target(pfs_models.DescribeL3MountTargetRequest())
+
     def test_instance_list_clients(self):
         self.client.instance_list_clients(pfs_models.InstanceListClientsRequest())
 
@@ -75,6 +84,9 @@ class PfsClientTest(unittest.TestCase):
 
     def test_list_l2_policy(self):
         self.client.list_l2_policy(pfs_models.ListL2PolicyRequest())
+
+    def test_list_l3_mount_target(self):
+        self.client.list_l3_mount_target(pfs_models.ListL3MountTargetRequest())
 
     def test_list_pfs(self):
         self.client.list_pfs(pfs_models.ListPfsRequest())
@@ -116,19 +128,23 @@ if __name__ == '__main__':
     suite.addTest(PfsClientTest("test_create_fileset"))
     suite.addTest(PfsClientTest("test_create_l2_bucket_link"))
     suite.addTest(PfsClientTest("test_create_l2_policy"))
+    suite.addTest(PfsClientTest("test_create_l3_mount_target"))
     suite.addTest(PfsClientTest("test_create_pfs"))
     suite.addTest(PfsClientTest("test_delete_fileset"))
     suite.addTest(PfsClientTest("test_delete_l2_bucket_link"))
     suite.addTest(PfsClientTest("test_delete_l2_policy"))
+    suite.addTest(PfsClientTest("test_delete_l3_mount_target"))
     suite.addTest(PfsClientTest("test_delete_pfs"))
     suite.addTest(PfsClientTest("test_desc_fileset"))
     suite.addTest(PfsClientTest("test_desc_l2_bucket_link"))
     suite.addTest(PfsClientTest("test_desc_l2_policy"))
     suite.addTest(PfsClientTest("test_desc_pfs"))
+    suite.addTest(PfsClientTest("test_describe_l3_mount_target"))
     suite.addTest(PfsClientTest("test_instance_list_clients"))
     suite.addTest(PfsClientTest("test_list_fileset"))
     suite.addTest(PfsClientTest("test_list_l2_bucket_link"))
     suite.addTest(PfsClientTest("test_list_l2_policy"))
+    suite.addTest(PfsClientTest("test_list_l3_mount_target"))
     suite.addTest(PfsClientTest("test_list_pfs"))
     suite.addTest(PfsClientTest("test_lst_per_l2_bkt_lnk_exec_log"))
     suite.addTest(PfsClientTest("test_mount_target_list_clients"))

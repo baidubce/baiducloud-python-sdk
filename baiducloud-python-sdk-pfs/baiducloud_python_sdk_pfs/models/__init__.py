@@ -11,6 +11,8 @@ from .create_l2_bucket_link_request import CreateL2BucketLinkRequest
 from .create_l2_bucket_link_response import CreateL2BucketLinkResponse
 from .create_l2_policy_request import CreateL2PolicyRequest
 from .create_l2_policy_response import CreateL2PolicyResponse
+from .create_l3_mount_target_request import CreateL3MountTargetRequest
+from .create_l3_mount_target_response import CreateL3MountTargetResponse
 from .create_pfs_request import CreatePfsRequest
 from .create_pfs_response import CreatePfsResponse
 from .delete_fileset_request import DeleteFilesetRequest
@@ -19,6 +21,8 @@ from .delete_l2_bucket_link_request import DeleteL2BucketLinkRequest
 from .delete_l2_bucket_link_response import DeleteL2BucketLinkResponse
 from .delete_l2_policy_request import DeleteL2PolicyRequest
 from .delete_l2_policy_response import DeleteL2PolicyResponse
+from .delete_l3_mount_target_request import DeleteL3MountTargetRequest
+from .delete_l3_mount_target_response import DeleteL3MountTargetResponse
 from .desc_fileset_request import DescFilesetRequest
 from .desc_fileset_response import DescFilesetResponse
 from .desc_l2_bucket_link_request import DescL2BucketLinkRequest
@@ -26,6 +30,8 @@ from .desc_l2_bucket_link_response import DescL2BucketLinkResponse
 from .desc_l2_policy_request import DescL2PolicyRequest
 from .desc_l2_policy_response import DescL2PolicyResponse
 from .desc_pfs_response import DescPfsResponse
+from .describe_l3_mount_target_request import DescribeL3MountTargetRequest
+from .describe_l3_mount_target_response import DescribeL3MountTargetResponse
 from .execute_info import ExecuteInfo
 from .fileset_model import FilesetModel
 from .instance_list_clients_request import InstanceListClientsRequest
@@ -37,9 +43,12 @@ from .list_l2_bucket_link_request import ListL2BucketLinkRequest
 from .list_l2_bucket_link_response import ListL2BucketLinkResponse
 from .list_l2_policy_request import ListL2PolicyRequest
 from .list_l2_policy_response import ListL2PolicyResponse
+from .list_l3_mount_target_request import ListL3MountTargetRequest
+from .list_l3_mount_target_response import ListL3MountTargetResponse
 from .list_pfs_response import ListPfsResponse
 from .lst_per_l2_bkt_lnk_exec_log_request import LstPerL2BktLnkExecLogRequest
 from .lst_per_l2_bkt_lnk_exec_log_response import LstPerL2BktLnkExecLogResponse
+from .mount_target_info import MountTargetInfo
 from .mount_target_list_clients_request import MountTargetListClientsRequest
 from .mount_target_list_clients_response import MountTargetListClientsResponse
 from .node_info import NodeInfo

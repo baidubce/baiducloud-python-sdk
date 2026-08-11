@@ -11,22 +11,27 @@ from baiducloud_python_sdk_core.bce_base_client import BceBaseClient
 from baiducloud_python_sdk_core.http import bce_http_client
 from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import http_methods
+from baiducloud_python_sdk_core.util import request_body_utils
 from baiducloud_python_sdk_pfs.models.cancel_l2_bucket_link_response import CancelL2BucketLinkResponse
 from baiducloud_python_sdk_pfs.models.create_fileset_response import CreateFilesetResponse
 from baiducloud_python_sdk_pfs.models.create_l2_bucket_link_response import CreateL2BucketLinkResponse
 from baiducloud_python_sdk_pfs.models.create_l2_policy_response import CreateL2PolicyResponse
+from baiducloud_python_sdk_pfs.models.create_l3_mount_target_response import CreateL3MountTargetResponse
 from baiducloud_python_sdk_pfs.models.create_pfs_response import CreatePfsResponse
 from baiducloud_python_sdk_pfs.models.delete_fileset_response import DeleteFilesetResponse
 from baiducloud_python_sdk_pfs.models.delete_l2_bucket_link_response import DeleteL2BucketLinkResponse
 from baiducloud_python_sdk_pfs.models.delete_l2_policy_response import DeleteL2PolicyResponse
+from baiducloud_python_sdk_pfs.models.delete_l3_mount_target_response import DeleteL3MountTargetResponse
 from baiducloud_python_sdk_pfs.models.desc_fileset_response import DescFilesetResponse
 from baiducloud_python_sdk_pfs.models.desc_l2_bucket_link_response import DescL2BucketLinkResponse
 from baiducloud_python_sdk_pfs.models.desc_l2_policy_response import DescL2PolicyResponse
 from baiducloud_python_sdk_pfs.models.desc_pfs_response import DescPfsResponse
+from baiducloud_python_sdk_pfs.models.describe_l3_mount_target_response import DescribeL3MountTargetResponse
 from baiducloud_python_sdk_pfs.models.instance_list_clients_response import InstanceListClientsResponse
 from baiducloud_python_sdk_pfs.models.list_fileset_response import ListFilesetResponse
 from baiducloud_python_sdk_pfs.models.list_l2_bucket_link_response import ListL2BucketLinkResponse
 from baiducloud_python_sdk_pfs.models.list_l2_policy_response import ListL2PolicyResponse
+from baiducloud_python_sdk_pfs.models.list_l3_mount_target_response import ListL3MountTargetResponse
 from baiducloud_python_sdk_pfs.models.list_pfs_response import ListPfsResponse
 from baiducloud_python_sdk_pfs.models.lst_per_l2_bkt_lnk_exec_log_response import LstPerL2BktLnkExecLogResponse
 from baiducloud_python_sdk_pfs.models.mount_target_list_clients_response import MountTargetListClientsResponse
@@ -187,6 +192,37 @@ class PfsClient(BceBaseClient):
             model=CreateL2PolicyResponse,
         )
 
+    def create_l3_mount_target(self, request, config=None):
+        """
+        create_l3_mount_target
+
+        :param request: Request entity containing all parameters
+        :type request: PfsClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing CreateL3MountTargetResponse data
+        :rtype: CreateL3MountTargetResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = {}
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'CreateL3MountTarget'
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            headers=headers,
+            params=params,
+            config=merged_config,
+            model=CreateL3MountTargetResponse,
+        )
+
     def create_pfs(self, request, config=None):
         """
         create_pfs
@@ -300,6 +336,37 @@ class PfsClient(BceBaseClient):
             params=params,
             config=merged_config,
             model=DeleteL2PolicyResponse,
+        )
+
+    def delete_l3_mount_target(self, request, config=None):
+        """
+        delete_l3_mount_target
+
+        :param request: Request entity containing all parameters
+        :type request: PfsClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DeleteL3MountTargetResponse data
+        :rtype: DeleteL3MountTargetResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = {}
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'DeleteL3MountTarget'
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            headers=headers,
+            params=params,
+            config=merged_config,
+            model=DeleteL3MountTargetResponse,
         )
 
     def delete_pfs(self, request, config=None):
@@ -443,6 +510,37 @@ class PfsClient(BceBaseClient):
             http_methods.GET, path=path, params=params, config=merged_config, model=DescPfsResponse
         )
 
+    def describe_l3_mount_target(self, request, config=None):
+        """
+        describe_l3_mount_target
+
+        :param request: Request entity containing all parameters
+        :type request: PfsClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DescribeL3MountTargetResponse data
+        :rtype: DescribeL3MountTargetResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = {}
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'DescribeL3MountTarget'
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            headers=headers,
+            params=params,
+            config=merged_config,
+            model=DescribeL3MountTargetResponse,
+        )
+
     def instance_list_clients(self, request, config=None):
         """
         instance_list_clients
@@ -565,6 +663,37 @@ class PfsClient(BceBaseClient):
             params=params,
             config=merged_config,
             model=ListL2PolicyResponse,
+        )
+
+    def list_l3_mount_target(self, request, config=None):
+        """
+        list_l3_mount_target
+
+        :param request: Request entity containing all parameters
+        :type request: PfsClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing ListL3MountTargetResponse data
+        :rtype: ListL3MountTargetResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = {}
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'ListL3MountTarget'
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            headers=headers,
+            params=params,
+            config=merged_config,
+            model=ListL3MountTargetResponse,
         )
 
     def list_pfs(self, request, config=None):
