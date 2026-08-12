@@ -16,22 +16,22 @@ class QuerySandboxesRequest(AbstractModel):
         """
         Initialize QuerySandboxesRequest request entity.
 
-        :param limit: 单页返回的最大沙箱数，取值范围为 1-100，默认 100。
+        :param limit: 单页返回数量，取值 1-100，默认 100。
         :type limit: int (optional)
 
-        :param next_token: 上一页响应返回的游标。首次查询不传或传空字符串；响应中为空表示没有更多数据。
+        :param next_token: 上一页返回的游标，首次请求为空。
         :type next_token: str (optional)
 
-        :param sandbox_ids: 沙箱实例 ID 过滤条件，最多 100 个。多个 ID 之间为 OR 关系。
+        :param sandbox_ids: 沙箱实例 ID 列表，同组内 OR。
         :type sandbox_ids: List[str] (optional)
 
-        :param image_paths: 实际镜像地址过滤条件，最多 100 个。多个镜像地址之间为 OR 关系。
+        :param image_paths: 实际镜像地址列表，同组内 OR。
         :type image_paths: List[str] (optional)
 
-        :param metadata: 沙箱 metadata 过滤条件。所有 key-value 条件均需匹配。
+        :param metadata: metadata 键值过滤，条件之间 AND。
         :type metadata: Dict[str, str] (optional)
 
-        :param state: 沙箱状态过滤条件，取值为 running、paused、killing 或 killed。多个状态之间为 OR 关系。
+        :param state: 沙箱状态列表，可选 running、paused、killing、killed。
         :type state: List[str] (optional)
         """
         super().__init__()

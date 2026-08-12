@@ -1,29 +1,28 @@
 """
-Request entity for QuerySandboxesResponse information.
+Request entity for CreateSandboxSnapshotResponse information.
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
-from baiducloud_python_sdk_ax.models.queried_sandbox import QueriedSandbox
 
 
-class QuerySandboxesResponse(BceResponse):
+class CreateSandboxSnapshotResponse(BceResponse):
     """
-    QuerySandboxesResponse
+    CreateSandboxSnapshotResponse
     """
 
-    def __init__(self, sandboxes=None, next_token=None):
+    def __init__(self, snapshot_id=None, names=None):
         """
-        Initialize QuerySandboxesResponse response.
+        Initialize CreateSandboxSnapshotResponse response.
 
-        :param sandboxes: 满足条件的沙箱实例列表。
-        :type sandboxes: List[QueriedSandbox] (optional)
+        :param snapshot_id: 快照模板 ID。
+        :type snapshot_id: str (optional)
 
-        :param next_token: 下一页游标，为空表示没有更多数据。
-        :type next_token: str (optional)
+        :param names: 快照模板名称列表。
+        :type names: List[str] (optional)
         """
         super().__init__()
-        self.sandboxes = sandboxes
-        self.next_token = next_token
+        self.snapshot_id = snapshot_id
+        self.names = names
 
     def to_dict(self):
         """
@@ -41,10 +40,10 @@ class QuerySandboxesResponse(BceResponse):
         result = dict()
         if self.metadata is not None:
             result['metadata'] = dict(self.metadata)
-        if self.sandboxes is not None:
-            result['sandboxes'] = [i.to_dict() for i in self.sandboxes]
-        if self.next_token is not None:
-            result['nextToken'] = self.next_token
+        if self.snapshot_id is not None:
+            result['snapshotID'] = self.snapshot_id
+        if self.names is not None:
+            result['names'] = self.names
         return result
 
     def from_dict(self, m):
@@ -57,14 +56,14 @@ class QuerySandboxesResponse(BceResponse):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: QuerySandboxesResponse
+        :rtype: CreateSandboxSnapshotResponse
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('sandboxes') is not None:
-            self.sandboxes = [QueriedSandbox().from_dict(i) for i in m.get('sandboxes')]
-        if m.get('nextToken') is not None:
-            self.next_token = m.get('nextToken')
+        if m.get('snapshotID') is not None:
+            self.snapshot_id = m.get('snapshotID')
+        if m.get('names') is not None:
+            self.names = m.get('names')
         return self

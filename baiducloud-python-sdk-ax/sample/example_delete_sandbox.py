@@ -1,5 +1,5 @@
 """
-Example for ax query_sandboxes method.
+Example for ax delete_sandbox method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -24,10 +24,8 @@ if __name__ == '__main__':
         bce_client_config = BceClientConfiguration(credentials=ApiKeyCredentials(api_key), endpoint=endpoint)
 
         client = AxClient(bce_client_config)
-        request = ax_models.QuerySandboxesRequest(
-            limit=0, next_token="", sandbox_ids=[], image_paths=[], metadata=None, state=[]
-        )
-        res = client.query_sandboxes(request)
+        request = ax_models.DeleteSandboxRequest(sandbox_id="")
+        res = client.delete_sandbox(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。

@@ -1,29 +1,25 @@
 """
-Request entity for QuerySandboxesResponse information.
+Request entity for BatchReleaseSandboxesResponse information.
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
-from baiducloud_python_sdk_ax.models.queried_sandbox import QueriedSandbox
+from baiducloud_python_sdk_ax.models.release_result import ReleaseResult
 
 
-class QuerySandboxesResponse(BceResponse):
+class BatchReleaseSandboxesResponse(BceResponse):
     """
-    QuerySandboxesResponse
+    BatchReleaseSandboxesResponse
     """
 
-    def __init__(self, sandboxes=None, next_token=None):
+    def __init__(self, results=None):
         """
-        Initialize QuerySandboxesResponse response.
+        Initialize BatchReleaseSandboxesResponse response.
 
-        :param sandboxes: 满足条件的沙箱实例列表。
-        :type sandboxes: List[QueriedSandbox] (optional)
-
-        :param next_token: 下一页游标，为空表示没有更多数据。
-        :type next_token: str (optional)
+        :param results: 每个沙箱实例的释放结果。
+        :type results: List[ReleaseResult] (optional)
         """
         super().__init__()
-        self.sandboxes = sandboxes
-        self.next_token = next_token
+        self.results = results
 
     def to_dict(self):
         """
@@ -41,10 +37,8 @@ class QuerySandboxesResponse(BceResponse):
         result = dict()
         if self.metadata is not None:
             result['metadata'] = dict(self.metadata)
-        if self.sandboxes is not None:
-            result['sandboxes'] = [i.to_dict() for i in self.sandboxes]
-        if self.next_token is not None:
-            result['nextToken'] = self.next_token
+        if self.results is not None:
+            result['results'] = [i.to_dict() for i in self.results]
         return result
 
     def from_dict(self, m):
@@ -57,14 +51,12 @@ class QuerySandboxesResponse(BceResponse):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: QuerySandboxesResponse
+        :rtype: BatchReleaseSandboxesResponse
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('sandboxes') is not None:
-            self.sandboxes = [QueriedSandbox().from_dict(i) for i in m.get('sandboxes')]
-        if m.get('nextToken') is not None:
-            self.next_token = m.get('nextToken')
+        if m.get('results') is not None:
+            self.results = [ReleaseResult().from_dict(i) for i in m.get('results')]
         return self
