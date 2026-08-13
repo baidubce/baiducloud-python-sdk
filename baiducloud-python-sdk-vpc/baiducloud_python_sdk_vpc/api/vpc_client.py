@@ -6,11 +6,11 @@ import copy
 import logging
 
 from baiducloud_python_sdk_core import utils, bce_base_client
-from baiducloud_python_sdk_core.auth import bce_v1_signer
 from baiducloud_python_sdk_core.bce_base_client import BceBaseClient
 from baiducloud_python_sdk_core.http import bce_http_client
 from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import http_methods
+from baiducloud_python_sdk_core.util import request_body_utils
 from baiducloud_python_sdk_vpc.models.add_eni_ip_response import AddEniIpResponse
 from baiducloud_python_sdk_vpc.models.batch_add_dnat_rules_response import BatchAddDnatRulesResponse
 from baiducloud_python_sdk_vpc.models.batch_add_eni_ip_response import BatchAddEniIpResponse
@@ -102,6 +102,8 @@ class VpcClient(BceBaseClient):
     """
 
     VERSION_V1 = b'/v1'
+
+    VERSION_V2 = b'/v2'
 
     CONSTANT_VPC = b'vpc'
 
@@ -435,7 +437,7 @@ class VpcClient(BceBaseClient):
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
-        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SECURITY_GROUP, request.security_group_id)
+        path = utils.append_uri(VpcClient.VERSION_V2, VpcClient.CONSTANT_SECURITY_GROUP, request.security_group_id)
         headers = None
         params = {}
         params['authorizeRule'] = None
@@ -1330,7 +1332,7 @@ class VpcClient(BceBaseClient):
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
-        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SECURITY_GROUP)
+        path = utils.append_uri(VpcClient.VERSION_V2, VpcClient.CONSTANT_SECURITY_GROUP)
         headers = None
         params = {}
         if request.client_token is not None:
@@ -1960,7 +1962,7 @@ class VpcClient(BceBaseClient):
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
-        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SECURITY_GROUP, request.security_group_id)
+        path = utils.append_uri(VpcClient.VERSION_V2, VpcClient.CONSTANT_SECURITY_GROUP, request.security_group_id)
         headers = None
         params = {}
         if request.client_token is not None:
@@ -1984,7 +1986,7 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(
-            VpcClient.VERSION_V1,
+            VpcClient.VERSION_V2,
             VpcClient.CONSTANT_SECURITY_GROUP,
             VpcClient.CONSTANT_RULE,
             request.security_group_rule_id,
@@ -2340,7 +2342,7 @@ class VpcClient(BceBaseClient):
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
-        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SECURITY_GROUP, request.security_group_id)
+        path = utils.append_uri(VpcClient.VERSION_V2, VpcClient.CONSTANT_SECURITY_GROUP, request.security_group_id)
         headers = None
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
@@ -3150,7 +3152,7 @@ class VpcClient(BceBaseClient):
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
-        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SECURITY_GROUP)
+        path = utils.append_uri(VpcClient.VERSION_V2, VpcClient.CONSTANT_SECURITY_GROUP)
         headers = None
         params = {}
         if request.marker is not None:
@@ -3795,7 +3797,7 @@ class VpcClient(BceBaseClient):
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
-        path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_SECURITY_GROUP, request.security_group_id)
+        path = utils.append_uri(VpcClient.VERSION_V2, VpcClient.CONSTANT_SECURITY_GROUP, request.security_group_id)
         headers = None
         params = {}
         params['revokeRule'] = None
@@ -4479,7 +4481,7 @@ class VpcClient(BceBaseClient):
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
         path = utils.append_uri(
-            VpcClient.VERSION_V1, VpcClient.CONSTANT_SECURITY_GROUP, VpcClient.CONSTANT_RULE, VpcClient.CONSTANT_UPDATE
+            VpcClient.VERSION_V2, VpcClient.CONSTANT_SECURITY_GROUP, VpcClient.CONSTANT_RULE, VpcClient.CONSTANT_UPDATE
         )
         headers = None
         params = {}
@@ -4866,14 +4868,7 @@ class VpcClient(BceBaseClient):
             body_parser = handler.parse_json
         if headers is None:
             headers = {b'Accept': b'*/*', b'Content-Type': b'application/json;charset=utf-8'}
+        sign_fn, params = self._choose_signer(config, params)
         return bce_http_client.send_request(
-            config,
-            bce_v1_signer.sign,
-            [handler.parse_error, body_parser],
-            http_method,
-            path,
-            body,
-            headers,
-            params,
-            model=model,
+            config, sign_fn, [handler.parse_error, body_parser], http_method, path, body, headers, params, model=model
         )

@@ -10,13 +10,15 @@ from baiducloud_python_sdk_vpc import models as vpc_models
 
 if __name__ == '__main__':
     try:
-        # 设置Client的Access Key ID和Secret Access Key，获取AKSK详见:https://cloud.baidu.com/doc/Reference/s/9jwvz2egb
-        access_key_id = ""
-        secret_access_key = ""
         endpoint = ""
+
+        # ==== AK/SK 鉴权 ====
+        access_key_id = "Your Ak"
+        secret_access_key = "Your Sk"
         bce_client_config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
+
         client = VpcClient(bce_client_config)
         request = vpc_models.NatBindEipRequest(nat_id="", bind_eips=[], client_token="")
         res = client.nat_bind_eip(request)
