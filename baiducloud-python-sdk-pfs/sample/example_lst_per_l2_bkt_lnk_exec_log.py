@@ -10,13 +10,15 @@ from baiducloud_python_sdk_pfs import models as pfs_models
 
 if __name__ == '__main__':
     try:
-        # 设置Client的Access Key ID和Secret Access Key，获取AKSK详见:https://cloud.baidu.com/doc/Reference/s/9jwvz2egb
-        access_key_id = ""
-        secret_access_key = ""
         endpoint = ""
+
+        # ==== AK/SK 鉴权 ====
+        access_key_id = "Your Ak"
+        secret_access_key = "Your Sk"
         bce_client_config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
+
         client = PfsClient(bce_client_config)
         request = pfs_models.LstPerL2BktLnkExecLogRequest(instance_id="", bucket_link_id="", start_time=0, end_time=0)
         res = client.lst_per_l2_bkt_lnk_exec_log(request)
