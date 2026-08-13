@@ -6,11 +6,11 @@ import copy
 import logging
 
 from baiducloud_python_sdk_core import utils, bce_base_client
-from baiducloud_python_sdk_core.auth import bce_v1_signer
 from baiducloud_python_sdk_core.bce_base_client import BceBaseClient
 from baiducloud_python_sdk_core.http import bce_http_client
 from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import http_methods
+from baiducloud_python_sdk_core.util import request_body_utils
 from baiducloud_python_sdk_cfw.models.create_cfw_response import CreateCfwResponse
 from baiducloud_python_sdk_cfw.models.create_stateless_cfw_response import CreateStatelessCfwResponse
 from baiducloud_python_sdk_cfw.models.get_cfw_response import GetCfwResponse
@@ -497,14 +497,7 @@ class CfwClient(BceBaseClient):
             body_parser = handler.parse_json
         if headers is None:
             headers = {b'Accept': b'*/*', b'Content-Type': b'application/json;charset=utf-8'}
+        sign_fn, params = self._choose_signer(config, params)
         return bce_http_client.send_request(
-            config,
-            bce_v1_signer.sign,
-            [handler.parse_error, body_parser],
-            http_method,
-            path,
-            body,
-            headers,
-            params,
-            model=model,
+            config, sign_fn, [handler.parse_error, body_parser], http_method, path, body, headers, params, model=model
         )

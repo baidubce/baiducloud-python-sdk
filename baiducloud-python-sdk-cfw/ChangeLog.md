@@ -1,3 +1,8 @@
+2026-08-13 Version: 0.0.4
+- 涉及产品: CFW，getCfw新增domainDetectMode和applications字段
+- 涉及产品: CFW，listCfw新增domainDetectMode和applications字段
+- 涉及产品: CFW，createCfwRule新增domainDetectMode和applications字段
+
 2026-06-16 Version: 0.0.3
 - 涉及产品: CFW，新增查询/创建/修改网络型CFW策略接口
 - 涉及产品: CFW，完善应用型CFW策略的增删改查接口

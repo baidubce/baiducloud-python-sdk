@@ -18,6 +18,8 @@ class CreateRule(AbstractModel):
         direction=None,
         source_address=None,
         dest_address=None,
+        domain_detect_mode=None,
+        applications=None,
         source_port=None,
         dest_port=None,
         action=None,
@@ -44,6 +46,12 @@ class CreateRule(AbstractModel):
         :param dest_address: 目的IP，网段或IP，例如：180.76.1.0/24 或 180.76.1.1，0.0.0.0/0表示所有
         :type dest_address: str (optional)
 
+        :param domain_detect_mode: 域名解析模式，当destAddress为域名时有效，取值 \\[ dns \\| fqdn ]
+        :type domain_detect_mode: str (optional)
+
+        :param applications: 应用，支持的应用协议有HTTP、SSL、FTP、 RDP、 SMTP、SSH、VNC，fqdn模式仅支持HTTP、SSL
+        :type applications: List[str] (optional)
+
         :param source_port: 源端口，0-65535之间的整数，或区间，例如：8080，8080-8090，0-65535表示所有
         :type source_port: str (optional)
 
@@ -63,6 +71,8 @@ class CreateRule(AbstractModel):
         self.direction = direction
         self.source_address = source_address
         self.dest_address = dest_address
+        self.domain_detect_mode = domain_detect_mode
+        self.applications = applications
         self.source_port = source_port
         self.dest_port = dest_port
         self.action = action
@@ -93,6 +103,10 @@ class CreateRule(AbstractModel):
             result['sourceAddress'] = self.source_address
         if self.dest_address is not None:
             result['destAddress'] = self.dest_address
+        if self.domain_detect_mode is not None:
+            result['domainDetectMode'] = self.domain_detect_mode
+        if self.applications is not None:
+            result['applications'] = self.applications
         if self.source_port is not None:
             result['sourcePort'] = self.source_port
         if self.dest_port is not None:
@@ -131,6 +145,10 @@ class CreateRule(AbstractModel):
             self.source_address = m.get('sourceAddress')
         if m.get('destAddress') is not None:
             self.dest_address = m.get('destAddress')
+        if m.get('domainDetectMode') is not None:
+            self.domain_detect_mode = m.get('domainDetectMode')
+        if m.get('applications') is not None:
+            self.applications = m.get('applications')
         if m.get('sourcePort') is not None:
             self.source_port = m.get('sourcePort')
         if m.get('destPort') is not None:

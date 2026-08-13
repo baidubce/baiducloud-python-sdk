@@ -40,7 +40,7 @@ class GetCfwResponse(BceResponse):
         :param bind_instance_num: CFW绑定实例的数量
         :type bind_instance_num: int (optional)
 
-        :param type: CFW类型，1表示有状态防火墙
+        :param type: CFW类型，1表示应用型防火墙
         :type type: int (optional)
 
         :param border: CFW防护边界，取值\\[ 0 \\| 1 \\| 2 \\]，分别表示互联网边界、vpc边界、nat边界
