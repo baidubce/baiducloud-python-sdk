@@ -1,5 +1,5 @@
 """
-Example for bcm describe_metric_data_latest method.
+Example for bcm describe_resource_catalogs method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -20,20 +20,8 @@ if __name__ == '__main__':
         )
 
         client = BcmClient(bce_client_config)
-        request = bcm_models.DescribeMetricDataLatestRequest(
-            action="",
-            scope="",
-            region="",
-            end_datetime="",
-            metric_name="",
-            filters=[],
-            resource_type="",
-            limit=0,
-            offset=0,
-            period_seconds=0,
-            aggregation_over_time=[],
-        )
-        res = client.describe_metric_data_latest(request)
+        request = bcm_models.DescribeResourceCatalogsRequest(locale="")
+        res = client.describe_resource_catalogs(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。

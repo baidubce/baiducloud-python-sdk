@@ -1,3 +1,7 @@
+2026-08-26 Version: 0.0.4
+- 涉及产品: BCM，新增查询指标目录接口
+- 涉及产品: BCM，新增查询云产品资源目录接口
+
 2026-06-17 Version: 0.0.3
 - 涉及产品: BCM，修复describeMetricDataLatest等3个接口中timestmap字段拼写错误，更正为timestamp
 

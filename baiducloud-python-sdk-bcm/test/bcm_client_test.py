@@ -16,7 +16,10 @@ class BcmClientTest(unittest.TestCase):
         HOST = b''
         AK = b''
         SK = b''
+
+        # ==== AK/SK 鉴权 ====
         config = BceClientConfiguration(credentials=BceCredentials(AK, SK), endpoint=HOST)
+
         self.client = BcmClient(config)
 
     def tearDown(self):
@@ -97,6 +100,9 @@ class BcmClientTest(unittest.TestCase):
     def test_describe_instance_groups(self):
         self.client.describe_instance_groups(bcm_models.DescribeInstanceGroupsRequest())
 
+    def test_describe_metric_catalogs(self):
+        self.client.describe_metric_catalogs(bcm_models.DescribeMetricCatalogsRequest())
+
     def test_describe_metric_data(self):
         self.client.describe_metric_data(bcm_models.DescribeMetricDataRequest())
 
@@ -114,6 +120,9 @@ class BcmClientTest(unittest.TestCase):
 
     def test_describe_receivers(self):
         self.client.describe_receivers(bcm_models.DescribeReceiversRequest())
+
+    def test_describe_resource_catalogs(self):
+        self.client.describe_resource_catalogs(bcm_models.DescribeResourceCatalogsRequest())
 
     def test_describe_system_template_rules(self):
         self.client.describe_system_template_rules(bcm_models.DescribeSystemTemplateRulesRequest())
@@ -175,12 +184,14 @@ if __name__ == '__main__':
     suite.addTest(BcmClientTest("test_describe_dimension_values"))
     suite.addTest(BcmClientTest("test_describe_instance_group"))
     suite.addTest(BcmClientTest("test_describe_instance_groups"))
+    suite.addTest(BcmClientTest("test_describe_metric_catalogs"))
     suite.addTest(BcmClientTest("test_describe_metric_data"))
     suite.addTest(BcmClientTest("test_describe_metric_data_latest"))
     suite.addTest(BcmClientTest("test_describe_metric_data_latest_top"))
     suite.addTest(BcmClientTest("test_describe_notify_template"))
     suite.addTest(BcmClientTest("test_describe_notify_templates"))
     suite.addTest(BcmClientTest("test_describe_receivers"))
+    suite.addTest(BcmClientTest("test_describe_resource_catalogs"))
     suite.addTest(BcmClientTest("test_describe_system_template_rules"))
     suite.addTest(BcmClientTest("test_export_alarm_templates"))
     suite.addTest(BcmClientTest("test_import_alarm_templates"))

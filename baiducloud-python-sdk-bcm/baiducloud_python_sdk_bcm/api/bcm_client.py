@@ -6,11 +6,11 @@ import copy
 import logging
 
 from baiducloud_python_sdk_core import utils, bce_base_client
-from baiducloud_python_sdk_core.auth import bce_v1_signer
 from baiducloud_python_sdk_core.bce_base_client import BceBaseClient
 from baiducloud_python_sdk_core.http import bce_http_client
 from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import http_methods
+from baiducloud_python_sdk_core.util import request_body_utils
 from baiducloud_python_sdk_bcm.models.add_alarm_policy_actions_response import AddAlarmPolicyActionsResponse
 from baiducloud_python_sdk_bcm.models.create_alarm_masking_response import CreateAlarmMaskingResponse
 from baiducloud_python_sdk_bcm.models.create_alarm_policy_response import CreateAlarmPolicyResponse
@@ -37,6 +37,7 @@ from baiducloud_python_sdk_bcm.models.describe_alarms_response import DescribeAl
 from baiducloud_python_sdk_bcm.models.describe_dimension_values_response import DescribeDimensionValuesResponse
 from baiducloud_python_sdk_bcm.models.describe_instance_group_response import DescribeInstanceGroupResponse
 from baiducloud_python_sdk_bcm.models.describe_instance_groups_response import DescribeInstanceGroupsResponse
+from baiducloud_python_sdk_bcm.models.describe_metric_catalogs_response import DescribeMetricCatalogsResponse
 from baiducloud_python_sdk_bcm.models.describe_metric_data_response import DescribeMetricDataResponse
 from baiducloud_python_sdk_bcm.models.describe_metric_data_latest_response import DescribeMetricDataLatestResponse
 from baiducloud_python_sdk_bcm.models.describe_metric_data_latest_top_response import (
@@ -45,6 +46,7 @@ from baiducloud_python_sdk_bcm.models.describe_metric_data_latest_top_response i
 from baiducloud_python_sdk_bcm.models.describe_notify_template_response import DescribeNotifyTemplateResponse
 from baiducloud_python_sdk_bcm.models.describe_notify_templates_response import DescribeNotifyTemplatesResponse
 from baiducloud_python_sdk_bcm.models.describe_receivers_response import DescribeReceiversResponse
+from baiducloud_python_sdk_bcm.models.describe_resource_catalogs_response import DescribeResourceCatalogsResponse
 from baiducloud_python_sdk_bcm.models.describe_system_template_rules_response import (
     DescribeSystemTemplateRulesResponse,
 )
@@ -782,6 +784,36 @@ class BcmClient(BceBaseClient):
             model=DescribeInstanceGroupsResponse,
         )
 
+    def describe_metric_catalogs(self, request, config=None):
+        """
+        describe_metric_catalogs
+
+        :param request: Request entity containing all parameters
+        :type request: BcmClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DescribeMetricCatalogsResponse data
+        :rtype: DescribeMetricCatalogsResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(b'/', BcmClient.CONSTANT_V3, BcmClient.CONSTANT_BCM)
+        headers = None
+        params = {}
+        params['action'] = 'DescribeMetricCatalogs'
+        params['locale'] = 'zh-cn'
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=DescribeMetricCatalogsResponse,
+        )
+
     def describe_metric_data(self, request, config=None):
         """
         describe_metric_data
@@ -954,6 +986,31 @@ class BcmClient(BceBaseClient):
             params=params,
             config=merged_config,
             model=DescribeReceiversResponse,
+        )
+
+    def describe_resource_catalogs(self, request, config=None):
+        """
+        describe_resource_catalogs
+
+        :param request: Request entity containing all parameters
+        :type request: BcmClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DescribeResourceCatalogsResponse data
+        :rtype: DescribeResourceCatalogsResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(b'/', BcmClient.CONSTANT_V3, BcmClient.CONSTANT_BCM)
+        headers = None
+        params = {}
+        params['action'] = 'DescribeResourceCatalogs'
+        params['locale'] = 'zh-cn'
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST, path=path, params=params, config=merged_config, model=DescribeResourceCatalogsResponse
         )
 
     def describe_system_template_rules(self, request, config=None):
@@ -1321,14 +1378,7 @@ class BcmClient(BceBaseClient):
             body_parser = handler.parse_json
         if headers is None:
             headers = {b'Accept': b'*/*', b'Content-Type': b'application/json;charset=utf-8'}
+        sign_fn, params = self._choose_signer(config, params)
         return bce_http_client.send_request(
-            config,
-            bce_v1_signer.sign,
-            [handler.parse_error, body_parser],
-            http_method,
-            path,
-            body,
-            headers,
-            params,
-            model=model,
+            config, sign_fn, [handler.parse_error, body_parser], http_method, path, body, headers, params, model=model
         )

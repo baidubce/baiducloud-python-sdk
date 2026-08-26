@@ -65,6 +65,8 @@ from .describe_instance_group_request import DescribeInstanceGroupRequest
 from .describe_instance_group_response import DescribeInstanceGroupResponse
 from .describe_instance_groups_request import DescribeInstanceGroupsRequest
 from .describe_instance_groups_response import DescribeInstanceGroupsResponse
+from .describe_metric_catalogs_request import DescribeMetricCatalogsRequest
+from .describe_metric_catalogs_response import DescribeMetricCatalogsResponse
 from .describe_metric_data_latest_request import DescribeMetricDataLatestRequest
 from .describe_metric_data_latest_response import DescribeMetricDataLatestResponse
 from .describe_metric_data_latest_top_request import DescribeMetricDataLatestTopRequest
@@ -77,6 +79,7 @@ from .describe_notify_templates_request import DescribeNotifyTemplatesRequest
 from .describe_notify_templates_response import DescribeNotifyTemplatesResponse
 from .describe_receivers_request import DescribeReceiversRequest
 from .describe_receivers_response import DescribeReceiversResponse
+from .describe_resource_catalogs_response import DescribeResourceCatalogsResponse
 from .describe_system_template_rules_request import DescribeSystemTemplateRulesRequest
 from .describe_system_template_rules_response import DescribeSystemTemplateRulesResponse
 from .dimension import Dimension
@@ -89,11 +92,16 @@ from .import_alarm_templates_response import ImportAlarmTemplatesResponse
 from .instance_group_instance import InstanceGroupInstance
 from .instance_group_summary import InstanceGroupSummary
 from .mention import Mention
+from .metric import Metric
+from .metric_catalog import MetricCatalog
 from .metric_dimension import MetricDimension
+from .metric_filter import MetricFilter
 from .notify_receiver import NotifyReceiver
 from .notify_template import NotifyTemplate
 from .policy_action import PolicyAction
 from .receiver import Receiver
+from .resource_catalog import ResourceCatalog
+from .resource_catalog_item import ResourceCatalogItem
 from .silence_period import SilencePeriod
 from .target_instance import TargetInstance
 from .template import Template
@@ -114,3 +122,4 @@ from .update_instance_group_request import UpdateInstanceGroupRequest
 from .update_instance_group_response import UpdateInstanceGroupResponse
 from .update_notify_template_request import UpdateNotifyTemplateRequest
 from .update_notify_template_response import UpdateNotifyTemplateResponse
+from .describe_resource_catalogs_request import DescribeResourceCatalogsRequest
