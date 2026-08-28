@@ -1,34 +1,34 @@
 """
-WordResult information
+MedicalSummaryWordResult information
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
-from baiducloud_python_sdk_ocr.models.health_report_location import HealthReportLocation
+from baiducloud_python_sdk_ocr.models.medical_summary_location import MedicalSummaryLocation
 
-from baiducloud_python_sdk_ocr.models.health_report_probability import HealthReportProbability
+from baiducloud_python_sdk_ocr.models.medical_summary_probability import MedicalSummaryProbability
 
 
-class WordResult(AbstractModel):
+class MedicalSummaryWordResult(AbstractModel):
     """
-    WordResult
+    MedicalSummaryWordResult
     """
 
     def __init__(self, word_name=None, word=None, location=None, probability=None):
         """
-        Initialize WordResult instance.
+        Initialize MedicalSummaryWordResult instance.
 
-        :param word_name: word_name attribute
+        :param word_name: 字段名，包括：科室、姓名、性别、年龄、入院时间、出院时间、住院天数、入院诊断、出院诊断、出院医嘱
         :type word_name: str (optional)
 
-        :param word: word_name字段对应的识别结果
+        :param word: 字段识别结果
         :type word: str (optional)
 
         :param location: location attribute
-        :type location: HealthReportLocation (optional)
+        :type location: MedicalSummaryLocation (optional)
 
         :param probability: probability attribute
-        :type probability: HealthReportProbability (optional)
+        :type probability: MedicalSummaryProbability (optional)
         """
         super().__init__()
         self.word_name = word_name
@@ -69,7 +69,7 @@ class WordResult(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: WordResult
+        :rtype: MedicalSummaryWordResult
 
         :raises TypeError: If input is not a dictionary type
         :raises ValueError: If nested model conversion fails
@@ -80,7 +80,7 @@ class WordResult(AbstractModel):
         if m.get('word') is not None:
             self.word = m.get('word')
         if m.get('location') is not None:
-            self.location = HealthReportLocation().from_dict(m.get('location'))
+            self.location = MedicalSummaryLocation().from_dict(m.get('location'))
         if m.get('probability') is not None:
-            self.probability = HealthReportProbability().from_dict(m.get('probability'))
+            self.probability = MedicalSummaryProbability().from_dict(m.get('probability'))
         return self

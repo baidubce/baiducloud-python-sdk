@@ -1,10 +1,9 @@
 """
-HealthReportResponse information
+Request entity for HealthReportResponse information.
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
-
-from baiducloud_python_sdk_ocr.models.word_result import WordResult
+from baiducloud_python_sdk_ocr.models.health_report_word_result import HealthReportWordResult
 
 
 class HealthReportResponse(BceResponse):
@@ -14,7 +13,7 @@ class HealthReportResponse(BceResponse):
 
     def __init__(self, error_code=None, error_msg=None, log_id=None, words_result_num=None, words_result=None):
         """
-        Initialize HealthReportResponse instance.
+        Initialize HealthReportResponse response.
 
         :param error_code: 错误码
         :type error_code: int (optional)
@@ -29,7 +28,7 @@ class HealthReportResponse(BceResponse):
         :type words_result_num: int (optional)
 
         :param words_result: 识别结果列表
-        :type words_result: List[WordResult] (optional)
+        :type words_result: List[HealthReportWordResult] (optional)
         """
         super().__init__()
         self.error_code = error_code
@@ -40,13 +39,12 @@ class HealthReportResponse(BceResponse):
 
     def to_dict(self):
         """
-        Convert the model instance to a dictionary representation.
-
-        Nested model objects are recursively converted to dictionaries.
+        Convert the response instance to a dictionary representation.
 
         Includes metadata from the parent BceResponse class.
+        Nested model objects are recursively converted to dictionaries.
 
-        :return: Dictionary representation of the model
+        :return: Dictionary representation of the response
         :rtype: dict
         """
         _map = super().to_dict()
@@ -69,17 +67,17 @@ class HealthReportResponse(BceResponse):
 
     def from_dict(self, m):
         """
-        Populate the model instance from a dictionary.
+        Populate the response instance from a dictionary.
 
         Nested dictionaries are recursively converted to model objects.
 
-        :param m: Dictionary containing model data
+        :param m: Dictionary containing response data
         :type m: dict
 
         :return: Self reference for method chaining
         :rtype: HealthReportResponse
 
-        :raises TypeError: If input is not a dictionary type
+        :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
@@ -92,5 +90,5 @@ class HealthReportResponse(BceResponse):
         if m.get('words_result_num') is not None:
             self.words_result_num = m.get('words_result_num')
         if m.get('words_result') is not None:
-            self.words_result = [WordResult().from_dict(i) for i in m.get('words_result')]
+            self.words_result = [HealthReportWordResult().from_dict(i) for i in m.get('words_result')]
         return self

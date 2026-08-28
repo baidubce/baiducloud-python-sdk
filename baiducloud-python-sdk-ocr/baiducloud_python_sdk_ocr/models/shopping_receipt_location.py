@@ -1,0 +1,82 @@
+"""
+ShoppingReceiptLocation information
+"""
+
+from baiducloud_python_sdk_core.abstract_model import AbstractModel
+
+
+class ShoppingReceiptLocation(AbstractModel):
+    """
+    ShoppingReceiptLocation
+    """
+
+    def __init__(self, top=None, left=None, height=None, width=None):
+        """
+        Initialize ShoppingReceiptLocation instance.
+
+        :param top: 字段的上边距
+        :type top: int (optional)
+
+        :param left: 字段的左边距
+        :type left: int (optional)
+
+        :param height: 字段的高度
+        :type height: int (optional)
+
+        :param width: 字段的宽度
+        :type width: int (optional)
+        """
+        super().__init__()
+        self.top = top
+        self.left = left
+        self.height = height
+        self.width = width
+
+    def to_dict(self):
+        """
+        Convert the model instance to a dictionary representation.
+
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the model
+        :rtype: dict
+        """
+        _map = super().to_dict()
+        if _map is not None:
+            return _map
+        result = dict()
+        if self.top is not None:
+            result['top'] = self.top
+        if self.left is not None:
+            result['left'] = self.left
+        if self.height is not None:
+            result['height'] = self.height
+        if self.width is not None:
+            result['width'] = self.width
+        return result
+
+    def from_dict(self, m):
+        """
+        Populate the model instance from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing model data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: ShoppingReceiptLocation
+
+        :raises TypeError: If input is not a dictionary type
+        :raises ValueError: If nested model conversion fails
+        """
+        m = m or dict()
+        if m.get('top') is not None:
+            self.top = m.get('top')
+        if m.get('left') is not None:
+            self.left = m.get('left')
+        if m.get('height') is not None:
+            self.height = m.get('height')
+        if m.get('width') is not None:
+            self.width = m.get('width')
+        return self

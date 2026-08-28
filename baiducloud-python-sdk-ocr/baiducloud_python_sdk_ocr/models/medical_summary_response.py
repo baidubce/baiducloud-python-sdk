@@ -3,7 +3,7 @@ Request entity for MedicalSummaryResponse information.
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
-from baiducloud_python_sdk_ocr.models.word_result import WordResult
+from baiducloud_python_sdk_ocr.models.medical_summary_word_result import MedicalSummaryWordResult
 
 
 class MedicalSummaryResponse(BceResponse):
@@ -28,7 +28,7 @@ class MedicalSummaryResponse(BceResponse):
         :type words_result_num: int (optional)
 
         :param words_result: 识别结果列表
-        :type words_result: List[WordResult] (optional)
+        :type words_result: List[MedicalSummaryWordResult] (optional)
         """
         super().__init__()
         self.error_code = error_code
@@ -90,5 +90,5 @@ class MedicalSummaryResponse(BceResponse):
         if m.get('words_result_num') is not None:
             self.words_result_num = m.get('words_result_num')
         if m.get('words_result') is not None:
-            self.words_result = [WordResult().from_dict(i) for i in m.get('words_result')]
+            self.words_result = [MedicalSummaryWordResult().from_dict(i) for i in m.get('words_result')]
         return self
