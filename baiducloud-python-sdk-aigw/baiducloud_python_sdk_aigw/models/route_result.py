@@ -4,7 +4,7 @@ RouteResult information
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
-from baiducloud_python_sdk_aigw.models.match_rules import MatchRules
+from baiducloud_python_sdk_aigw.models.match_rule import MatchRule
 
 from baiducloud_python_sdk_aigw.models.target_service import TargetService
 
@@ -94,7 +94,7 @@ class RouteResult(AbstractModel):
         :type update_time: str (optional)
 
         :param match_rules: match_rules attribute
-        :type match_rules: MatchRules (optional)
+        :type match_rules: MatchRule (optional)
 
         :param multi_service: 是否启用多服务
         :type multi_service: bool (optional)
@@ -274,7 +274,7 @@ class RouteResult(AbstractModel):
         if m.get('updateTime') is not None:
             self.update_time = m.get('updateTime')
         if m.get('matchRules') is not None:
-            self.match_rules = MatchRules().from_dict(m.get('matchRules'))
+            self.match_rules = MatchRule().from_dict(m.get('matchRules'))
         if m.get('multiService') is not None:
             self.multi_service = m.get('multiService')
         if m.get('trafficDistributionStrategy') is not None:

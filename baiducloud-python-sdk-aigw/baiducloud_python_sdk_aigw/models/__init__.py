@@ -45,7 +45,6 @@ from .query_routing_list_response import QueryRoutingListResponse
 from .regex_rewrite import RegexRewrite
 from .regex_rewrite_config import RegexRewriteConfig
 from .request_rate_limit import RequestRateLimit
-from .request_rate_limit_rule import RequestRateLimitRule
 from .response_headers import ResponseHeaders
 from .retry_policy import RetryPolicy
 from .rewrite import Rewrite
@@ -59,9 +58,7 @@ from .service_item import ServiceItem
 from .tag import Tag
 from .target_service import TargetService
 from .timeout_policy import TimeoutPolicy
-from .token_limit_config import TokenLimitConfig
 from .token_rate_limit import TokenRateLimit
-from .token_rate_limit_rule import TokenRateLimitRule
 from .update_ai_gateway_request import UpdateAIGatewayRequest
 from .update_ai_gateway_response import UpdateAIGatewayResponse
 from .update_consumer_request import UpdateConsumerRequest

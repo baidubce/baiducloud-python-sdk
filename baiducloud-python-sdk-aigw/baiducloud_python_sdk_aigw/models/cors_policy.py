@@ -4,6 +4,8 @@ CorsPolicy information
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
+from baiducloud_python_sdk_aigw.models.origin_match import OriginMatch
+
 
 class CorsPolicy(AbstractModel):
     """
@@ -27,7 +29,7 @@ class CorsPolicy(AbstractModel):
         :type enabled: bool (optional)
 
         :param allow_origins: 允许的来源，每项包含 matchType、value
-        :type allow_origins: List[OriginMatch[str, str]] (optional)
+        :type allow_origins: List[OriginMatch] (optional)
 
         :param allow_methods: 允许的 HTTP 方法
         :type allow_methods: List[str] (optional)
@@ -69,8 +71,7 @@ class CorsPolicy(AbstractModel):
         if self.enabled is not None:
             result['enabled'] = self.enabled
         if self.allow_origins is not None:
-            result['allowOrigins'] = self.allow_origins
-
+            result['allowOrigins'] = [i.to_dict() for i in self.allow_origins]
         if self.allow_methods is not None:
             result['allowMethods'] = self.allow_methods
         if self.allow_headers is not None:
@@ -102,8 +103,7 @@ class CorsPolicy(AbstractModel):
         if m.get('enabled') is not None:
             self.enabled = m.get('enabled')
         if m.get('allowOrigins') is not None:
-            self.allow_origins = m.get('allowOrigins')
-
+            self.allow_origins = [OriginMatch().from_dict(i) for i in m.get('allowOrigins')]
         if m.get('allowMethods') is not None:
             self.allow_methods = m.get('allowMethods')
         if m.get('allowHeaders') is not None:
