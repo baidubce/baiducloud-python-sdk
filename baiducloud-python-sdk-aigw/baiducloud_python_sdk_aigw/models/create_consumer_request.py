@@ -21,6 +21,7 @@ class CreateConsumerRequest(AbstractModel):
         consumer_name,
         auth_type,
         credential_type,
+        x_region,
         description=None,
         route_names=None,
         tags=None,
@@ -56,6 +57,9 @@ class CreateConsumerRequest(AbstractModel):
 
         :param iam_credential: iam_credential parameter
         :type iam_credential: IAMCredentialSpec (optional)
+
+        :param x_region: x_region parameter
+        :type x_region: str (required)
         """
         super().__init__()
         self.instance_id = instance_id
@@ -67,6 +71,7 @@ class CreateConsumerRequest(AbstractModel):
         self.tags = tags
         self.credential = credential
         self.iam_credential = iam_credential
+        self.x_region = x_region
 
     def to_dict(self):
         """
@@ -133,4 +138,6 @@ class CreateConsumerRequest(AbstractModel):
             self.credential = ConsumerCredentialSpec().from_dict(m.get('credential'))
         if m.get('iamCredential') is not None:
             self.iam_credential = IAMCredentialSpec().from_dict(m.get('iamCredential'))
+        if m.get('X-Region') is not None:
+            self.x_region = m.get('X-Region')
         return self

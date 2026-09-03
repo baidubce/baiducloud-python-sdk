@@ -12,7 +12,7 @@ class QueryRoutingDetailsRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, instance_id, route_name):
+    def __init__(self, instance_id, route_name, x_region):
         """
         Initialize QueryRoutingDetailsRequest request entity.
 
@@ -21,10 +21,14 @@ class QueryRoutingDetailsRequest(AbstractModel):
 
         :param route_name: route_name parameter
         :type route_name: str (required)
+
+        :param x_region: x_region parameter
+        :type x_region: str (required)
         """
         super().__init__()
         self.instance_id = instance_id
         self.route_name = route_name
+        self.x_region = x_region
 
     def to_dict(self):
         """
@@ -61,4 +65,6 @@ class QueryRoutingDetailsRequest(AbstractModel):
             self.instance_id = m.get('instanceId')
         if m.get('routeName') is not None:
             self.route_name = m.get('routeName')
+        if m.get('X-Region') is not None:
+            self.x_region = m.get('X-Region')
         return self

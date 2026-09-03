@@ -21,7 +21,7 @@ if __name__ == '__main__':
 
         client = AigwClient(bce_client_config)
         request = aigw_models.QueryRoutingListRequest(
-            instance_id="", route_name="", page_no=0, page_size=0, order_by="", order=""
+            instance_id="", x_region="", route_name="", page_no=0, page_size=0, order_by="", order=""
         )
         res = client.query_routing_list(request)
         print(res.to_json_string())

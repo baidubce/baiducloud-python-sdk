@@ -20,7 +20,7 @@ if __name__ == '__main__':
         )
 
         client = AigwClient(bce_client_config)
-        request = aigw_models.QueryRoutingDetailsRequest(instance_id="", route_name="")
+        request = aigw_models.QueryRoutingDetailsRequest(instance_id="", route_name="", x_region="")
         res = client.query_routing_details(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

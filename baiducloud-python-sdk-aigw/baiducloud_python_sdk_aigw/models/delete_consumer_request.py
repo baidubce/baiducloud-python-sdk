@@ -12,7 +12,7 @@ class DeleteConsumerRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, instance_id, consumer_id, key_type=None):
+    def __init__(self, instance_id, consumer_id, x_region, key_type=None):
         """
         Initialize DeleteConsumerRequest request entity.
 
@@ -24,11 +24,15 @@ class DeleteConsumerRequest(AbstractModel):
 
         :param key_type: key_type parameter
         :type key_type: str (optional)
+
+        :param x_region: x_region parameter
+        :type x_region: str (required)
         """
         super().__init__()
         self.instance_id = instance_id
         self.consumer_id = consumer_id
         self.key_type = key_type
+        self.x_region = x_region
 
     def to_dict(self):
         """
@@ -67,4 +71,6 @@ class DeleteConsumerRequest(AbstractModel):
             self.consumer_id = m.get('consumerId')
         if m.get('keyType') is not None:
             self.key_type = m.get('keyType')
+        if m.get('X-Region') is not None:
+            self.x_region = m.get('X-Region')
         return self

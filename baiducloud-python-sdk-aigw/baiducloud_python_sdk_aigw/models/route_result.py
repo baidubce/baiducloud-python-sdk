@@ -4,11 +4,13 @@ RouteResult information
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
+from baiducloud_python_sdk_aigw.models.match_rules import MatchRules
+
 from baiducloud_python_sdk_aigw.models.target_service import TargetService
 
-from baiducloud_python_sdk_aigw.models.rewrite_config import RewriteConfig
+from baiducloud_python_sdk_aigw.models.rewrite import Rewrite
 
-from baiducloud_python_sdk_aigw.models.regex_rewrite_config import RegexRewriteConfig
+from baiducloud_python_sdk_aigw.models.regex_rewrite import RegexRewrite
 
 from baiducloud_python_sdk_aigw.models.custom_header import CustomHeader
 
@@ -25,8 +27,6 @@ from baiducloud_python_sdk_aigw.models.cors_policy import CorsPolicy
 from baiducloud_python_sdk_aigw.models.response_headers import ResponseHeaders
 
 from baiducloud_python_sdk_aigw.models.fallback_config import FallbackConfig
-
-from baiducloud_python_sdk_aigw.models.match_rules import MatchRules
 
 
 class RouteResult(AbstractModel):
@@ -45,6 +45,7 @@ class RouteResult(AbstractModel):
         service_path=None,
         create_time=None,
         update_time=None,
+        match_rules=None,
         multi_service=None,
         traffic_distribution_strategy=None,
         enable_weight_adjust=None,
@@ -61,7 +62,6 @@ class RouteResult(AbstractModel):
         cors_policy=None,
         response_headers=None,
         fallback_config=None,
-        match_rules=None,
     ):
         """
         Initialize RouteResult instance.
@@ -78,13 +78,13 @@ class RouteResult(AbstractModel):
         :param domains: API 模式绑定的自定义域名
         :type domains: List[str] (optional)
 
-        :param web_domains: Web 模式自动绑定的公网、内网域名
+        :param web_domains: Web 模式绑定的公网、内网域名
         :type web_domains: List[str] (optional)
 
-        :param web_subdomain: Web 模式的独立子域名
+        :param web_subdomain: Web 模式独立子域名
         :type web_subdomain: str (optional)
 
-        :param service_path: Web 模式的后端服务路径
+        :param service_path: Web 模式后端服务路径
         :type service_path: str (optional)
 
         :param create_time: 创建时间，格式为 `YYYY-MM-DD HH:mm:ss`
@@ -93,10 +93,13 @@ class RouteResult(AbstractModel):
         :param update_time: 更新时间，格式为 `YYYY-MM-DD HH:mm:ss`
         :type update_time: str (optional)
 
+        :param match_rules: match_rules attribute
+        :type match_rules: MatchRules (optional)
+
         :param multi_service: 是否启用多服务
         :type multi_service: bool (optional)
 
-        :param traffic_distribution_strategy: 多服务流量分发策略：ratio、model_name
+        :param traffic_distribution_strategy: 多服务流量分发策略
         :type traffic_distribution_strategy: str (optional)
 
         :param enable_weight_adjust: 是否启用动态权重调节
@@ -106,12 +109,12 @@ class RouteResult(AbstractModel):
         :type target_service: TargetService (optional)
 
         :param rewrite: rewrite attribute
-        :type rewrite: RewriteConfig (optional)
+        :type rewrite: Rewrite (optional)
 
         :param regex_rewrite: regex_rewrite attribute
-        :type regex_rewrite: RegexRewriteConfig (optional)
+        :type regex_rewrite: RegexRewrite (optional)
 
-        :param custom_headers: 自定义请求头，每项包含 key、value
+        :param custom_headers: 自定义请求头
         :type custom_headers: List[CustomHeader] (optional)
 
         :param auth_enabled: 是否启用消费者认证
@@ -140,9 +143,6 @@ class RouteResult(AbstractModel):
 
         :param fallback_config: fallback_config attribute
         :type fallback_config: FallbackConfig (optional)
-
-        :param match_rules: match_rules attribute
-        :type match_rules: MatchRules (optional)
         """
         super().__init__()
         self.route_name = route_name
@@ -154,6 +154,7 @@ class RouteResult(AbstractModel):
         self.service_path = service_path
         self.create_time = create_time
         self.update_time = update_time
+        self.match_rules = match_rules
         self.multi_service = multi_service
         self.traffic_distribution_strategy = traffic_distribution_strategy
         self.enable_weight_adjust = enable_weight_adjust
@@ -170,7 +171,6 @@ class RouteResult(AbstractModel):
         self.cors_policy = cors_policy
         self.response_headers = response_headers
         self.fallback_config = fallback_config
-        self.match_rules = match_rules
 
     def to_dict(self):
         """
@@ -203,6 +203,8 @@ class RouteResult(AbstractModel):
             result['createTime'] = self.create_time
         if self.update_time is not None:
             result['updateTime'] = self.update_time
+        if self.match_rules is not None:
+            result['matchRules'] = self.match_rules.to_dict()
         if self.multi_service is not None:
             result['multiService'] = self.multi_service
         if self.traffic_distribution_strategy is not None:
@@ -235,8 +237,6 @@ class RouteResult(AbstractModel):
             result['responseHeaders'] = self.response_headers.to_dict()
         if self.fallback_config is not None:
             result['fallbackConfig'] = self.fallback_config.to_dict()
-        if self.match_rules is not None:
-            result['matchRules'] = self.match_rules.to_dict()
         return result
 
     def from_dict(self, m):
@@ -273,6 +273,8 @@ class RouteResult(AbstractModel):
             self.create_time = m.get('createTime')
         if m.get('updateTime') is not None:
             self.update_time = m.get('updateTime')
+        if m.get('matchRules') is not None:
+            self.match_rules = MatchRules().from_dict(m.get('matchRules'))
         if m.get('multiService') is not None:
             self.multi_service = m.get('multiService')
         if m.get('trafficDistributionStrategy') is not None:
@@ -282,9 +284,9 @@ class RouteResult(AbstractModel):
         if m.get('targetService') is not None:
             self.target_service = TargetService().from_dict(m.get('targetService'))
         if m.get('rewrite') is not None:
-            self.rewrite = RewriteConfig().from_dict(m.get('rewrite'))
+            self.rewrite = Rewrite().from_dict(m.get('rewrite'))
         if m.get('regexRewrite') is not None:
-            self.regex_rewrite = RegexRewriteConfig().from_dict(m.get('regexRewrite'))
+            self.regex_rewrite = RegexRewrite().from_dict(m.get('regexRewrite'))
         if m.get('customHeaders') is not None:
             self.custom_headers = [CustomHeader().from_dict(i) for i in m.get('customHeaders')]
         if m.get('authEnabled') is not None:
@@ -305,6 +307,4 @@ class RouteResult(AbstractModel):
             self.response_headers = ResponseHeaders().from_dict(m.get('responseHeaders'))
         if m.get('fallbackConfig') is not None:
             self.fallback_config = FallbackConfig().from_dict(m.get('fallbackConfig'))
-        if m.get('matchRules') is not None:
-            self.match_rules = MatchRules().from_dict(m.get('matchRules'))
         return self

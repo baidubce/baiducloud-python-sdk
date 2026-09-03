@@ -37,6 +37,7 @@ if __name__ == '__main__':
         request = aigw_models.UpdateConsumerRequest(
             instance_id="",
             consumer_id="",
+            x_region="",
             key_type="",
             description="",
             route_names=[],

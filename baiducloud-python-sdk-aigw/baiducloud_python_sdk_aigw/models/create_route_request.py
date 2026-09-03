@@ -31,6 +31,7 @@ class CreateRouteRequest(AbstractModel):
         route_name,
         match_rules,
         target_service,
+        x_region,
         src_product=None,
         access_mode=None,
         web_subdomain=None,
@@ -65,7 +66,7 @@ class CreateRouteRequest(AbstractModel):
         :param route_name: 路由名称，长度为 2～64 个字符，在同一实例内唯一
         :type route_name: str (required)
 
-        :param src_product: 来源产品标识
+        :param src_product: 来源产品标识，外部用户无需填写
         :type src_product: str (optional)
 
         :param access_mode: 访问模式，取值为 API 或 Web，默认为 API
@@ -133,6 +134,9 @@ class CreateRouteRequest(AbstractModel):
 
         :param fallback_config: fallback_config parameter
         :type fallback_config: FallbackConfig (optional)
+
+        :param x_region: x_region parameter
+        :type x_region: str (required)
         """
         super().__init__()
         self.instance_id = instance_id
@@ -161,6 +165,7 @@ class CreateRouteRequest(AbstractModel):
         self.cors_policy = cors_policy
         self.response_headers = response_headers
         self.fallback_config = fallback_config
+        self.x_region = x_region
 
     def to_dict(self):
         """
@@ -293,4 +298,6 @@ class CreateRouteRequest(AbstractModel):
             self.response_headers = ResponseHeaders().from_dict(m.get('responseHeaders'))
         if m.get('fallbackConfig') is not None:
             self.fallback_config = FallbackConfig().from_dict(m.get('fallbackConfig'))
+        if m.get('X-Region') is not None:
+            self.x_region = m.get('X-Region')
         return self

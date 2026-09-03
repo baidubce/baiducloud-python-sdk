@@ -20,6 +20,7 @@ class UpdateConsumerRequest(AbstractModel):
         self,
         instance_id,
         consumer_id,
+        x_region,
         key_type=None,
         description=None,
         route_names=None,
@@ -57,6 +58,9 @@ class UpdateConsumerRequest(AbstractModel):
 
         :param iam_credential: iam_credential parameter
         :type iam_credential: IAMCredentialSpec (optional)
+
+        :param x_region: x_region parameter
+        :type x_region: str (required)
         """
         super().__init__()
         self.instance_id = instance_id
@@ -68,6 +72,7 @@ class UpdateConsumerRequest(AbstractModel):
         self.credential_op = credential_op
         self.credential_location = credential_location
         self.iam_credential = iam_credential
+        self.x_region = x_region
 
     def to_dict(self):
         """
@@ -130,4 +135,6 @@ class UpdateConsumerRequest(AbstractModel):
             self.credential_location = ConsumerCredentialLocation().from_dict(m.get('credentialLocation'))
         if m.get('iamCredential') is not None:
             self.iam_credential = IAMCredentialSpec().from_dict(m.get('iamCredential'))
+        if m.get('X-Region') is not None:
+            self.x_region = m.get('X-Region')
         return self

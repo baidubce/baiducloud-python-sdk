@@ -1,28 +1,28 @@
 """
-OriginRule information
+ClusterInfo information
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class OriginRule(AbstractModel):
+class ClusterInfo(AbstractModel):
     """
-    OriginRule
+    ClusterInfo
     """
 
-    def __init__(self, match_type=None, value=None):
+    def __init__(self, cluster_id=None, cluster_name=None):
         """
-        Initialize OriginRule instance.
+        Initialize ClusterInfo instance.
 
-        :param match_type: 匹配类型
-        :type match_type: str (optional)
+        :param cluster_id: CCE 集群 ID
+        :type cluster_id: str (optional)
 
-        :param value: 匹配值
-        :type value: str (optional)
+        :param cluster_name: CCE 集群名称
+        :type cluster_name: str (optional)
         """
         super().__init__()
-        self.match_type = match_type
-        self.value = value
+        self.cluster_id = cluster_id
+        self.cluster_name = cluster_name
 
     def to_dict(self):
         """
@@ -37,10 +37,10 @@ class OriginRule(AbstractModel):
         if _map is not None:
             return _map
         result = dict()
-        if self.match_type is not None:
-            result['matchType'] = self.match_type
-        if self.value is not None:
-            result['value'] = self.value
+        if self.cluster_id is not None:
+            result['clusterId'] = self.cluster_id
+        if self.cluster_name is not None:
+            result['clusterName'] = self.cluster_name
         return result
 
     def from_dict(self, m):
@@ -53,14 +53,14 @@ class OriginRule(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: OriginRule
+        :rtype: ClusterInfo
 
         :raises TypeError: If input is not a dictionary type
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('matchType') is not None:
-            self.match_type = m.get('matchType')
-        if m.get('value') is not None:
-            self.value = m.get('value')
+        if m.get('clusterId') is not None:
+            self.cluster_id = m.get('clusterId')
+        if m.get('clusterName') is not None:
+            self.cluster_name = m.get('clusterName')
         return self

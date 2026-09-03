@@ -14,13 +14,13 @@ class RetryPolicy(AbstractModel):
         """
         Initialize RetryPolicy instance.
 
-        :param enabled: 是否启用
+        :param enabled: 是否启用重试策略
         :type enabled: bool (optional)
 
-        :param retry_conditions: 重试条件
+        :param retry_conditions: 重试条件，多个条件使用逗号分隔
         :type retry_conditions: str (optional)
 
-        :param num_retries: 重试次数
+        :param num_retries: 重试次数，范围为 1～10
         :type num_retries: int (optional)
         """
         super().__init__()

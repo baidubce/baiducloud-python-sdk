@@ -20,8 +20,8 @@ class TargetService(AbstractModel):
         hash_type=None,
         hash_key=None,
         request_ratio=None,
-        weight_factor=None,
         model_name=None,
+        weight_factor=None,
         model_name_mode=None,
         specified_model_name=None,
     ):
@@ -34,34 +34,34 @@ class TargetService(AbstractModel):
         :param service_name: 服务名称
         :type service_name: str (optional)
 
-        :param namespace: CCE 服务所在命名空间
+        :param namespace: CCE 服务的命名空间，CCE 类型必需
         :type namespace: str (optional)
 
-        :param service_port: CCE 服务端口
+        :param service_port: CCE 服务端口，CCE 类型必需，范围为 1～65535
         :type service_port: int (optional)
 
-        :param load_balance_algorithm: 负载均衡算法
+        :param load_balance_algorithm: 负载均衡算法：round-robin、least-conn、random、consistent-hash
         :type load_balance_algorithm: str (optional)
 
-        :param hash_type: 哈希类型
+        :param hash_type: 一致性哈希类型：header、query_param、ip、cookie
         :type hash_type: str (optional)
 
-        :param hash_key: 哈希键
+        :param hash_key: 一致性哈希键；hashType 为 ip 时传空字符串
         :type hash_key: str (optional)
 
-        :param request_ratio: ratio 策略的请求比例
+        :param request_ratio: ratio 策略的流量比例，所有服务之和必须为 100
         :type request_ratio: int (optional)
 
-        :param weight_factor: 动态权重因子
-        :type weight_factor: int (optional)
-
-        :param model_name: model_name 策略的模型名称
+        :param model_name: model_name 策略匹配的模型名称
         :type model_name: str (optional)
 
-        :param model_name_mode: AI_PROXY 模型名称模式
+        :param weight_factor: 动态权重因子，必须为正整数，默认为 1
+        :type weight_factor: int (optional)
+
+        :param model_name_mode: AI_PROXY 模型名称模式：passthrough、specify
         :type model_name_mode: str (optional)
 
-        :param specified_model_name: AI_PROXY 指定的模型名称
+        :param specified_model_name: modelNameMode 为 specify 时使用的固定模型名称
         :type specified_model_name: str (optional)
         """
         super().__init__()
@@ -73,8 +73,8 @@ class TargetService(AbstractModel):
         self.hash_type = hash_type
         self.hash_key = hash_key
         self.request_ratio = request_ratio
-        self.weight_factor = weight_factor
         self.model_name = model_name
+        self.weight_factor = weight_factor
         self.model_name_mode = model_name_mode
         self.specified_model_name = specified_model_name
 
@@ -107,10 +107,10 @@ class TargetService(AbstractModel):
             result['hashKey'] = self.hash_key
         if self.request_ratio is not None:
             result['requestRatio'] = self.request_ratio
-        if self.weight_factor is not None:
-            result['weightFactor'] = self.weight_factor
         if self.model_name is not None:
             result['modelName'] = self.model_name
+        if self.weight_factor is not None:
+            result['weightFactor'] = self.weight_factor
         if self.model_name_mode is not None:
             result['modelNameMode'] = self.model_name_mode
         if self.specified_model_name is not None:
@@ -149,10 +149,10 @@ class TargetService(AbstractModel):
             self.hash_key = m.get('hashKey')
         if m.get('requestRatio') is not None:
             self.request_ratio = m.get('requestRatio')
-        if m.get('weightFactor') is not None:
-            self.weight_factor = m.get('weightFactor')
         if m.get('modelName') is not None:
             self.model_name = m.get('modelName')
+        if m.get('weightFactor') is not None:
+            self.weight_factor = m.get('weightFactor')
         if m.get('modelNameMode') is not None:
             self.model_name_mode = m.get('modelNameMode')
         if m.get('specifiedModelName') is not None:

@@ -14,10 +14,10 @@ class CustomHeader(AbstractModel):
         """
         Initialize CustomHeader instance.
 
-        :param key: 请求头名称
+        :param key: HTTP 头名称，同一列表中不能重复
         :type key: str (optional)
 
-        :param value: 请求头值
+        :param value: HTTP 头值
         :type value: str (optional)
         """
         super().__init__()

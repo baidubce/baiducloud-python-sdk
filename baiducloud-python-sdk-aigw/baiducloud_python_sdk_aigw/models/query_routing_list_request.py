@@ -12,7 +12,9 @@ class QueryRoutingListRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, instance_id, route_name=None, page_no=None, page_size=None, order_by=None, order=None):
+    def __init__(
+        self, instance_id, x_region, route_name=None, page_no=None, page_size=None, order_by=None, order=None
+    ):
         """
         Initialize QueryRoutingListRequest request entity.
 
@@ -33,6 +35,9 @@ class QueryRoutingListRequest(AbstractModel):
 
         :param order: order parameter
         :type order: str (optional)
+
+        :param x_region: x_region parameter
+        :type x_region: str (required)
         """
         super().__init__()
         self.instance_id = instance_id
@@ -41,6 +46,7 @@ class QueryRoutingListRequest(AbstractModel):
         self.page_size = page_size
         self.order_by = order_by
         self.order = order
+        self.x_region = x_region
 
     def to_dict(self):
         """
@@ -85,4 +91,6 @@ class QueryRoutingListRequest(AbstractModel):
             self.order_by = m.get('orderBy')
         if m.get('order') is not None:
             self.order = m.get('order')
+        if m.get('X-Region') is not None:
+            self.x_region = m.get('X-Region')
         return self

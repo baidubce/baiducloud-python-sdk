@@ -30,10 +30,10 @@ class TokenRateLimit(AbstractModel):
         """
         Initialize TokenRateLimit instance.
 
-        :param rule_name: 规则名称
+        :param rule_name: 服务端生成的规则名称，仅响应返回
         :type rule_name: str (optional)
 
-        :param enabled: 是否启用
+        :param enabled: 是否启用 Token 限流
         :type enabled: bool (optional)
 
         :param pre_reserve_remaining_ratio: 动态预扣触发阈值，范围为 0～1；省略或为 0 时关闭

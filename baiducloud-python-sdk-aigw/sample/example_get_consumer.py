@@ -20,7 +20,7 @@ if __name__ == '__main__':
         )
 
         client = AigwClient(bce_client_config)
-        request = aigw_models.GetConsumerRequest(instance_id="", consumer_id="", key_type="")
+        request = aigw_models.GetConsumerRequest(instance_id="", consumer_id="", x_region="", key_type="")
         res = client.get_consumer(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

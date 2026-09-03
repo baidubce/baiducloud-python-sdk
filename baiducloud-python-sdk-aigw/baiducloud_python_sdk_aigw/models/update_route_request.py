@@ -30,6 +30,7 @@ class UpdateRouteRequest(AbstractModel):
         route_name,
         match_rules,
         target_service,
+        x_region,
         src_product=None,
         access_mode=None,
         web_subdomain=None,
@@ -129,6 +130,9 @@ class UpdateRouteRequest(AbstractModel):
 
         :param fallback_config: fallback_config parameter
         :type fallback_config: FallbackConfig (optional)
+
+        :param x_region: x_region parameter
+        :type x_region: str (required)
         """
         super().__init__()
         self.instance_id = instance_id
@@ -156,6 +160,7 @@ class UpdateRouteRequest(AbstractModel):
         self.cors_policy = cors_policy
         self.response_headers = response_headers
         self.fallback_config = fallback_config
+        self.x_region = x_region
 
     def to_dict(self):
         """
@@ -284,4 +289,6 @@ class UpdateRouteRequest(AbstractModel):
             self.response_headers = ResponseHeaders().from_dict(m.get('responseHeaders'))
         if m.get('fallbackConfig') is not None:
             self.fallback_config = FallbackConfig().from_dict(m.get('fallbackConfig'))
+        if m.get('X-Region') is not None:
+            self.x_region = m.get('X-Region')
         return self

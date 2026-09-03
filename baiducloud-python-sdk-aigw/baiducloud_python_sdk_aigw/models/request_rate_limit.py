@@ -16,10 +16,10 @@ class RequestRateLimit(AbstractModel):
         """
         Initialize RequestRateLimit instance.
 
-        :param rule_name: 规则名称
+        :param rule_name: 服务端生成的规则名称，仅响应返回
         :type rule_name: str (optional)
 
-        :param enabled: 是否启用
+        :param enabled: 是否启用请求次数限流
         :type enabled: bool (optional)
 
         :param rule_items: 请求次数限流规则；每项包含 match_condition 和 limit_config

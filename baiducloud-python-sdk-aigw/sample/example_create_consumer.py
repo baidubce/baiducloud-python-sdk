@@ -37,6 +37,7 @@ if __name__ == '__main__':
         )
         request = aigw_models.CreateConsumerRequest(
             instance_id="",
+            x_region="",
             consumer_name="",
             auth_type="",
             credential_type="",

@@ -12,7 +12,7 @@ class GetConsumerListRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, instance_id, page_no=None, page_size=None, tag_key=None, tag_value=None):
+    def __init__(self, instance_id, x_region, page_no=None, page_size=None, tag_key=None, tag_value=None):
         """
         Initialize GetConsumerListRequest request entity.
 
@@ -30,6 +30,9 @@ class GetConsumerListRequest(AbstractModel):
 
         :param tag_value: tag_value parameter
         :type tag_value: str (optional)
+
+        :param x_region: x_region parameter
+        :type x_region: str (required)
         """
         super().__init__()
         self.instance_id = instance_id
@@ -37,6 +40,7 @@ class GetConsumerListRequest(AbstractModel):
         self.page_size = page_size
         self.tag_key = tag_key
         self.tag_value = tag_value
+        self.x_region = x_region
 
     def to_dict(self):
         """
@@ -79,4 +83,6 @@ class GetConsumerListRequest(AbstractModel):
             self.tag_key = m.get('tagKey')
         if m.get('tagValue') is not None:
             self.tag_value = m.get('tagValue')
+        if m.get('X-Region') is not None:
+            self.x_region = m.get('X-Region')
         return self

@@ -32,8 +32,8 @@ if __name__ == '__main__':
             hash_type="",
             hash_key="",
             request_ratio=0,
-            weight_factor=0,
             model_name="",
+            weight_factor=0,
             model_name_mode="",
             specified_model_name="",
         )
@@ -72,6 +72,7 @@ if __name__ == '__main__':
         request = aigw_models.UpdateRouteRequest(
             instance_id="",
             route_name="",
+            x_region="",
             match_rules=match_rules,
             target_service=target_service,
             src_product="",

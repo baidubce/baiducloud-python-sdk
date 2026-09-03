@@ -14,10 +14,10 @@ class TimeoutPolicy(AbstractModel):
         """
         Initialize TimeoutPolicy instance.
 
-        :param enabled: 是否启用
+        :param enabled: 是否启用超时策略
         :type enabled: bool (optional)
 
-        :param timeout: 超时时间（秒）
+        :param timeout: 超时时长，单位为秒，enabled 为 true 时必需
         :type timeout: int (optional)
         """
         super().__init__()
