@@ -1,0 +1,86 @@
+"""
+PicturebookImageAddResponse information
+"""
+
+from baiducloud_python_sdk_core.bce_response import BceResponse
+
+
+class PicturebookImageAddResponse(BceResponse):
+    """
+    PicturebookImageAddResponse
+    """
+
+    def __init__(self, error_code=None, error_msg=None, log_id=None, cont_sign=None):
+        """
+        Initialize PicturebookImageAddResponse instance.
+
+        :param error_code: 错误码
+        :type error_code: int (optional)
+
+        :param error_msg: 错误信息
+        :type error_msg: str (optional)
+
+        :param log_id: 唯一的log id，用于问题定位
+        :type log_id: int (optional)
+
+        :param cont_sign: 输入图片的签名信息，请保存至本地，供后续删除/查询使用
+        :type cont_sign: str (optional)
+        """
+        super().__init__()
+        self.error_code = error_code
+        self.error_msg = error_msg
+        self.log_id = log_id
+        self.cont_sign = cont_sign
+
+    def to_dict(self):
+        """
+        Convert the model instance to a dictionary representation.
+
+        Nested model objects are recursively converted to dictionaries.
+
+        Includes metadata from the parent BceResponse class.
+
+        :return: Dictionary representation of the model
+        :rtype: dict
+        """
+        _map = super().to_dict()
+        if _map is not None:
+            return _map
+        result = dict()
+        if self.metadata is not None:
+            result['metadata'] = dict(self.metadata)
+        if self.error_code is not None:
+            result['error_code'] = self.error_code
+        if self.error_msg is not None:
+            result['error_msg'] = self.error_msg
+        if self.log_id is not None:
+            result['log_id'] = self.log_id
+        if self.cont_sign is not None:
+            result['cont_sign'] = self.cont_sign
+        return result
+
+    def from_dict(self, m):
+        """
+        Populate the model instance from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing model data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: PicturebookImageAddResponse
+
+        :raises TypeError: If input is not a dictionary type
+        :raises ValueError: If nested model conversion fails
+        """
+        m = m or dict()
+        if m.get('error_code') is not None:
+            self.error_code = m.get('error_code')
+        if m.get('error_msg') is not None:
+            self.error_msg = m.get('error_msg')
+        if m.get('log_id') is not None:
+            self.log_id = m.get('log_id')
+        if m.get('cont_sign') is not None:
+            self.cont_sign = m.get('cont_sign')
+        return self
