@@ -10,19 +10,15 @@ class InstanceSet(AbstractModel):
     InstanceSet
     """
 
-    def __init__(self, instance_spec=None, count=None):
+    def __init__(self, instance_spec=None):
         """
         Initialize InstanceSet instance.
 
-        :param instance_spec: 节点规格配置
+        :param instance_spec:
         :type instance_spec: object (optional)
-
-        :param count: 节点数量
-        :type count: int (optional)
         """
         super().__init__()
         self.instance_spec = instance_spec
-        self.count = count
 
     def to_dict(self):
         """
@@ -39,8 +35,6 @@ class InstanceSet(AbstractModel):
         result = dict()
         if self.instance_spec is not None:
             result['instanceSpec'] = self.instance_spec
-        if self.count is not None:
-            result['count'] = self.count
         return result
 
     def from_dict(self, m):
@@ -61,6 +55,4 @@ class InstanceSet(AbstractModel):
         m = m or dict()
         if m.get('instanceSpec') is not None:
             self.instance_spec = m.get('instanceSpec')
-        if m.get('count') is not None:
-            self.count = m.get('count')
         return self

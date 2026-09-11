@@ -40,9 +40,6 @@ class CceClientTest(unittest.TestCase):
     def test_create_node_group_v2(self):
         self.client.create_node_group_v2(cce_models.CreateNodeGroupV2Request())
 
-    def test_create_nodes_cluster_expansion_v2(self):
-        self.client.create_nodes_cluster_expansion_v2(cce_models.CreateNodesClusterExpansionV2Request())
-
     def test_delete_node_group_v2(self):
         self.client.delete_node_group_v2(cce_models.DeleteNodeGroupV2Request())
 
@@ -111,7 +108,6 @@ if __name__ == '__main__':
     suite.addTest(CceClientTest("test_create_an_autoscaler_v2"))
     suite.addTest(CceClientTest("test_create_expansion_node_group_task_v2"))
     suite.addTest(CceClientTest("test_create_node_group_v2"))
-    suite.addTest(CceClientTest("test_create_nodes_cluster_expansion_v2"))
     suite.addTest(CceClientTest("test_delete_node_group_v2"))
     suite.addTest(CceClientTest("test_delete_nodes_cluster_scaling_v2"))
     suite.addTest(CceClientTest("test_get_node_details_v2"))

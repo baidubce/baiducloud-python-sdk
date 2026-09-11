@@ -19,9 +19,6 @@ from baiducloud_python_sdk_cce.models.create_expansion_node_group_task_v2_respon
     CreateExpansionNodeGroupTaskV2Response,
 )
 from baiducloud_python_sdk_cce.models.create_node_group_v2_response import CreateNodeGroupV2Response
-from baiducloud_python_sdk_cce.models.create_nodes_cluster_expansion_v2_response import (
-    CreateNodesClusterExpansionV2Response,
-)
 from baiducloud_python_sdk_cce.models.delete_node_group_v2_response import DeleteNodeGroupV2Response
 from baiducloud_python_sdk_cce.models.delete_nodes_cluster_scaling_v2_response import (
     DeleteNodesClusterScalingV2Response,
@@ -246,34 +243,6 @@ class CceClient(BceBaseClient):
             body=request.to_json_string(),
             config=merged_config,
             model=CreateNodeGroupV2Response,
-        )
-
-    def create_nodes_cluster_expansion_v2(self, request, config=None):
-        """
-        create_nodes_cluster_expansion_v2
-
-        :param request: Request entity containing all parameters
-        :type request: CceClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response containing CreateNodesClusterExpansionV2Response data
-        :rtype: CreateNodesClusterExpansionV2Response
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = utils.append_uri(
-            b'/', CceClient.CONSTANT_V2, CceClient.CONSTANT_CLUSTER, request.cluster_id, CceClient.CONSTANT_INSTANCES
-        )
-        headers = None
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(
-            http_methods.POST,
-            path=path,
-            body=request.to_json_string(),
-            config=merged_config,
-            model=CreateNodesClusterExpansionV2Response,
         )
 
     def delete_node_group_v2(self, request, config=None):
