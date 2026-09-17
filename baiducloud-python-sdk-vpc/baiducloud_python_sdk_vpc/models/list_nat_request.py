@@ -12,12 +12,12 @@ class ListNatRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, vpc_id, nat_id=None, name=None, ip=None, marker=None, max_keys=None):
+    def __init__(self, vpc_id=None, nat_id=None, name=None, ip=None, marker=None, max_keys=None):
         """
         Initialize ListNatRequest request entity.
 
         :param vpc_id: vpc_id parameter
-        :type vpc_id: str (required)
+        :type vpc_id: str (optional)
 
         :param nat_id: nat_id parameter
         :type nat_id: str (optional)
