@@ -22,7 +22,7 @@ class BindEipUsingPOSTRequest(AbstractModel):
         :param engine_type: engine_type parameter
         :type engine_type: str (optional)
 
-        :param eip: eip parameter
+        :param eip: EIP 地址
         :type eip: str (optional)
         """
         super().__init__()

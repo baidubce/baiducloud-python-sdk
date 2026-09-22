@@ -12,23 +12,23 @@ class ModifyPasswordUsingPOSTRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, instance_id, engine_type=None, vdb_from=None, password=None, username=None):
+    def __init__(self, instance_id=None, engine_type=None, vdb_from=None, password=None, username=None):
         """
         Initialize ModifyPasswordUsingPOSTRequest request entity.
 
         :param instance_id: instance_id parameter
-        :type instance_id: str (required)
+        :type instance_id: str (optional)
 
         :param engine_type: engine_type parameter
         :type engine_type: str (optional)
 
-        :param vdb_from: vdb_from parameter
+        :param vdb_from: 请求来源
         :type vdb_from: str (optional)
 
-        :param password: password parameter
+        :param password: 新密码
         :type password: str (optional)
 
-        :param username: username parameter
+        :param username: 用户名
         :type username: str (optional)
         """
         super().__init__()

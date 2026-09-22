@@ -22,7 +22,7 @@ class UpdateInstanceDomainUsingPOSTRequest(AbstractModel):
         :param engine_type: engine_type parameter
         :type engine_type: str (optional)
 
-        :param domain: domain parameter
+        :param domain: 域名
         :type domain: str (optional)
         """
         super().__init__()

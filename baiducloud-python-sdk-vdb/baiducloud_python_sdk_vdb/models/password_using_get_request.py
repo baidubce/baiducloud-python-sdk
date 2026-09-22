@@ -12,15 +12,15 @@ class PasswordUsingGetRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, instance_id, username, engine_type=None):
+    def __init__(self, instance_id=None, username=None, engine_type=None):
         """
         Initialize PasswordUsingGetRequest request entity.
 
         :param instance_id: instance_id parameter
-        :type instance_id: str (required)
+        :type instance_id: str (optional)
 
         :param username: username parameter
-        :type username: str (required)
+        :type username: str (optional)
 
         :param engine_type: engine_type parameter
         :type engine_type: str (optional)

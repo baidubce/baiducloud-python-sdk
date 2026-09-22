@@ -12,12 +12,12 @@ class DescribeInstanceConfigsUsingGetRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, instance_id):
+    def __init__(self, instance_id=None):
         """
         Initialize DescribeInstanceConfigsUsingGetRequest request entity.
 
         :param instance_id: instance_id parameter
-        :type instance_id: str (required)
+        :type instance_id: str (optional)
         """
         super().__init__()
         self.instance_id = instance_id

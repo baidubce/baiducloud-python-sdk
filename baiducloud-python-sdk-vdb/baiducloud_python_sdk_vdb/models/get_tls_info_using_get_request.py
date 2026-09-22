@@ -12,12 +12,12 @@ class GetTlsInfoUsingGetRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, instance_id, engine_type=None):
+    def __init__(self, instance_id=None, engine_type=None):
         """
         Initialize GetTlsInfoUsingGetRequest request entity.
 
         :param instance_id: instance_id parameter
-        :type instance_id: str (required)
+        :type instance_id: str (optional)
 
         :param engine_type: engine_type parameter
         :type engine_type: str (optional)

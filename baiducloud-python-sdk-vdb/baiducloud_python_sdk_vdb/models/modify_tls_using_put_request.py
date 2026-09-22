@@ -19,10 +19,10 @@ class ModifyTLSUsingPUTRequest(AbstractModel):
         :param engine_type: engine_type parameter
         :type engine_type: str (optional)
 
-        :param action: action parameter
+        :param action: 操作类型
         :type action: str (optional)
 
-        :param instance_id: instance_id parameter
+        :param instance_id: 实例ID
         :type instance_id: str (optional)
         """
         super().__init__()

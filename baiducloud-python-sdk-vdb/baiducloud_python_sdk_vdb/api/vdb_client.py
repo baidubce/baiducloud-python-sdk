@@ -14,7 +14,6 @@ from baiducloud_python_sdk_core.util import request_body_utils
 from baiducloud_python_sdk_vdb.models.account_list_using_get_response import AccountListUsingGETResponse
 from baiducloud_python_sdk_vdb.models.create_instance_using_post_response import CreateInstanceUsingPOSTResponse
 from baiducloud_python_sdk_vdb.models.get_config_using_get_response import GetConfigUsingGETResponse
-from baiducloud_python_sdk_vdb.models.get_free_instance_quota_response import GetFreeInstanceQuotaResponse
 from baiducloud_python_sdk_vdb.models.get_free_instance_quota_using_get_response import (
     GetFreeInstanceQuotaUsingGETResponse,
 )
@@ -50,19 +49,13 @@ class VdbClient(BceBaseClient):
 
     CONSTANT_RESET_PASSWORD = b'resetPassword'
 
-    CONSTANT_MODIFY_PUBLIC_ACCESS = b'modifyPublicAccess'
-
     CONSTANT_DETAIL = b'detail'
-
-    CONSTANT_DESCRIBE_INSTANCE_CONFIGS = b'describeInstanceConfigs'
 
     CONSTANT_RECYCLER = b'recycler'
 
     CONSTANT_DELETE = b'delete'
 
     CONSTANT_MODIFY_NAME = b'modifyName'
-
-    CONSTANT_MODIFY_INSTANCE_CONFIG = b'modifyInstanceConfig'
 
     CONSTANT_LIST = b'list'
 
@@ -71,8 +64,6 @@ class VdbClient(BceBaseClient):
     CONSTANT_BACKUP = b'backup'
 
     CONSTANT_SET_COMMENT = b'setComment'
-
-    CONSTANT_MODIFY_DOMAIN = b'modifyDomain'
 
     CONSTANT_RECOVER = b'recover'
 
@@ -104,7 +95,15 @@ class VdbClient(BceBaseClient):
 
     CONSTANT_QUOTA = b'quota'
 
+    CONSTANT_MODIFY_PUBLIC_ACCESS = b'modifyPublicAccess'
+
     CONSTANT_ZONE = b'zone'
+
+    CONSTANT_MODIFY_INSTANCE_CONFIG = b'modifyInstanceConfig'
+
+    CONSTANT_MODIFY_DOMAIN = b'modifyDomain'
+
+    CONSTANT_DESCRIBE_INSTANCE_CONFIGS = b'describeInstanceConfigs'
 
     CONSTANT_GET_T_L_S_INFO = b'getTLSInfo'
 
@@ -269,37 +268,6 @@ class VdbClient(BceBaseClient):
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
 
-    def delete_recycler_instance(self, request, config=None):
-        """
-        delete_recycler_instance
-
-        :param request: Request entity containing all parameters
-        :type request: VdbClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = utils.append_uri(
-            VdbClient.VERSION_V1,
-            VdbClient.CONSTANT_VDB,
-            VdbClient.CONSTANT_RECYCLER,
-            VdbClient.CONSTANT_INSTANCE,
-            VdbClient.CONSTANT_DELETE,
-        )
-        headers = None
-        params = {}
-        if request.instance_id is not None:
-            params['instanceId'] = request.instance_id
-        if request.engine_type is not None:
-            params['engineType'] = request.engine_type
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
-
     def deleteinstanceusingdelete1(self, request, config=None):
         """
         deleteinstanceusingdelete1
@@ -330,34 +298,6 @@ class VdbClient(BceBaseClient):
             params['engineType'] = request.engine_type
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.DELETE, path=path, params=params, config=merged_config)
-
-    def describe_instance_configs(self, request, config=None):
-        """
-        describe_instance_configs
-
-        :param request: Request entity containing all parameters
-        :type request: VdbClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = utils.append_uri(
-            VdbClient.VERSION_V1,
-            VdbClient.CONSTANT_VDB,
-            VdbClient.CONSTANT_INSTANCE,
-            VdbClient.CONSTANT_DESCRIBE_INSTANCE_CONFIGS,
-        )
-        headers = None
-        params = {}
-        if request.instance_id is not None:
-            params['instanceId'] = request.instance_id
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.GET, path=path, params=params, config=merged_config)
 
     def describe_instance_configs_using_get(self, request, config=None):
         """
@@ -415,24 +355,6 @@ class VdbClient(BceBaseClient):
         return self._send_request(
             http_methods.GET, path=path, params=params, config=merged_config, model=GetConfigUsingGETResponse
         )
-
-    def get_free_instance_quota(self, config=None):
-        """
-        get_free_instance_quota
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response containing GetFreeInstanceQuotaResponse data
-        :rtype: GetFreeInstanceQuotaResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = utils.append_uri(
-            VdbClient.VERSION_V1, VdbClient.CONSTANT_VDB, VdbClient.CONSTANT_INSTANCE, VdbClient.CONSTANT_FREE_QUOTA
-        )
-        headers = None
-        return self._send_request(http_methods.GET, path=path, config=config, model=GetFreeInstanceQuotaResponse)
 
     def get_free_instance_quota_using_get(self, config=None):
         """
@@ -760,31 +682,6 @@ class VdbClient(BceBaseClient):
             http_methods.POST, path=path, body=request.to_json_string(), params=params, config=merged_config
         )
 
-    def modify_instance_config(self, request, config=None):
-        """
-        modify_instance_config
-
-        :param request: Request entity containing all parameters
-        :type request: VdbClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = utils.append_uri(
-            VdbClient.VERSION_V1,
-            VdbClient.CONSTANT_VDB,
-            VdbClient.CONSTANT_INSTANCE,
-            VdbClient.CONSTANT_MODIFY_INSTANCE_CONFIG,
-        )
-        headers = None
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
-
     def modify_instance_config_using_post(self, request, config=None):
         """
         modify_instance_config_using_post
@@ -838,32 +735,6 @@ class VdbClient(BceBaseClient):
         return self._send_request(
             http_methods.POST, path=path, body=request.to_json_string(), params=params, config=merged_config
         )
-
-    def modify_public_access(self, request, config=None):
-        """
-        modify_public_access
-
-        :param request: Request entity containing all parameters
-        :type request: VdbClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = utils.append_uri(
-            VdbClient.VERSION_V1,
-            VdbClient.CONSTANT_VDB,
-            VdbClient.CONSTANT_INSTANCE,
-            request.instance_id,
-            VdbClient.CONSTANT_MODIFY_PUBLIC_ACCESS,
-        )
-        headers = None
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.PUT, path=path, body=request.to_json_string(), config=merged_config)
 
     def modify_public_access_using_put(self, request, config=None):
         """
@@ -1128,37 +999,6 @@ class VdbClient(BceBaseClient):
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.POST, path=path, params=params, config=merged_config)
 
-    def update_instance_domain(self, request, config=None):
-        """
-        update_instance_domain
-
-        :param request: Request entity containing all parameters
-        :type request: VdbClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = utils.append_uri(
-            VdbClient.VERSION_V1,
-            VdbClient.CONSTANT_VDB,
-            VdbClient.CONSTANT_INSTANCE,
-            request.instance_id,
-            VdbClient.CONSTANT_MODIFY_DOMAIN,
-        )
-        headers = None
-        params = {}
-        if request.engine_type is not None:
-            params['engineType'] = request.engine_type
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(
-            http_methods.POST, path=path, body=request.to_json_string(), params=params, config=merged_config
-        )
-
     def update_instance_domain_using_post(self, request, config=None):
         """
         update_instance_domain_using_post
@@ -1180,37 +1020,6 @@ class VdbClient(BceBaseClient):
             VdbClient.CONSTANT_INSTANCE,
             request.instance_id,
             VdbClient.CONSTANT_MODIFY_DOMAIN,
-        )
-        headers = None
-        params = {}
-        if request.engine_type is not None:
-            params['engineType'] = request.engine_type
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(
-            http_methods.POST, path=path, body=request.to_json_string(), params=params, config=merged_config
-        )
-
-    def update_instance_name(self, request, config=None):
-        """
-        update_instance_name
-
-        :param request: Request entity containing all parameters
-        :type request: VdbClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = utils.append_uri(
-            VdbClient.VERSION_V1,
-            VdbClient.CONSTANT_VDB,
-            VdbClient.CONSTANT_INSTANCE,
-            request.instance_id,
-            VdbClient.CONSTANT_MODIFY_NAME,
         )
         headers = None
         params = {}

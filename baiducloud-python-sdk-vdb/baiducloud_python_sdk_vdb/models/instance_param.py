@@ -48,88 +48,88 @@ class InstanceParam(AbstractModel):
         """
         Initialize InstanceParam instance.
 
-        :param availability_zone:
+        :param availability_zone: 可用区
         :type availability_zone: str (optional)
 
-        :param az_infos:
+        :param az_infos: 可用区及子网信息
         :type az_infos: List[AzInfo] (optional)
 
-        :param clone_data_app_backup_id:
+        :param clone_data_app_backup_id: 克隆源备份ID
         :type clone_data_app_backup_id: str (optional)
 
-        :param clone_data_app_id:
+        :param clone_data_app_id: 克隆源实例ID
         :type clone_data_app_id: str (optional)
 
-        :param components:
+        :param components: 组件配置
         :type components: List[MilvusComponent] (optional)
 
-        :param data_node_num:
+        :param data_node_num: 数据节点数量
         :type data_node_num: int (optional)
 
-        :param disk_flavor:
+        :param disk_flavor: 磁盘容量（GB）
         :type disk_flavor: int (optional)
 
-        :param disk_type:
+        :param disk_type: 磁盘类型
         :type disk_type: str (optional)
 
-        :param enable_embedding:
+        :param enable_embedding: 是否开启 Embedding
         :type enable_embedding: bool (optional)
 
-        :param enable_encryption:
+        :param enable_encryption: 是否开启数据加密
         :type enable_encryption: bool (optional)
 
-        :param engine_version:
+        :param engine_version: 引擎版本
         :type engine_version: str (optional)
 
-        :param vdb_from:
+        :param vdb_from: 请求来源（console/api）
         :type vdb_from: str (optional)
 
-        :param instance_name:
+        :param instance_name: 实例名称
         :type instance_name: str (optional)
 
-        :param instance_num:
+        :param instance_num: 实例数量
         :type instance_num: int (optional)
 
-        :param instance_type:
+        :param instance_type: 实例类型（cluster：集群，standalone：单机）
         :type instance_type: str (optional)
 
-        :param master_node_spec:
+        :param master_node_spec: 主节点规格
         :type master_node_spec: str (optional)
 
-        :param master_num:
+        :param master_num: 主节点数量
         :type master_num: int (optional)
 
-        :param node_spec:
+        :param node_spec: 节点规格
         :type node_spec: str (optional)
 
-        :param node_type:
+        :param node_type: 节点类型
         :type node_type: str (optional)
 
-        :param order_id:
+        :param order_id: 订单ID
         :type order_id: str (optional)
 
-        :param password:
+        :param password: 实例密码
         :type password: str (optional)
 
-        :param port:
+        :param port: 端口
         :type port: int (optional)
 
-        :param proxy_node_spec:
+        :param proxy_node_spec: 代理节点规格
         :type proxy_node_spec: str (optional)
 
-        :param proxy_num:
+        :param proxy_num: 代理节点数量
         :type proxy_num: int (optional)
 
-        :param req_source:
+        :param req_source: 请求来源
         :type req_source: str (optional)
 
-        :param subnet_id:
+        :param subnet_id: 子网 ID
         :type subnet_id: str (optional)
 
-        :param switch_entrance:
+        :param switch_entrance: 是否交换原实例和克隆实例入口
         :type switch_entrance: str (optional)
 
-        :param vpc_id:
+        :param vpc_id: VPC ID
         :type vpc_id: str (optional)
         """
         super().__init__()

@@ -22,7 +22,7 @@ class UpdateInstanceNameUsingPOSTRequest(AbstractModel):
         :param engine_type: engine_type parameter
         :type engine_type: str (optional)
 
-        :param instance_name: instance_name parameter
+        :param instance_name: 实例名称
         :type instance_name: str (optional)
         """
         super().__init__()

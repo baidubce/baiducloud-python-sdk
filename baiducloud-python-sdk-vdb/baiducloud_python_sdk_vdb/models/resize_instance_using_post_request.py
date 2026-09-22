@@ -36,43 +36,43 @@ class ResizeInstanceUsingPOSTRequest(AbstractModel):
         :param engine_type: engine_type parameter
         :type engine_type: str (optional)
 
-        :param components: components parameter
+        :param components: 组件配置
         :type components: List[MilvusComponent] (optional)
 
-        :param data_node_num: data_node_num parameter
+        :param data_node_num: 数据节点数量
         :type data_node_num: int (optional)
 
-        :param disk_flavor: disk_flavor parameter
+        :param disk_flavor: 磁盘容量（GB）
         :type disk_flavor: int (optional)
 
-        :param disk_type: disk_type parameter
+        :param disk_type: 磁盘类型
         :type disk_type: str (optional)
 
-        :param env: env parameter
+        :param env: 环境
         :type env: str (optional)
 
-        :param instance_id: instance_id parameter
+        :param instance_id: 实例ID
         :type instance_id: str (optional)
 
-        :param master_node_spec: master_node_spec parameter
+        :param master_node_spec: 主节点规格
         :type master_node_spec: str (optional)
 
-        :param master_num: master_num parameter
+        :param master_num: 主节点数量
         :type master_num: int (optional)
 
-        :param node_spec: node_spec parameter
+        :param node_spec: 节点规格
         :type node_spec: str (optional)
 
-        :param node_type: node_type parameter
+        :param node_type: 节点类型
         :type node_type: str (optional)
 
-        :param order_id: order_id parameter
+        :param order_id: 订单ID
         :type order_id: str (optional)
 
-        :param proxy_node_spec: proxy_node_spec parameter
+        :param proxy_node_spec: 代理节点规格
         :type proxy_node_spec: str (optional)
 
-        :param proxy_num: proxy_num parameter
+        :param proxy_num: 代理节点数量
         :type proxy_num: int (optional)
         """
         super().__init__()

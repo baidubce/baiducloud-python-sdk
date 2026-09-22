@@ -33,31 +33,31 @@ class CreateInstanceUsingPOSTRequest(AbstractModel):
         :param engine_type: engine_type parameter
         :type engine_type: str (optional)
 
-        :param auto_renew: auto_renew parameter
+        :param auto_renew: 是否自动续费
         :type auto_renew: bool (optional)
 
-        :param auto_renew_time: auto_renew_time parameter
+        :param auto_renew_time: 自动续费时长
         :type auto_renew_time: int (optional)
 
-        :param auto_renew_time_unit: auto_renew_time_unit parameter
+        :param auto_renew_time_unit: 自动续费时长单位
         :type auto_renew_time_unit: str (optional)
 
-        :param components: components parameter
+        :param components: 组件配置
         :type components: List[MilvusComponent] (optional)
 
-        :param duration: duration parameter
+        :param duration: 购买时长
         :type duration: int (optional)
 
-        :param env: env parameter
+        :param env: 环境
         :type env: str (optional)
 
         :param instance_param: instance_param parameter
         :type instance_param: InstanceParam (optional)
 
-        :param product_type: product_type parameter
+        :param product_type: 计费类型（prepay：预付费，postpay：后付费）
         :type product_type: str (optional)
 
-        :param time_unit: time_unit parameter
+        :param time_unit: 购买时长单位
         :type time_unit: str (optional)
         """
         super().__init__()
