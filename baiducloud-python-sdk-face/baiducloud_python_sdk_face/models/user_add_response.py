@@ -1,0 +1,88 @@
+"""
+UserAddResponse information
+"""
+
+from baiducloud_python_sdk_core.bce_response import BceResponse
+
+from baiducloud_python_sdk_face.models.face_reg_result import FaceRegResult
+
+
+class UserAddResponse(BceResponse):
+    """
+    UserAddResponse
+    """
+
+    def __init__(self, result=None, error_code=None, error_msg=None, log_id=None):
+        """
+        Initialize UserAddResponse instance.
+
+        :param result: result attribute
+        :type result: FaceRegResult (optional)
+
+        :param error_code: 错误码，0表示成功
+        :type error_code: int (optional)
+
+        :param error_msg: 错误信息
+        :type error_msg: str (optional)
+
+        :param log_id: 请求标识码，随机数，唯一
+        :type log_id: int (optional)
+        """
+        super().__init__()
+        self.result = result
+        self.error_code = error_code
+        self.error_msg = error_msg
+        self.log_id = log_id
+
+    def to_dict(self):
+        """
+        Convert the model instance to a dictionary representation.
+
+        Nested model objects are recursively converted to dictionaries.
+
+        Includes metadata from the parent BceResponse class.
+
+        :return: Dictionary representation of the model
+        :rtype: dict
+        """
+        _map = super().to_dict()
+        if _map is not None:
+            return _map
+        result = dict()
+        if self.metadata is not None:
+            result['metadata'] = dict(self.metadata)
+        if self.result is not None:
+            result['result'] = self.result.to_dict()
+        if self.error_code is not None:
+            result['error_code'] = self.error_code
+        if self.error_msg is not None:
+            result['error_msg'] = self.error_msg
+        if self.log_id is not None:
+            result['log_id'] = self.log_id
+        return result
+
+    def from_dict(self, m):
+        """
+        Populate the model instance from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing model data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: UserAddResponse
+
+        :raises TypeError: If input is not a dictionary type
+        :raises ValueError: If nested model conversion fails
+        """
+        m = m or dict()
+        if m.get('result') is not None:
+            self.result = FaceRegResult().from_dict(m.get('result'))
+        if m.get('error_code') is not None:
+            self.error_code = m.get('error_code')
+        if m.get('error_msg') is not None:
+            self.error_msg = m.get('error_msg')
+        if m.get('log_id') is not None:
+            self.log_id = m.get('log_id')
+        return self
