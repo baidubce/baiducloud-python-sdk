@@ -1,38 +1,26 @@
 """
-Request entity for InstanceListRequest information.
+Request entity for GetDeploymentSetListRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class InstanceListRequest(AbstractModel):
+class GetDeploymentSetListRequest(AbstractModel):
     """
-    Request entity for InstanceListRequest operation.
+    Request entity for GetDeploymentSetListRequest operation.
 
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, marker, max_keys, instance_ids, vnet_ip):
+    def __init__(self, max_keys=None):
         """
-        Initialize InstanceListRequest request entity.
-
-        :param marker: marker parameter
-        :type marker: str (required)
+        Initialize GetDeploymentSetListRequest request entity.
 
         :param max_keys: max_keys parameter
-        :type max_keys: str (required)
-
-        :param instance_ids: instance_ids parameter
-        :type instance_ids: str (required)
-
-        :param vnet_ip: vnet_ip parameter
-        :type vnet_ip: str (required)
+        :type max_keys: int (optional)
         """
         super().__init__()
-        self.marker = marker
         self.max_keys = max_keys
-        self.instance_ids = instance_ids
-        self.vnet_ip = vnet_ip
 
     def to_dict(self):
         """
@@ -59,18 +47,12 @@ class InstanceListRequest(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: InstanceListRequest
+        :rtype: GetDeploymentSetListRequest
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('marker') is not None:
-            self.marker = m.get('marker')
         if m.get('maxKeys') is not None:
             self.max_keys = m.get('maxKeys')
-        if m.get('instanceIds') is not None:
-            self.instance_ids = m.get('instanceIds')
-        if m.get('vnetIp') is not None:
-            self.vnet_ip = m.get('vnetIp')
         return self

@@ -1,5 +1,5 @@
 """
-Example for scs instance_list method.
+Example for scs get_price_for_create_instance method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -20,8 +20,21 @@ if __name__ == '__main__':
         )
 
         client = ScsClient(bce_client_config)
-        request = scs_models.InstanceListRequest(marker="", max_keys="", instance_ids="", vnet_ip="")
-        res = client.instance_list(request)
+        request = scs_models.GetPriceForCreateInstanceRequest(
+            engine=0,
+            cluster_type="",
+            node_type="",
+            cache_instance_type=0,
+            shard_num=0,
+            replication_num=0,
+            instance_num=0,
+            disk_type="",
+            disk_flavor=0,
+            charge_type="",
+            period=0,
+            time_unit="",
+        )
+        res = client.get_price_for_create_instance(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。

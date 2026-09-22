@@ -1,19 +1,22 @@
 """
-Request entity for InstanceListResponse information.
+Request entity for GetApplicationParameterTemplateRecordsResponse information.
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
-from baiducloud_python_sdk_scs.models.instance_model import InstanceModel
+from baiducloud_python_sdk_scs.models.result import Result
 
 
-class InstanceListResponse(BceResponse):
+class GetApplicationParameterTemplateRecordsResponse(BceResponse):
     """
-    InstanceListResponse
+    GetApplicationParameterTemplateRecordsResponse
     """
 
-    def __init__(self, marker=None, max_keys=None, is_truncated=None, next_marker=None, instances=None):
+    def __init__(self, result=None, marker=None, max_keys=None, is_truncated=None, next_marker=None):
         """
-        Initialize InstanceListResponse response.
+        Initialize GetApplicationParameterTemplateRecordsResponse response.
+
+        :param result: 参数模版列表
+        :type result: List[Result] (optional)
 
         :param marker: 批量获取列表的查询的起始位置，是一个由系统生成的字符串,起始值可传入-1
         :type marker: str (optional)
@@ -26,16 +29,13 @@ class InstanceListResponse(BceResponse):
 
         :param next_marker: 获取下一页所需要传递的marker值。当isTruncated为false时，该域不出现
         :type next_marker: str (optional)
-
-        :param instances: 由[InstanceModel](SCS/API参考/附录.md#InstanceModel)组成的数组
-        :type instances: List[InstanceModel] (optional)
         """
         super().__init__()
+        self.result = result
         self.marker = marker
         self.max_keys = max_keys
         self.is_truncated = is_truncated
         self.next_marker = next_marker
-        self.instances = instances
 
     def to_dict(self):
         """
@@ -53,6 +53,8 @@ class InstanceListResponse(BceResponse):
         result = dict()
         if self.metadata is not None:
             result['metadata'] = dict(self.metadata)
+        if self.result is not None:
+            result['result'] = [i.to_dict() for i in self.result]
         if self.marker is not None:
             result['marker'] = self.marker
         if self.max_keys is not None:
@@ -61,8 +63,6 @@ class InstanceListResponse(BceResponse):
             result['isTruncated'] = self.is_truncated
         if self.next_marker is not None:
             result['nextMarker'] = self.next_marker
-        if self.instances is not None:
-            result['instances'] = [i.to_dict() for i in self.instances]
         return result
 
     def from_dict(self, m):
@@ -75,12 +75,14 @@ class InstanceListResponse(BceResponse):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: InstanceListResponse
+        :rtype: GetApplicationParameterTemplateRecordsResponse
 
         :raises TypeError: If input is not a dictionary or field type mismatch
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
+        if m.get('result') is not None:
+            self.result = [Result().from_dict(i) for i in m.get('result')]
         if m.get('marker') is not None:
             self.marker = m.get('marker')
         if m.get('maxKeys') is not None:
@@ -89,6 +91,4 @@ class InstanceListResponse(BceResponse):
             self.is_truncated = m.get('isTruncated')
         if m.get('nextMarker') is not None:
             self.next_marker = m.get('nextMarker')
-        if m.get('instances') is not None:
-            self.instances = [InstanceModel().from_dict(i) for i in m.get('instances')]
         return self

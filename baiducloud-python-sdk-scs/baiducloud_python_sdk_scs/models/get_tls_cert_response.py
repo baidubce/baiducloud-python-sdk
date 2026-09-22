@@ -1,0 +1,85 @@
+"""
+Request entity for GetTlsCertResponse information.
+"""
+
+from baiducloud_python_sdk_core.bce_response import BceResponse
+
+
+class GetTlsCertResponse(BceResponse):
+    """
+    GetTlsCertResponse
+    """
+
+    def __init__(self, status=None, create_time=None, expire_time=None, ca=None):
+        """
+        Initialize GetTlsCertResponse response.
+
+        :param status: status field
+        :type status: str (optional)
+
+        :param create_time: 创建时间。
+        :type create_time: str (optional)
+
+        :param expire_time: 过期时间。
+        :type expire_time: str (optional)
+
+        :param ca: ca证书。
+        :type ca: str (optional)
+        """
+        super().__init__()
+        self.status = status
+        self.create_time = create_time
+        self.expire_time = expire_time
+        self.ca = ca
+
+    def to_dict(self):
+        """
+        Convert the response instance to a dictionary representation.
+
+        Includes metadata from the parent BceResponse class.
+        Nested model objects are recursively converted to dictionaries.
+
+        :return: Dictionary representation of the response
+        :rtype: dict
+        """
+        _map = super().to_dict()
+        if _map is not None:
+            return _map
+        result = dict()
+        if self.metadata is not None:
+            result['metadata'] = dict(self.metadata)
+        if self.status is not None:
+            result['status'] = self.status
+        if self.create_time is not None:
+            result['createTime'] = self.create_time
+        if self.expire_time is not None:
+            result['expireTime'] = self.expire_time
+        if self.ca is not None:
+            result['ca'] = self.ca
+        return result
+
+    def from_dict(self, m):
+        """
+        Populate the response instance from a dictionary.
+
+        Nested dictionaries are recursively converted to model objects.
+
+        :param m: Dictionary containing response data
+        :type m: dict
+
+        :return: Self reference for method chaining
+        :rtype: GetTlsCertResponse
+
+        :raises TypeError: If input is not a dictionary or field type mismatch
+        :raises ValueError: If nested model conversion fails
+        """
+        m = m or dict()
+        if m.get('status') is not None:
+            self.status = m.get('status')
+        if m.get('createTime') is not None:
+            self.create_time = m.get('createTime')
+        if m.get('expireTime') is not None:
+            self.expire_time = m.get('expireTime')
+        if m.get('ca') is not None:
+            self.ca = m.get('ca')
+        return self
