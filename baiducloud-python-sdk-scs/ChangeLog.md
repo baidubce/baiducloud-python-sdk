@@ -1,3 +1,7 @@
+2026-09-24 Version: 0.0.3
+修改备份URL接口backupId类型为字符串
+- 涉及产品: SCS，getBackUpUrl的backupId由整型改为字符串
+
 2026-09-22 Version: 0.0.2
 - 涉及产品: SCS，支持实例全生命周期管理
 - 涉及产品: SCS，支持热活与多活实例组管理

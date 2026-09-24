@@ -20,7 +20,7 @@ if __name__ == '__main__':
         )
 
         client = ScsClient(bce_client_config)
-        request = scs_models.GetBackUpUrlRequest(instance_id="", backup_id=0)
+        request = scs_models.GetBackUpUrlRequest(instance_id="", backup_id="")
         res = client.get_back_up_url(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

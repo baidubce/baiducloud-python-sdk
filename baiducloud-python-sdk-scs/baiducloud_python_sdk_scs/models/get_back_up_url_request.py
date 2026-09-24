@@ -20,7 +20,7 @@ class GetBackUpUrlRequest(AbstractModel):
         :type instance_id: str (required)
 
         :param backup_id: backup_id parameter
-        :type backup_id: int (required)
+        :type backup_id: str (required)
         """
         super().__init__()
         self.instance_id = instance_id
