@@ -1372,9 +1372,18 @@ class ScsClient(BceBaseClient):
         path = utils.append_uri(b'/', ScsClient.CONSTANT_V2,
                                 ScsClient.CONSTANT_INSTANCE)
         headers = None
+        params = {}
+        if request.marker is not None:
+            params['marker'] = request.marker
+        if request.max_keys is not None:
+            params['maxKeys'] = request.max_keys
+        if request.instance_ids is not None:
+            params['instanceIds'] = request.instance_ids
+        if request.vnet_ip is not None:
+            params['vnetIp'] = request.vnet_ip
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.GET, path=path
-                                , config=merged_config, model=GetInstanceListResponse)
+                                , params=params, config=merged_config, model=GetInstanceListResponse)
 
     def get_instance_spec_list(self, config=None):
         """

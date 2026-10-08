@@ -20,7 +20,7 @@ class ReplicationItem(AbstractModel):
         :param subnet_id: 子网ID。示例：sbn-x94w3r601111
         :type subnet_id: str (optional)
 
-        :param is_master: 是否是主节点。主节点有且仅有一个。  <li>1：主节点 <li> 0：从节点
+        :param is_master: 是否是主节点。主节点有且仅有一个。  `1`：主节点；`0`：从节点
         :type is_master: int (optional)
 
         :param weight: 只读实例权重，取值 1~100（只读实例时需要）

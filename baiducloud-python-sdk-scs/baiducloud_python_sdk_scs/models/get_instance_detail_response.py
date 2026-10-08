@@ -79,10 +79,10 @@ class GetInstanceDetailResponse(BceResponse):
         :param instance_status: 实例状态
         :type instance_status: str (optional)
 
-        :param cluster_type: [集群类型](#ClusterType)
+        :param cluster_type: 集群类型
         :type cluster_type: str (optional)
 
-        :param engine: [引擎类型](#Engine)
+        :param engine: 引擎类型
         :type engine: str (optional)
 
         :param engine_version: 引擎版本

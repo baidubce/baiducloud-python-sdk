@@ -12,21 +12,21 @@ class GetInstanceListRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, marker, max_keys, instance_ids, vnet_ip):
+    def __init__(self, marker=None, max_keys=None, instance_ids=None, vnet_ip=None):
         """
         Initialize GetInstanceListRequest request entity.
 
         :param marker: marker parameter
-        :type marker: str (required)
+        :type marker: str (optional)
 
         :param max_keys: max_keys parameter
-        :type max_keys: str (required)
+        :type max_keys: str (optional)
 
         :param instance_ids: instance_ids parameter
-        :type instance_ids: str (required)
+        :type instance_ids: str (optional)
 
         :param vnet_ip: vnet_ip parameter
-        :type vnet_ip: str (required)
+        :type vnet_ip: str (optional)
         """
         super().__init__()
         self.marker = marker

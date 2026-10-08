@@ -19,7 +19,7 @@ class ModifyEntranceRequest(AbstractModel):
         :param instance_id: instance_id parameter
         :type instance_id: str (required)
 
-        :param is_defer: 是否维护时间内执行。 <li>true：维护时间内执行 <li>false：立即执行
+        :param is_defer: 是否维护时间内执行。 `true`：维护时间内执行；`false`：立即执行
         :type is_defer: bool (required)
         """
         super().__init__()

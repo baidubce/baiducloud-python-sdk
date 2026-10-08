@@ -22,7 +22,7 @@ class InstanceVersionUpgradeRequest(AbstractModel):
         :param kernel_version: kernel_version parameter
         :type kernel_version: str (optional)
 
-        :param is_defer: 执行时间。<li> false：立即执行<li>true：维护时间内执行
+        :param is_defer: 执行时间。`false`：立即执行；`true`：维护时间内执行
         :type is_defer: bool (optional)
         """
         super().__init__()

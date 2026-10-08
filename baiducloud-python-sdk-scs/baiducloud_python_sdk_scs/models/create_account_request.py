@@ -22,7 +22,7 @@ class CreateAccountRequest(AbstractModel):
         :param user_name: 账号名称。由小写字母、数字、下划线组成、字母开头,字母或数字结尾,最长16个字符。
         :type user_name: str (required)
 
-        :param client_auth: 账号密码。详情请参考[密码加密传输规范定义](SCS/API参考/通用说明.md#密码加密传输规范定义)
+        :param client_auth: client_auth parameter
         :type client_auth: str (required)
 
         :param extra: 备注

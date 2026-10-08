@@ -23,7 +23,7 @@ class GetBackupStrategyResponse(BceResponse):
         :param expire_day: 备份文件保留时长，可选范围： 1-15天
         :type expire_day: int (optional)
 
-        :param is_encrypt: 是否开启加密 <li>no 不开启 <li> yes 开启
+        :param is_encrypt: 是否开启加密。 `no`：不开启；`yes`：开启
         :type is_encrypt: str (optional)
         """
         super().__init__()

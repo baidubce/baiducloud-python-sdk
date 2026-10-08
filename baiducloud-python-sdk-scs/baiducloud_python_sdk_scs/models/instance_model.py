@@ -57,16 +57,16 @@ class InstanceModel(AbstractModel):
         :param instance_name: 实例名
         :type instance_name: str (optional)
 
-        :param instance_status: [实例状态](#InstanceStatus)
+        :param instance_status: 实例状态
         :type instance_status: str (optional)
 
         :param isolated_status: 已隔离:Isolated(实例在回收站内)
         :type isolated_status: str (optional)
 
-        :param cluster_type: [集群类型](#ClusterType)
+        :param cluster_type: 集群类型
         :type cluster_type: str (optional)
 
-        :param engine: [引擎类型](#Engine)
+        :param engine: 引擎类型
         :type engine: str (optional)
 
         :param engine_version: 引擎版本

@@ -25,7 +25,7 @@ class ClearInstanceRequest(AbstractModel):
         :param db_index: 数据库索引，取值为：[0,255]
         :type db_index: int (optional)
 
-        :param is_flush_expired: true=只清理过期数据, false=清理所有数据
+        :param is_flush_expired: `true`：只清理过期数据, `false`：清理所有数据
         :type is_flush_expired: bool (optional)
 
         :param is_defer: is_defer parameter

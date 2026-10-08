@@ -22,7 +22,7 @@ class HotGroupStaleReadableRequest(AbstractModel):
         :param follower_id: 从角色集群ID
         :type follower_id: str (required)
 
-        :param stale_readable: 是否开启从角色脏读（true：开启，false：关闭）
+        :param stale_readable: 是否开启从角色脏读。`true`：开启；`false`：关闭
         :type stale_readable: bool (required)
         """
         super().__init__()

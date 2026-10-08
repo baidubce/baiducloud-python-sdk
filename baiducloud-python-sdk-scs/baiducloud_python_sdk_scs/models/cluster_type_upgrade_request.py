@@ -20,13 +20,13 @@ class ClusterTypeUpgradeRequest(AbstractModel):
         :param instance_id: instance_id parameter
         :type instance_id: str (required)
 
-        :param is_defer: 是否维护时间内执行。默认false。true：维护时间内执行；false：立即执行。
+        :param is_defer: 是否维护时间内执行。默认false。`true`：维护时间内执行；`false`：立即执行。
         :type is_defer: bool (optional)
 
         :param node_type: node_type parameter
         :type node_type: str (optional)
 
-        :param shard_num: 分片数量。<li>可以设置新的分片数量；<li>可以为空，默认为原实例分片数。
+        :param shard_num: 分片数量。<br/>1、可以设置新的分片数量；<br/>2、可以为空，默认为原实例分片数。
         :type shard_num: int (optional)
 
         :param replication_info: replication_info parameter

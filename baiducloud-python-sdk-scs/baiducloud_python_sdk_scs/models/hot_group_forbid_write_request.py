@@ -19,7 +19,7 @@ class HotGroupForbidWriteRequest(AbstractModel):
         :param group_id: group_id parameter
         :type group_id: str (required)
 
-        :param forbid_write_flag: 禁写标识（false 未禁写 true 禁写）
+        :param forbid_write_flag: 禁写标识。`false`：未禁写；`true`：禁写
         :type forbid_write_flag: bool (required)
         """
         super().__init__()

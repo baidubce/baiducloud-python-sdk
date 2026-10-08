@@ -27,6 +27,7 @@ from .clear_instance_request import ClearInstanceRequest
 from .cluster_ip import ClusterIP
 from .cluster_item import ClusterItem
 from .cluster_status_check_response import ClusterStatusCheckResponse
+from .cluster_type import ClusterType
 from .cluster_type_upgrade_request import ClusterTypeUpgradeRequest
 from .cluster_type_upgrade_response import ClusterTypeUpgradeResponse
 from .connection_results import ConnectionResults
@@ -50,6 +51,7 @@ from .delete_ip_whitelist_request import DeleteIpWhitelistRequest
 from .deploy import Deploy
 from .disconnect_entrance_response import DisconnectEntranceResponse
 from .domain_name_exchange_request import DomainNameExchangeRequest
+from .engine import Engine
 from .entrance_item import EntranceItem
 from .feature_switches import FeatureSwitches
 from .follower_result import FollowerResult
@@ -93,6 +95,7 @@ from .hot_group_stale_readable_request import HotGroupStaleReadableRequest
 from .hot_group_sync_status_response import HotGroupSyncStatusResponse
 from .instance_full_version_info import InstanceFullVersionInfo
 from .instance_model import InstanceModel
+from .instance_status import InstanceStatus
 from .instance_version_upgrade_request import InstanceVersionUpgradeRequest
 from .leader import Leader
 from .leader_result import LeaderResult

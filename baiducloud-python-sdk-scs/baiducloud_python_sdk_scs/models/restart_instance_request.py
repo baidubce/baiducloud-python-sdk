@@ -19,7 +19,7 @@ class RestartInstanceRequest(AbstractModel):
         :param instance_id: instance_id parameter
         :type instance_id: str (required)
 
-        :param is_defer: 执行时机。<li>false：立即执行<li>true：维护时间内执行
+        :param is_defer: 执行时机。`false`：立即执行；`true`：维护时间内执行
         :type is_defer: bool (optional)
         """
         super().__init__()

@@ -19,7 +19,7 @@ class ModifyParameterTemplateNameRequest(AbstractModel):
         :param template_show_id: template_show_id parameter
         :type template_show_id: str (required)
 
-        :param name: 新的实例名称。要求：<br> 大小写字母、数字、中文以及-_/.特殊字符，必须以字母或者中文开头，长度1-65<br>
+        :param name: 新的实例名称。要求：大小写字母、数字、中文以及-_/.特殊字符，必须以字母或者中文开头，长度1-65
         :type name: str (required)
         """
         super().__init__()

@@ -19,13 +19,13 @@ class ProxyVersionUpgradeOrRestartRequest(AbstractModel):
         :param instance_id: instance_id parameter
         :type instance_id: str (required)
 
-        :param proxy_list: 升级任务为空 重启任务不为空。<li>填写批量重启的proxy的showId
+        :param proxy_list: 升级任务为空 重启任务不为空。填写批量重启的proxy的showId
         :type proxy_list: List[str] (optional)
 
-        :param upgrade_type: 任务类型。 <li>relaunch：重启proxy；<li> latest：升级proxy版本
+        :param upgrade_type: 任务类型。 `relaunch`：重启proxy；`latest`：升级proxy版本
         :type upgrade_type: str (required)
 
-        :param is_defer: 是否延迟执行，默认false： <li>false 立即执行 <li>true 延迟执行(维护时间窗口执行)
+        :param is_defer: 是否延迟执行，默认false。 `false`：立即执行；`true`：延迟执行(维护时间窗口执行)
         :type is_defer: bool (optional)
         """
         super().__init__()

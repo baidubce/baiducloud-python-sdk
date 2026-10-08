@@ -22,7 +22,7 @@ class ChangeAccountPasswordRequest(AbstractModel):
         :param user_name: 要设置的账号名称。
         :type user_name: str (required)
 
-        :param client_auth: 账号密码。详情请参考[密码加密传输规范定义](SCS/API参考/通用说明.md#密码加密传输规范定义)
+        :param client_auth: client_auth parameter
         :type client_auth: str (required)
         """
         super().__init__()

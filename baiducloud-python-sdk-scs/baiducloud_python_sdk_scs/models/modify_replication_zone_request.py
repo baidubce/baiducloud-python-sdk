@@ -20,7 +20,7 @@ class ModifyReplicationZoneRequest(AbstractModel):
         :param instance_id: instance_id parameter
         :type instance_id: str (required)
 
-        :param is_defer: 是否维护时间内执行。 <li>true：维护时间内执行 <li>false：立即执行
+        :param is_defer: 是否维护时间内执行。 `true`：维护时间内执行；`false`：立即执行
         :type is_defer: bool (required)
 
         :param replication_info: 副本信息。需全量的副本信息，可以修改可用区和子网。

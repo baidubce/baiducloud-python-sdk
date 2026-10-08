@@ -19,7 +19,7 @@ class SetBackupPolicyRequest(AbstractModel):
         :param instance_id: instance_id parameter
         :type instance_id: str (required)
 
-        :param backup_time: 备份时间。<li>未填写该参数时，备份时间默认修改为1:05:00。
+        :param backup_time: 备份时间。未填写该参数时，备份时间默认修改为1:05:00。
         :type backup_time: str (optional)
 
         :param backup_days: 备份周期。
@@ -28,7 +28,7 @@ class SetBackupPolicyRequest(AbstractModel):
         :param expire_day: 备份文件保留时长，可选范围： 1-15天
         :type expire_day: int (required)
 
-        :param is_encrypt: 是否开启加密 no 不开启 yes 开启
+        :param is_encrypt: 是否开启加密。`no`：不开启；`yes`：开启
         :type is_encrypt: str (required)
         """
         super().__init__()
