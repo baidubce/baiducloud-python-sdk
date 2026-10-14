@@ -2,4 +2,4 @@
 This module defines some common string constants.
 """
 
-SDK_VERSION = b'0.0.1'
+SDK_VERSION = b'0.0.2'

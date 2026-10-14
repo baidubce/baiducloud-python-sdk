@@ -11,6 +11,7 @@ from baiducloud_python_sdk_core.http import bce_http_client
 from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import http_methods
 from baiducloud_python_sdk_core.util import request_body_utils
+from baiducloud_python_sdk_rds.models.query_task_list_response import QueryTaskListResponse
 
 _logger = logging.getLogger(__name__)
 
@@ -44,8 +45,8 @@ class RdsClient(BceBaseClient):
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+        :return: API response containing QueryTaskListResponse data
+        :rtype: QueryTaskListResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
@@ -53,7 +54,13 @@ class RdsClient(BceBaseClient):
         path = utils.append_uri(b'/', RdsClient.CONSTANT_V1, RdsClient.CONSTANT_INSTANCE, RdsClient.CONSTANT_TASK)
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=QueryTaskListResponse,
+        )
 
     def _merge_config(self, config=None):
         """
