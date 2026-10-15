@@ -11,6 +11,9 @@ from baiducloud_python_sdk_core.http import bce_http_client
 from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import http_methods
 from baiducloud_python_sdk_core.util import request_body_utils
+from baiducloud_python_sdk_rds.models.create_a_primary_instance_response import CreateAPrimaryInstanceResponse
+from baiducloud_python_sdk_rds.models.create_a_proxy_instance_response import CreateAProxyInstanceResponse
+from baiducloud_python_sdk_rds.models.create_read_only_instance_response import CreateReadOnlyInstanceResponse
 from baiducloud_python_sdk_rds.models.query_task_list_response import QueryTaskListResponse
 
 _logger = logging.getLogger(__name__)
@@ -21,9 +24,11 @@ class RdsClient(BceBaseClient):
     rds base sdk client
     """
 
-    CONSTANT_V1 = b'v1'
+    VERSION_V1 = b'/v1'
 
     CONSTANT_INSTANCE = b'instance'
+
+    CONSTANT_V1 = b'v1'
 
     CONSTANT_TASK = b'task'
 
@@ -35,6 +40,98 @@ class RdsClient(BceBaseClient):
         :type config: baidubce.BceClientConfiguration
         """
         bce_base_client.BceBaseClient.__init__(self, config)
+
+    def create_a_primary_instance(self, request, config=None):
+        """
+        create_a_primary_instance
+
+        :param request: Request entity containing all parameters
+        :type request: RdsClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing CreateAPrimaryInstanceResponse data
+        :rtype: CreateAPrimaryInstanceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(RdsClient.VERSION_V1, RdsClient.CONSTANT_INSTANCE)
+        headers = None
+        params = {}
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=CreateAPrimaryInstanceResponse,
+        )
+
+    def create_a_proxy_instance(self, request, config=None):
+        """
+        create_a_proxy_instance
+
+        :param request: Request entity containing all parameters
+        :type request: RdsClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing CreateAProxyInstanceResponse data
+        :rtype: CreateAProxyInstanceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(RdsClient.VERSION_V1, RdsClient.CONSTANT_INSTANCE)
+        headers = None
+        params = {}
+        params['rdsproxy'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=CreateAProxyInstanceResponse,
+        )
+
+    def create_read_only_instance(self, request, config=None):
+        """
+        create_read_only_instance
+
+        :param request: Request entity containing all parameters
+        :type request: RdsClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing CreateReadOnlyInstanceResponse data
+        :rtype: CreateReadOnlyInstanceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(RdsClient.VERSION_V1, RdsClient.CONSTANT_INSTANCE)
+        headers = None
+        params = {}
+        params['readReplica'] = None
+        if request.client_token is not None:
+            params['clientToken'] = request.client_token
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            params=params,
+            config=merged_config,
+            model=CreateReadOnlyInstanceResponse,
+        )
 
     def query_task_list(self, request, config=None):
         """

@@ -28,12 +28,24 @@ class RdsClientTest(unittest.TestCase):
         """
         self.the_client = None
 
+    def test_create_a_primary_instance(self):
+        self.client.create_a_primary_instance(rds_models.CreateAPrimaryInstanceRequest())
+
+    def test_create_a_proxy_instance(self):
+        self.client.create_a_proxy_instance(rds_models.CreateAProxyInstanceRequest())
+
+    def test_create_read_only_instance(self):
+        self.client.create_read_only_instance(rds_models.CreateReadOnlyInstanceRequest())
+
     def test_query_task_list(self):
         self.client.query_task_list(rds_models.QueryTaskListRequest())
 
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()
+    suite.addTest(RdsClientTest("test_create_a_primary_instance"))
+    suite.addTest(RdsClientTest("test_create_a_proxy_instance"))
+    suite.addTest(RdsClientTest("test_create_read_only_instance"))
     suite.addTest(RdsClientTest("test_query_task_list"))
     runner = unittest.TextTestRunner()
     runner.run(suite)
