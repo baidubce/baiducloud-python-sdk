@@ -29,6 +29,8 @@ class UpdateBlbHttpsListenerRequest(AbstractModel):
         x_forwarded_proto=None,
         additional_attributes=None,
         health_check_type=None,
+        health_check_http_version=None,
+        health_check_method=None,
         health_check_port=None,
         health_check_uri=None,
         health_check_timeout_in_second=None,
@@ -86,6 +88,12 @@ class UpdateBlbHttpsListenerRequest(AbstractModel):
         :param health_check_type: 健康检查协议，支持\"HTTP\"/\"TCP\"
         :type health_check_type: str (optional)
 
+        :param health_check_http_version: health_check_http_version parameter
+        :type health_check_http_version: str (optional)
+
+        :param health_check_method: 健康检查的方法,只有`healthCheckType`设置为HTTP时生效。取值:`GET`,`HEAD`(默认)
+        :type health_check_method: str (optional)
+
         :param health_check_port: 健康检查端口，默认为backendPort
         :type health_check_port: int (optional)
 
@@ -142,6 +150,8 @@ class UpdateBlbHttpsListenerRequest(AbstractModel):
         self.x_forwarded_proto = x_forwarded_proto
         self.additional_attributes = additional_attributes
         self.health_check_type = health_check_type
+        self.health_check_http_version = health_check_http_version
+        self.health_check_method = health_check_method
         self.health_check_port = health_check_port
         self.health_check_uri = health_check_uri
         self.health_check_timeout_in_second = health_check_timeout_in_second
@@ -190,6 +200,10 @@ class UpdateBlbHttpsListenerRequest(AbstractModel):
             result['additionalAttributes'] = self.additional_attributes.to_dict()
         if self.health_check_type is not None:
             result['healthCheckType'] = self.health_check_type
+        if self.health_check_http_version is not None:
+            result['healthCheckHttpVersion'] = self.health_check_http_version
+        if self.health_check_method is not None:
+            result['healthCheckMethod'] = self.health_check_method
         if self.health_check_port is not None:
             result['healthCheckPort'] = self.health_check_port
         if self.health_check_uri is not None:
@@ -262,6 +276,10 @@ class UpdateBlbHttpsListenerRequest(AbstractModel):
             self.additional_attributes = AdditionalAttributesModel().from_dict(m.get('additionalAttributes'))
         if m.get('healthCheckType') is not None:
             self.health_check_type = m.get('healthCheckType')
+        if m.get('healthCheckHttpVersion') is not None:
+            self.health_check_http_version = m.get('healthCheckHttpVersion')
+        if m.get('healthCheckMethod') is not None:
+            self.health_check_method = m.get('healthCheckMethod')
         if m.get('healthCheckPort') is not None:
             self.health_check_port = m.get('healthCheckPort')
         if m.get('healthCheckURI') is not None:

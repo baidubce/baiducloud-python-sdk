@@ -1,3 +1,8 @@
+2026-10-16 Version: 0.0.23
+- 涉及产品: BLB，监听器健康检查支持HTTP版本和请求方法
+- 涉及产品: BLB，服务器组健康检查支持HTTP版本和请求方法
+- 涉及产品: BLB，IP组健康检查支持HTTP版本和请求方法
+
 2026-08-05 Version: 0.0.22
 - 涉及产品: BLB，查询/创建/更新IP组新增preserveClientIpEnabled和groupTargetType字段
 - 涉及产品: BLB，创建/查询/更新服务器组新增preserveClientIpEnabled字段

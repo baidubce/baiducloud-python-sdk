@@ -30,6 +30,8 @@ class AllListenerModel(AbstractModel):
         keep_session_cookie_name=None,
         x_forward_for=None,
         health_check_type=None,
+        health_check_http_version=None,
+        health_check_method=None,
         health_check_port=None,
         health_check_uri=None,
         health_check_normal_status=None,
@@ -100,6 +102,12 @@ class AllListenerModel(AbstractModel):
         :param health_check_type: 健康检查协议类型
         :type health_check_type: str (optional)
 
+        :param health_check_http_version: health_check_http_version attribute
+        :type health_check_http_version: str (optional)
+
+        :param health_check_method: 健康检查的方法,只有`healthCheckType`设置为HTTP时生效。取值:`GET`,`HEAD`(默认)
+        :type health_check_method: str (optional)
+
         :param health_check_port: 健康检查端口
         :type health_check_port: int (optional)
 
@@ -155,6 +163,8 @@ class AllListenerModel(AbstractModel):
         self.keep_session_cookie_name = keep_session_cookie_name
         self.x_forward_for = x_forward_for
         self.health_check_type = health_check_type
+        self.health_check_http_version = health_check_http_version
+        self.health_check_method = health_check_method
         self.health_check_port = health_check_port
         self.health_check_uri = health_check_uri
         self.health_check_normal_status = health_check_normal_status
@@ -217,6 +227,10 @@ class AllListenerModel(AbstractModel):
             result['xForwardFor'] = self.x_forward_for
         if self.health_check_type is not None:
             result['healthCheckType'] = self.health_check_type
+        if self.health_check_http_version is not None:
+            result['healthCheckHttpVersion'] = self.health_check_http_version
+        if self.health_check_method is not None:
+            result['healthCheckMethod'] = self.health_check_method
         if self.health_check_port is not None:
             result['healthCheckPort'] = self.health_check_port
         if self.health_check_uri is not None:
@@ -295,6 +309,10 @@ class AllListenerModel(AbstractModel):
             self.x_forward_for = m.get('xForwardFor')
         if m.get('healthCheckType') is not None:
             self.health_check_type = m.get('healthCheckType')
+        if m.get('healthCheckHttpVersion') is not None:
+            self.health_check_http_version = m.get('healthCheckHttpVersion')
+        if m.get('healthCheckMethod') is not None:
+            self.health_check_method = m.get('healthCheckMethod')
         if m.get('healthCheckPort') is not None:
             self.health_check_port = m.get('healthCheckPort')
         if m.get('healthCheckURI') is not None:

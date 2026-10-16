@@ -10,13 +10,15 @@ from baiducloud_python_sdk_blb import models as blb_models
 
 if __name__ == '__main__':
     try:
-        # 设置Client的Access Key ID和Secret Access Key，获取AKSK详见:https://cloud.baidu.com/doc/Reference/s/9jwvz2egb
-        access_key_id = ""
-        secret_access_key = ""
         endpoint = ""
+
+        # ==== AK/SK 鉴权 ====
+        access_key_id = "Your Ak"
+        secret_access_key = "Your Sk"
         bce_client_config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
+
         client = BlbClient(bce_client_config)
         request = blb_models.CreateAppBlbServerGroupPortRequest(
             blb_id="",
@@ -26,6 +28,8 @@ if __name__ == '__main__':
             client_token="",
             enable_health_check=False,
             health_check="",
+            health_check_http_version="",
+            health_check_method="",
             health_check_port=0,
             health_check_url_path="",
             health_check_timeout_in_second=0,

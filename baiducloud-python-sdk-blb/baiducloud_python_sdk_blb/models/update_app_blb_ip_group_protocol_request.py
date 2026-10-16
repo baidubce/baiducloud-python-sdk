@@ -19,6 +19,8 @@ class UpdateAppBlbIpGroupProtocolRequest(AbstractModel):
         id,
         client_token=None,
         health_check=None,
+        health_check_http_version=None,
+        health_check_method=None,
         health_check_port=None,
         health_check_url_path=None,
         health_check_timeout_in_second=None,
@@ -46,6 +48,12 @@ class UpdateAppBlbIpGroupProtocolRequest(AbstractModel):
 
         :param health_check: health_check parameter
         :type health_check: str (optional)
+
+        :param health_check_http_version: health_check_http_version parameter
+        :type health_check_http_version: str (optional)
+
+        :param health_check_method: 健康检查的方法,只有`healthCheck`设置为HTTP时生效。取值:`GET`,`HEAD`(默认)
+        :type health_check_method: str (optional)
 
         :param health_check_port: 健康检查端口
         :type health_check_port: int (optional)
@@ -80,6 +88,8 @@ class UpdateAppBlbIpGroupProtocolRequest(AbstractModel):
         self.ip_group_id = ip_group_id
         self.id = id
         self.health_check = health_check
+        self.health_check_http_version = health_check_http_version
+        self.health_check_method = health_check_method
         self.health_check_port = health_check_port
         self.health_check_url_path = health_check_url_path
         self.health_check_timeout_in_second = health_check_timeout_in_second
@@ -109,6 +119,10 @@ class UpdateAppBlbIpGroupProtocolRequest(AbstractModel):
             result['id'] = self.id
         if self.health_check is not None:
             result['healthCheck'] = self.health_check
+        if self.health_check_http_version is not None:
+            result['healthCheckHttpVersion'] = self.health_check_http_version
+        if self.health_check_method is not None:
+            result['healthCheckMethod'] = self.health_check_method
         if self.health_check_port is not None:
             result['healthCheckPort'] = self.health_check_port
         if self.health_check_url_path is not None:
@@ -155,6 +169,10 @@ class UpdateAppBlbIpGroupProtocolRequest(AbstractModel):
             self.id = m.get('id')
         if m.get('healthCheck') is not None:
             self.health_check = m.get('healthCheck')
+        if m.get('healthCheckHttpVersion') is not None:
+            self.health_check_http_version = m.get('healthCheckHttpVersion')
+        if m.get('healthCheckMethod') is not None:
+            self.health_check_method = m.get('healthCheckMethod')
         if m.get('healthCheckPort') is not None:
             self.health_check_port = m.get('healthCheckPort')
         if m.get('healthCheckUrlPath') is not None:
