@@ -14,7 +14,7 @@ class Billing(AbstractModel):
         """
         Initialize Billing instance.
 
-        :param payment_timing: 付款方式（后付费：Postpaid；只读实例只支持后付费）
+        :param payment_timing:
         :type payment_timing: str (optional)
 
         :param reservation:

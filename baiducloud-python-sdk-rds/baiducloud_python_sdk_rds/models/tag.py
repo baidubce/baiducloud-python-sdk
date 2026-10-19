@@ -14,10 +14,10 @@ class Tag(AbstractModel):
         """
         Initialize Tag instance.
 
-        :param tag_key: 标签 key
+        :param tag_key: 标签名
         :type tag_key: str (optional)
 
-        :param tag_value: 标签 value
+        :param tag_value: 标签值
         :type tag_value: str (optional)
         """
         super().__init__()
