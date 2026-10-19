@@ -20,7 +20,7 @@ if __name__ == '__main__':
         )
 
         client = VpcClient(bce_client_config)
-        request = vpc_models.QueryVpnListRequest(vpc_id="", marker="", max_keys=0, eip="", type="")
+        request = vpc_models.QueryVpnListRequest(marker="", max_keys=0, vpc_id="", eip="", type="")
         res = client.query_vpn_list(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

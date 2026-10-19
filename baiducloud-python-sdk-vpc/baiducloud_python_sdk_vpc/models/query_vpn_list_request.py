@@ -12,7 +12,7 @@ class QueryVpnListRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, vpc_id, marker=None, max_keys=None, eip=None, type=None):
+    def __init__(self, marker=None, max_keys=None, vpc_id=None, eip=None, type=None):
         """
         Initialize QueryVpnListRequest request entity.
 
@@ -23,7 +23,7 @@ class QueryVpnListRequest(AbstractModel):
         :type max_keys: int (optional)
 
         :param vpc_id: vpc_id parameter
-        :type vpc_id: str (required)
+        :type vpc_id: str (optional)
 
         :param eip: eip parameter
         :type eip: str (optional)

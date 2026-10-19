@@ -3446,12 +3446,12 @@ class VpcClient(BceBaseClient):
         path = utils.append_uri(VpcClient.VERSION_V1, VpcClient.CONSTANT_VPN)
         headers = None
         params = {}
-        if request.vpc_id is not None:
-            params['vpcId'] = request.vpc_id
         if request.marker is not None:
             params['marker'] = request.marker
         if request.max_keys is not None:
             params['maxKeys'] = request.max_keys
+        if request.vpc_id is not None:
+            params['vpcId'] = request.vpc_id
         if request.eip is not None:
             params['eip'] = request.eip
         if request.type is not None:
