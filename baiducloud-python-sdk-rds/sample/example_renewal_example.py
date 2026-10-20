@@ -1,5 +1,5 @@
 """
-Example for rds zone_migration method.
+Example for rds renewal_example method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -20,10 +20,8 @@ if __name__ == '__main__':
         )
 
         client = RdsClient(bce_client_config)
-        request = rds_models.ZoneMigrationRequest(
-            instance_id="", master__azone="", backup__azone="", zone_names=[], subnets=[], effective_time=""
-        )
-        res = client.zone_migration(request)
+        request = rds_models.RenewalExampleRequest(duration=0, instance_ids=[])
+        res = client.renewal_example(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。

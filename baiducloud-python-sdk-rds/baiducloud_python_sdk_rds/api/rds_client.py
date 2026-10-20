@@ -22,20 +22,14 @@ from baiducloud_python_sdk_rds.models.dial_test_interface_response import DialTe
 from baiducloud_python_sdk_rds.models.does_the_instance_support_enabling_automatic_expansion_response import (
     DoesTheInstanceSupportEnablingAutomaticExpansionResponse,
 )
-from baiducloud_python_sdk_rds.models.get_new_purchase_price_response import GetNewPurchasePriceResponse
-from baiducloud_python_sdk_rds.models.obtain_the_price_difference_of_prepaid_transformer_response import (
-    ObtainThePriceDifferenceOfPrepaidTransformerResponse,
-)
 from baiducloud_python_sdk_rds.models.query_instance_list_response import QueryInstanceListResponse
 from baiducloud_python_sdk_rds.models.query_subnet_list_response import QuerySubnetListResponse
 from baiducloud_python_sdk_rds.models.query_task_list_response import QueryTaskListResponse
-from baiducloud_python_sdk_rds.models.query_the_details_of_the_specified_instance_response import (
-    QueryTheDetailsOfTheSpecifiedInstanceResponse,
-)
 from baiducloud_python_sdk_rds.models.query_the_list_of_available_zones_response import (
     QueryTheListOfAvailableZonesResponse,
 )
 from baiducloud_python_sdk_rds.models.release_instance_response import ReleaseInstanceResponse
+from baiducloud_python_sdk_rds.models.renewal_example_response import RenewalExampleResponse
 from baiducloud_python_sdk_rds.models.retrieve_instance_auto_scaling_config_response import (
     RetrieveInstanceAutoScalingConfigResponse,
 )
@@ -67,11 +61,7 @@ class RdsClient(BceBaseClient):
 
     CONSTANT_TASK = b'task'
 
-    CONSTANT_AZONE_MIGRATION = b'azoneMigration'
-
-    CONSTANT_PRICE = b'price'
-
-    CONSTANT_DIFF = b'diff'
+    CONSTANT_RENEW = b'renew'
 
     CONSTANT_AUTO_RESIZE_CONFIG = b'autoResizeConfig'
 
@@ -304,58 +294,28 @@ class RdsClient(BceBaseClient):
             model=DoesTheInstanceSupportEnablingAutomaticExpansionResponse,
         )
 
-    def get_new_purchase_price(self, request, config=None):
+    def instance_enables_automatic_renewal(self, request, config=None):
         """
-        get_new_purchase_price
+        instance_enables_automatic_renewal
 
         :param request: Request entity containing all parameters
         :type request: RdsClientRequest
         :param config: Optional request configuration override
         :type config: baiducloud_python_sdk_core.BceClientConfiguration
 
-        :return: API response containing GetNewPurchasePriceResponse data
-        :rtype: GetNewPurchasePriceResponse
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
 
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
-        path = utils.append_uri(RdsClient.VERSION_V1, RdsClient.CONSTANT_INSTANCE, RdsClient.CONSTANT_PRICE)
+        path = utils.append_uri(RdsClient.VERSION_V1, RdsClient.CONSTANT_INSTANCE)
         headers = None
+        params = {}
+        params['autoRenew'] = None
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
-            http_methods.POST,
-            path=path,
-            body=request.to_json_string(),
-            config=merged_config,
-            model=GetNewPurchasePriceResponse,
-        )
-
-    def obtain_the_price_difference_of_prepaid_transformer(self, request, config=None):
-        """
-        obtain_the_price_difference_of_prepaid_transformer
-
-        :param request: Request entity containing all parameters
-        :type request: RdsClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response containing ObtainThePriceDifferenceOfPrepaidTransformerResponse data
-        :rtype: ObtainThePriceDifferenceOfPrepaidTransformerResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = utils.append_uri(
-            RdsClient.VERSION_V1, RdsClient.CONSTANT_INSTANCE, RdsClient.CONSTANT_PRICE, RdsClient.CONSTANT_DIFF
-        )
-        headers = None
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(
-            http_methods.POST,
-            path=path,
-            body=request.to_json_string(),
-            config=merged_config,
-            model=ObtainThePriceDifferenceOfPrepaidTransformerResponse,
+            http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
         )
 
     def query_instance_list(self, request, config=None):
@@ -440,28 +400,6 @@ class RdsClient(BceBaseClient):
             model=QueryTaskListResponse,
         )
 
-    def query_the_details_of_the_specified_instance(self, request, config=None):
-        """
-        query_the_details_of_the_specified_instance
-
-        :param request: Request entity containing all parameters
-        :type request: RdsClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response containing QueryTheDetailsOfTheSpecifiedInstanceResponse data
-        :rtype: QueryTheDetailsOfTheSpecifiedInstanceResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = utils.append_uri(RdsClient.VERSION_V1, RdsClient.CONSTANT_INSTANCE, request.instance_id)
-        headers = None
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(
-            http_methods.GET, path=path, config=merged_config, model=QueryTheDetailsOfTheSpecifiedInstanceResponse
-        )
-
     def query_the_list_of_available_zones(self, config=None):
         """
         query_the_list_of_available_zones
@@ -499,6 +437,32 @@ class RdsClient(BceBaseClient):
         headers = None
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.DELETE, path=path, config=merged_config, model=ReleaseInstanceResponse)
+
+    def renewal_example(self, request, config=None):
+        """
+        renewal_example
+
+        :param request: Request entity containing all parameters
+        :type request: RdsClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing RenewalExampleResponse data
+        :rtype: RenewalExampleResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(b'/', RdsClient.CONSTANT_V1, RdsClient.CONSTANT_INSTANCE, RdsClient.CONSTANT_RENEW)
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=RenewalExampleResponse,
+        )
 
     def restart_the_instance(self, request, config=None):
         """
@@ -720,28 +684,6 @@ class RdsClient(BceBaseClient):
         """
         path = utils.append_uri(
             RdsClient.VERSION_V1, RdsClient.CONSTANT_INSTANCE, request.instance_id, RdsClient.CONSTANT_MAINTAINTIME
-        )
-        headers = None
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.PUT, path=path, body=request.to_json_string(), config=merged_config)
-
-    def zone_migration(self, request, config=None):
-        """
-        zone_migration
-
-        :param request: Request entity containing all parameters
-        :type request: RdsClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response
-        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = utils.append_uri(
-            RdsClient.VERSION_V1, RdsClient.CONSTANT_INSTANCE, request.instance_id, RdsClient.CONSTANT_AZONE_MIGRATION
         )
         headers = None
         merged_config = self._create_request_with_host(request, config)

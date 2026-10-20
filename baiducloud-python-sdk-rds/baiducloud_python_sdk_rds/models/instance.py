@@ -316,7 +316,7 @@ class Instance(AbstractModel):
         :type dcc_host_ids: DccHostInfo (optional)
 
         :param machine_type: 主机类型，默认只有dcc
-        :type machine_type: int (optional)
+        :type machine_type: str (optional)
 
         :param weight: 权重
         :type weight: int (optional)

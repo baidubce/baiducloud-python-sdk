@@ -1,5 +1,5 @@
 """
-Example for rds obtain_the_price_difference_of_prepaid_transformer method.
+Example for rds instance_enables_automatic_renewal method.
 """
 
 from baiducloud_python_sdk_core import exception
@@ -20,15 +20,10 @@ if __name__ == '__main__':
         )
 
         client = RdsClient(bce_client_config)
-        request = rds_models.ObtainThePriceDifferenceOfPrepaidTransformerRequest(
-            instance_id="",
-            cpu_count=0,
-            allocated_memory_in_gb=0,
-            allocated_storage_in_gb=0,
-            disk_io_type="",
-            category="",
+        request = rds_models.InstanceEnablesAutomaticRenewalRequest(
+            instance_ids=[], auto_renew_time_unit="", auto_renew_time=0
         )
-        res = client.obtain_the_price_difference_of_prepaid_transformer(request)
+        res = client.instance_enables_automatic_renewal(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
         # 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。

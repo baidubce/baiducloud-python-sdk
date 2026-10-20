@@ -54,13 +54,8 @@ class RdsClientTest(unittest.TestCase):
             rds_models.DoesTheInstanceSupportEnablingAutomaticExpansionRequest()
         )
 
-    def test_get_new_purchase_price(self):
-        self.client.get_new_purchase_price(rds_models.GetNewPurchasePriceRequest())
-
-    def test_obtain_the_price_difference_of_prepaid_transformer(self):
-        self.client.obtain_the_price_difference_of_prepaid_transformer(
-            rds_models.ObtainThePriceDifferenceOfPrepaidTransformerRequest()
-        )
+    def test_instance_enables_automatic_renewal(self):
+        self.client.instance_enables_automatic_renewal(rds_models.InstanceEnablesAutomaticRenewalRequest())
 
     def test_query_instance_list(self):
         self.client.query_instance_list(rds_models.QueryInstanceListRequest())
@@ -71,16 +66,14 @@ class RdsClientTest(unittest.TestCase):
     def test_query_task_list(self):
         self.client.query_task_list(rds_models.QueryTaskListRequest())
 
-    def test_query_the_details_of_the_specified_instance(self):
-        self.client.query_the_details_of_the_specified_instance(
-            rds_models.QueryTheDetailsOfTheSpecifiedInstanceRequest()
-        )
-
     def test_query_the_list_of_available_zones(self):
         self.client.query_the_list_of_available_zones()
 
     def test_release_instance(self):
         self.client.release_instance(rds_models.ReleaseInstanceRequest())
+
+    def test_renewal_example(self):
+        self.client.renewal_example(rds_models.RenewalExampleRequest())
 
     def test_restart_the_instance(self):
         self.client.restart_the_instance(rds_models.RestartTheInstanceRequest())
@@ -113,9 +106,6 @@ class RdsClientTest(unittest.TestCase):
     def test_update_time_window(self):
         self.client.update_time_window(rds_models.UpdateTimeWindowRequest())
 
-    def test_zone_migration(self):
-        self.client.zone_migration(rds_models.ZoneMigrationRequest())
-
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()
@@ -127,14 +117,13 @@ if __name__ == '__main__':
     suite.addTest(RdsClientTest("test_create_read_only_instance"))
     suite.addTest(RdsClientTest("test_dial_test_interface"))
     suite.addTest(RdsClientTest("test_does_the_instance_support_enabling_automatic_expansion"))
-    suite.addTest(RdsClientTest("test_get_new_purchase_price"))
-    suite.addTest(RdsClientTest("test_obtain_the_price_difference_of_prepaid_transformer"))
+    suite.addTest(RdsClientTest("test_instance_enables_automatic_renewal"))
     suite.addTest(RdsClientTest("test_query_instance_list"))
     suite.addTest(RdsClientTest("test_query_subnet_list"))
     suite.addTest(RdsClientTest("test_query_task_list"))
-    suite.addTest(RdsClientTest("test_query_the_details_of_the_specified_instance"))
     suite.addTest(RdsClientTest("test_query_the_list_of_available_zones"))
     suite.addTest(RdsClientTest("test_release_instance"))
+    suite.addTest(RdsClientTest("test_renewal_example"))
     suite.addTest(RdsClientTest("test_restart_the_instance"))
     suite.addTest(RdsClientTest("test_retrieve_instance_auto_scaling_config"))
     suite.addTest(RdsClientTest("test_transformation_example"))
@@ -144,6 +133,5 @@ if __name__ == '__main__':
     suite.addTest(RdsClientTest("test_update_instance_public_network_access_status"))
     suite.addTest(RdsClientTest("test_update_instance_synchronization_mode"))
     suite.addTest(RdsClientTest("test_update_time_window"))
-    suite.addTest(RdsClientTest("test_zone_migration"))
     runner = unittest.TextTestRunner()
     runner.run(suite)
