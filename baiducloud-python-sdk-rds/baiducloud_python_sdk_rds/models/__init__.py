@@ -29,6 +29,7 @@ from .initial_data_reference import InitialDataReference
 from .instance import Instance
 from .instance_dict import InstanceDict
 from .instance_enables_automatic_renewal_request import InstanceEnablesAutomaticRenewalRequest
+from .instance_subnet import InstanceSubnet
 from .machine_po import MachinePO
 from .master_id_mapping import MasterIdMapping
 from .progress import Progress
@@ -36,6 +37,7 @@ from .query_instance_list_response import QueryInstanceListResponse
 from .query_subnet_list_response import QuerySubnetListResponse
 from .query_task_list_request import QueryTaskListRequest
 from .query_task_list_response import QueryTaskListResponse
+from .query_the_details_of_the_specified_instance_response import QueryTheDetailsOfTheSpecifiedInstanceResponse
 from .query_the_list_of_available_zones_response import QueryTheListOfAvailableZonesResponse
 from .read_replica_id_mapping import ReadReplicaIdMapping
 from .recovery_to_source_instance_model import RecoveryToSourceInstanceModel
@@ -74,6 +76,7 @@ from .cluster_status_check_request import ClusterStatusCheckRequest
 from .query_instance_list_request import QueryInstanceListRequest
 from .dial_test_interface_request import DialTestInterfaceRequest
 from .release_instance_request import ReleaseInstanceRequest
+from .query_the_details_of_the_specified_instance_request import QueryTheDetailsOfTheSpecifiedInstanceRequest
 from .retrieve_instance_auto_scaling_config_request import RetrieveInstanceAutoScalingConfigRequest
 from .query_subnet_list_request import QuerySubnetListRequest
 from .does_the_instance_support_enabling_automatic_expansion_request import (

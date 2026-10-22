@@ -44,17 +44,17 @@ class ResourceInfo(AbstractModel):
         :param user_id: 用户ID。
         :type user_id: str (optional)
 
-        :param create_time: create_time attribute
-        :type create_time: object (optional)
+        :param create_time: 创建时间。
+        :type create_time: int (optional)
 
-        :param update_time: update_time attribute
-        :type update_time: object (optional)
+        :param update_time: 更新时间。
+        :type update_time: int (optional)
 
-        :param delete_time: delete_time attribute
-        :type delete_time: object (optional)
+        :param delete_time: 删除时间。
+        :type delete_time: int (optional)
 
-        :param bind_time: bind_time attribute
-        :type bind_time: object (optional)
+        :param bind_time: 绑定时间。
+        :type bind_time: str (optional)
         """
         super().__init__()
         self.name = name

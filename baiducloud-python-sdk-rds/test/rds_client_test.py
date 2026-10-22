@@ -66,6 +66,11 @@ class RdsClientTest(unittest.TestCase):
     def test_query_task_list(self):
         self.client.query_task_list(rds_models.QueryTaskListRequest())
 
+    def test_query_the_details_of_the_specified_instance(self):
+        self.client.query_the_details_of_the_specified_instance(
+            rds_models.QueryTheDetailsOfTheSpecifiedInstanceRequest()
+        )
+
     def test_query_the_list_of_available_zones(self):
         self.client.query_the_list_of_available_zones()
 
@@ -121,6 +126,7 @@ if __name__ == '__main__':
     suite.addTest(RdsClientTest("test_query_instance_list"))
     suite.addTest(RdsClientTest("test_query_subnet_list"))
     suite.addTest(RdsClientTest("test_query_task_list"))
+    suite.addTest(RdsClientTest("test_query_the_details_of_the_specified_instance"))
     suite.addTest(RdsClientTest("test_query_the_list_of_available_zones"))
     suite.addTest(RdsClientTest("test_release_instance"))
     suite.addTest(RdsClientTest("test_renewal_example"))

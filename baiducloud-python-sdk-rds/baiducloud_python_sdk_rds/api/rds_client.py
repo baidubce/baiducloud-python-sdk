@@ -25,6 +25,9 @@ from baiducloud_python_sdk_rds.models.does_the_instance_support_enabling_automat
 from baiducloud_python_sdk_rds.models.query_instance_list_response import QueryInstanceListResponse
 from baiducloud_python_sdk_rds.models.query_subnet_list_response import QuerySubnetListResponse
 from baiducloud_python_sdk_rds.models.query_task_list_response import QueryTaskListResponse
+from baiducloud_python_sdk_rds.models.query_the_details_of_the_specified_instance_response import (
+    QueryTheDetailsOfTheSpecifiedInstanceResponse,
+)
 from baiducloud_python_sdk_rds.models.query_the_list_of_available_zones_response import (
     QueryTheListOfAvailableZonesResponse,
 )
@@ -400,6 +403,28 @@ class RdsClient(BceBaseClient):
             model=QueryTaskListResponse,
         )
 
+    def query_the_details_of_the_specified_instance(self, request, config=None):
+        """
+        query_the_details_of_the_specified_instance
+
+        :param request: Request entity containing all parameters
+        :type request: RdsClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing QueryTheDetailsOfTheSpecifiedInstanceResponse data
+        :rtype: QueryTheDetailsOfTheSpecifiedInstanceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(RdsClient.VERSION_V1, RdsClient.CONSTANT_INSTANCE, request.instance_id)
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.GET, path=path, config=merged_config, model=QueryTheDetailsOfTheSpecifiedInstanceResponse
+        )
+
     def query_the_list_of_available_zones(self, config=None):
         """
         query_the_list_of_available_zones
@@ -435,8 +460,13 @@ class RdsClient(BceBaseClient):
         """
         path = utils.append_uri(RdsClient.VERSION_V1, RdsClient.CONSTANT_INSTANCE)
         headers = None
+        params = {}
+        if request.instance_ids is not None:
+            params['instanceIds'] = request.instance_ids
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.DELETE, path=path, config=merged_config, model=ReleaseInstanceResponse)
+        return self._send_request(
+            http_methods.DELETE, path=path, params=params, config=merged_config, model=ReleaseInstanceResponse
+        )
 
     def renewal_example(self, request, config=None):
         """

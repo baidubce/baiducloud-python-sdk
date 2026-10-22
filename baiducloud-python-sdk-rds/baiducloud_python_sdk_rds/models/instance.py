@@ -168,10 +168,10 @@ class Instance(AbstractModel):
         :param instance_name: 实例名称
         :type instance_name: str (optional)
 
-        :param engine: 数据库引擎类型。
+        :param engine: engine attribute
         :type engine: str (optional)
 
-        :param engine_version: 数据库引擎版本。
+        :param engine_version: engine_version attribute
         :type engine_version: str (optional)
 
         :param rds_minor_version: 实例小版本
@@ -189,13 +189,13 @@ class Instance(AbstractModel):
         :param allocated_memory_in_mb: 分配内大小（单位：MB）
         :type allocated_memory_in_mb: int (optional)
 
-        :param allocated_memory_in_gb: 内存大小，单位是 GB。
-        :type allocated_memory_in_gb: int (optional)
+        :param allocated_memory_in_gb: 分配内存大小（单位：GB）
+        :type allocated_memory_in_gb: float (optional)
 
         :param memory_capacity: 实例内存（单位：GB）
         :type memory_capacity: float (optional)
 
-        :param allocated_storage_in_gb: 存储大小，单位是 GB。
+        :param allocated_storage_in_gb: 分配存储存空间（单位：GB）
         :type allocated_storage_in_gb: int (optional)
 
         :param volume_capacity: 存储空间（单位：GB）
@@ -213,7 +213,7 @@ class Instance(AbstractModel):
         :param used_storage: 已用存储空间（单位GB）
         :type used_storage: float (optional)
 
-        :param cpu_count: CPU 个数。
+        :param cpu_count: CPU核数
         :type cpu_count: int (optional)
 
         :param instance_type: instance_type attribute
@@ -300,7 +300,7 @@ class Instance(AbstractModel):
         :param application_type: 所属系列，single：单机基础版，normal：双机高可用版
         :type application_type: str (optional)
 
-        :param node_amount: 询价代理实例时，此值必填，表示代理节点个数。
+        :param node_amount: 节点数（代理实例）
         :type node_amount: int (optional)
 
         :param old_instance: 旧实例数量
@@ -477,7 +477,7 @@ class Instance(AbstractModel):
         :param dcc_hosts: dcc主机对象
         :type dcc_hosts: List[MachinePO] (optional)
 
-        :param category: 不传值的话默认为双机版，传 Singleton 则指定为单机版。
+        :param category: 所属系列。Singleton：单机基础版，null：双机高可用版
         :type category: str (optional)
 
         :param name: 实例名称，只给iam的实例列表接口使用，其他接口不要用
