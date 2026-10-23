@@ -40,6 +40,12 @@ class PfsClientTest(unittest.TestCase):
     def test_create_l2_policy(self):
         self.client.create_l2_policy(pfs_models.CreateL2PolicyRequest())
 
+    def test_create_l3_access_group(self):
+        self.client.create_l3_access_group(pfs_models.CreateL3AccessGroupRequest())
+
+    def test_create_l3_access_rule(self):
+        self.client.create_l3_access_rule()
+
     def test_create_l3_mount_target(self):
         self.client.create_l3_mount_target(pfs_models.CreateL3MountTargetRequest())
 
@@ -54,6 +60,12 @@ class PfsClientTest(unittest.TestCase):
 
     def test_delete_l2_policy(self):
         self.client.delete_l2_policy(pfs_models.DeleteL2PolicyRequest())
+
+    def test_delete_l3_access_group(self):
+        self.client.delete_l3_access_group(pfs_models.DeleteL3AccessGroupRequest())
+
+    def test_delete_l3_access_rule(self):
+        self.client.delete_l3_access_rule(pfs_models.DeleteL3AccessRuleRequest())
 
     def test_delete_l3_mount_target(self):
         self.client.delete_l3_mount_target(pfs_models.DeleteL3MountTargetRequest())
@@ -73,6 +85,9 @@ class PfsClientTest(unittest.TestCase):
     def test_desc_pfs(self):
         self.client.desc_pfs(pfs_models.DescPfsRequest())
 
+    def test_describe_l3_access_group(self):
+        self.client.describe_l3_access_group(pfs_models.DescribeL3AccessGroupRequest())
+
     def test_describe_l3_mount_target(self):
         self.client.describe_l3_mount_target(pfs_models.DescribeL3MountTargetRequest())
 
@@ -87,6 +102,12 @@ class PfsClientTest(unittest.TestCase):
 
     def test_list_l2_policy(self):
         self.client.list_l2_policy(pfs_models.ListL2PolicyRequest())
+
+    def test_list_l3_access_group(self):
+        self.client.list_l3_access_group(pfs_models.ListL3AccessGroupRequest())
+
+    def test_list_l3_access_rule(self):
+        self.client.list_l3_access_rule(pfs_models.ListL3AccessRuleRequest())
 
     def test_list_l3_mount_target(self):
         self.client.list_l3_mount_target(pfs_models.ListL3MountTargetRequest())
@@ -121,6 +142,12 @@ class PfsClientTest(unittest.TestCase):
     def test_update_l2_policy(self):
         self.client.update_l2_policy(pfs_models.UpdateL2PolicyRequest())
 
+    def test_update_l3_access_group(self):
+        self.client.update_l3_access_group(pfs_models.UpdateL3AccessGroupRequest())
+
+    def test_update_l3_access_rule(self):
+        self.client.update_l3_access_rule(pfs_models.UpdateL3AccessRuleRequest())
+
     def test_update_pfs_tag(self):
         self.client.update_pfs_tag(pfs_models.UpdatePFSTagRequest())
 
@@ -131,22 +158,29 @@ if __name__ == '__main__':
     suite.addTest(PfsClientTest("test_create_fileset"))
     suite.addTest(PfsClientTest("test_create_l2_bucket_link"))
     suite.addTest(PfsClientTest("test_create_l2_policy"))
+    suite.addTest(PfsClientTest("test_create_l3_access_group"))
+    suite.addTest(PfsClientTest("test_create_l3_access_rule"))
     suite.addTest(PfsClientTest("test_create_l3_mount_target"))
     suite.addTest(PfsClientTest("test_create_pfs"))
     suite.addTest(PfsClientTest("test_delete_fileset"))
     suite.addTest(PfsClientTest("test_delete_l2_bucket_link"))
     suite.addTest(PfsClientTest("test_delete_l2_policy"))
+    suite.addTest(PfsClientTest("test_delete_l3_access_group"))
+    suite.addTest(PfsClientTest("test_delete_l3_access_rule"))
     suite.addTest(PfsClientTest("test_delete_l3_mount_target"))
     suite.addTest(PfsClientTest("test_delete_pfs"))
     suite.addTest(PfsClientTest("test_desc_fileset"))
     suite.addTest(PfsClientTest("test_desc_l2_bucket_link"))
     suite.addTest(PfsClientTest("test_desc_l2_policy"))
     suite.addTest(PfsClientTest("test_desc_pfs"))
+    suite.addTest(PfsClientTest("test_describe_l3_access_group"))
     suite.addTest(PfsClientTest("test_describe_l3_mount_target"))
     suite.addTest(PfsClientTest("test_instance_list_clients"))
     suite.addTest(PfsClientTest("test_list_fileset"))
     suite.addTest(PfsClientTest("test_list_l2_bucket_link"))
     suite.addTest(PfsClientTest("test_list_l2_policy"))
+    suite.addTest(PfsClientTest("test_list_l3_access_group"))
+    suite.addTest(PfsClientTest("test_list_l3_access_rule"))
     suite.addTest(PfsClientTest("test_list_l3_mount_target"))
     suite.addTest(PfsClientTest("test_list_pfs"))
     suite.addTest(PfsClientTest("test_lst_per_l2_bkt_lnk_exec_log"))
@@ -158,6 +192,8 @@ if __name__ == '__main__':
     suite.addTest(PfsClientTest("test_upd_per_l2_bkt_lnk_info"))
     suite.addTest(PfsClientTest("test_update_fileset"))
     suite.addTest(PfsClientTest("test_update_l2_policy"))
+    suite.addTest(PfsClientTest("test_update_l3_access_group"))
+    suite.addTest(PfsClientTest("test_update_l3_access_rule"))
     suite.addTest(PfsClientTest("test_update_pfs_tag"))
     runner = unittest.TextTestRunner()
     runner.run(suite)

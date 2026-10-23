@@ -15,21 +15,28 @@ from baiducloud_python_sdk_pfs.models.cancel_l2_bucket_link_response import Canc
 from baiducloud_python_sdk_pfs.models.create_fileset_response import CreateFilesetResponse
 from baiducloud_python_sdk_pfs.models.create_l2_bucket_link_response import CreateL2BucketLinkResponse
 from baiducloud_python_sdk_pfs.models.create_l2_policy_response import CreateL2PolicyResponse
+from baiducloud_python_sdk_pfs.models.create_l3_access_group_response import CreateL3AccessGroupResponse
+from baiducloud_python_sdk_pfs.models.create_l3_access_rule_response import CreateL3AccessRuleResponse
 from baiducloud_python_sdk_pfs.models.create_l3_mount_target_response import CreateL3MountTargetResponse
 from baiducloud_python_sdk_pfs.models.create_pfs_response import CreatePfsResponse
 from baiducloud_python_sdk_pfs.models.delete_fileset_response import DeleteFilesetResponse
 from baiducloud_python_sdk_pfs.models.delete_l2_bucket_link_response import DeleteL2BucketLinkResponse
 from baiducloud_python_sdk_pfs.models.delete_l2_policy_response import DeleteL2PolicyResponse
+from baiducloud_python_sdk_pfs.models.delete_l3_access_group_response import DeleteL3AccessGroupResponse
+from baiducloud_python_sdk_pfs.models.delete_l3_access_rule_response import DeleteL3AccessRuleResponse
 from baiducloud_python_sdk_pfs.models.delete_l3_mount_target_response import DeleteL3MountTargetResponse
 from baiducloud_python_sdk_pfs.models.desc_fileset_response import DescFilesetResponse
 from baiducloud_python_sdk_pfs.models.desc_l2_bucket_link_response import DescL2BucketLinkResponse
 from baiducloud_python_sdk_pfs.models.desc_l2_policy_response import DescL2PolicyResponse
 from baiducloud_python_sdk_pfs.models.desc_pfs_response import DescPfsResponse
+from baiducloud_python_sdk_pfs.models.describe_l3_access_group_response import DescribeL3AccessGroupResponse
 from baiducloud_python_sdk_pfs.models.describe_l3_mount_target_response import DescribeL3MountTargetResponse
 from baiducloud_python_sdk_pfs.models.instance_list_clients_response import InstanceListClientsResponse
 from baiducloud_python_sdk_pfs.models.list_fileset_response import ListFilesetResponse
 from baiducloud_python_sdk_pfs.models.list_l2_bucket_link_response import ListL2BucketLinkResponse
 from baiducloud_python_sdk_pfs.models.list_l2_policy_response import ListL2PolicyResponse
+from baiducloud_python_sdk_pfs.models.list_l3_access_group_response import ListL3AccessGroupResponse
+from baiducloud_python_sdk_pfs.models.list_l3_access_rule_response import ListL3AccessRuleResponse
 from baiducloud_python_sdk_pfs.models.list_l3_mount_target_response import ListL3MountTargetResponse
 from baiducloud_python_sdk_pfs.models.list_pfs_response import ListPfsResponse
 from baiducloud_python_sdk_pfs.models.lst_per_l2_bkt_lnk_exec_log_response import LstPerL2BktLnkExecLogResponse
@@ -41,6 +48,8 @@ from baiducloud_python_sdk_pfs.models.resume_l2_bucket_link_response import Resu
 from baiducloud_python_sdk_pfs.models.upd_per_l2_bkt_lnk_info_response import UpdPerL2BktLnkInfoResponse
 from baiducloud_python_sdk_pfs.models.update_fileset_response import UpdateFilesetResponse
 from baiducloud_python_sdk_pfs.models.update_l2_policy_response import UpdateL2PolicyResponse
+from baiducloud_python_sdk_pfs.models.update_l3_access_group_response import UpdateL3AccessGroupResponse
+from baiducloud_python_sdk_pfs.models.update_l3_access_rule_response import UpdateL3AccessRuleResponse
 
 _logger = logging.getLogger(__name__)
 
@@ -49,6 +58,8 @@ class PfsClient(BceBaseClient):
     """
     pfs base sdk client
     """
+
+    VERSION_V2 = b'/v2'
 
     CONSTANT_V1 = b'v1'
 
@@ -189,6 +200,70 @@ class PfsClient(BceBaseClient):
             params=params,
             config=merged_config,
             model=CreateL2PolicyResponse,
+        )
+
+    def create_l3_access_group(self, request, config=None):
+        """
+        create_l3_access_group
+
+        :param request: Request entity containing all parameters
+        :type request: PfsClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing CreateL3AccessGroupResponse data
+        :rtype: CreateL3AccessGroupResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = PfsClient.VERSION_V2
+        headers = {}
+        headers[b'Content-Type'] = b'application/json; charset=utf-8'
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'CreateL3AccessGroup'
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            headers=headers,
+            params=params,
+            config=merged_config,
+            model=CreateL3AccessGroupResponse,
+        )
+
+    def create_l3_access_rule(self, request, config=None):
+        """
+        create_l3_access_rule
+
+        :param request: Request entity containing all parameters
+        :type request: PfsClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing CreateL3AccessRuleResponse data
+        :rtype: CreateL3AccessRuleResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = PfsClient.VERSION_V2
+        headers = {}
+        headers[b'Content-Type'] = b'application/json; charset=utf-8'
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'CreateL3AccessRule'
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            headers=headers,
+            params=params,
+            config=merged_config,
+            model=CreateL3AccessRuleResponse,
         )
 
     def create_l3_mount_target(self, request, config=None):
@@ -335,6 +410,70 @@ class PfsClient(BceBaseClient):
             params=params,
             config=merged_config,
             model=DeleteL2PolicyResponse,
+        )
+
+    def delete_l3_access_group(self, request, config=None):
+        """
+        delete_l3_access_group
+
+        :param request: Request entity containing all parameters
+        :type request: PfsClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DeleteL3AccessGroupResponse data
+        :rtype: DeleteL3AccessGroupResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = PfsClient.VERSION_V2
+        headers = {}
+        headers[b'Content-Type'] = b'application/json; charset=utf-8'
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'DeleteL3AccessGroup'
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            headers=headers,
+            params=params,
+            config=merged_config,
+            model=DeleteL3AccessGroupResponse,
+        )
+
+    def delete_l3_access_rule(self, request, config=None):
+        """
+        delete_l3_access_rule
+
+        :param request: Request entity containing all parameters
+        :type request: PfsClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DeleteL3AccessRuleResponse data
+        :rtype: DeleteL3AccessRuleResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = PfsClient.VERSION_V2
+        headers = {}
+        headers[b'Content-Type'] = b'application/json; charset=utf-8'
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'DeleteL3AccessRule'
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            headers=headers,
+            params=params,
+            config=merged_config,
+            model=DeleteL3AccessRuleResponse,
         )
 
     def delete_l3_mount_target(self, request, config=None):
@@ -509,6 +648,38 @@ class PfsClient(BceBaseClient):
             http_methods.GET, path=path, params=params, config=merged_config, model=DescPfsResponse
         )
 
+    def describe_l3_access_group(self, request, config=None):
+        """
+        describe_l3_access_group
+
+        :param request: Request entity containing all parameters
+        :type request: PfsClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing DescribeL3AccessGroupResponse data
+        :rtype: DescribeL3AccessGroupResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = PfsClient.VERSION_V2
+        headers = {}
+        headers[b'Content-Type'] = b'application/json; charset=utf-8'
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'DescribeL3AccessGroup'
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            headers=headers,
+            params=params,
+            config=merged_config,
+            model=DescribeL3AccessGroupResponse,
+        )
+
     def describe_l3_mount_target(self, request, config=None):
         """
         describe_l3_mount_target
@@ -662,6 +833,70 @@ class PfsClient(BceBaseClient):
             params=params,
             config=merged_config,
             model=ListL2PolicyResponse,
+        )
+
+    def list_l3_access_group(self, request, config=None):
+        """
+        list_l3_access_group
+
+        :param request: Request entity containing all parameters
+        :type request: PfsClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing ListL3AccessGroupResponse data
+        :rtype: ListL3AccessGroupResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = PfsClient.VERSION_V2
+        headers = {}
+        headers[b'Content-Type'] = b'application/json; charset=utf-8'
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'ListL3AccessGroup'
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            headers=headers,
+            params=params,
+            config=merged_config,
+            model=ListL3AccessGroupResponse,
+        )
+
+    def list_l3_access_rule(self, request, config=None):
+        """
+        list_l3_access_rule
+
+        :param request: Request entity containing all parameters
+        :type request: PfsClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing ListL3AccessRuleResponse data
+        :rtype: ListL3AccessRuleResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = PfsClient.VERSION_V2
+        headers = {}
+        headers[b'Content-Type'] = b'application/json; charset=utf-8'
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'ListL3AccessRule'
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            headers=headers,
+            params=params,
+            config=merged_config,
+            model=ListL3AccessRuleResponse,
         )
 
     def list_l3_mount_target(self, request, config=None):
@@ -1002,6 +1237,70 @@ class PfsClient(BceBaseClient):
             params=params,
             config=merged_config,
             model=UpdateL2PolicyResponse,
+        )
+
+    def update_l3_access_group(self, request, config=None):
+        """
+        update_l3_access_group
+
+        :param request: Request entity containing all parameters
+        :type request: PfsClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing UpdateL3AccessGroupResponse data
+        :rtype: UpdateL3AccessGroupResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = PfsClient.VERSION_V2
+        headers = {}
+        headers[b'Content-Type'] = b'application/json; charset=utf-8'
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'UpdateL3AccessGroup'
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            headers=headers,
+            params=params,
+            config=merged_config,
+            model=UpdateL3AccessGroupResponse,
+        )
+
+    def update_l3_access_rule(self, request, config=None):
+        """
+        update_l3_access_rule
+
+        :param request: Request entity containing all parameters
+        :type request: PfsClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing UpdateL3AccessRuleResponse data
+        :rtype: UpdateL3AccessRuleResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = PfsClient.VERSION_V2
+        headers = {}
+        headers[b'Content-Type'] = b'application/json; charset=utf-8'
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'UpdateL3AccessRule'
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            headers=headers,
+            params=params,
+            config=merged_config,
+            model=UpdateL3AccessRuleResponse,
         )
 
     def update_pfs_tag(self, request, config=None):
