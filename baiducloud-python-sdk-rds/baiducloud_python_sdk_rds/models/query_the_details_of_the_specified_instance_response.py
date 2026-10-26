@@ -15,7 +15,6 @@ from baiducloud_python_sdk_rds.models.role_info import RoleInfo
 from baiducloud_python_sdk_rds.models.ro_group import RoGroup
 from baiducloud_python_sdk_rds.models.role_info import RoleInfo
 from baiducloud_python_sdk_rds.models.role_info import RoleInfo
-from baiducloud_python_sdk_rds.models.tag import Tag
 from baiducloud_python_sdk_rds.models.instance_subnet import InstanceSubnet
 from baiducloud_python_sdk_rds.models.machine_po import MachinePO
 from baiducloud_python_sdk_rds.models.resource_groups_detail_full import ResourceGroupsDetailFull
@@ -466,7 +465,7 @@ class QueryTheDetailsOfTheSpecifiedInstanceResponse(BceResponse):
         :type resource_uuid: str (optional)
 
         :param tags: 分组标签。
-        :type tags: List[Tag] (optional)
+        :type tags: List[str] (optional)
 
         :param task: 相关任务， 如自动续费（目前只有这个）。
         :type task: str (optional)
@@ -864,7 +863,7 @@ class QueryTheDetailsOfTheSpecifiedInstanceResponse(BceResponse):
         if self.resource_uuid is not None:
             result['resourceUuid'] = self.resource_uuid
         if self.tags is not None:
-            result['tags'] = [i.to_dict() for i in self.tags]
+            result['tags'] = self.tags
         if self.task is not None:
             result['task'] = self.task
         if self.order_status is not None:
@@ -1124,7 +1123,7 @@ class QueryTheDetailsOfTheSpecifiedInstanceResponse(BceResponse):
         if m.get('resourceUuid') is not None:
             self.resource_uuid = m.get('resourceUuid')
         if m.get('tags') is not None:
-            self.tags = [Tag().from_dict(i) for i in m.get('tags')]
+            self.tags = m.get('tags')
         if m.get('task') is not None:
             self.task = m.get('task')
         if m.get('orderStatus') is not None:

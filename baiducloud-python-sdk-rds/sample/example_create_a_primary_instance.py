@@ -20,7 +20,9 @@ if __name__ == '__main__':
         )
 
         client = RdsClient(bce_client_config)
-        billing = rds_models.Billing(payment_timing="", reservation=None)
+
+        reservation = rds_models.Reservation(reservation_length=0, reservation_time_unit="")
+        billing = rds_models.Billing(payment_timing="", reservation=reservation)
         initial_data_reference = rds_models.InitialDataReference(
             instance_id="", reference_type="", datetime="", snapshot_id=""
         )
@@ -33,7 +35,6 @@ if __name__ == '__main__':
             volume_capacity=0,
             disk_io_type="",
             vpc_id="",
-            initial_data_reference=initial_data_reference,
             client_token="",
             purchase_count=0,
             instance_name="",
@@ -54,6 +55,7 @@ if __name__ == '__main__':
             entry_port=0,
             replication_type="",
             resource_group_id="",
+            initial_data_reference=initial_data_reference,
             data=[],
             leader_instance_id="",
             resource_type="",

@@ -27,7 +27,6 @@ class CreateAPrimaryInstanceRequest(AbstractModel):
         volume_capacity,
         disk_io_type,
         vpc_id,
-        initial_data_reference,
         client_token=None,
         purchase_count=None,
         instance_name=None,
@@ -48,6 +47,7 @@ class CreateAPrimaryInstanceRequest(AbstractModel):
         entry_port=None,
         replication_type=None,
         resource_group_id=None,
+        initial_data_reference=None,
         data=None,
         leader_instance_id=None,
         resource_type=None,
@@ -140,7 +140,7 @@ class CreateAPrimaryInstanceRequest(AbstractModel):
         :type resource_group_id: str (optional)
 
         :param initial_data_reference: initial_data_reference parameter
-        :type initial_data_reference: InitialDataReference (required)
+        :type initial_data_reference: InitialDataReference (optional)
 
         :param data: 库表恢复到新实例，恢复的库表信息
         :type data: List[RecoveryToSourceInstanceModel] (optional)

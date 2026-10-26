@@ -4,6 +4,8 @@ Billing information
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
+from baiducloud_python_sdk_rds.models.reservation import Reservation
+
 
 class Billing(AbstractModel):
     """
@@ -14,11 +16,11 @@ class Billing(AbstractModel):
         """
         Initialize Billing instance.
 
-        :param payment_timing:
+        :param payment_timing: 付费方式。预付费：Prepaid，后付费：Postpaid
         :type payment_timing: str (optional)
 
-        :param reservation:
-        :type reservation: object (optional)
+        :param reservation: reservation attribute
+        :type reservation: Reservation (optional)
         """
         super().__init__()
         self.payment_timing = payment_timing
@@ -40,7 +42,7 @@ class Billing(AbstractModel):
         if self.payment_timing is not None:
             result['paymentTiming'] = self.payment_timing
         if self.reservation is not None:
-            result['reservation'] = self.reservation
+            result['reservation'] = self.reservation.to_dict()
         return result
 
     def from_dict(self, m):
@@ -62,5 +64,5 @@ class Billing(AbstractModel):
         if m.get('paymentTiming') is not None:
             self.payment_timing = m.get('paymentTiming')
         if m.get('reservation') is not None:
-            self.reservation = m.get('reservation')
+            self.reservation = Reservation().from_dict(m.get('reservation'))
         return self

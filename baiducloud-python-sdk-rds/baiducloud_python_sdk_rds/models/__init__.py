@@ -45,6 +45,7 @@ from .release_instance_response import ReleaseInstanceResponse
 from .renewal_example_request import RenewalExampleRequest
 from .renewal_example_response import RenewalExampleResponse
 from .replica_request import ReplicaRequest
+from .reservation import Reservation
 from .resource import Resource
 from .resource_group import ResourceGroup
 from .resource_groups_detail_full import ResourceGroupsDetailFull

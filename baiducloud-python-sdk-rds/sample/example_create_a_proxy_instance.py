@@ -20,7 +20,9 @@ if __name__ == '__main__':
         )
 
         client = RdsClient(bce_client_config)
-        billing = rds_models.Billing(payment_timing="", reservation=None)
+
+        reservation = rds_models.Reservation(reservation_length=0, reservation_time_unit="")
+        billing = rds_models.Billing(payment_timing="", reservation=reservation)
         request = rds_models.CreateAProxyInstanceRequest(
             billing=billing,
             source_instance_id="",
