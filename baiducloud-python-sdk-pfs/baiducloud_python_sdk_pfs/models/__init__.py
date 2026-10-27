@@ -52,6 +52,7 @@ from .l3_access_rule import L3AccessRule
 from .l3_access_rule_create_info import L3AccessRuleCreateInfo
 from .l3_access_rule_create_result import L3AccessRuleCreateResult
 from .l3_attached_mount_target import L3AttachedMountTarget
+from .l3_client_model import L3ClientModel
 from .list_fileset_request import ListFilesetRequest
 from .list_fileset_response import ListFilesetResponse
 from .list_l2_bucket_link_request import ListL2BucketLinkRequest
@@ -62,6 +63,8 @@ from .list_l3_access_group_request import ListL3AccessGroupRequest
 from .list_l3_access_group_response import ListL3AccessGroupResponse
 from .list_l3_access_rule_request import ListL3AccessRuleRequest
 from .list_l3_access_rule_response import ListL3AccessRuleResponse
+from .list_l3_clients_request import ListL3ClientsRequest
+from .list_l3_clients_response import ListL3ClientsResponse
 from .list_l3_mount_target_request import ListL3MountTargetRequest
 from .list_l3_mount_target_response import ListL3MountTargetResponse
 from .list_pfs_response import ListPfsResponse
@@ -92,6 +95,8 @@ from .update_l3_access_group_request import UpdateL3AccessGroupRequest
 from .update_l3_access_group_response import UpdateL3AccessGroupResponse
 from .update_l3_access_rule_request import UpdateL3AccessRuleRequest
 from .update_l3_access_rule_response import UpdateL3AccessRuleResponse
+from .update_l3_mount_target_request import UpdateL3MountTargetRequest
+from .update_l3_mount_target_response import UpdateL3MountTargetResponse
 from .update_pfs_tag_request import UpdatePFSTagRequest
 from .desc_pfs_request import DescPfsRequest
 from .delete_pfs_request import DeletePfsRequest

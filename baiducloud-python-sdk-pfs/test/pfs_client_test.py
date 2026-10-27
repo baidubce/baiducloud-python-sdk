@@ -44,7 +44,7 @@ class PfsClientTest(unittest.TestCase):
         self.client.create_l3_access_group(pfs_models.CreateL3AccessGroupRequest())
 
     def test_create_l3_access_rule(self):
-        self.client.create_l3_access_rule()
+        self.client.create_l3_access_rule(pfs_models.CreateL3AccessRuleRequest())
 
     def test_create_l3_mount_target(self):
         self.client.create_l3_mount_target(pfs_models.CreateL3MountTargetRequest())
@@ -109,6 +109,9 @@ class PfsClientTest(unittest.TestCase):
     def test_list_l3_access_rule(self):
         self.client.list_l3_access_rule(pfs_models.ListL3AccessRuleRequest())
 
+    def test_list_l3_clients(self):
+        self.client.list_l3_clients(pfs_models.ListL3ClientsRequest())
+
     def test_list_l3_mount_target(self):
         self.client.list_l3_mount_target(pfs_models.ListL3MountTargetRequest())
 
@@ -148,6 +151,9 @@ class PfsClientTest(unittest.TestCase):
     def test_update_l3_access_rule(self):
         self.client.update_l3_access_rule(pfs_models.UpdateL3AccessRuleRequest())
 
+    def test_update_l3_mount_target(self):
+        self.client.update_l3_mount_target(pfs_models.UpdateL3MountTargetRequest())
+
     def test_update_pfs_tag(self):
         self.client.update_pfs_tag(pfs_models.UpdatePFSTagRequest())
 
@@ -181,6 +187,7 @@ if __name__ == '__main__':
     suite.addTest(PfsClientTest("test_list_l2_policy"))
     suite.addTest(PfsClientTest("test_list_l3_access_group"))
     suite.addTest(PfsClientTest("test_list_l3_access_rule"))
+    suite.addTest(PfsClientTest("test_list_l3_clients"))
     suite.addTest(PfsClientTest("test_list_l3_mount_target"))
     suite.addTest(PfsClientTest("test_list_pfs"))
     suite.addTest(PfsClientTest("test_lst_per_l2_bkt_lnk_exec_log"))
@@ -194,6 +201,7 @@ if __name__ == '__main__':
     suite.addTest(PfsClientTest("test_update_l2_policy"))
     suite.addTest(PfsClientTest("test_update_l3_access_group"))
     suite.addTest(PfsClientTest("test_update_l3_access_rule"))
+    suite.addTest(PfsClientTest("test_update_l3_mount_target"))
     suite.addTest(PfsClientTest("test_update_pfs_tag"))
     runner = unittest.TextTestRunner()
     runner.run(suite)

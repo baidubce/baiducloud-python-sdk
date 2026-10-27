@@ -37,6 +37,7 @@ from baiducloud_python_sdk_pfs.models.list_l2_bucket_link_response import ListL2
 from baiducloud_python_sdk_pfs.models.list_l2_policy_response import ListL2PolicyResponse
 from baiducloud_python_sdk_pfs.models.list_l3_access_group_response import ListL3AccessGroupResponse
 from baiducloud_python_sdk_pfs.models.list_l3_access_rule_response import ListL3AccessRuleResponse
+from baiducloud_python_sdk_pfs.models.list_l3_clients_response import ListL3ClientsResponse
 from baiducloud_python_sdk_pfs.models.list_l3_mount_target_response import ListL3MountTargetResponse
 from baiducloud_python_sdk_pfs.models.list_pfs_response import ListPfsResponse
 from baiducloud_python_sdk_pfs.models.lst_per_l2_bkt_lnk_exec_log_response import LstPerL2BktLnkExecLogResponse
@@ -50,6 +51,7 @@ from baiducloud_python_sdk_pfs.models.update_fileset_response import UpdateFiles
 from baiducloud_python_sdk_pfs.models.update_l2_policy_response import UpdateL2PolicyResponse
 from baiducloud_python_sdk_pfs.models.update_l3_access_group_response import UpdateL3AccessGroupResponse
 from baiducloud_python_sdk_pfs.models.update_l3_access_rule_response import UpdateL3AccessRuleResponse
+from baiducloud_python_sdk_pfs.models.update_l3_mount_target_response import UpdateL3MountTargetResponse
 
 _logger = logging.getLogger(__name__)
 
@@ -217,7 +219,7 @@ class PfsClient(BceBaseClient):
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
-        path = PfsClient.VERSION_V2
+        path = b'/'
         headers = {}
         headers[b'Content-Type'] = b'application/json; charset=utf-8'
         headers[b'Version'] = b'v2'
@@ -249,7 +251,7 @@ class PfsClient(BceBaseClient):
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
-        path = PfsClient.VERSION_V2
+        path = b'/'
         headers = {}
         headers[b'Content-Type'] = b'application/json; charset=utf-8'
         headers[b'Version'] = b'v2'
@@ -427,7 +429,7 @@ class PfsClient(BceBaseClient):
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
-        path = PfsClient.VERSION_V2
+        path = b'/'
         headers = {}
         headers[b'Content-Type'] = b'application/json; charset=utf-8'
         headers[b'Version'] = b'v2'
@@ -459,7 +461,7 @@ class PfsClient(BceBaseClient):
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
-        path = PfsClient.VERSION_V2
+        path = b'/'
         headers = {}
         headers[b'Content-Type'] = b'application/json; charset=utf-8'
         headers[b'Version'] = b'v2'
@@ -663,7 +665,7 @@ class PfsClient(BceBaseClient):
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
-        path = PfsClient.VERSION_V2
+        path = b'/'
         headers = {}
         headers[b'Content-Type'] = b'application/json; charset=utf-8'
         headers[b'Version'] = b'v2'
@@ -850,7 +852,7 @@ class PfsClient(BceBaseClient):
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
-        path = PfsClient.VERSION_V2
+        path = b'/'
         headers = {}
         headers[b'Content-Type'] = b'application/json; charset=utf-8'
         headers[b'Version'] = b'v2'
@@ -882,7 +884,7 @@ class PfsClient(BceBaseClient):
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
-        path = PfsClient.VERSION_V2
+        path = b'/'
         headers = {}
         headers[b'Content-Type'] = b'application/json; charset=utf-8'
         headers[b'Version'] = b'v2'
@@ -897,6 +899,38 @@ class PfsClient(BceBaseClient):
             params=params,
             config=merged_config,
             model=ListL3AccessRuleResponse,
+        )
+
+    def list_l3_clients(self, request, config=None):
+        """
+        list_l3_clients
+
+        :param request: Request entity containing all parameters
+        :type request: PfsClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing ListL3ClientsResponse data
+        :rtype: ListL3ClientsResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = {}
+        headers[b'Content-Type'] = b'application/json; charset=utf-8'
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'ListL3Clients'
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            headers=headers,
+            params=params,
+            config=merged_config,
+            model=ListL3ClientsResponse,
         )
 
     def list_l3_mount_target(self, request, config=None):
@@ -1254,7 +1288,7 @@ class PfsClient(BceBaseClient):
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
-        path = PfsClient.VERSION_V2
+        path = b'/'
         headers = {}
         headers[b'Content-Type'] = b'application/json; charset=utf-8'
         headers[b'Version'] = b'v2'
@@ -1286,7 +1320,7 @@ class PfsClient(BceBaseClient):
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
-        path = PfsClient.VERSION_V2
+        path = b'/'
         headers = {}
         headers[b'Content-Type'] = b'application/json; charset=utf-8'
         headers[b'Version'] = b'v2'
@@ -1301,6 +1335,38 @@ class PfsClient(BceBaseClient):
             params=params,
             config=merged_config,
             model=UpdateL3AccessRuleResponse,
+        )
+
+    def update_l3_mount_target(self, request, config=None):
+        """
+        update_l3_mount_target
+
+        :param request: Request entity containing all parameters
+        :type request: PfsClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing UpdateL3MountTargetResponse data
+        :rtype: UpdateL3MountTargetResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = {}
+        headers[b'Content-Type'] = b'application/json; charset=utf-8'
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'UpdateL3MountTarget'
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            headers=headers,
+            params=params,
+            config=merged_config,
+            model=UpdateL3MountTargetResponse,
         )
 
     def update_pfs_tag(self, request, config=None):
