@@ -3,6 +3,7 @@ Request entity for ModifyDataSrcRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
+from baiducloud_python_sdk_rapidfs.models.mount_service_binding import MountServiceBinding
 
 
 class ModifyDataSrcRequest(AbstractModel):
@@ -17,8 +18,11 @@ class ModifyDataSrcRequest(AbstractModel):
         data_src_id,
         instance_id,
         client_token=None,
+        bucket_ak=None,
+        bucket_sk=None,
         keep_symlink=None,
         auth_group_id=None,
+        mount_service_bindings=None,
         description=None,
         quota_mi_b=None,
     ):
@@ -34,11 +38,20 @@ class ModifyDataSrcRequest(AbstractModel):
         :param instance_id: 所属 RapidFS 实例唯一 ID
         :type instance_id: str (required)
 
+        :param bucket_ak: 修改 bucket 凭证。仅 otherAccount == true 的数据源可改；必须与 bucketSK 成对提供
+        :type bucket_ak: str (optional)
+
+        :param bucket_sk: bucket_sk parameter
+        :type bucket_sk: str (optional)
+
         :param keep_symlink: 是否保留 BOS 软链，保留软链会降低数据源导入效率，以及后续增量元数据同步效率
         :type keep_symlink: bool (optional)
 
         :param auth_group_id: 权限组Id
         :type auth_group_id: str (optional)
+
+        :param mount_service_bindings: mount_service_bindings parameter
+        :type mount_service_bindings: List[MountServiceBinding] (optional)
 
         :param description: 数据源描述信息，不超过256个字符
         :type description: str (optional)
@@ -50,8 +63,11 @@ class ModifyDataSrcRequest(AbstractModel):
         self.client_token = client_token
         self.data_src_id = data_src_id
         self.instance_id = instance_id
+        self.bucket_ak = bucket_ak
+        self.bucket_sk = bucket_sk
         self.keep_symlink = keep_symlink
         self.auth_group_id = auth_group_id
+        self.mount_service_bindings = mount_service_bindings
         self.description = description
         self.quota_mi_b = quota_mi_b
 
@@ -72,10 +88,16 @@ class ModifyDataSrcRequest(AbstractModel):
             result['dataSrcId'] = self.data_src_id
         if self.instance_id is not None:
             result['instanceId'] = self.instance_id
+        if self.bucket_ak is not None:
+            result['bucketAK'] = self.bucket_ak
+        if self.bucket_sk is not None:
+            result['bucketSK'] = self.bucket_sk
         if self.keep_symlink is not None:
             result['keepSymlink'] = self.keep_symlink
         if self.auth_group_id is not None:
             result['authGroupId'] = self.auth_group_id
+        if self.mount_service_bindings is not None:
+            result['mountServiceBindings'] = [i.to_dict() for i in self.mount_service_bindings]
         if self.description is not None:
             result['description'] = self.description
         if self.quota_mi_b is not None:
@@ -104,10 +126,16 @@ class ModifyDataSrcRequest(AbstractModel):
             self.data_src_id = m.get('dataSrcId')
         if m.get('instanceId') is not None:
             self.instance_id = m.get('instanceId')
+        if m.get('bucketAK') is not None:
+            self.bucket_ak = m.get('bucketAK')
+        if m.get('bucketSK') is not None:
+            self.bucket_sk = m.get('bucketSK')
         if m.get('keepSymlink') is not None:
             self.keep_symlink = m.get('keepSymlink')
         if m.get('authGroupId') is not None:
             self.auth_group_id = m.get('authGroupId')
+        if m.get('mountServiceBindings') is not None:
+            self.mount_service_bindings = [MountServiceBinding().from_dict(i) for i in m.get('mountServiceBindings')]
         if m.get('description') is not None:
             self.description = m.get('description')
         if m.get('quotaMiB') is not None:

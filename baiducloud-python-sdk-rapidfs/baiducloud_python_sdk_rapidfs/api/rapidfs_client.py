@@ -6,11 +6,11 @@ import copy
 import logging
 
 from baiducloud_python_sdk_core import utils, bce_base_client
-from baiducloud_python_sdk_core.auth import bce_v1_signer
 from baiducloud_python_sdk_core.bce_base_client import BceBaseClient
 from baiducloud_python_sdk_core.http import bce_http_client
 from baiducloud_python_sdk_core.http import handler
 from baiducloud_python_sdk_core.http import http_methods
+from baiducloud_python_sdk_core.util import request_body_utils
 from baiducloud_python_sdk_rapidfs.models.add_cache_nodes_response import AddCacheNodesResponse
 from baiducloud_python_sdk_rapidfs.models.check_before_add_cache_nodes_response import CheckBeforeAddCacheNodesResponse
 from baiducloud_python_sdk_rapidfs.models.check_before_create_instance_response import (
@@ -1702,14 +1702,7 @@ class RapidfsClient(BceBaseClient):
             body_parser = handler.parse_json
         if headers is None:
             headers = {b'Accept': b'*/*', b'Content-Type': b'application/json;charset=utf-8'}
+        sign_fn, params = self._choose_signer(config, params)
         return bce_http_client.send_request(
-            config,
-            bce_v1_signer.sign,
-            [handler.parse_error, body_parser],
-            http_method,
-            path,
-            body,
-            headers,
-            params,
-            model=model,
+            config, sign_fn, [handler.parse_error, body_parser], http_method, path, body, headers, params, model=model
         )

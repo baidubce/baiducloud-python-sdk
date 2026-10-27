@@ -3,6 +3,7 @@ Request entity for ImportDataSrcRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
+from baiducloud_python_sdk_rapidfs.models.mount_service_binding import MountServiceBinding
 
 
 class ImportDataSrcRequest(AbstractModel):
@@ -19,12 +20,16 @@ class ImportDataSrcRequest(AbstractModel):
         bucket,
         client_token=None,
         other_account=None,
+        storage_type=None,
+        bucket_endpoint=None,
         bucket_ak=None,
         bucket_sk=None,
         bucket_sts_token=None,
         dir_prefix=None,
+        sync_meta_on_import=None,
         keep_symlink=None,
         auth_group_id=None,
+        mount_service_bindings=None,
         description=None,
         quota_mi_b=None,
     ):
@@ -40,11 +45,17 @@ class ImportDataSrcRequest(AbstractModel):
         :param data_src_name: 数据源名称
         :type data_src_name: str (required)
 
-        :param bucket: 数据源的 BOS Bucket（当前只支持同地域的存储桶）
+        :param bucket: 数据源的对象存储 Bucket（当前只支持同地域的存储桶）
         :type bucket: str (required)
 
-        :param other_account: 是否为其他账号的 bucket，若为true则需要提供导入 Bucket 带读写权限的AK/SK，默认 false
+        :param other_account: other_account parameter
         :type other_account: bool (optional)
+
+        :param storage_type: storage_type parameter
+        :type storage_type: str (optional)
+
+        :param bucket_endpoint: bucket_endpoint parameter
+        :type bucket_endpoint: str (optional)
 
         :param bucket_ak: otherAccount 为 true 时必填，无需加密
         :type bucket_ak: str (optional)
@@ -58,11 +69,17 @@ class ImportDataSrcRequest(AbstractModel):
         :param dir_prefix: dir_prefix parameter
         :type dir_prefix: str (optional)
 
-        :param keep_symlink: 是否保留 BOS 软链，保留软链会降低数据源导入效率，以及后续增量元数据同步效率，默认 false
+        :param sync_meta_on_import: 数据源导入时是否立即同步元数据，默认 true
+        :type sync_meta_on_import: bool (optional)
+
+        :param keep_symlink: 是否保留软链，保留软链会降低数据源导入效率，以及后续增量元数据同步效率，默认 false
         :type keep_symlink: bool (optional)
 
         :param auth_group_id: 权限组ID，默认权限组 ID 为 AG-RAPIDFS_DEFAULT_AUTHGROUP_ID
         :type auth_group_id: str (optional)
+
+        :param mount_service_bindings: mount_service_bindings parameter
+        :type mount_service_bindings: List[MountServiceBinding] (optional)
 
         :param description: 数据源描述信息
         :type description: str (optional)
@@ -76,12 +93,16 @@ class ImportDataSrcRequest(AbstractModel):
         self.data_src_name = data_src_name
         self.bucket = bucket
         self.other_account = other_account
+        self.storage_type = storage_type
+        self.bucket_endpoint = bucket_endpoint
         self.bucket_ak = bucket_ak
         self.bucket_sk = bucket_sk
         self.bucket_sts_token = bucket_sts_token
         self.dir_prefix = dir_prefix
+        self.sync_meta_on_import = sync_meta_on_import
         self.keep_symlink = keep_symlink
         self.auth_group_id = auth_group_id
+        self.mount_service_bindings = mount_service_bindings
         self.description = description
         self.quota_mi_b = quota_mi_b
 
@@ -106,6 +127,10 @@ class ImportDataSrcRequest(AbstractModel):
             result['bucket'] = self.bucket
         if self.other_account is not None:
             result['otherAccount'] = self.other_account
+        if self.storage_type is not None:
+            result['storageType'] = self.storage_type
+        if self.bucket_endpoint is not None:
+            result['bucketEndpoint'] = self.bucket_endpoint
         if self.bucket_ak is not None:
             result['bucketAK'] = self.bucket_ak
         if self.bucket_sk is not None:
@@ -114,10 +139,14 @@ class ImportDataSrcRequest(AbstractModel):
             result['bucketStsToken'] = self.bucket_sts_token
         if self.dir_prefix is not None:
             result['dirPrefix'] = self.dir_prefix
+        if self.sync_meta_on_import is not None:
+            result['syncMetaOnImport'] = self.sync_meta_on_import
         if self.keep_symlink is not None:
             result['keepSymlink'] = self.keep_symlink
         if self.auth_group_id is not None:
             result['authGroupId'] = self.auth_group_id
+        if self.mount_service_bindings is not None:
+            result['mountServiceBindings'] = [i.to_dict() for i in self.mount_service_bindings]
         if self.description is not None:
             result['description'] = self.description
         if self.quota_mi_b is not None:
@@ -150,6 +179,10 @@ class ImportDataSrcRequest(AbstractModel):
             self.bucket = m.get('bucket')
         if m.get('otherAccount') is not None:
             self.other_account = m.get('otherAccount')
+        if m.get('storageType') is not None:
+            self.storage_type = m.get('storageType')
+        if m.get('bucketEndpoint') is not None:
+            self.bucket_endpoint = m.get('bucketEndpoint')
         if m.get('bucketAK') is not None:
             self.bucket_ak = m.get('bucketAK')
         if m.get('bucketSK') is not None:
@@ -158,10 +191,14 @@ class ImportDataSrcRequest(AbstractModel):
             self.bucket_sts_token = m.get('bucketStsToken')
         if m.get('dirPrefix') is not None:
             self.dir_prefix = m.get('dirPrefix')
+        if m.get('syncMetaOnImport') is not None:
+            self.sync_meta_on_import = m.get('syncMetaOnImport')
         if m.get('keepSymlink') is not None:
             self.keep_symlink = m.get('keepSymlink')
         if m.get('authGroupId') is not None:
             self.auth_group_id = m.get('authGroupId')
+        if m.get('mountServiceBindings') is not None:
+            self.mount_service_bindings = [MountServiceBinding().from_dict(i) for i in m.get('mountServiceBindings')]
         if m.get('description') is not None:
             self.description = m.get('description')
         if m.get('quotaMiB') is not None:

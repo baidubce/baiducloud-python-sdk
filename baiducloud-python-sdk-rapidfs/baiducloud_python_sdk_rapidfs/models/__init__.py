@@ -111,6 +111,7 @@ from .modify_auth_group_request import ModifyAuthGroupRequest
 from .modify_data_src_request import ModifyDataSrcRequest
 from .modify_meta_sync_rule_request import ModifyMetaSyncRuleRequest
 from .modify_token_request import ModifyTokenRequest
+from .mount_service_binding import MountServiceBinding
 from .order_info import OrderInfo
 from .price_info import PriceInfo
 from .remove_cache_nodes_request import RemoveCacheNodesRequest

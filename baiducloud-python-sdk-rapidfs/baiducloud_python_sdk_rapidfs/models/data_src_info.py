@@ -4,6 +4,8 @@ DataSrcInfo information
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
+from baiducloud_python_sdk_rapidfs.models.mount_service_binding import MountServiceBinding
+
 
 from baiducloud_python_sdk_core.annotation import host
 
@@ -23,12 +25,17 @@ class DataSrcInfo(AbstractModel):
         status=None,
         description=None,
         bucket=None,
+        other_account=None,
+        storage_type=None,
+        bucket_endpoint=None,
         dir_prefix=None,
+        sync_meta_on_import=None,
         keep_symlink=None,
         auth_group_id=None,
         auth_group_name=None,
         quota_mi_b=None,
         used_mi_b=None,
+        mount_service_bindings=None,
     ):
         """
         Initialize DataSrcInfo instance.
@@ -57,8 +64,20 @@ class DataSrcInfo(AbstractModel):
         :param bucket: 数据源的 BOS bucket
         :type bucket: str (optional)
 
+        :param other_account: 是否为其他账号的 bucket，非 BOS 数据源固定为true
+        :type other_account: bool (optional)
+
+        :param storage_type: 对象存储类型，BOS / OSS
+        :type storage_type: str (optional)
+
+        :param bucket_endpoint: 数据源实际使用的 endpoint，BOS 数据源导入且未显式传入时为后端推导值
+        :type bucket_endpoint: str (optional)
+
         :param dir_prefix: 数据源的目录前缀
         :type dir_prefix: str (optional)
+
+        :param sync_meta_on_import: 数据源导入时是否立即同步元数据， 默认 ture
+        :type sync_meta_on_import: bool (optional)
 
         :param keep_symlink: 是否保留软链
         :type keep_symlink: bool (optional)
@@ -74,6 +93,9 @@ class DataSrcInfo(AbstractModel):
 
         :param used_mi_b: 数据源已使用容量
         :type used_mi_b: int (optional)
+
+        :param mount_service_bindings: 该数据源的绑定列表，见数据类型 MountServiceBinding
+        :type mount_service_bindings: List[MountServiceBinding] (optional)
         """
         super().__init__()
         self.data_src_name = data_src_name
@@ -84,12 +106,17 @@ class DataSrcInfo(AbstractModel):
         self.status = status
         self.description = description
         self._bucket = bucket
+        self.other_account = other_account
+        self.storage_type = storage_type
+        self.bucket_endpoint = bucket_endpoint
         self.dir_prefix = dir_prefix
+        self.sync_meta_on_import = sync_meta_on_import
         self.keep_symlink = keep_symlink
         self.auth_group_id = auth_group_id
         self.auth_group_name = auth_group_name
         self.quota_mi_b = quota_mi_b
         self.used_mi_b = used_mi_b
+        self.mount_service_bindings = mount_service_bindings
 
     @property
     @host
@@ -131,8 +158,16 @@ class DataSrcInfo(AbstractModel):
             result['description'] = self.description
         if self.bucket is not None:
             result['bucket'] = self.bucket
+        if self.other_account is not None:
+            result['otherAccount'] = self.other_account
+        if self.storage_type is not None:
+            result['storageType'] = self.storage_type
+        if self.bucket_endpoint is not None:
+            result['bucketEndpoint'] = self.bucket_endpoint
         if self.dir_prefix is not None:
             result['dirPrefix'] = self.dir_prefix
+        if self.sync_meta_on_import is not None:
+            result['syncMetaOnImport'] = self.sync_meta_on_import
         if self.keep_symlink is not None:
             result['keepSymlink'] = self.keep_symlink
         if self.auth_group_id is not None:
@@ -143,6 +178,8 @@ class DataSrcInfo(AbstractModel):
             result['quotaMiB'] = self.quota_mi_b
         if self.used_mi_b is not None:
             result['usedMiB'] = self.used_mi_b
+        if self.mount_service_bindings is not None:
+            result['mountServiceBindings'] = [i.to_dict() for i in self.mount_service_bindings]
         return result
 
     def from_dict(self, m):
@@ -177,8 +214,16 @@ class DataSrcInfo(AbstractModel):
             self.description = m.get('description')
         if m.get('bucket') is not None:
             self.bucket = m.get('bucket')
+        if m.get('otherAccount') is not None:
+            self.other_account = m.get('otherAccount')
+        if m.get('storageType') is not None:
+            self.storage_type = m.get('storageType')
+        if m.get('bucketEndpoint') is not None:
+            self.bucket_endpoint = m.get('bucketEndpoint')
         if m.get('dirPrefix') is not None:
             self.dir_prefix = m.get('dirPrefix')
+        if m.get('syncMetaOnImport') is not None:
+            self.sync_meta_on_import = m.get('syncMetaOnImport')
         if m.get('keepSymlink') is not None:
             self.keep_symlink = m.get('keepSymlink')
         if m.get('authGroupId') is not None:
@@ -189,4 +234,6 @@ class DataSrcInfo(AbstractModel):
             self.quota_mi_b = m.get('quotaMiB')
         if m.get('usedMiB') is not None:
             self.used_mi_b = m.get('usedMiB')
+        if m.get('mountServiceBindings') is not None:
+            self.mount_service_bindings = [MountServiceBinding().from_dict(i) for i in m.get('mountServiceBindings')]
         return self

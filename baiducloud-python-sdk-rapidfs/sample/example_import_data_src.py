@@ -24,12 +24,21 @@ if __name__ == '__main__':
             bucket="",
             client_token="",
             other_account=False,
+            storage_type="BOS",
+            bucket_endpoint="",
             bucket_ak="",
             bucket_sk="",
             bucket_sts_token="",
             dir_prefix="",
+            sync_meta_on_import=True,
             keep_symlink=False,
             auth_group_id="",
+            mount_service_bindings=[
+                rapidfs_models.MountServiceBinding(
+                    mount_service_id="MNTSVC-RAPIDFS_DEFAULT_ID",
+                    logical_mount_path="",
+                ),
+            ],
             description="",
             quota_mi_b=0,
         )
