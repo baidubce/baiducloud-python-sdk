@@ -77,6 +77,8 @@ from .create_deploy_set_request import CreateDeploySetRequest
 from .create_deploy_set_response import CreateDeploySetResponse
 from .create_ehc_cluster_request import CreateEhcClusterRequest
 from .create_ehc_cluster_response import CreateEhcClusterResponse
+from .create_elasticity_assurance_request import CreateElasticityAssuranceRequest
+from .create_elasticity_assurance_response import CreateElasticityAssuranceResponse
 from .create_image_request import CreateImageRequest
 from .create_image_response import CreateImageResponse
 from .create_instance_by_spec_request import CreateInstanceBySpecRequest
@@ -99,6 +101,7 @@ from .create_volume_response import CreateVolumeResponse
 from .del_ipv6_request import DelIpv6Request
 from .delete_auto_renew_rule_request import DeleteAutoRenewRuleRequest
 from .delete_ehc_cluster_request import DeleteEhcClusterRequest
+from .delete_elasticity_assurance_request import DeleteElasticityAssuranceRequest
 from .delete_inst_user_op_authorize_rule_request import DeleteInstUserOpAuthorizeRuleRequest
 from .delete_inst_user_op_authorize_rule_response import DeleteInstUserOpAuthorizeRuleResponse
 from .delete_instance_deploy_set_request import DeleteInstanceDeploySetRequest
@@ -126,6 +129,7 @@ from .disk_info import DiskInfo
 from .ehc_cluster import EhcCluster
 from .ehc_cluster_list_request import EhcClusterListRequest
 from .ehc_cluster_list_response import EhcClusterListResponse
+from .elasticity_assurance_model import ElasticityAssuranceModel
 from .eni_info import EniInfo
 from .enter_rescue_mode_request import EnterRescueModeRequest
 from .enter_rescue_mode_response import EnterRescueModeResponse
@@ -223,6 +227,7 @@ from .list_volumes_response import ListVolumesResponse
 from .list_zones_response import ListZonesResponse
 from .modify_cds_attribute_request import ModifyCdsAttributeRequest
 from .modify_ehc_cluster_request import ModifyEhcClusterRequest
+from .modify_elasticity_assurance_request import ModifyElasticityAssuranceRequest
 from .modify_inst_user_op_authorize_rule_attribute_request import ModifyInstUserOpAuthorizeRuleAttributeRequest
 from .modify_inst_user_op_authorize_rule_attribute_response import ModifyInstUserOpAuthorizeRuleAttributeResponse
 from .modify_instance_attributes_request import ModifyInstanceAttributesRequest
@@ -251,6 +256,8 @@ from .purchase_reserved_volume_cluster_request import PurchaseReservedVolumeClus
 from .purchase_reserved_volume_cluster_response import PurchaseReservedVolumeClusterResponse
 from .purchase_reserved_volume_request import PurchaseReservedVolumeRequest
 from .purchase_reserved_volume_response import PurchaseReservedVolumeResponse
+from .query_elasticity_assurance_request import QueryElasticityAssuranceRequest
+from .query_elasticity_assurance_response import QueryElasticityAssuranceResponse
 from .rdma_nic_topo import RdmaNicTopo
 from .reboot_instance_request import RebootInstanceRequest
 from .rebuild_batch_instance_request import RebuildBatchInstanceRequest
@@ -270,6 +277,8 @@ from .remote_copy_snapshot_response import RemoteCopySnapshotResponse
 from .rename_image_request import RenameImageRequest
 from .rename_keypair_request import RenameKeypairRequest
 from .rename_volume_request import RenameVolumeRequest
+from .renew_elasticity_assurance_request import RenewElasticityAssuranceRequest
+from .renew_elasticity_assurance_response import RenewElasticityAssuranceResponse
 from .renew_reserved_instance_request import RenewReservedInstanceRequest
 from .renew_reserved_instance_response import RenewReservedInstanceResponse
 from .replace_instance_security_group_request import ReplaceInstanceSecurityGroupRequest

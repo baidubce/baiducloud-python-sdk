@@ -98,6 +98,8 @@ class InstanceModel(AbstractModel):
         tags=None,
         volumes=None,
         network_capacity_in_mbps=None,
+        instance_id=None,
+        logical_zone=None,
     ):
         """
         Initialize InstanceModel instance.
@@ -323,6 +325,12 @@ class InstanceModel(AbstractModel):
 
         :param network_capacity_in_mbps: 公网带宽，单位为Mb（查询实例列表、查询指定实例详情、根据实例id查询实例列表、查询可关机不计费的实例列表）
         :type network_capacity_in_mbps: int (optional)
+
+        :param instance_id: instance_id attribute
+        :type instance_id: str (optional)
+
+        :param logical_zone: 逻辑可用区（查询弹性保障实例instanceId列表返回）
+        :type logical_zone: str (optional)
         """
         super().__init__()
         self.id = id
@@ -399,6 +407,8 @@ class InstanceModel(AbstractModel):
         self.tags = tags
         self.volumes = volumes
         self.network_capacity_in_mbps = network_capacity_in_mbps
+        self.instance_id = instance_id
+        self.logical_zone = logical_zone
 
     def to_dict(self):
         """
@@ -561,6 +571,10 @@ class InstanceModel(AbstractModel):
             result['volumes'] = [i.to_dict() for i in self.volumes]
         if self.network_capacity_in_mbps is not None:
             result['networkCapacityInMbps'] = self.network_capacity_in_mbps
+        if self.instance_id is not None:
+            result['instanceId'] = self.instance_id
+        if self.logical_zone is not None:
+            result['logicalZone'] = self.logical_zone
         return result
 
     def from_dict(self, m):
@@ -727,4 +741,8 @@ class InstanceModel(AbstractModel):
             self.volumes = [VolumeModel().from_dict(i) for i in m.get('volumes')]
         if m.get('networkCapacityInMbps') is not None:
             self.network_capacity_in_mbps = m.get('networkCapacityInMbps')
+        if m.get('instanceId') is not None:
+            self.instance_id = m.get('instanceId')
+        if m.get('logicalZone') is not None:
+            self.logical_zone = m.get('logicalZone')
         return self

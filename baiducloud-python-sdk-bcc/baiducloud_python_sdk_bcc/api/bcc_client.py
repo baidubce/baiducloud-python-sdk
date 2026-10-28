@@ -6,7 +6,6 @@ import copy
 import logging
 
 from baiducloud_python_sdk_core import utils, bce_base_client
-from baiducloud_python_sdk_core.auth import bce_v1_signer
 from baiducloud_python_sdk_core.bce_base_client import BceBaseClient
 from baiducloud_python_sdk_core.http import bce_http_client
 from baiducloud_python_sdk_core.http import handler
@@ -33,6 +32,7 @@ from baiducloud_python_sdk_bcc.models.create_authorization_rule_response import 
 from baiducloud_python_sdk_bcc.models.create_bid_instance_response import CreateBidInstanceResponse
 from baiducloud_python_sdk_bcc.models.create_deploy_set_response import CreateDeploySetResponse
 from baiducloud_python_sdk_bcc.models.create_ehc_cluster_response import CreateEhcClusterResponse
+from baiducloud_python_sdk_bcc.models.create_elasticity_assurance_response import CreateElasticityAssuranceResponse
 from baiducloud_python_sdk_bcc.models.create_image_response import CreateImageResponse
 from baiducloud_python_sdk_bcc.models.create_instance_by_spec_response import CreateInstanceBySpecResponse
 from baiducloud_python_sdk_bcc.models.create_keypair_response import CreateKeypairResponse
@@ -121,8 +121,10 @@ from baiducloud_python_sdk_bcc.models.purchase_reserved_volume_response import P
 from baiducloud_python_sdk_bcc.models.purchase_reserved_volume_cluster_response import (
     PurchaseReservedVolumeClusterResponse,
 )
+from baiducloud_python_sdk_bcc.models.query_elasticity_assurance_response import QueryElasticityAssuranceResponse
 from baiducloud_python_sdk_bcc.models.remote_copy_image_response import RemoteCopyImageResponse
 from baiducloud_python_sdk_bcc.models.remote_copy_snapshot_response import RemoteCopySnapshotResponse
+from baiducloud_python_sdk_bcc.models.renew_elasticity_assurance_response import RenewElasticityAssuranceResponse
 from baiducloud_python_sdk_bcc.models.renew_reserved_instance_response import RenewReservedInstanceResponse
 from baiducloud_python_sdk_bcc.models.replace_instance_security_group_response import (
     ReplaceInstanceSecurityGroupResponse,
@@ -243,6 +245,10 @@ class BccClient(BceBaseClient):
 
     CONSTANT_BATCH_DELETE = b'batchDelete'
 
+    CONSTANT_ELASTICITY_ASSURANCE = b'elasticityAssurance'
+
+    CONSTANT_RENEW = b'renew'
+
     CONSTANT_BATCH_REFUND_RESOURCE = b'batchRefundResource'
 
     CONSTANT_REFUSE = b'refuse'
@@ -317,6 +323,8 @@ class BccClient(BceBaseClient):
 
     CONSTANT_DEL_IPV6 = b'delIpv6'
 
+    CONSTANT_MODIFY_AUTO_RENEW = b'modifyAutoRenew'
+
     CONSTANT_ENI = b'eni'
 
     CONSTANT_BATCH_ADD_IP = b'batchAddIp'
@@ -330,8 +338,6 @@ class BccClient(BceBaseClient):
     CONSTANT_MODE = b'mode'
 
     CONSTANT_EXIT = b'exit'
-
-    CONSTANT_RENEW = b'renew'
 
     CONSTANT_ENTER = b'enter'
 
@@ -1392,6 +1398,37 @@ class BccClient(BceBaseClient):
             model=CreateEhcClusterResponse,
         )
 
+    def create_elasticity_assurance(self, request, config=None):
+        """
+        create_elasticity_assurance
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing CreateElasticityAssuranceResponse data
+        :rtype: CreateElasticityAssuranceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            BccClient.VERSION_V2,
+            BccClient.CONSTANT_INSTANCE,
+            BccClient.CONSTANT_ELASTICITY_ASSURANCE,
+            BccClient.CONSTANT_CREATE,
+        )
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=CreateElasticityAssuranceResponse,
+        )
+
     def create_image(self, request, config=None):
         """
         create_image
@@ -1758,6 +1795,31 @@ class BccClient(BceBaseClient):
             BccClient.CONSTANT_INSTANCE,
             BccClient.CONSTANT_EHC,
             BccClient.CONSTANT_CLUSTER,
+            BccClient.CONSTANT_DELETE,
+        )
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+
+    def delete_elasticity_assurance(self, request, config=None):
+        """
+        delete_elasticity_assurance
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            BccClient.VERSION_V2,
+            BccClient.CONSTANT_INSTANCE,
+            BccClient.CONSTANT_ELASTICITY_ASSURANCE,
             BccClient.CONSTANT_DELETE,
         )
         headers = None
@@ -3772,6 +3834,31 @@ class BccClient(BceBaseClient):
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
 
+    def modify_elasticity_assurance(self, request, config=None):
+        """
+        modify_elasticity_assurance
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response
+        :rtype: baiducloud_python_sdk_core.bce_response.BceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            BccClient.VERSION_V2,
+            BccClient.CONSTANT_INSTANCE,
+            BccClient.CONSTANT_ELASTICITY_ASSURANCE,
+            BccClient.CONSTANT_MODIFY_AUTO_RENEW,
+        )
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(http_methods.POST, path=path, body=request.to_json_string(), config=merged_config)
+
     def modify_inst_user_op_authorize_rule_attribute(self, request, config=None):
         """
         modify_inst_user_op_authorize_rule_attribute
@@ -4115,6 +4202,37 @@ class BccClient(BceBaseClient):
             model=PurchaseReservedVolumeClusterResponse,
         )
 
+    def query_elasticity_assurance(self, request, config=None):
+        """
+        query_elasticity_assurance
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing QueryElasticityAssuranceResponse data
+        :rtype: QueryElasticityAssuranceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            BccClient.VERSION_V2,
+            BccClient.CONSTANT_INSTANCE,
+            BccClient.CONSTANT_ELASTICITY_ASSURANCE,
+            BccClient.CONSTANT_LIST,
+        )
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=QueryElasticityAssuranceResponse,
+        )
+
     def reboot_instance(self, request, config=None):
         """
         reboot_instance
@@ -4392,6 +4510,37 @@ class BccClient(BceBaseClient):
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
+        )
+
+    def renew_elasticity_assurance(self, request, config=None):
+        """
+        renew_elasticity_assurance
+
+        :param request: Request entity containing all parameters
+        :type request: BccClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing RenewElasticityAssuranceResponse data
+        :rtype: RenewElasticityAssuranceResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = utils.append_uri(
+            BccClient.VERSION_V2,
+            BccClient.CONSTANT_INSTANCE,
+            BccClient.CONSTANT_ELASTICITY_ASSURANCE,
+            BccClient.CONSTANT_RENEW,
+        )
+        headers = None
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            config=merged_config,
+            model=RenewElasticityAssuranceResponse,
         )
 
     def renew_reserved_instance(self, request, config=None):
@@ -5141,14 +5290,7 @@ class BccClient(BceBaseClient):
             body_parser = handler.parse_json
         if headers is None:
             headers = {b'Accept': b'*/*', b'Content-Type': b'application/json;charset=utf-8'}
+        sign_fn, params = self._choose_signer(config, params)
         return bce_http_client.send_request(
-            config,
-            bce_v1_signer.sign,
-            [handler.parse_error, body_parser],
-            http_method,
-            path,
-            body,
-            headers,
-            params,
-            model=model,
+            config, sign_fn, [handler.parse_error, body_parser], http_method, path, body, headers, params, model=model
         )

@@ -16,7 +16,10 @@ class BccClientTest(unittest.TestCase):
         HOST = b''
         AK = b''
         SK = b''
+
+        # ==== AK/SK 鉴权 ====
         config = BceClientConfiguration(credentials=BceCredentials(AK, SK), endpoint=HOST)
+
         self.client = BccClient(config)
 
     def tearDown(self):
@@ -145,6 +148,9 @@ class BccClientTest(unittest.TestCase):
     def test_create_ehc_cluster(self):
         self.client.create_ehc_cluster(bcc_models.CreateEhcClusterRequest())
 
+    def test_create_elasticity_assurance(self):
+        self.client.create_elasticity_assurance(bcc_models.CreateElasticityAssuranceRequest())
+
     def test_create_image(self):
         self.client.create_image(bcc_models.CreateImageRequest())
 
@@ -189,6 +195,9 @@ class BccClientTest(unittest.TestCase):
 
     def test_delete_ehc_cluster(self):
         self.client.delete_ehc_cluster(bcc_models.DeleteEhcClusterRequest())
+
+    def test_delete_elasticity_assurance(self):
+        self.client.delete_elasticity_assurance(bcc_models.DeleteElasticityAssuranceRequest())
 
     def test_delete_image(self):
         self.client.delete_image(bcc_models.DeleteImageRequest())
@@ -415,6 +424,9 @@ class BccClientTest(unittest.TestCase):
     def test_modify_ehc_cluster(self):
         self.client.modify_ehc_cluster(bcc_models.ModifyEhcClusterRequest())
 
+    def test_modify_elasticity_assurance(self):
+        self.client.modify_elasticity_assurance(bcc_models.ModifyElasticityAssuranceRequest())
+
     def test_modify_inst_user_op_authorize_rule_attribute(self):
         self.client.modify_inst_user_op_authorize_rule_attribute(
             bcc_models.ModifyInstUserOpAuthorizeRuleAttributeRequest()
@@ -456,6 +468,9 @@ class BccClientTest(unittest.TestCase):
     def test_purchase_reserved_volume_cluster(self):
         self.client.purchase_reserved_volume_cluster(bcc_models.PurchaseReservedVolumeClusterRequest())
 
+    def test_query_elasticity_assurance(self):
+        self.client.query_elasticity_assurance(bcc_models.QueryElasticityAssuranceRequest())
+
     def test_reboot_instance(self):
         self.client.reboot_instance(bcc_models.RebootInstanceRequest())
 
@@ -491,6 +506,9 @@ class BccClientTest(unittest.TestCase):
 
     def test_rename_volume(self):
         self.client.rename_volume(bcc_models.RenameVolumeRequest())
+
+    def test_renew_elasticity_assurance(self):
+        self.client.renew_elasticity_assurance(bcc_models.RenewElasticityAssuranceRequest())
 
     def test_renew_reserved_instance(self):
         self.client.renew_reserved_instance(bcc_models.RenewReservedInstanceRequest())
@@ -616,6 +634,7 @@ if __name__ == '__main__':
     suite.addTest(BccClientTest("test_create_bid_instance"))
     suite.addTest(BccClientTest("test_create_deploy_set"))
     suite.addTest(BccClientTest("test_create_ehc_cluster"))
+    suite.addTest(BccClientTest("test_create_elasticity_assurance"))
     suite.addTest(BccClientTest("test_create_image"))
     suite.addTest(BccClientTest("test_create_instance_by_spec"))
     suite.addTest(BccClientTest("test_create_keypair"))
@@ -631,6 +650,7 @@ if __name__ == '__main__':
     suite.addTest(BccClientTest("test_delete_auto_renew_rule"))
     suite.addTest(BccClientTest("test_delete_deploy_set"))
     suite.addTest(BccClientTest("test_delete_ehc_cluster"))
+    suite.addTest(BccClientTest("test_delete_elasticity_assurance"))
     suite.addTest(BccClientTest("test_delete_image"))
     suite.addTest(BccClientTest("test_delete_inst_user_op_authorize_rule"))
     suite.addTest(BccClientTest("test_delete_instance_deploy_set"))
@@ -706,6 +726,7 @@ if __name__ == '__main__':
     suite.addTest(BccClientTest("test_list_zones"))
     suite.addTest(BccClientTest("test_modify_cds_attribute"))
     suite.addTest(BccClientTest("test_modify_ehc_cluster"))
+    suite.addTest(BccClientTest("test_modify_elasticity_assurance"))
     suite.addTest(BccClientTest("test_modify_inst_user_op_authorize_rule_attribute"))
     suite.addTest(BccClientTest("test_modify_instance_attributes"))
     suite.addTest(BccClientTest("test_modify_instance_desc"))
@@ -719,6 +740,7 @@ if __name__ == '__main__':
     suite.addTest(BccClientTest("test_purchase_reserved_instance"))
     suite.addTest(BccClientTest("test_purchase_reserved_volume"))
     suite.addTest(BccClientTest("test_purchase_reserved_volume_cluster"))
+    suite.addTest(BccClientTest("test_query_elasticity_assurance"))
     suite.addTest(BccClientTest("test_reboot_instance"))
     suite.addTest(BccClientTest("test_rebuild_batch_instance"))
     suite.addTest(BccClientTest("test_rebuild_instance"))
@@ -731,6 +753,7 @@ if __name__ == '__main__':
     suite.addTest(BccClientTest("test_rename_image"))
     suite.addTest(BccClientTest("test_rename_keypair"))
     suite.addTest(BccClientTest("test_rename_volume"))
+    suite.addTest(BccClientTest("test_renew_elasticity_assurance"))
     suite.addTest(BccClientTest("test_renew_reserved_instance"))
     suite.addTest(BccClientTest("test_replace_instance_security_group"))
     suite.addTest(BccClientTest("test_resize_instance_by_spec"))
