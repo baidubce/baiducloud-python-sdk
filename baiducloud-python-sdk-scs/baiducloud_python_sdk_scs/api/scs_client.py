@@ -281,7 +281,7 @@ class ScsClient(BceBaseClient):
                                 ScsClient.CONSTANT_ACL_USER_ACTIONS)
         headers = None
         merged_config = self._create_request_with_host(request, config)
-        return self._send_request(http_methods.POST, path=path
+        return self._send_request(http_methods.GET, path=path
                                 , config=merged_config, model=AccountListResponse)
 
     def add_ip_whitelist(self, request, config=None):
@@ -517,7 +517,8 @@ class ScsClient(BceBaseClient):
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
-        path = utils.append_uri(ScsClient.VERSION_V1, request.instance_id,
+        path = utils.append_uri(ScsClient.VERSION_V1, ScsClient.CONSTANT_INSTANCE,
+                                request.instance_id,
                                 ScsClient.CONSTANT_ACL_USER_ACTIONS,
                                 ScsClient.CONSTANT_MODIFY_PASSWD)
         headers = None
@@ -819,7 +820,8 @@ class ScsClient(BceBaseClient):
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
-        path = utils.append_uri(ScsClient.VERSION_V1, request.instance_id,
+        path = utils.append_uri(ScsClient.VERSION_V1, ScsClient.CONSTANT_INSTANCE,
+                                request.instance_id,
                                 ScsClient.CONSTANT_ACL_USER_ACTIONS,
                                 ScsClient.CONSTANT_DELETE)
         headers = None
@@ -2692,7 +2694,8 @@ class ScsClient(BceBaseClient):
         :raises BceClientError: Client error (network failure, invalid parameters, etc.)
         :raises BceServerError: Server error (4xx/5xx HTTP status codes)
         """
-        path = utils.append_uri(ScsClient.VERSION_V1, request.instance_id,
+        path = utils.append_uri(ScsClient.VERSION_V1, ScsClient.CONSTANT_INSTANCE,
+                                request.instance_id,
                                 ScsClient.CONSTANT_ACL_USER_ACTIONS,
                                 ScsClient.CONSTANT_AUTHORITY)
         headers = None

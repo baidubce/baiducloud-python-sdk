@@ -34,10 +34,10 @@ class ChangeConfigurationRequest(AbstractModel):
         :param node_type: node_type parameter
         :type node_type: str (optional)
 
-        :param shard_num: 分片个数
+        :param shard_num: 分片个数。实例规格和分片同时只能变更一个，变更实例规格时，分片和原实例保持一致。
         :type shard_num: int (optional)
 
-        :param disk_flavor: 存储空间
+        :param disk_flavor: 存储空间。仅Redis容量型（PegaDB）支持，不能和分片一起变更。
         :type disk_flavor: int (optional)
         """
         super().__init__()
