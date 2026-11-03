@@ -10,20 +10,18 @@ from baiducloud_python_sdk_privatezone import models as privatezone_models
 
 if __name__ == '__main__':
     try:
-        # 设置Client的Access Key ID和Secret Access Key，获取AKSK详见:https://cloud.baidu.com/doc/Reference/s/9jwvz2egb
-        access_key_id = ""
-        secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(
+
+        # ==== AK/SK 鉴权 ====
+        access_key_id = "Your Ak"
+        secret_access_key = "Your Sk"
+        bce_client_config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        dns_server_config = privatezone_models.DnsServerConfig(
-            ip="",
-            port=53
-        )
-        client = PrivatezoneClient(config)
+
+        client = PrivatezoneClient(bce_client_config)
         request = privatezone_models.CreateResolverRuleRequest(
-            name="", zone="", resolver_id="", dns_server_configs=[dns_server_config], client_token="", description=""
+            name="", zone="", resolver_id="", dns_server_configs=[], client_token="", description=""
         )
         res = client.create_resolver_rule(request)
         print(res.to_json_string())

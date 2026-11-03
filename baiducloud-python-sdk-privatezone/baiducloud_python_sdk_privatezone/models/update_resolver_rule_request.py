@@ -13,12 +13,12 @@ class UpdateResolverRuleRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, relu_id, name, client_token=None, description=None, dns_server_configs=None):
+    def __init__(self, rule_id, name, client_token=None, description=None, dns_server_configs=None):
         """
         Initialize UpdateResolverRuleRequest request entity.
 
-        :param relu_id: relu_id parameter
-        :type relu_id: str (required)
+        :param rule_id: rule_id parameter
+        :type rule_id: str (required)
 
         :param client_token: client_token parameter
         :type client_token: str (optional)
@@ -33,7 +33,7 @@ class UpdateResolverRuleRequest(AbstractModel):
         :type dns_server_configs: List[DnsServerConfig] (optional)
         """
         super().__init__()
-        self.relu_id = relu_id
+        self.rule_id = rule_id
         self.client_token = client_token
         self.name = name
         self.description = description
@@ -76,8 +76,8 @@ class UpdateResolverRuleRequest(AbstractModel):
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('reluId') is not None:
-            self.relu_id = m.get('reluId')
+        if m.get('ruleId') is not None:
+            self.rule_id = m.get('ruleId')
         if m.get('clientToken') is not None:
             self.client_token = m.get('clientToken')
         if m.get('name') is not None:

@@ -10,14 +10,16 @@ from baiducloud_python_sdk_privatezone import models as privatezone_models
 
 if __name__ == '__main__':
     try:
-        # 设置Client的Access Key ID和Secret Access Key，获取AKSK详见:https://cloud.baidu.com/doc/Reference/s/9jwvz2egb
-        access_key_id = ""
-        secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(
+
+        # ==== AK/SK 鉴权 ====
+        access_key_id = "Your Ak"
+        secret_access_key = "Your Sk"
+        bce_client_config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = PrivatezoneClient(config)
+
+        client = PrivatezoneClient(bce_client_config)
         request = privatezone_models.ListPrivateZoneRequest(marker="", max_keys=0)
         res = client.list_private_zone(request)
         print(res.to_json_string())

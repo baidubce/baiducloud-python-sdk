@@ -1,3 +1,7 @@
+2026-11-03 Version: 0.0.5
+- 涉及产品: PRIVATEZONE，修正解关联vpc的clientToken字段
+- 涉及产品: PRIVATEZONE，修正更新转发规则的ruleId字段
+
 2026-06-04 Version: 0.0.4
 - 涉及产品: PRIVATEZONE，新增DNS解析器增删改查及转发规则管理接口
 - 涉及产品: PRIVATEZONE，新增VPC与转发规则关联/解关联接口
