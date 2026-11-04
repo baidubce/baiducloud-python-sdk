@@ -25,7 +25,7 @@ class UpdateL3MountTargetRequest(AbstractModel):
         :param admission_status: 传入该值时更新挂载点禁用状态，传 1 禁用、传 0 启用；不传表示不修改状态
         :type admission_status: int (optional)
 
-        :param name: 传入该值时更新挂载点名称，长度 1~128 个字符，不可为空串；不传表示不改名
+        :param name: name parameter
         :type name: str (optional)
 
         :param access_group_name: 传入该值时更新绑定的权限组；不传表示不修改

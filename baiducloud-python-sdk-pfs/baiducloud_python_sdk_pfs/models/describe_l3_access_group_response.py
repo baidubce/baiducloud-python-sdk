@@ -3,7 +3,7 @@ Request entity for DescribeL3AccessGroupResponse information.
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
-from baiducloud_python_sdk_pfs.models.l3_attached_mount_target import L3AttachedMountTarget
+from baiducloud_python_sdk_pfs.models.attached_mount_target_info import AttachedMountTargetInfo
 
 
 class DescribeL3AccessGroupResponse(BceResponse):
@@ -31,7 +31,7 @@ class DescribeL3AccessGroupResponse(BceResponse):
         :param access_group_name: 权限组名称
         :type access_group_name: str (optional)
 
-        :param description: 描述，未设置时该字段不返回
+        :param description: 描述，未设置时该字段返回空串
         :type description: str (optional)
 
         :param instance_count: 关联实例数量
@@ -46,8 +46,8 @@ class DescribeL3AccessGroupResponse(BceResponse):
         :param zone_name: 逻辑机房（可用区）
         :type zone_name: str (optional)
 
-        :param attached_mount_targets: attached_mount_targets field
-        :type attached_mount_targets: list[L3AttachedMountTarget] (optional)
+        :param attached_mount_targets: 已关联的挂载点列表，元素见下表
+        :type attached_mount_targets: List[AttachedMountTargetInfo] (optional)
         """
         super().__init__()
         self.request_id = request_id
@@ -90,7 +90,7 @@ class DescribeL3AccessGroupResponse(BceResponse):
         if self.zone_name is not None:
             result['zoneName'] = self.zone_name
         if self.attached_mount_targets is not None:
-            result['attachedMountTargets'] = [item.to_dict() for item in self.attached_mount_targets]
+            result['attachedMountTargets'] = [i.to_dict() for i in self.attached_mount_targets]
         return result
 
     def from_dict(self, m):
@@ -125,6 +125,6 @@ class DescribeL3AccessGroupResponse(BceResponse):
             self.zone_name = m.get('zoneName')
         if m.get('attachedMountTargets') is not None:
             self.attached_mount_targets = [
-                L3AttachedMountTarget().from_dict(item) for item in m.get('attachedMountTargets')
+                AttachedMountTargetInfo().from_dict(i) for i in m.get('attachedMountTargets')
             ]
         return self

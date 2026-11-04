@@ -3,7 +3,7 @@ Request entity for ListL3AccessRuleResponse information.
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
-from baiducloud_python_sdk_pfs.models.l3_access_rule import L3AccessRule
+from baiducloud_python_sdk_pfs.models.access_rule_info import AccessRuleInfo
 
 
 class ListL3AccessRuleResponse(BceResponse):
@@ -18,8 +18,8 @@ class ListL3AccessRuleResponse(BceResponse):
         :param request_id: 唯一请求 ID，每次请求都会返回
         :type request_id: str (optional)
 
-        :param result: result field
-        :type result: list[L3AccessRule] (optional)
+        :param result: 规则列表，元素见下表
+        :type result: List[AccessRuleInfo] (optional)
 
         :param total_count: 总条数
         :type total_count: int (optional)
@@ -56,7 +56,7 @@ class ListL3AccessRuleResponse(BceResponse):
         if self.request_id is not None:
             result['requestId'] = self.request_id
         if self.result is not None:
-            result['result'] = [item.to_dict() for item in self.result]
+            result['result'] = [i.to_dict() for i in self.result]
         if self.total_count is not None:
             result['totalCount'] = self.total_count
         if self.page_no is not None:
@@ -84,7 +84,7 @@ class ListL3AccessRuleResponse(BceResponse):
         if m.get('requestId') is not None:
             self.request_id = m.get('requestId')
         if m.get('result') is not None:
-            self.result = [L3AccessRule().from_dict(item) for item in m.get('result')]
+            self.result = [AccessRuleInfo().from_dict(i) for i in m.get('result')]
         if m.get('totalCount') is not None:
             self.total_count = m.get('totalCount')
         if m.get('pageNo') is not None:

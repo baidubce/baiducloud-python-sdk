@@ -20,7 +20,9 @@ if __name__ == '__main__':
         )
 
         client = PfsClient(bce_client_config)
-        request = pfs_models.CreateL3MountTargetRequest(instance_id="", vpc_id="", subnet_id="")
+        request = pfs_models.CreateL3MountTargetRequest(
+            instance_id="", vpc_id="", subnet_id="", name="", access_group_name="", protocol="", ip_address=""
+        )
         res = client.create_l3_mount_target(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:

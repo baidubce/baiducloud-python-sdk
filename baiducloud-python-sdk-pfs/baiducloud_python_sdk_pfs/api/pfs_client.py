@@ -61,8 +61,6 @@ class PfsClient(BceBaseClient):
     pfs base sdk client
     """
 
-    VERSION_V2 = b'/v2'
-
     CONSTANT_V1 = b'v1'
 
     CONSTANT_PFS = b'pfs'
@@ -221,7 +219,6 @@ class PfsClient(BceBaseClient):
         """
         path = b'/'
         headers = {}
-        headers[b'Content-Type'] = b'application/json; charset=utf-8'
         headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'CreateL3AccessGroup'
@@ -253,7 +250,6 @@ class PfsClient(BceBaseClient):
         """
         path = b'/'
         headers = {}
-        headers[b'Content-Type'] = b'application/json; charset=utf-8'
         headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'CreateL3AccessRule'
@@ -431,7 +427,6 @@ class PfsClient(BceBaseClient):
         """
         path = b'/'
         headers = {}
-        headers[b'Content-Type'] = b'application/json; charset=utf-8'
         headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'DeleteL3AccessGroup'
@@ -463,7 +458,6 @@ class PfsClient(BceBaseClient):
         """
         path = b'/'
         headers = {}
-        headers[b'Content-Type'] = b'application/json; charset=utf-8'
         headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'DeleteL3AccessRule'
@@ -667,7 +661,6 @@ class PfsClient(BceBaseClient):
         """
         path = b'/'
         headers = {}
-        headers[b'Content-Type'] = b'application/json; charset=utf-8'
         headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'DescribeL3AccessGroup'
@@ -854,7 +847,6 @@ class PfsClient(BceBaseClient):
         """
         path = b'/'
         headers = {}
-        headers[b'Content-Type'] = b'application/json; charset=utf-8'
         headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'ListL3AccessGroup'
@@ -886,7 +878,6 @@ class PfsClient(BceBaseClient):
         """
         path = b'/'
         headers = {}
-        headers[b'Content-Type'] = b'application/json; charset=utf-8'
         headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'ListL3AccessRule'
@@ -918,7 +909,6 @@ class PfsClient(BceBaseClient):
         """
         path = b'/'
         headers = {}
-        headers[b'Content-Type'] = b'application/json; charset=utf-8'
         headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'ListL3Clients'
@@ -1290,7 +1280,6 @@ class PfsClient(BceBaseClient):
         """
         path = b'/'
         headers = {}
-        headers[b'Content-Type'] = b'application/json; charset=utf-8'
         headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'UpdateL3AccessGroup'
@@ -1322,7 +1311,6 @@ class PfsClient(BceBaseClient):
         """
         path = b'/'
         headers = {}
-        headers[b'Content-Type'] = b'application/json; charset=utf-8'
         headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'UpdateL3AccessRule'
@@ -1354,7 +1342,6 @@ class PfsClient(BceBaseClient):
         """
         path = b'/'
         headers = {}
-        headers[b'Content-Type'] = b'application/json; charset=utf-8'
         headers[b'Version'] = b'v2'
         params = {}
         params['action'] = 'UpdateL3MountTarget'

@@ -3,7 +3,7 @@ Request entity for CreateL3AccessRuleRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
-from baiducloud_python_sdk_pfs.models.l3_access_rule_create_info import L3AccessRuleCreateInfo
+from baiducloud_python_sdk_pfs.models.access_rule_model import AccessRuleModel
 
 
 class CreateL3AccessRuleRequest(AbstractModel):
@@ -23,8 +23,8 @@ class CreateL3AccessRuleRequest(AbstractModel):
         :param zone_name: 可用区名称
         :type zone_name: str (required)
 
-        :param access_rules: 待创建的规则列表，支持批量
-        :type access_rules: list[L3AccessRuleCreateInfo] (required)
+        :param access_rules: 规则列表，不能为空数组，元素见下表
+        :type access_rules: List[AccessRuleModel] (required)
         """
         super().__init__()
         self.access_group_name = access_group_name
@@ -49,7 +49,7 @@ class CreateL3AccessRuleRequest(AbstractModel):
         if self.zone_name is not None:
             result['zoneName'] = self.zone_name
         if self.access_rules is not None:
-            result['accessRules'] = [item.to_dict() for item in self.access_rules]
+            result['accessRules'] = [i.to_dict() for i in self.access_rules]
         return result
 
     def from_dict(self, m):
@@ -73,6 +73,5 @@ class CreateL3AccessRuleRequest(AbstractModel):
         if m.get('zoneName') is not None:
             self.zone_name = m.get('zoneName')
         if m.get('accessRules') is not None:
-            self.access_rules = [L3AccessRuleCreateInfo(None, None, None, None).from_dict(item)
-                                 for item in m.get('accessRules')]
+            self.access_rules = [AccessRuleModel().from_dict(i) for i in m.get('accessRules')]
         return self

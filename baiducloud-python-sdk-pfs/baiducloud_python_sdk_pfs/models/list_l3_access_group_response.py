@@ -3,7 +3,7 @@ Request entity for ListL3AccessGroupResponse information.
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
-from baiducloud_python_sdk_pfs.models.l3_access_group import L3AccessGroup
+from baiducloud_python_sdk_pfs.models.access_group_info import AccessGroupInfo
 
 
 class ListL3AccessGroupResponse(BceResponse):
@@ -28,8 +28,8 @@ class ListL3AccessGroupResponse(BceResponse):
         :param request_id: 唯一请求 ID，每次请求都会返回
         :type request_id: str (optional)
 
-        :param result: result field
-        :type result: list[L3AccessGroup] (optional)
+        :param result: 当前页的权限组列表，元素见下表
+        :type result: List[AccessGroupInfo] (optional)
 
         :param page_no: 当前页码
         :type page_no: int (optional)
@@ -78,7 +78,7 @@ class ListL3AccessGroupResponse(BceResponse):
         if self.request_id is not None:
             result['requestId'] = self.request_id
         if self.result is not None:
-            result['result'] = [item.to_dict() for item in self.result]
+            result['result'] = [i.to_dict() for i in self.result]
         if self.page_no is not None:
             result['pageNo'] = self.page_no
         if self.page_size is not None:
@@ -112,7 +112,7 @@ class ListL3AccessGroupResponse(BceResponse):
         if m.get('requestId') is not None:
             self.request_id = m.get('requestId')
         if m.get('result') is not None:
-            self.result = [L3AccessGroup().from_dict(item) for item in m.get('result')]
+            self.result = [AccessGroupInfo().from_dict(i) for i in m.get('result')]
         if m.get('pageNo') is not None:
             self.page_no = m.get('pageNo')
         if m.get('pageSize') is not None:

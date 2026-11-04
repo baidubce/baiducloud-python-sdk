@@ -3,7 +3,7 @@ Request entity for CreateL3AccessRuleResponse information.
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
-from baiducloud_python_sdk_pfs.models.l3_access_rule_create_result import L3AccessRuleCreateResult
+from baiducloud_python_sdk_pfs.models.create_access_rule_result import CreateAccessRuleResult
 
 
 class CreateL3AccessRuleResponse(BceResponse):
@@ -18,11 +18,11 @@ class CreateL3AccessRuleResponse(BceResponse):
         :param request_id: 唯一请求 ID，每次请求都会返回
         :type request_id: str (optional)
 
-        :param access_rule_id: 单条创建时返回的规则 ID
+        :param access_rule_id: 单条创建成功时返回的规则 ID，批量创建时不返回
         :type access_rule_id: int (optional)
 
-        :param responses: 批量创建时的逐条结果
-        :type responses: list[L3AccessRuleCreateResult] (optional)
+        :param responses: 批量创建时的逐条结果，元素见下表；单条创建时不返回
+        :type responses: List[CreateAccessRuleResult] (optional)
         """
         super().__init__()
         self.request_id = request_id
@@ -50,7 +50,7 @@ class CreateL3AccessRuleResponse(BceResponse):
         if self.access_rule_id is not None:
             result['accessRuleId'] = self.access_rule_id
         if self.responses is not None:
-            result['responses'] = [item.to_dict() for item in self.responses]
+            result['responses'] = [i.to_dict() for i in self.responses]
         return result
 
     def from_dict(self, m):
@@ -74,5 +74,5 @@ class CreateL3AccessRuleResponse(BceResponse):
         if m.get('accessRuleId') is not None:
             self.access_rule_id = m.get('accessRuleId')
         if m.get('responses') is not None:
-            self.responses = [L3AccessRuleCreateResult().from_dict(item) for item in m.get('responses')]
+            self.responses = [CreateAccessRuleResult().from_dict(i) for i in m.get('responses')]
         return self

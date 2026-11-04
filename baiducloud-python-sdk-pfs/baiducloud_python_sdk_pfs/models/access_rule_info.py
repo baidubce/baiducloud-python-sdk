@@ -1,40 +1,44 @@
 """
-L3AccessRuleCreateResult information
+AccessRuleInfo information
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class L3AccessRuleCreateResult(AbstractModel):
+class AccessRuleInfo(AbstractModel):
     """
-    L3AccessRuleCreateResult, 批量创建规则时的逐条结果
+    AccessRuleInfo
     """
 
-    def __init__(self, success=None, access_rule_id=None, error_msg=None, ip=None, mask=None):
+    def __init__(self, access_rule_id=None, ip=None, mask=None, priority=None, write_access=None, user_access=None):
         """
-        Initialize L3AccessRuleCreateResult instance.
+        Initialize AccessRuleInfo instance.
 
-        :param success: 该条规则是否创建成功
-        :type success: bool (optional)
-
-        :param access_rule_id: 创建成功时返回的规则 ID
+        :param access_rule_id: 规则 ID
         :type access_rule_id: int (optional)
 
-        :param error_msg: 创建失败时的错误信息
-        :type error_msg: str (optional)
-
-        :param ip: 授权地址
+        :param ip: 客户端 IP
         :type ip: str (optional)
 
         :param mask: 掩码位数
         :type mask: int (optional)
+
+        :param priority: 优先级
+        :type priority: int (optional)
+
+        :param write_access: 读写权限
+        :type write_access: str (optional)
+
+        :param user_access: 用户权限
+        :type user_access: str (optional)
         """
         super().__init__()
-        self.success = success
         self.access_rule_id = access_rule_id
-        self.error_msg = error_msg
         self.ip = ip
         self.mask = mask
+        self.priority = priority
+        self.write_access = write_access
+        self.user_access = user_access
 
     def to_dict(self):
         """
@@ -49,16 +53,18 @@ class L3AccessRuleCreateResult(AbstractModel):
         if _map is not None:
             return _map
         result = dict()
-        if self.success is not None:
-            result['success'] = self.success
         if self.access_rule_id is not None:
             result['accessRuleId'] = self.access_rule_id
-        if self.error_msg is not None:
-            result['errorMsg'] = self.error_msg
         if self.ip is not None:
             result['ip'] = self.ip
         if self.mask is not None:
             result['mask'] = self.mask
+        if self.priority is not None:
+            result['priority'] = self.priority
+        if self.write_access is not None:
+            result['writeAccess'] = self.write_access
+        if self.user_access is not None:
+            result['userAccess'] = self.user_access
         return result
 
     def from_dict(self, m):
@@ -71,20 +77,22 @@ class L3AccessRuleCreateResult(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: L3AccessRuleCreateResult
+        :rtype: AccessRuleInfo
 
         :raises TypeError: If input is not a dictionary type
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('success') is not None:
-            self.success = m.get('success')
         if m.get('accessRuleId') is not None:
             self.access_rule_id = m.get('accessRuleId')
-        if m.get('errorMsg') is not None:
-            self.error_msg = m.get('errorMsg')
         if m.get('ip') is not None:
             self.ip = m.get('ip')
         if m.get('mask') is not None:
             self.mask = m.get('mask')
+        if m.get('priority') is not None:
+            self.priority = m.get('priority')
+        if m.get('writeAccess') is not None:
+            self.write_access = m.get('writeAccess')
+        if m.get('userAccess') is not None:
+            self.user_access = m.get('userAccess')
         return self

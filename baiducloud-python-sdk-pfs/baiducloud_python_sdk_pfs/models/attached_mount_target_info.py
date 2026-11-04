@@ -1,24 +1,18 @@
 """
-L3AttachedMountTarget information
+AttachedMountTargetInfo information
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class L3AttachedMountTarget(AbstractModel):
+class AttachedMountTargetInfo(AbstractModel):
     """
-    L3AttachedMountTarget
+    AttachedMountTargetInfo
     """
 
-    def __init__(
-        self,
-        mount_target_id=None,
-        mount_target_name=None,
-        instance_id=None,
-        instance_name=None,
-    ):
+    def __init__(self, mount_target_id=None, mount_target_name=None, instance_id=None, instance_name=None):
         """
-        Initialize L3AttachedMountTarget instance.
+        Initialize AttachedMountTargetInfo instance.
 
         :param mount_target_id: 挂载点 ID
         :type mount_target_id: str (optional)
@@ -26,10 +20,10 @@ class L3AttachedMountTarget(AbstractModel):
         :param mount_target_name: 挂载点名称
         :type mount_target_name: str (optional)
 
-        :param instance_id: PFS实例ID
+        :param instance_id: 所属实例 ID
         :type instance_id: str (optional)
 
-        :param instance_name: PFS实例名称
+        :param instance_name: 所属实例名称
         :type instance_name: str (optional)
         """
         super().__init__()
@@ -71,7 +65,7 @@ class L3AttachedMountTarget(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: L3AttachedMountTarget
+        :rtype: AttachedMountTargetInfo
 
         :raises TypeError: If input is not a dictionary type
         :raises ValueError: If nested model conversion fails

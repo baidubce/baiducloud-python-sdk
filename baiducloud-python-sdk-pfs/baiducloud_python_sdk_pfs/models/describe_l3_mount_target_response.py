@@ -10,7 +10,20 @@ class DescribeL3MountTargetResponse(BceResponse):
     DescribeL3MountTargetResponse
     """
 
-    def __init__(self, request_id=None, domain=None, mount_target_id=None, ovip=None, vpc_id=None, subnet_id=None):
+    def __init__(
+        self,
+        request_id=None,
+        domain=None,
+        mount_target_id=None,
+        ovip=None,
+        vpc_id=None,
+        subnet_id=None,
+        name=None,
+        protocol=None,
+        access_group_name=None,
+        client_count=None,
+        admission_status=None,
+    ):
         """
         Initialize DescribeL3MountTargetResponse response.
 
@@ -31,6 +44,21 @@ class DescribeL3MountTargetResponse(BceResponse):
 
         :param subnet_id: 挂载点所在子网ID
         :type subnet_id: str (optional)
+
+        :param name: response body
+        :type name: str (optional)
+
+        :param protocol: 协议类型
+        :type protocol: str (optional)
+
+        :param access_group_name: 权限组名称
+        :type access_group_name: str (optional)
+
+        :param client_count: 挂载客户端数量
+        :type client_count: int (optional)
+
+        :param admission_status: 挂载点状态（0 启动；1 禁用）
+        :type admission_status: int (optional)
         """
         super().__init__()
         self.request_id = request_id
@@ -39,6 +67,11 @@ class DescribeL3MountTargetResponse(BceResponse):
         self.ovip = ovip
         self.vpc_id = vpc_id
         self.subnet_id = subnet_id
+        self.name = name
+        self.protocol = protocol
+        self.access_group_name = access_group_name
+        self.client_count = client_count
+        self.admission_status = admission_status
 
     def to_dict(self):
         """
@@ -68,6 +101,16 @@ class DescribeL3MountTargetResponse(BceResponse):
             result['vpcId'] = self.vpc_id
         if self.subnet_id is not None:
             result['subnetId'] = self.subnet_id
+        if self.name is not None:
+            result['name'] = self.name
+        if self.protocol is not None:
+            result['protocol'] = self.protocol
+        if self.access_group_name is not None:
+            result['accessGroupName'] = self.access_group_name
+        if self.client_count is not None:
+            result['clientCount'] = self.client_count
+        if self.admission_status is not None:
+            result['admissionStatus'] = self.admission_status
         return result
 
     def from_dict(self, m):
@@ -98,4 +141,14 @@ class DescribeL3MountTargetResponse(BceResponse):
             self.vpc_id = m.get('vpcId')
         if m.get('subnetId') is not None:
             self.subnet_id = m.get('subnetId')
+        if m.get('name') is not None:
+            self.name = m.get('name')
+        if m.get('protocol') is not None:
+            self.protocol = m.get('protocol')
+        if m.get('accessGroupName') is not None:
+            self.access_group_name = m.get('accessGroupName')
+        if m.get('clientCount') is not None:
+            self.client_count = m.get('clientCount')
+        if m.get('admissionStatus') is not None:
+            self.admission_status = m.get('admissionStatus')
         return self

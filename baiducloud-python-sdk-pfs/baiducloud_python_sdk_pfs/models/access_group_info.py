@@ -1,13 +1,13 @@
 """
-L3AccessGroup information
+AccessGroupInfo information
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
 
-class L3AccessGroup(AbstractModel):
+class AccessGroupInfo(AbstractModel):
     """
-    L3AccessGroup
+    AccessGroupInfo
     """
 
     def __init__(
@@ -21,12 +21,12 @@ class L3AccessGroup(AbstractModel):
         zone_name=None,
     ):
         """
-        Initialize L3AccessGroup instance.
+        Initialize AccessGroupInfo instance.
 
         :param access_group_name: 权限组名称
         :type access_group_name: str (optional)
 
-        :param description: 描述
+        :param description: 描述，未设置时该 key 不返回
         :type description: str (optional)
 
         :param rule_count: 规则数量
@@ -38,10 +38,10 @@ class L3AccessGroup(AbstractModel):
         :param mount_count: 关联挂载点数量
         :type mount_count: int (optional)
 
-        :param create_time: 创建时间
+        :param create_time: 创建时间，ISO-8601 UTC 秒精度，如 `2026-09-01T03:12:45Z`
         :type create_time: str (optional)
 
-        :param zone_name: 可用区名称
+        :param zone_name: 逻辑机房
         :type zone_name: str (optional)
         """
         super().__init__()
@@ -92,7 +92,7 @@ class L3AccessGroup(AbstractModel):
         :type m: dict
 
         :return: Self reference for method chaining
-        :rtype: L3AccessGroup
+        :rtype: AccessGroupInfo
 
         :raises TypeError: If input is not a dictionary type
         :raises ValueError: If nested model conversion fails

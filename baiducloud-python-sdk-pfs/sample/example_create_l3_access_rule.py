@@ -20,13 +20,7 @@ if __name__ == '__main__':
         )
 
         client = PfsClient(bce_client_config)
-        request = pfs_models.CreateL3AccessRuleRequest(
-            access_group_name="",
-            zone_name="",
-            access_rules=[
-                pfs_models.L3AccessRuleCreateInfo(ip="", mask=0, write_access="", user_access="", priority=0)
-            ],
-        )
+        request = pfs_models.CreateL3AccessRuleRequest(access_group_name="", zone_name="", access_rules=[])
         res = client.create_l3_access_rule(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
