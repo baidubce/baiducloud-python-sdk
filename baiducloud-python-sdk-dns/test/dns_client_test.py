@@ -16,7 +16,10 @@ class DnsClientTest(unittest.TestCase):
         HOST = b''
         AK = b''
         SK = b''
+
+        # ==== AK/SK 鉴权 ====
         config = BceClientConfiguration(credentials=BceCredentials(AK, SK), endpoint=HOST)
+
         self.client = DnsClient(config)
 
     def tearDown(self):

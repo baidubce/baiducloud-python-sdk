@@ -10,16 +10,18 @@ from baiducloud_python_sdk_dns import models as dns_models
 
 if __name__ == '__main__':
     try:
-        # 设置Client的Access Key ID和Secret Access Key，获取AKSK详见:https://cloud.baidu.com/doc/Reference/s/9jwvz2egb
-        access_key_id = ""
-        secret_access_key = ""
         endpoint = ""
-        config = BceClientConfiguration(
+
+        # ==== AK/SK 鉴权 ====
+        access_key_id = "Your Ak"
+        secret_access_key = "Your Sk"
+        bce_client_config = BceClientConfiguration(
             credentials=BceCredentials(access_key_id, secret_access_key), endpoint=endpoint
         )
-        client = DnsClient(config)
 
-        reservation = dns_models.Reservation(reservation_length=1)
+        client = DnsClient(bce_client_config)
+
+        reservation = dns_models.Reservation(reservation_length=0)
         billing = dns_models.BillingForRenew(reservation=reservation)
         request = dns_models.RenewZoneRequest(name="", action="", billing=billing, client_token="")
         res = client.renew_zone(request)

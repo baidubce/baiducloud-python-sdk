@@ -1,3 +1,6 @@
+2026-11-04 Version: 0.0.3
+- 涉及产品: DNS，SDK版本更新
+
 2026-05-28 Version: 0.0.2
 - 涉及产品: DNS，新增updateRecordDisable暂停解析记录状态接口
 - 涉及产品: DNS，updateRecordEnable删除query.action字段
