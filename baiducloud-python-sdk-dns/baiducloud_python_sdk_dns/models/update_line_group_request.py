@@ -17,7 +17,7 @@ class UpdateLineGroupRequest(AbstractModel):
         Initialize UpdateLineGroupRequest request entity.
 
         :param line_id: line_id parameter
-        :type line_id: int (required)
+        :type line_id: str (required)
 
         :param client_token: client_token parameter
         :type client_token: str (optional)

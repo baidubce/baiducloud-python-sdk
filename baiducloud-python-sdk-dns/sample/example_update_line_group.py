@@ -20,7 +20,7 @@ if __name__ == '__main__':
         )
 
         client = DnsClient(bce_client_config)
-        request = dns_models.UpdateLineGroupRequest(line_id=0, name="", lines=[], client_token="")
+        request = dns_models.UpdateLineGroupRequest(line_id="", name="", lines=[], client_token="")
         res = client.update_line_group(request)
         print(res.to_json_string())
     except exception.BceHttpClientError as e:
