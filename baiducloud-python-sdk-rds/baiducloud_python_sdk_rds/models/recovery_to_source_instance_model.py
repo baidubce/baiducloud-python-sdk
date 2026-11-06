@@ -12,12 +12,9 @@ class RecoveryToSourceInstanceModel(AbstractModel):
     RecoveryToSourceInstanceModel
     """
 
-    def __init__(self, restore_mode=None, db_name=None, new_dbname=None, tables=None):
+    def __init__(self, db_name=None, new_dbname=None, restore_mode=None, tables=None):
         """
         Initialize RecoveryToSourceInstanceModel instance.
-
-        :param restore_mode: 表示恢复模式，支持database和table两种
-        :type restore_mode: str (optional)
 
         :param db_name: 要恢复库的名称
         :type db_name: str (optional)
@@ -25,13 +22,16 @@ class RecoveryToSourceInstanceModel(AbstractModel):
         :param new_dbname: 表示恢复后库的名称
         :type new_dbname: str (optional)
 
+        :param restore_mode: 表示恢复模式，支持database和table两种
+        :type restore_mode: str (optional)
+
         :param tables: 表示恢复后库的名称
         :type tables: List[Table] (optional)
         """
         super().__init__()
-        self.restore_mode = restore_mode
         self.db_name = db_name
         self.new_dbname = new_dbname
+        self.restore_mode = restore_mode
         self.tables = tables
 
     def to_dict(self):
@@ -47,12 +47,12 @@ class RecoveryToSourceInstanceModel(AbstractModel):
         if _map is not None:
             return _map
         result = dict()
-        if self.restore_mode is not None:
-            result['restoreMode'] = self.restore_mode
         if self.db_name is not None:
             result['dbName'] = self.db_name
         if self.new_dbname is not None:
             result['newDbname'] = self.new_dbname
+        if self.restore_mode is not None:
+            result['restoreMode'] = self.restore_mode
         if self.tables is not None:
             result['tables'] = [i.to_dict() for i in self.tables]
         return result
@@ -73,12 +73,12 @@ class RecoveryToSourceInstanceModel(AbstractModel):
         :raises ValueError: If nested model conversion fails
         """
         m = m or dict()
-        if m.get('restoreMode') is not None:
-            self.restore_mode = m.get('restoreMode')
         if m.get('dbName') is not None:
             self.db_name = m.get('dbName')
         if m.get('newDbname') is not None:
             self.new_dbname = m.get('newDbname')
+        if m.get('restoreMode') is not None:
+            self.restore_mode = m.get('restoreMode')
         if m.get('tables') is not None:
             self.tables = [Table().from_dict(i) for i in m.get('tables')]
         return self
