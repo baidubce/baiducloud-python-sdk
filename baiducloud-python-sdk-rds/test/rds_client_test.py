@@ -81,9 +81,6 @@ class RdsClientTest(unittest.TestCase):
             rds_models.DoesTheInstanceSupportEnablingAutomaticExpansionRequest()
         )
 
-    def test_error_log_download_details(self):
-        self.client.error_log_download_details(rds_models.ErrorLogDownloadDetailsRequest())
-
     def test_error_log_list(self):
         self.client.error_log_list(rds_models.ErrorLogListRequest())
 
@@ -196,9 +193,6 @@ class RdsClientTest(unittest.TestCase):
     def test_set_encryption_policy_api(self):
         self.client.set_encryption_policy_api(rds_models.SetEncryptionPolicyApiRequest())
 
-    def test_slow_log_download_details(self):
-        self.client.slow_log_download_details(rds_models.SlowLogDownloadDetailsRequest())
-
     def test_slow_log_list(self):
         self.client.slow_log_list(rds_models.SlowLogListRequest())
 
@@ -264,7 +258,6 @@ if __name__ == '__main__':
     suite.addTest(RdsClientTest("test_delete_the_specified_backup_set"))
     suite.addTest(RdsClientTest("test_dial_test_interface"))
     suite.addTest(RdsClientTest("test_does_the_instance_support_enabling_automatic_expansion"))
-    suite.addTest(RdsClientTest("test_error_log_download_details"))
     suite.addTest(RdsClientTest("test_error_log_list"))
     suite.addTest(RdsClientTest("test_get_parameter_template_details"))
     suite.addTest(RdsClientTest("test_get_parameter_template_list"))
@@ -301,7 +294,6 @@ if __name__ == '__main__':
     suite.addTest(RdsClientTest("test_retrieve_instance_auto_scaling_config"))
     suite.addTest(RdsClientTest("test_retrieve_the_binlog_list"))
     suite.addTest(RdsClientTest("test_set_encryption_policy_api"))
-    suite.addTest(RdsClientTest("test_slow_log_download_details"))
     suite.addTest(RdsClientTest("test_slow_log_list"))
     suite.addTest(RdsClientTest("test_table_granularity_query_user_details_api"))
     suite.addTest(RdsClientTest("test_table_granularity_query_user_list_api"))

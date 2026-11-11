@@ -23,7 +23,6 @@ from baiducloud_python_sdk_rds.models.dial_test_interface_response import DialTe
 from baiducloud_python_sdk_rds.models.does_the_instance_support_enabling_automatic_expansion_response import (
     DoesTheInstanceSupportEnablingAutomaticExpansionResponse,
 )
-from baiducloud_python_sdk_rds.models.error_log_download_details_response import ErrorLogDownloadDetailsResponse
 from baiducloud_python_sdk_rds.models.error_log_list_response import ErrorLogListResponse
 from baiducloud_python_sdk_rds.models.get_parameter_template_details_response import (
     GetParameterTemplateDetailsResponse,
@@ -60,7 +59,6 @@ from baiducloud_python_sdk_rds.models.retrieve_instance_auto_scaling_config_resp
     RetrieveInstanceAutoScalingConfigResponse,
 )
 from baiducloud_python_sdk_rds.models.retrieve_the_binlog_list_response import RetrieveTheBinlogListResponse
-from baiducloud_python_sdk_rds.models.slow_log_download_details_response import SlowLogDownloadDetailsResponse
 from baiducloud_python_sdk_rds.models.slow_log_list_response import SlowLogListResponse
 from baiducloud_python_sdk_rds.models.table_granularity_query_user_details_api_response import (
     TableGranularityQueryUserDetailsApiResponse,
@@ -106,8 +104,6 @@ class RdsClient(BceBaseClient):
     CONSTANT_PORT = b'port'
 
     CONSTANT_SLOWLOGS = b'slowlogs'
-
-    CONSTANT_DOWNLOAD_URL = b'download_url'
 
     CONSTANT_V1 = b'v1'
 
@@ -621,36 +617,6 @@ class RdsClient(BceBaseClient):
             path=path,
             config=merged_config,
             model=DoesTheInstanceSupportEnablingAutomaticExpansionResponse,
-        )
-
-    def error_log_download_details(self, request, config=None):
-        """
-        error_log_download_details
-
-        :param request: Request entity containing all parameters
-        :type request: RdsClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response containing ErrorLogDownloadDetailsResponse data
-        :rtype: ErrorLogDownloadDetailsResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = utils.append_uri(
-            RdsClient.VERSION_V1,
-            RdsClient.CONSTANT_INSTANCE,
-            request.instance_id,
-            RdsClient.CONSTANT_ERRORLOGS,
-            RdsClient.CONSTANT_DOWNLOAD_URL,
-            request.log_id,
-            request.download_valid_time_in_sec,
-        )
-        headers = None
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(
-            http_methods.GET, path=path, config=merged_config, model=ErrorLogDownloadDetailsResponse
         )
 
     def error_log_list(self, request, config=None):
@@ -1584,36 +1550,6 @@ class RdsClient(BceBaseClient):
         merged_config = self._create_request_with_host(request, config)
         return self._send_request(
             http_methods.PUT, path=path, body=request.to_json_string(), params=params, config=merged_config
-        )
-
-    def slow_log_download_details(self, request, config=None):
-        """
-        slow_log_download_details
-
-        :param request: Request entity containing all parameters
-        :type request: RdsClientRequest
-        :param config: Optional request configuration override
-        :type config: baiducloud_python_sdk_core.BceClientConfiguration
-
-        :return: API response containing SlowLogDownloadDetailsResponse data
-        :rtype: SlowLogDownloadDetailsResponse
-
-        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
-        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
-        """
-        path = utils.append_uri(
-            RdsClient.VERSION_V1,
-            RdsClient.CONSTANT_INSTANCE,
-            request.instance_id,
-            RdsClient.CONSTANT_SLOWLOGS,
-            RdsClient.CONSTANT_DOWNLOAD_URL,
-            request.log_id,
-            request.download_valid_time_in_sec,
-        )
-        headers = None
-        merged_config = self._create_request_with_host(request, config)
-        return self._send_request(
-            http_methods.GET, path=path, config=merged_config, model=SlowLogDownloadDetailsResponse
         )
 
     def slow_log_list(self, request, config=None):
