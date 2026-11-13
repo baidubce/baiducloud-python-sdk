@@ -3,6 +3,7 @@ Request entity for CreateL2PolicyRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
+from baiducloud_python_sdk_pfs.models.path_filter import PathFilter
 
 
 class CreateL2PolicyRequest(AbstractModel):
@@ -22,6 +23,7 @@ class CreateL2PolicyRequest(AbstractModel):
         execute_time=None,
         bucket_name=None,
         bucket_prefix=None,
+        path_filters=None,
     ):
         """
         Initialize CreateL2PolicyRequest request entity.
@@ -49,6 +51,9 @@ class CreateL2PolicyRequest(AbstractModel):
 
         :param bucket_prefix: 数据转存对应的prefix，当type为数据转存时，该字段必须声明prefix非\"/'开头，以\"/\"结尾
         :type bucket_prefix: str (optional)
+
+        :param path_filters: path_filters parameter
+        :type path_filters: List[PathFilter] (optional)
         """
         super().__init__()
         self.instance_id = instance_id
@@ -59,6 +64,7 @@ class CreateL2PolicyRequest(AbstractModel):
         self.execute_time = execute_time
         self.bucket_name = bucket_name
         self.bucket_prefix = bucket_prefix
+        self.path_filters = path_filters
 
     def to_dict(self):
         """
@@ -89,6 +95,8 @@ class CreateL2PolicyRequest(AbstractModel):
             result['bucketName'] = self.bucket_name
         if self.bucket_prefix is not None:
             result['bucketPrefix'] = self.bucket_prefix
+        if self.path_filters is not None:
+            result['pathFilters'] = [i.to_dict() for i in self.path_filters]
         return result
 
     def from_dict(self, m):
@@ -123,4 +131,6 @@ class CreateL2PolicyRequest(AbstractModel):
             self.bucket_name = m.get('bucketName')
         if m.get('bucketPrefix') is not None:
             self.bucket_prefix = m.get('bucketPrefix')
+        if m.get('pathFilters') is not None:
+            self.path_filters = [PathFilter().from_dict(i) for i in m.get('pathFilters')]
         return self

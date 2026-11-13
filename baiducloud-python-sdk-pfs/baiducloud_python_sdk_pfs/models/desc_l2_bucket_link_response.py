@@ -3,6 +3,7 @@ Request entity for DescL2BucketLinkResponse information.
 """
 
 from baiducloud_python_sdk_core.bce_response import BceResponse
+from baiducloud_python_sdk_pfs.models.path_filter import PathFilter
 
 
 class DescL2BucketLinkResponse(BceResponse):
@@ -30,6 +31,7 @@ class DescL2BucketLinkResponse(BceResponse):
         bucket_belong_user_id=None,
         lcc_id=None,
         scope=None,
+        path_filters=None,
     ):
         """
         Initialize DescL2BucketLinkResponse response.
@@ -87,6 +89,9 @@ class DescL2BucketLinkResponse(BceResponse):
 
         :param scope: 任务可见范围，1：主账号以及子账号全部可见，2：仅主账号和子账号可见
         :type scope: int (optional)
+
+        :param path_filters: 路径过滤规则，未设置时为null。type：0 后缀匹配，1 路径匹配；pattern：匹配规则
+        :type path_filters: List[PathFilter] (optional)
         """
         super().__init__()
         self.request_id = request_id
@@ -107,6 +112,7 @@ class DescL2BucketLinkResponse(BceResponse):
         self.bucket_belong_user_id = bucket_belong_user_id
         self.lcc_id = lcc_id
         self.scope = scope
+        self.path_filters = path_filters
 
     def to_dict(self):
         """
@@ -160,6 +166,8 @@ class DescL2BucketLinkResponse(BceResponse):
             result['lccId'] = self.lcc_id
         if self.scope is not None:
             result['scope'] = self.scope
+        if self.path_filters is not None:
+            result['pathFilters'] = [i.to_dict() for i in self.path_filters]
         return result
 
     def from_dict(self, m):
@@ -214,4 +222,6 @@ class DescL2BucketLinkResponse(BceResponse):
             self.lcc_id = m.get('lccId')
         if m.get('scope') is not None:
             self.scope = m.get('scope')
+        if m.get('pathFilters') is not None:
+            self.path_filters = [PathFilter().from_dict(i) for i in m.get('pathFilters')]
         return self

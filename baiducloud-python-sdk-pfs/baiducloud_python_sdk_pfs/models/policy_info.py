@@ -4,6 +4,8 @@ PolicyInfo information
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
+from baiducloud_python_sdk_pfs.models.path_filter import PathFilter
+
 
 class PolicyInfo(AbstractModel):
     """
@@ -22,6 +24,7 @@ class PolicyInfo(AbstractModel):
         type=None,
         bos_path=None,
         status=None,
+        path_filters=None,
     ):
         """
         Initialize PolicyInfo instance.
@@ -55,6 +58,9 @@ class PolicyInfo(AbstractModel):
 
         :param status: 规则当前状态：<br>• 0：生效中<br>• 1：运行中<br>• 2：删除中<br>• 3：失败
         :type status: int (optional)
+
+        :param path_filters: 路径过滤规则，未设置时不返回。type：0 后缀匹配，1 路径匹配；pattern：匹配规则
+        :type path_filters: List[PathFilter] (optional)
         """
         super().__init__()
         self.policy_id = policy_id
@@ -67,6 +73,7 @@ class PolicyInfo(AbstractModel):
         self.type = type
         self.bos_path = bos_path
         self.status = status
+        self.path_filters = path_filters
 
     def to_dict(self):
         """
@@ -101,6 +108,8 @@ class PolicyInfo(AbstractModel):
             result['bosPath'] = self.bos_path
         if self.status is not None:
             result['status'] = self.status
+        if self.path_filters is not None:
+            result['pathFilters'] = [i.to_dict() for i in self.path_filters]
         return result
 
     def from_dict(self, m):
@@ -139,4 +148,6 @@ class PolicyInfo(AbstractModel):
             self.bos_path = m.get('bosPath')
         if m.get('status') is not None:
             self.status = m.get('status')
+        if m.get('pathFilters') is not None:
+            self.path_filters = [PathFilter().from_dict(i) for i in m.get('pathFilters')]
         return self

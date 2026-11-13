@@ -34,6 +34,7 @@ if __name__ == '__main__':
             bucket_belong_user_id="",
             lcc_id="",
             scope=0,
+            path_filters=[],
         )
         res = client.create_l2_bucket_link(request)
         print(res.to_json_string())

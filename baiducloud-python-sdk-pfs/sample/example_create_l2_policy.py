@@ -29,6 +29,7 @@ if __name__ == '__main__':
             execute_time=0,
             bucket_name="",
             bucket_prefix="",
+            path_filters=[],
         )
         res = client.create_l2_policy(request)
         print(res.to_json_string())

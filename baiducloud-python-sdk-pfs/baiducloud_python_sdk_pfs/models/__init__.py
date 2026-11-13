@@ -74,6 +74,7 @@ from .mount_target_info import MountTargetInfo
 from .mount_target_list_clients_request import MountTargetListClientsRequest
 from .mount_target_list_clients_response import MountTargetListClientsResponse
 from .node_info import NodeInfo
+from .path_filter import PathFilter
 from .pause_l2_bucket_link_request import PauseL2BucketLinkRequest
 from .pause_l2_bucket_link_response import PauseL2BucketLinkResponse
 from .policy_info import PolicyInfo

@@ -4,6 +4,8 @@ BucketLinkInfo information
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 
+from baiducloud_python_sdk_pfs.models.path_filter import PathFilter
+
 
 class BucketLinkInfo(AbstractModel):
     """
@@ -29,6 +31,7 @@ class BucketLinkInfo(AbstractModel):
         bucket_belong_user_id=None,
         lcc_id=None,
         scope=None,
+        path_filters=None,
     ):
         """
         Initialize BucketLinkInfo instance.
@@ -83,6 +86,9 @@ class BucketLinkInfo(AbstractModel):
 
         :param scope: 任务可见范围，1：主账号以及子账号全部可见，2：仅主账号和子账号可见
         :type scope: int (optional)
+
+        :param path_filters: 路径过滤规则，未设置时为null。type：0 后缀匹配，1 路径匹配；pattern：匹配规则
+        :type path_filters: List[PathFilter] (optional)
         """
         super().__init__()
         self.bucketlink_id = bucketlink_id
@@ -102,6 +108,7 @@ class BucketLinkInfo(AbstractModel):
         self.bucket_belong_user_id = bucket_belong_user_id
         self.lcc_id = lcc_id
         self.scope = scope
+        self.path_filters = path_filters
 
     def to_dict(self):
         """
@@ -150,6 +157,8 @@ class BucketLinkInfo(AbstractModel):
             result['lccId'] = self.lcc_id
         if self.scope is not None:
             result['scope'] = self.scope
+        if self.path_filters is not None:
+            result['pathFilters'] = [i.to_dict() for i in self.path_filters]
         return result
 
     def from_dict(self, m):
@@ -202,4 +211,6 @@ class BucketLinkInfo(AbstractModel):
             self.lcc_id = m.get('lccId')
         if m.get('scope') is not None:
             self.scope = m.get('scope')
+        if m.get('pathFilters') is not None:
+            self.path_filters = [PathFilter().from_dict(i) for i in m.get('pathFilters')]
         return self

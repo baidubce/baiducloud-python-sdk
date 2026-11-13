@@ -19,7 +19,7 @@ class ListL2BucketLinkRequest(AbstractModel):
         :param instance_id: PFS实例ID
         :type instance_id: str (required)
 
-        :param max_keys: 返回bucketlink列表长度，默认为20个，取值范围为【1，20】，超过范围的规整为1或20
+        :param max_keys: 返回bucketlink列表长度，默认为50个，取值范围为【1，50】，超过范围的规整为1或50
         :type max_keys: int (optional)
 
         :param manner: 请求的分段类型，必须指定marker

@@ -3,6 +3,7 @@ Request entity for CreateL2BucketLinkRequest information.
 """
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
+from baiducloud_python_sdk_pfs.models.path_filter import PathFilter
 
 
 class CreateL2BucketLinkRequest(AbstractModel):
@@ -27,6 +28,7 @@ class CreateL2BucketLinkRequest(AbstractModel):
         bucket_belong_user_id=None,
         lcc_id=None,
         scope=None,
+        path_filters=None,
     ):
         """
         Initialize CreateL2BucketLinkRequest request entity.
@@ -69,6 +71,9 @@ class CreateL2BucketLinkRequest(AbstractModel):
 
         :param scope: 任务可见范围，1：主账号以及子账号全部可见，2：仅主账号和子账号可见
         :type scope: int (optional)
+
+        :param path_filters: path_filters parameter
+        :type path_filters: List[PathFilter] (optional)
         """
         super().__init__()
         self.instance_id = instance_id
@@ -84,6 +89,7 @@ class CreateL2BucketLinkRequest(AbstractModel):
         self.bucket_belong_user_id = bucket_belong_user_id
         self.lcc_id = lcc_id
         self.scope = scope
+        self.path_filters = path_filters
 
     def to_dict(self):
         """
@@ -124,6 +130,8 @@ class CreateL2BucketLinkRequest(AbstractModel):
             result['lccId'] = self.lcc_id
         if self.scope is not None:
             result['scope'] = self.scope
+        if self.path_filters is not None:
+            result['pathFilters'] = [i.to_dict() for i in self.path_filters]
         return result
 
     def from_dict(self, m):
@@ -168,4 +176,6 @@ class CreateL2BucketLinkRequest(AbstractModel):
             self.lcc_id = m.get('lccId')
         if m.get('scope') is not None:
             self.scope = m.get('scope')
+        if m.get('pathFilters') is not None:
+            self.path_filters = [PathFilter().from_dict(i) for i in m.get('pathFilters')]
         return self
