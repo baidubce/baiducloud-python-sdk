@@ -27,6 +27,8 @@ class DescPfsResponse(BceResponse):
         usage=None,
         vpc_id=None,
         tags=None,
+        resource_group_id=None,
+        resource_group_name=None,
     ):
         """
         Initialize DescPfsResponse response.
@@ -69,6 +71,12 @@ class DescPfsResponse(BceResponse):
 
         :param tags: PFS绑定的标签
         :type tags: List[Tag] (optional)
+
+        :param resource_group_id: 资源所属资源分组 ID，格式通常为 RESG- 开头
+        :type resource_group_id: str (optional)
+
+        :param resource_group_name: 资源所属资源分组名称；可能为空或不返回，调用方需兼容
+        :type resource_group_name: str (optional)
         """
         super().__init__()
         self.capacity = capacity
@@ -84,6 +92,8 @@ class DescPfsResponse(BceResponse):
         self.usage = usage
         self.vpc_id = vpc_id
         self.tags = tags
+        self.resource_group_id = resource_group_id
+        self.resource_group_name = resource_group_name
 
     def to_dict(self):
         """
@@ -127,6 +137,10 @@ class DescPfsResponse(BceResponse):
             result['vpcId'] = self.vpc_id
         if self.tags is not None:
             result['tags'] = [i.to_dict() for i in self.tags]
+        if self.resource_group_id is not None:
+            result['resourceGroupId'] = self.resource_group_id
+        if self.resource_group_name is not None:
+            result['resourceGroupName'] = self.resource_group_name
         return result
 
     def from_dict(self, m):
@@ -171,4 +185,8 @@ class DescPfsResponse(BceResponse):
             self.vpc_id = m.get('vpcId')
         if m.get('tags') is not None:
             self.tags = [Tag().from_dict(i) for i in m.get('tags')]
+        if m.get('resourceGroupId') is not None:
+            self.resource_group_id = m.get('resourceGroupId')
+        if m.get('resourceGroupName') is not None:
+            self.resource_group_name = m.get('resourceGroupName')
         return self

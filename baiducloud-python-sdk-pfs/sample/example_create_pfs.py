@@ -21,7 +21,7 @@ if __name__ == '__main__':
 
         client = PfsClient(bce_client_config)
         request = pfs_models.CreatePfsRequest(
-            name="", instance_type="", capacity=0, zone="", subnet_id="", description="", tags=[]
+            name="", instance_type="", capacity=0, zone="", subnet_id="", description="", tags=[], resource_group_id=""
         )
         res = client.create_pfs(request)
         print(res.to_json_string())

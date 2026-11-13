@@ -13,14 +13,24 @@ class CreatePfsRequest(AbstractModel):
     This class encapsulates all parameters for the API request.
     """
 
-    def __init__(self, name, instance_type, capacity=None, zone=None, subnet_id=None, description=None, tags=None):
+    def __init__(
+        self,
+        name,
+        instance_type,
+        capacity=None,
+        zone=None,
+        subnet_id=None,
+        description=None,
+        tags=None,
+        resource_group_id=None,
+    ):
         """
         Initialize CreatePfsRequest request entity.
 
         :param name: name parameter
         :type name: str (required)
 
-        :param instance_type: 可选类型包括：base、basic、baseX、plus、plus2、plusl2X
+        :param instance_type: 可选类型包括：base、basic、baseX、plus、plus2、plusl2X、plusl3_p1
         :type instance_type: str (required)
 
         :param capacity: capacity parameter
@@ -37,6 +47,9 @@ class CreatePfsRequest(AbstractModel):
 
         :param tags: 实例标签
         :type tags: List[Tag] (optional)
+
+        :param resource_group_id: 资源所属资源分组 ID，格式通常为 RESG- 开头；不传或为空时使用默认分组
+        :type resource_group_id: str (optional)
         """
         super().__init__()
         self.name = name
@@ -46,6 +59,7 @@ class CreatePfsRequest(AbstractModel):
         self.subnet_id = subnet_id
         self.description = description
         self.tags = tags
+        self.resource_group_id = resource_group_id
 
     def to_dict(self):
         """
@@ -74,6 +88,8 @@ class CreatePfsRequest(AbstractModel):
             result['description'] = self.description
         if self.tags is not None:
             result['tags'] = [i.to_dict() for i in self.tags]
+        if self.resource_group_id is not None:
+            result['resourceGroupId'] = self.resource_group_id
         return result
 
     def from_dict(self, m):
@@ -106,4 +122,6 @@ class CreatePfsRequest(AbstractModel):
             self.description = m.get('description')
         if m.get('tags') is not None:
             self.tags = [Tag().from_dict(i) for i in m.get('tags')]
+        if m.get('resourceGroupId') is not None:
+            self.resource_group_id = m.get('resourceGroupId')
         return self
