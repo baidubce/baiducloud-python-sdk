@@ -33,7 +33,7 @@ class DescPfsResponse(BceResponse):
         """
         Initialize DescPfsResponse response.
 
-        :param capacity: PFS实例最大容量（单位GB）
+        :param capacity: PFS实例最大容量（单位GB，仅PFSL1、PFSL2有该参数）
         :type capacity: int (optional)
 
         :param create_time: PFS实例创建时间
@@ -63,7 +63,7 @@ class DescPfsResponse(BceResponse):
         :param subnet_model: subnet_model field
         :type subnet_model: SubnetDetail (optional)
 
-        :param usage: PFS实例使用量（单位GB）
+        :param usage: PFS实例使用量（PFSL1、PFSL2单位GB，PFSL3单位B）
         :type usage: int (optional)
 
         :param vpc_id: PFS所在VPCID
