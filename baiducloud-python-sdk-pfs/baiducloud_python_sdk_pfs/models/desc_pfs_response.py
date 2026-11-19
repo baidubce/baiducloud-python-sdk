@@ -29,6 +29,7 @@ class DescPfsResponse(BceResponse):
         tags=None,
         resource_group_id=None,
         resource_group_name=None,
+        version_number=None,
     ):
         """
         Initialize DescPfsResponse response.
@@ -77,6 +78,9 @@ class DescPfsResponse(BceResponse):
 
         :param resource_group_name: 资源所属资源分组名称；可能为空或不返回，调用方需兼容
         :type resource_group_name: str (optional)
+
+        :param version_number: 实例所用的后端 instance 版本号
+        :type version_number: str (optional)
         """
         super().__init__()
         self.capacity = capacity
@@ -94,6 +98,7 @@ class DescPfsResponse(BceResponse):
         self.tags = tags
         self.resource_group_id = resource_group_id
         self.resource_group_name = resource_group_name
+        self.version_number = version_number
 
     def to_dict(self):
         """
@@ -141,6 +146,8 @@ class DescPfsResponse(BceResponse):
             result['resourceGroupId'] = self.resource_group_id
         if self.resource_group_name is not None:
             result['resourceGroupName'] = self.resource_group_name
+        if self.version_number is not None:
+            result['versionNumber'] = self.version_number
         return result
 
     def from_dict(self, m):
@@ -189,4 +196,6 @@ class DescPfsResponse(BceResponse):
             self.resource_group_id = m.get('resourceGroupId')
         if m.get('resourceGroupName') is not None:
             self.resource_group_name = m.get('resourceGroupName')
+        if m.get('versionNumber') is not None:
+            self.version_number = m.get('versionNumber')
         return self

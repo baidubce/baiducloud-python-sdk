@@ -91,6 +91,9 @@ class PfsClientTest(unittest.TestCase):
     def test_describe_l3_mount_target(self):
         self.client.describe_l3_mount_target(pfs_models.DescribeL3MountTargetRequest())
 
+    def test_instance_available_versions(self):
+        self.client.instance_available_versions(pfs_models.InstanceAvailableVersionsRequest())
+
     def test_instance_list_clients(self):
         self.client.instance_list_clients(pfs_models.InstanceListClientsRequest())
 
@@ -181,6 +184,7 @@ if __name__ == '__main__':
     suite.addTest(PfsClientTest("test_desc_pfs"))
     suite.addTest(PfsClientTest("test_describe_l3_access_group"))
     suite.addTest(PfsClientTest("test_describe_l3_mount_target"))
+    suite.addTest(PfsClientTest("test_instance_available_versions"))
     suite.addTest(PfsClientTest("test_instance_list_clients"))
     suite.addTest(PfsClientTest("test_list_fileset"))
     suite.addTest(PfsClientTest("test_list_l2_bucket_link"))

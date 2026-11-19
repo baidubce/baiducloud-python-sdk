@@ -6,6 +6,8 @@ from .access_group_info import AccessGroupInfo
 from .access_rule_info import AccessRuleInfo
 from .access_rule_model import AccessRuleModel
 from .attached_mount_target_info import AttachedMountTargetInfo
+from .available_mount_service_info import AvailableMountServiceInfo
+from .available_version import AvailableVersion
 from .bucket_link_info import BucketLinkInfo
 from .cancel_l2_bucket_link_request import CancelL2BucketLinkRequest
 from .cancel_l2_bucket_link_response import CancelL2BucketLinkResponse
@@ -49,6 +51,8 @@ from .describe_l3_mount_target_request import DescribeL3MountTargetRequest
 from .describe_l3_mount_target_response import DescribeL3MountTargetResponse
 from .execute_info import ExecuteInfo
 from .fileset_model import FilesetModel
+from .instance_available_versions_request import InstanceAvailableVersionsRequest
+from .instance_available_versions_response import InstanceAvailableVersionsResponse
 from .instance_list_clients_request import InstanceListClientsRequest
 from .instance_list_clients_response import InstanceListClientsResponse
 from .instance_model import InstanceModel
@@ -70,6 +74,8 @@ from .list_l3_mount_target_response import ListL3MountTargetResponse
 from .list_pfs_response import ListPfsResponse
 from .lst_per_l2_bkt_lnk_exec_log_request import LstPerL2BktLnkExecLogRequest
 from .lst_per_l2_bkt_lnk_exec_log_response import LstPerL2BktLnkExecLogResponse
+from .mount_target_bind_config import MountTargetBindConfig
+from .mount_target_bind_info_item import MountTargetBindInfoItem
 from .mount_target_info import MountTargetInfo
 from .mount_target_list_clients_request import MountTargetListClientsRequest
 from .mount_target_list_clients_response import MountTargetListClientsResponse

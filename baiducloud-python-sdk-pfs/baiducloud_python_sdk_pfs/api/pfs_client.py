@@ -31,6 +31,7 @@ from baiducloud_python_sdk_pfs.models.desc_l2_policy_response import DescL2Polic
 from baiducloud_python_sdk_pfs.models.desc_pfs_response import DescPfsResponse
 from baiducloud_python_sdk_pfs.models.describe_l3_access_group_response import DescribeL3AccessGroupResponse
 from baiducloud_python_sdk_pfs.models.describe_l3_mount_target_response import DescribeL3MountTargetResponse
+from baiducloud_python_sdk_pfs.models.instance_available_versions_response import InstanceAvailableVersionsResponse
 from baiducloud_python_sdk_pfs.models.instance_list_clients_response import InstanceListClientsResponse
 from baiducloud_python_sdk_pfs.models.list_fileset_response import ListFilesetResponse
 from baiducloud_python_sdk_pfs.models.list_l2_bucket_link_response import ListL2BucketLinkResponse
@@ -704,6 +705,37 @@ class PfsClient(BceBaseClient):
             params=params,
             config=merged_config,
             model=DescribeL3MountTargetResponse,
+        )
+
+    def instance_available_versions(self, request, config=None):
+        """
+        instance_available_versions
+
+        :param request: Request entity containing all parameters
+        :type request: PfsClientRequest
+        :param config: Optional request configuration override
+        :type config: baiducloud_python_sdk_core.BceClientConfiguration
+
+        :return: API response containing InstanceAvailableVersionsResponse data
+        :rtype: InstanceAvailableVersionsResponse
+
+        :raises BceClientError: Client error (network failure, invalid parameters, etc.)
+        :raises BceServerError: Server error (4xx/5xx HTTP status codes)
+        """
+        path = b'/'
+        headers = {}
+        headers[b'Version'] = b'v2'
+        params = {}
+        params['action'] = 'InstanceAvailableVersions'
+        merged_config = self._create_request_with_host(request, config)
+        return self._send_request(
+            http_methods.POST,
+            path=path,
+            body=request.to_json_string(),
+            headers=headers,
+            params=params,
+            config=merged_config,
+            model=InstanceAvailableVersionsResponse,
         )
 
     def instance_list_clients(self, request, config=None):

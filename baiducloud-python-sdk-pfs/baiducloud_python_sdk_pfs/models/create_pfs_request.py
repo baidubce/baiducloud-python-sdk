@@ -4,6 +4,7 @@ Request entity for CreatePfsRequest information.
 
 from baiducloud_python_sdk_core.abstract_model import AbstractModel
 from baiducloud_python_sdk_pfs.models.tag import Tag
+from baiducloud_python_sdk_pfs.models.mount_target_bind_config import MountTargetBindConfig
 
 
 class CreatePfsRequest(AbstractModel):
@@ -23,6 +24,8 @@ class CreatePfsRequest(AbstractModel):
         description=None,
         tags=None,
         resource_group_id=None,
+        version_number=None,
+        mount_target_binds=None,
     ):
         """
         Initialize CreatePfsRequest request entity.
@@ -50,6 +53,12 @@ class CreatePfsRequest(AbstractModel):
 
         :param resource_group_id: 资源所属资源分组 ID，格式通常为 RESG- 开头；不传或为空时使用默认分组
         :type resource_group_id: str (optional)
+
+        :param version_number: 指定的后端 instance 版本号
+        :type version_number: str (optional)
+
+        :param mount_target_binds: 创建实例时绑定的挂载服务配置列表
+        :type mount_target_binds: List[MountTargetBindConfig] (optional)
         """
         super().__init__()
         self.name = name
@@ -60,6 +69,8 @@ class CreatePfsRequest(AbstractModel):
         self.description = description
         self.tags = tags
         self.resource_group_id = resource_group_id
+        self.version_number = version_number
+        self.mount_target_binds = mount_target_binds
 
     def to_dict(self):
         """
@@ -90,6 +101,10 @@ class CreatePfsRequest(AbstractModel):
             result['tags'] = [i.to_dict() for i in self.tags]
         if self.resource_group_id is not None:
             result['resourceGroupId'] = self.resource_group_id
+        if self.version_number is not None:
+            result['versionNumber'] = self.version_number
+        if self.mount_target_binds is not None:
+            result['mountTargetBinds'] = [i.to_dict() for i in self.mount_target_binds]
         return result
 
     def from_dict(self, m):
@@ -124,4 +139,8 @@ class CreatePfsRequest(AbstractModel):
             self.tags = [Tag().from_dict(i) for i in m.get('tags')]
         if m.get('resourceGroupId') is not None:
             self.resource_group_id = m.get('resourceGroupId')
+        if m.get('versionNumber') is not None:
+            self.version_number = m.get('versionNumber')
+        if m.get('mountTargetBinds') is not None:
+            self.mount_target_binds = [MountTargetBindConfig().from_dict(i) for i in m.get('mountTargetBinds')]
         return self
